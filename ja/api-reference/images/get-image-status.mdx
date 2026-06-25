@@ -18,7 +18,7 @@ description: "非同期画像生成タスクのステータスと結果を取得
 `ldtask_...` のような公開画像タスク ID は `/v1/images/{id}` でもポーリングできます。この互換エイリアスは `/v1/images/generations/{id}` と同じ認証、所有権チェック、課金ヘッダー、終端スナップショット、レスポンス形式を使います。
 
 
-タスクが存在しないか、公開の async-task 契約ではこれ以上解決できない場合、AI Sonar はメッセージ `Task not found or no longer available.` とともに `async_task_not_found` を返します
+タスクが存在しないか、公開の async-task 契約ではこれ以上解決できない場合、TokenLab はメッセージ `Task not found or no longer available.` とともに `async_task_not_found` を返します
 </Info>
 
 ## レスポンス
@@ -49,7 +49,7 @@ description: "非同期画像生成タスクのステータスと結果を取得
 
 <RequestExample>
 ```bash cURL
-curl "https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
+curl "https://api.tokenlab.sh/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
@@ -57,7 +57,7 @@ curl "https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" 
 import requests
 
 response = requests.get(
-    "https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "https://api.tokenlab.sh/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     headers={"Authorization": "Bearer sk-your-api-key"}
 )
 
@@ -70,7 +70,7 @@ if data["status"] == "completed":
 
 ```javascript JavaScript
 const response = await fetch(
-  'https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+  'https://api.tokenlab.sh/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
   {
     headers: {
       'Authorization': 'Bearer sk-your-api-key'
@@ -145,7 +145,7 @@ import time
 
 def poll_image_task(task_id, api_key, max_wait=300, interval=3):
     """タイムアウト付きで画像生成結果をポーリングします。"""
-    url = f"https://api.aisonar.dev/v1/tasks/{task_id}"
+    url = f"https://api.tokenlab.sh/v1/tasks/{task_id}"
     headers = {"Authorization": f"Bearer {api_key}"}
 
     start_time = time.time()

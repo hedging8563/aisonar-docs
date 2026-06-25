@@ -5,7 +5,7 @@ description: "Comprender y manejar los límites de tasa"
 
 ## Resumen
 
-AI Sonar implementa límites de tasa para garantizar un uso justo y la estabilidad de la plataforma. Los límites varían según el nivel de cuenta.
+TokenLab implementa límites de tasa para garantizar un uso justo y la estabilidad de la plataforma. Los límites varían según el nivel de cuenta.
 
 ## Niveles de límites de tasa
 
@@ -16,7 +16,7 @@ AI Sonar implementa límites de tasa para garantizar un uso justo y la estabilid
 | **VIP** | 10,000 | Usuarios de alto volumen |
 
 <Note>
-  Los límites de tasa están sujetos a cambios. Contacta a support@aisonar.dev para límites personalizados.
+  Los límites de tasa están sujetos a cambios. Contacta a support@tokenlab.sh para límites personalizados.
 </Note>
 
 ## Respuesta de límite de tasa
@@ -54,7 +54,7 @@ from openai import OpenAI, RateLimitError
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 def make_request_with_backoff(messages, max_retries=5):
@@ -136,7 +136,7 @@ def process_batch(items, batch_size=50, delay=1):
   </Accordion>
 
   <Accordion title="Contáctanos para límites más altos">
-    Si necesitas límites más altos, contacta a support@aisonar.dev.
+    Si necesitas límites más altos, contacta a support@tokenlab.sh.
   </Accordion>
 </AccordionGroup>
 
@@ -144,11 +144,11 @@ def process_batch(items, batch_size=50, delay=1):
 
 Para solicitar una mejora de nivel:
 
-1. Inicia sesión en tu [Dashboard](https://console.aisonar.dev)
+1. Inicia sesión en tu [Dashboard](https://tokenlab.sh/dashboard)
 2. Ve a **Settings → Account**
 3. Contacta a soporte con tu caso de uso
 
-O envía un email a support@aisonar.dev con:
+O envía un email a support@tokenlab.sh con:
 - El email de tu cuenta
 - Volumen esperado de solicitudes
 - Descripción del caso de uso

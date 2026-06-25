@@ -6,7 +6,7 @@ description: "Uploads a JSONL batch input file for later batch creation."
 
 ## Overview
 
-This endpoint is part of AI Sonar's OpenAI-compatible Batch API. Batch jobs use uploaded JSONL files, run asynchronously, and can return output/error files later.
+This endpoint is part of TokenLab's OpenAI-compatible Batch API. Batch jobs use uploaded JSONL files, run asynchronously, and can return output/error files later.
 
 ## Notes
 
@@ -19,7 +19,7 @@ This endpoint is part of AI Sonar's OpenAI-compatible Batch API. Batch jobs use 
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/files" \
+curl -X POST "https://api.tokenlab.sh/v1/files" \
   -H "Authorization: Bearer sk-your-api-key" \
   -F "purpose=batch" \
   -F "file=@batch-input.jsonl;type=application/jsonl"

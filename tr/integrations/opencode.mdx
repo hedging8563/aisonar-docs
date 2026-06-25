@@ -1,6 +1,6 @@
 ---
 title: "OpenCode"
-description: "AI Sonar API kullanacak şekilde OpenCode'u yapılandırın"
+description: "TokenLab API kullanacak şekilde OpenCode'u yapılandırın"
 ---
 
 ## Genel Bakış
@@ -15,7 +15,7 @@ description: "AI Sonar API kullanacak şekilde OpenCode'u yapılandırın"
 **Destek seviyesi**: Desteklenen yol
 </Note>
 
-OpenCode, terminalinizde çalışan açık kaynaklı bir AI kodlama asistanıdır. Birden fazla LLM sağlayıcısını destekler ve yüzlerce modele erişim için AI Sonar API'sini kullanacak şekilde yapılandırılabilir.
+OpenCode, terminalinizde çalışan açık kaynaklı bir AI kodlama asistanıdır. Birden fazla LLM sağlayıcısını destekler ve yüzlerce modele erişim için TokenLab API'sini kullanacak şekilde yapılandırılabilir.
 
 ## Kurulum
 
@@ -53,29 +53,29 @@ opencode --version
 ### Adım 1: Environment Variable'ları Ayarlayın
 
 ```bash
-export OPENAI_API_KEY="sk-your-api-key"
+export OPENAI_API_KEY="sk-your-tokenlab-key"
 ```
 
 Kalıcı yapılandırma için, `~/.bashrc` veya `~/.zshrc` dosyanıza ekleyin:
 
 ```bash
-echo 'export OPENAI_API_KEY="sk-your-api-key"' >> ~/.zshrc
+echo 'export OPENAI_API_KEY="sk-your-tokenlab-key"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 ### Adım 2: OpenCode'u Yapılandırın
 
-OpenCode'un mevcut dokümantasyonu, sağlayıcıların `opencode.json` veya `opencode.jsonc` üzerinden yapılandırılmasını önerir. AI Sonar için, yerleşik `openai` sağlayıcısını aşırı yüklemek yerine özel bir sağlayıcı kullanın:
+OpenCode'un mevcut dokümantasyonu, sağlayıcıların `opencode.json` veya `opencode.jsonc` üzerinden yapılandırılmasını önerir. TokenLab için, yerleşik `openai` sağlayıcısını aşırı yüklemek yerine özel bir sağlayıcı kullanın:
 
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "aisonar": {
+    "tokenlab": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "AI Sonar",
+      "name": "TokenLab",
       "options": {
-        "baseURL": "https://api.aisonar.dev/v1",
+        "baseURL": "https://api.tokenlab.sh/v1",
         "apiKey": "{env:OPENAI_API_KEY}"
       },
       "models": {
@@ -88,7 +88,7 @@ OpenCode'un mevcut dokümantasyonu, sağlayıcıların `opencode.json` veya `ope
       }
     }
   },
-  "model": "aisonar/gpt-5.4"
+  "model": "tokenlab/gpt-5.4"
 }
 ```
 
@@ -113,7 +113,7 @@ opencode "Explain this codebase"
 **Model belirtin:**
 
 ```bash
-opencode --model aisonar/gpt-5.4 "Fix the bugs in main.py"
+opencode --model tokenlab/gpt-5.4 "Fix the bugs in main.py"
 ```
 
 ## Kullanılabilir Modeller
@@ -166,21 +166,21 @@ opencode "Fix the TypeScript errors in this project"
 
 <AccordionGroup>
   <Accordion title="Bağlantı Hatası">
-    - `options.baseURL` değerinin `https://api.aisonar.dev/v1` olarak ayarlandığını doğrulayın
+    - `options.baseURL` değerinin `https://api.tokenlab.sh/v1` olarak ayarlandığını doğrulayın
     - Ağ bağlantısını kontrol edin
-    - Test etmek için `curl https://api.aisonar.dev/v1/models` komutunu deneyin
+    - Test etmek için `curl https://api.tokenlab.sh/v1/models` komutunu deneyin
   </Accordion>
 
   <Accordion title="Kimlik Doğrulama Başarısız Oldu">
     - `OPENAI_API_KEY` environment variable'ının ayarlandığını doğrulayın
     - `options.apiKey` değerinin `{env:OPENAI_API_KEY}` veya başka bir geçerli secret kaynağına başvurduğunu doğrulayın
     - Anahtarın `sk-` ile başladığını kontrol edin
-    - Anahtarın AI Sonar dashboard'unda aktif olduğundan emin olun
+    - Anahtarın TokenLab dashboard'unda aktif olduğundan emin olun
   </Accordion>
 
   <Accordion title="Model Bulunamadı">
     - Yapılandırmadaki model adının tam olarak eşleştiğini kontrol edin
-    - Modelin kullanılabilirliğini [aisonar.dev/en/models](https://aisonar.dev/models) adresinde doğrulayın
+    - Modelin kullanılabilirliğini [tokenlab.sh/en/models](https://tokenlab.sh/tr/models) adresinde doğrulayın
   </Accordion>
 </AccordionGroup>
 

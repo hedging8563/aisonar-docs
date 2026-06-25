@@ -1,6 +1,6 @@
 ---
 title: "OpenCode"
-description: "Configurer OpenCode pour utiliser l'API AI Sonar"
+description: "Configurer OpenCode pour utiliser l'API TokenLab"
 ---
 
 ## Vue d’ensemble
@@ -15,7 +15,7 @@ description: "Configurer OpenCode pour utiliser l'API AI Sonar"
 **Niveau de support**: Chemin pris en charge
 </Note>
 
-OpenCode est un assistant de codage IA open-source qui s’exécute dans votre terminal. Il prend en charge plusieurs fournisseurs de LLM et peut être configuré pour utiliser l’API de AI Sonar afin d’accéder à plus de 300 modèles.
+OpenCode est un assistant de codage IA open-source qui s’exécute dans votre terminal. Il prend en charge plusieurs fournisseurs de LLM et peut être configuré pour utiliser l’API de TokenLab afin d’accéder à plus de 300 modèles.
 
 ## Installation
 
@@ -53,29 +53,29 @@ opencode --version
 ### Étape 1 : Définir les variables d’environnement
 
 ```bash
-export OPENAI_API_KEY="sk-your-api-key"
+export OPENAI_API_KEY="sk-your-tokenlab-key"
 ```
 
 Pour une configuration permanente, ajoutez ceci à `~/.bashrc` ou `~/.zshrc` :
 
 ```bash
-echo 'export OPENAI_API_KEY="sk-your-api-key"' >> ~/.zshrc
+echo 'export OPENAI_API_KEY="sk-your-tokenlab-key"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 ### Étape 2 : Configurer OpenCode
 
-La documentation actuelle d’OpenCode recommande de configurer les fournisseurs via `opencode.json` ou `opencode.jsonc`. Pour AI Sonar, utilisez un fournisseur personnalisé au lieu de surcharger le fournisseur `openai` intégré :
+La documentation actuelle d’OpenCode recommande de configurer les fournisseurs via `opencode.json` ou `opencode.jsonc`. Pour TokenLab, utilisez un fournisseur personnalisé au lieu de surcharger le fournisseur `openai` intégré :
 
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "aisonar": {
+    "tokenlab": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "AI Sonar",
+      "name": "TokenLab",
       "options": {
-        "baseURL": "https://api.aisonar.dev/v1",
+        "baseURL": "https://api.tokenlab.sh/v1",
         "apiKey": "{env:OPENAI_API_KEY}"
       },
       "models": {
@@ -88,7 +88,7 @@ La documentation actuelle d’OpenCode recommande de configurer les fournisseurs
       }
     }
   },
-  "model": "aisonar/gpt-5.4"
+  "model": "tokenlab/gpt-5.4"
 }
 ```
 
@@ -113,7 +113,7 @@ opencode "Explain this codebase"
 **Spécifier un modèle :**
 
 ```bash
-opencode --model aisonar/gpt-5.4 "Fix the bugs in main.py"
+opencode --model tokenlab/gpt-5.4 "Fix the bugs in main.py"
 ```
 
 ## Modèles disponibles
@@ -166,21 +166,21 @@ opencode "Fix the TypeScript errors in this project"
 
 <AccordionGroup>
   <Accordion title="Erreur de connexion">
-    - Vérifiez que `options.baseURL` est défini sur `https://api.aisonar.dev/v1`
+    - Vérifiez que `options.baseURL` est défini sur `https://api.tokenlab.sh/v1`
     - Vérifiez la connectivité réseau
-    - Essayez `curl https://api.aisonar.dev/v1/models` pour tester
+    - Essayez `curl https://api.tokenlab.sh/v1/models` pour tester
   </Accordion>
 
   <Accordion title="Échec de l’authentification">
     - Vérifiez que la variable d’environnement `OPENAI_API_KEY` est définie
     - Vérifiez que `options.apiKey` référence `{env:OPENAI_API_KEY}` ou une autre source secrète valide
     - Vérifiez que la clé commence par `sk-`
-    - Assurez-vous que la clé est active dans le tableau de bord AI Sonar
+    - Assurez-vous que la clé est active dans le tableau de bord TokenLab
   </Accordion>
 
   <Accordion title="Modèle introuvable">
     - Vérifiez que le nom du modèle dans la configuration correspond exactement
-    - Vérifiez la disponibilité du modèle sur [aisonar.dev/en/models](https://aisonar.dev/models)
+    - Vérifiez la disponibilité du modèle sur [tokenlab.sh/en/models](https://tokenlab.sh/fr/models)
   </Accordion>
 </AccordionGroup>
 

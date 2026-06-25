@@ -24,7 +24,7 @@ Endpoint ini digunakan untuk pengenalan suara, sintesis suara, terjemahan suara,
 ```javascript JavaScript
 import WebSocket from 'ws';
 
-const socket = new WebSocket('wss://api.aisonar.dev/v1/realtime?model=qwen-tts-realtime', {
+const socket = new WebSocket('wss://api.tokenlab.sh/v1/realtime?model=qwen-tts-realtime', {
   headers: { Authorization: 'Bearer sk-your-api-key' }
 });
 
@@ -38,17 +38,17 @@ socket.on('message', (data) => {
 ```
 
 ```bash cURL
-curl "https://api.aisonar.dev/v1/realtime" \
+curl "https://api.tokenlab.sh/v1/realtime" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>
 
 ## Pesan
 
-AI Sonar meneruskan pesan WebSocket antara client dan penyedia realtime yang dirutekan. Pertahankan bentuk event resmi model yang dipilih dan kirim `model` di query string.
+TokenLab meneruskan pesan WebSocket antara client dan penyedia realtime yang dirutekan. Pertahankan bentuk event resmi model yang dipilih dan kirim `model` di query string.
 
 ## Penagihan dan penutupan
 
-Sesi realtime memakai saldo API key yang sama. AI Sonar melakukan pre-deduct kecil saat socket dibuka, lalu melakukan settlement atau refund saat sesi ditutup.
+Sesi realtime memakai saldo API key yang sama. TokenLab melakukan pre-deduct kecil saat socket dibuka, lalu melakukan settlement atau refund saat sesi ditutup.
 
-Tutup socket client saat sesi selesai. Jika upstream menutup lebih dulu, AI Sonar meneruskan close code bila memungkinkan.
+Tutup socket client saat sesi selesai. Jika upstream menutup lebih dulu, TokenLab meneruskan close code bila memungkinkan.

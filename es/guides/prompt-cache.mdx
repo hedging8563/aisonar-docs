@@ -10,7 +10,7 @@ description: "Comprenda el almacenamiento en caché de prompts a nivel de provee
 
 | Tipo | Ubicación | Cómo funciona | Costo |
 |------|-------|--------------|------|
-| **Caché de plataforma** | AI Sonar | Coincidencia por similitud semántica | 10% del precio normal |
+| **Caché de plataforma** | TokenLab | Coincidencia por similitud semántica | 10% del precio normal |
 | **Caché de proveedor** | Proveedor (Anthropic/OpenAI/etc) | Coincidencia exacta de prefijos | Tarifas de tokens con descuento |
 
 Estos son **mutuamente excluyentes**: si hay un acierto en el caché de la plataforma, no se realiza ninguna llamada al proveedor, por lo que el caché del proveedor no se aplica.
@@ -47,7 +47,7 @@ Request 2: [System prompt + Context A + Question 2]
 | **Google** | 75% de descuento | 25% de recargo | 32768 |
 
 <Info>
-Los descuentos se aplican automáticamente. AI Sonar le transfiere los precios de caché del proveedor directamente.
+Los descuentos se aplican automáticamente. TokenLab le transfiere los precios de caché del proveedor directamente.
 </Info>
 
 ## Identificación del uso de caché

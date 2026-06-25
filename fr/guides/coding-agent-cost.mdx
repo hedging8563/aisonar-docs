@@ -67,8 +67,8 @@ Coûts estimés pour une session de codage d'1 heure (~3M tokens) :
 | Configuration | Coût/heure | Mensuel (160h) |
 |---------------|-----------|----------------|
 | API directe (modèle premium) | ~$15–25 | ~$2 400–4 000 |
-| AI Sonar (routage intelligent) | ~$10–18 | ~$1 600–2 900 |
-| AI Sonar + Prompt Cache | ~$4–8 | ~$640–1 280 |
+| TokenLab (routage intelligent) | ~$10–18 | ~$1 600–2 900 |
+| TokenLab + Prompt Cache | ~$4–8 | ~$640–1 280 |
 
 <Warning>
 Ce sont des estimations illustratives. Les coûts réels dépendent du modèle, des habitudes d'utilisation et des taux de cache hit. Consultez les [tarifs en temps réel](/fr/api-reference/pricing/get-pricing).
@@ -103,30 +103,30 @@ Ce sont des estimations illustratives. Les coûts réels dépendent du modèle, 
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-api-key"
-    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
+    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
+    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
     ```
     [Guide complet →](/fr/integrations/claude-code)
   </Accordion>
 
   <Accordion title="Cursor">
-    Settings → Models → OpenAI API Key : `sk-your-key`, Base URL : `https://api.aisonar.dev/v1`
+    Settings → Models → OpenAI API Key : `sk-your-key`, Base URL : `https://api.tokenlab.sh/v1`
 
     [Guide complet →](/fr/integrations/cursor)
   </Accordion>
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-api-key"
-    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
+    export OPENAI_API_KEY="sk-your-tokenlab-key"
+    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
     ```
     [Guide complet →](/fr/integrations/codex-cli)
   </Accordion>
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-api-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
+    export GEMINI_API_KEY="sk-your-tokenlab-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
     ```
     [Guide complet →](/fr/integrations/gemini-cli)
   </Accordion>

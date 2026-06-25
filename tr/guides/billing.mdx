@@ -1,11 +1,11 @@
 ---
 title: "Faturalandırma ve Fiyatlandırma"
-description: "AI Sonar'nın kullandıkça öde fiyatlandırmasını anlayın"
+description: "TokenLab'nın kullandıkça öde fiyatlandırmasını anlayın"
 ---
 
 ## Genel Bakış
 
-AI Sonar **kullandıkça öde fiyatlandırması** kullanır. Abonelik veya minimum taahhüt olmadan yalnızca kullandığınız kadar ödersiniz.
+TokenLab **kullandıkça öde fiyatlandırması** kullanır. Abonelik veya minimum taahhüt olmadan yalnızca kullandığınız kadar ödersiniz.
 
 ## Faturalandırma Nasıl Çalışır
 
@@ -33,7 +33,7 @@ AI Sonar **kullandıkça öde fiyatlandırması** kullanır. Abonelik veya minim
 | DeepSeek V3.2 | $0.196 | $0.294 |
 
 <Note>
-  Gösterilen fiyatlar indirimli platform fiyatlarıdır. Gerçek fiyatlar değişiklik gösterebilir. Güncel oranlar için [fiyatlandırma sayfasını](https://aisonar.dev/tr/pricing) kontrol edin.
+  Gösterilen fiyatlar indirimli platform fiyatlarıdır. Gerçek fiyatlar değişiklik gösterebilir. Güncel oranlar için [fiyatlandırma sayfasını](https://tokenlab.sh/tr/pricing) kontrol edin.
 </Note>
 
 ### İstek Başına Fiyatlandırma
@@ -55,12 +55,12 @@ Görüntü, video ve ses modelleri istek başına fiyatlandırılır:
 
 Görev tabanlı oluşturma akışları için (video, müzik, 3D ve bazı görüntü modelleri):
 
-1. Görevi gönderin. AI Sonar bakiye ve API Key harcama limitlerini doğrulamak için tahmini bir ön kesinti veya rezervasyon yapabilir.
+1. Görevi gönderin. TokenLab bakiye ve API Key harcama limitlerini doğrulamak için tahmini bir ön kesinti veya rezervasyon yapabilir.
 2. Görev terminal duruma ulaşana kadar dönen `poll_url` değerini sorgulayın veya `GET /v1/tasks/{id}` çağırın.
 3. Görev başarıyla tamamlandığında nihai mutabakat kullanımı kaydeder ve görev yanıtı `billing_transaction_id` içerir.
 4. Oluşturma başarısız olursa veya terminal durum failed ise bekleyen tutar iade edilir ya da serbest bırakılır ve istek faturalandırılamaz olarak işaretlenir.
 
-Terminal durum görünür olduktan sonra dashboard mutabakatı veya iadeyi yansıtmıyorsa support@aisonar.dev adresiyle iletişime geçin.
+Terminal durum görünür olduktan sonra dashboard mutabakatı veya iadeyi yansıtmıyorsa support@tokenlab.sh adresiyle iletişime geçin.
 
 ```python
 # Örnek: Video oluşturma faturalandırması
@@ -105,7 +105,7 @@ print(f"Token sayısı: {len(tokens)}")
 
 ### Panel
 
-Kullanımınızı [Panel](https://console.aisonar.dev) üzerinden izleyin:
+Kullanımınızı [Panel](https://tokenlab.sh/dashboard) üzerinden izleyin:
 
 - Gerçek zamanlı bakiye
 - Modele göre kullanım geçmişi
@@ -166,7 +166,7 @@ Bakiyeniz düştüğünde uyarıları yapılandırın:
 
 ### Adımlar
 
-1. [Panel](https://console.aisonar.dev) hesabınıza giriş yapın
+1. [Panel](https://tokenlab.sh/dashboard) hesabınıza giriş yapın
 2. **Kredi Ekle** seçeneğine tıklayın
 3. Tutarı ve ödeme yöntemini seçin
 4. Ödemeyi tamamlayın
@@ -193,4 +193,4 @@ Kurumsal hesaplar için faturalar mevcuttur:
 
 ## Sorularınız mı var?
 
-Faturalandırma sorularınız için support@aisonar.dev ile iletişime geçin.
+Faturalandırma sorularınız için support@tokenlab.sh ile iletişime geçin.

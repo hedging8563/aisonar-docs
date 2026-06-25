@@ -1,11 +1,11 @@
 ---
 title: "Authentification"
-description: "Sécurisez vos requêtes API AI Sonar avec des clés API"
+description: "Sécurisez vos requêtes API TokenLab avec des clés API"
 ---
 
 ## Clés API
 
-Toutes les requêtes API AI Sonar nécessitent une clé API.
+Toutes les requêtes API TokenLab nécessitent une clé API.
 
 Pour les endpoints compatibles OpenAI, envoyez-la comme suit :
 
@@ -21,7 +21,7 @@ x-api-key: sk-your-api-key
 
 ## Obtenir votre clé API
 
-1. Connectez-vous à votre [AI Sonar Dashboard](https://console.aisonar.dev)
+1. Connectez-vous à votre [TokenLab Dashboard](https://tokenlab.sh/dashboard)
 2. Ouvrez **API Keys**
 3. Créez une nouvelle clé
 4. Donnez-lui un nom descriptif
@@ -40,7 +40,7 @@ x-api-key: sk-your-api-key
 <CodeGroup>
 
 ```bash cURL
-curl https://api.aisonar.dev/v1/responses \
+curl https://api.tokenlab.sh/v1/responses \
   -H "Authorization: Bearer $TOKENLAB_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -55,7 +55,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.environ.get("TOKENLAB_API_KEY"),
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 ```
 
@@ -64,7 +64,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: process.env.TOKENLAB_API_KEY,
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 ```
 
@@ -83,14 +83,14 @@ Vous pouvez définir une limite d’utilisation sur chaque clé API :
 
 ### Préfixe de clé
 
-Toutes les clés API AI Sonar commencent par `sk-`.
+Toutes les clés API TokenLab commencent par `sk-`.
 
 ## Compatibilité Anthropic
 
 Pour l’endpoint `/v1/messages`, l’en-tête de style Anthropic fonctionne comme prévu :
 
 ```bash
-curl https://api.aisonar.dev/v1/messages \
+curl https://api.tokenlab.sh/v1/messages \
   -H "x-api-key: sk-your-api-key" \
   -H "anthropic-version: 2023-06-01" \
   -H "Content-Type: application/json" \
@@ -102,7 +102,7 @@ curl https://api.aisonar.dev/v1/messages \
 ```
 
 <Note>
-Utilisez `Authorization: Bearer ...` pour les endpoints compatibles OpenAI tels que `/v1/responses`, `/v1/chat/completions`, `/v1/models` et la plupart des autres routes AI Sonar.
+Utilisez `Authorization: Bearer ...` pour les endpoints compatibles OpenAI tels que `/v1/responses`, `/v1/chat/completions`, `/v1/models` et la plupart des autres routes TokenLab.
 </Note>
 
 ## Réponses d’erreur

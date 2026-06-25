@@ -6,7 +6,7 @@ description: "上传一个 JSONL 批量输入文件以便后续批量创建。"
 
 ## 概述
 
-此端点是 AI Sonar 的 OpenAI 兼容批量 API 的一部分。批量作业使用上传的 JSONL 文件，异步运行，并可以在稍后返回输出/错误文件。
+此端点是 TokenLab 的 OpenAI 兼容批量 API 的一部分。批量作业使用上传的 JSONL 文件，异步运行，并可以在稍后返回输出/错误文件。
 
 ## 注意事项
 
@@ -19,7 +19,7 @@ description: "上传一个 JSONL 批量输入文件以便后续批量创建。"
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/files" \
+curl -X POST "https://api.tokenlab.sh/v1/files" \
   -H "Authorization: Bearer sk-your-api-key" \
   -F "purpose=batch" \
   -F "file=@batch-input.jsonl;type=application/jsonl"

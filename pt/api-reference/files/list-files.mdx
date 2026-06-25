@@ -6,7 +6,7 @@ description: "Lista arquivos enviados para fluxos em lote e modos de compatibili
 
 ## Visão geral
 
-Este endpoint serve principalmente à API de Batch compatível com OpenAI da AI Sonar, incluindo entradas em lote enviadas e arquivos de saída ou erro gerados.
+Este endpoint serve principalmente à API de Batch compatível com OpenAI da TokenLab, incluindo entradas em lote enviadas e arquivos de saída ou erro gerados.
 
 Quando a requisição entra no modo de compatibilidade com Anthropic Files, a mesma rota também pode listar arquivos no estilo Anthropic disponíveis para o workspace vinculado.
 
@@ -22,7 +22,7 @@ Quando a requisição entra no modo de compatibilidade com Anthropic Files, a me
 
 <RequestExample>
 ```bash cURL
-curl -X GET "https://api.aisonar.dev/v1/files?purpose=batch&limit=20" \
+curl -X GET "https://api.tokenlab.sh/v1/files?purpose=batch&limit=20" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>

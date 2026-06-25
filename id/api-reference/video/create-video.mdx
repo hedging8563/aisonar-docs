@@ -18,7 +18,7 @@ Jika respons create mengembalikan `poll_url`, panggil URL tersebut secara persis
 
 ### Perilaku model dan media
 
-Output audio bergantung pada model. Di AI Sonar, keluarga Veo 3 akan menyalakan audio secara default ketika `output_audio` dihilangkan. Jika model mendukung kontrol audio, gunakan `output_audio` untuk menyalakan atau mematikannya secara eksplisit. Alias camelCase `outputAudio` juga diterima untuk kompatibilitas.
+Output audio bergantung pada model. Di TokenLab, keluarga Veo 3 akan menyalakan audio secara default ketika `output_audio` dihilangkan. Jika model mendukung kontrol audio, gunakan `output_audio` untuk menyalakan atau mematikannya secara eksplisit. Alias camelCase `outputAudio` juga diterima untuk kompatibilitas.
 
 Untuk integrasi produksi, sebaiknya gunakan URL `https` publik untuk gambar, video, dan audio. Model yang kompatibel masih menerima URL `data:`, tetapi muatan base64 yang besar lebih sulit untuk dicoba ulang, diinspeksi, dan di-debug.
 
@@ -33,7 +33,7 @@ Untuk integrasi produksi, sebaiknya gunakan URL `https` publik untuk gambar, vid
 </ParamField>
 
 <ParamField body="operation" type="string">
-  Operasi video yang akan dijalankan. Kontrak publik mendukung `text-to-video`, `image-to-video`, `reference-to-video`, `start-end-to-video`, `video-to-video`, `video-extension`, `audio-to-video`, dan `motion-control`. AI Sonar bisa menebak operasi berdasarkan input yang Anda kirim, tetapi untuk traffic produksi sebaiknya `operation` dikirim secara eksplisit.
+  Operasi video yang akan dijalankan. Kontrak publik mendukung `text-to-video`, `image-to-video`, `reference-to-video`, `start-end-to-video`, `video-to-video`, `video-extension`, `audio-to-video`, dan `motion-control`. TokenLab bisa menebak operasi berdasarkan input yang Anda kirim, tetapi untuk traffic produksi sebaiknya `operation` dikirim secara eksplisit.
 </ParamField>
 
 <ParamField body="image_url" type="string">
@@ -45,7 +45,7 @@ Untuk integrasi produksi, sebaiknya gunakan URL `https` publik untuk gambar, vid
 </ParamField>
 
 <ParamField body="reference_images" type="array">
-  Gambar referensi untuk alur dengan conditioning khusus. Jumlah yang didukung bergantung pada model. Untuk `seedance-2.0` dan `seedance-2.0-fast`, AI Sonar saat ini mendukung hingga 9 gambar referensi, ditambah hingga 3 video referensi dan 3 audio referensi. URL publik `https` lebih disarankan; model yang kompatibel juga menerima URL `data:`. Untuk `grok-imagine-video`, reference-to-video menerima hingga 7 referensi gambar dan `duration` dibatasi maksimal 10 detik. `grok-imagine-video-1.5-preview` hanya mendukung image-to-video dan tidak menerima referensi gambar.
+  Gambar referensi untuk alur dengan conditioning khusus. Jumlah yang didukung bergantung pada model. Untuk `seedance-2.0` dan `seedance-2.0-fast`, TokenLab saat ini mendukung hingga 9 gambar referensi, ditambah hingga 3 video referensi dan 3 audio referensi. URL publik `https` lebih disarankan; model yang kompatibel juga menerima URL `data:`. Untuk `grok-imagine-video`, reference-to-video menerima hingga 7 referensi gambar dan `duration` dibatasi maksimal 10 detik. `grok-imagine-video-1.5-preview` hanya mendukung image-to-video dan tidak menerima referensi gambar.
 </ParamField>
 
 <ParamField body="reference_image_type" type="string">
@@ -61,7 +61,7 @@ Untuk integrasi produksi, sebaiknya gunakan URL `https` publik untuk gambar, vid
 </ParamField>
 
 <ParamField body="video_urls" type="array">
-  Input video referensi tambahan untuk model yang mendukung conditioning referensi multimodal. Jumlah yang didukung bergantung pada model. Untuk `seedance-2.0` dan `seedance-2.0-fast`, AI Sonar saat ini mendukung hingga 3 video referensi.
+  Input video referensi tambahan untuk model yang mendukung conditioning referensi multimodal. Jumlah yang didukung bergantung pada model. Untuk `seedance-2.0` dan `seedance-2.0-fast`, TokenLab saat ini mendukung hingga 3 video referensi.
 </ParamField>
 
 <ParamField body="audio_url" type="string">
@@ -69,7 +69,7 @@ Untuk integrasi produksi, sebaiknya gunakan URL `https` publik untuk gambar, vid
 </ParamField>
 
 <ParamField body="audio_urls" type="array">
-  Input audio referensi tambahan untuk model yang mendukung conditioning referensi multimodal. Jumlah yang didukung bergantung pada model. Untuk `seedance-2.0` dan `seedance-2.0-fast`, AI Sonar saat ini mendukung hingga 3 audio referensi.
+  Input audio referensi tambahan untuk model yang mendukung conditioning referensi multimodal. Jumlah yang didukung bergantung pada model. Untuk `seedance-2.0` dan `seedance-2.0-fast`, TokenLab saat ini mendukung hingga 3 audio referensi.
 </ParamField>
 
 <ParamField body="task_id" type="string">
@@ -97,7 +97,7 @@ Untuk integrasi produksi, sebaiknya gunakan URL `https` publik untuk gambar, vid
 </ParamField>
 
 <ParamField body="output_audio" type="boolean">
-  Toggle output audio bergantung pada model. Di AI Sonar, request keluarga Veo 3 default ke `true` saat field ini dihilangkan. `kling-3.0-video` menerima selector ini untuk request tanpa referensi elemen dan memetakannya ke kontrol sound upstream yang kompatibel; request Kling yang menghilangkan field ini defaultnya silent. Jangan gabungkan `output_audio=true` dengan `kling_elements`. Model video publik lain mengikuti perilaku default yang sudah digovern. Alias camelCase `outputAudio` diterima untuk kompatibilitas.
+  Toggle output audio bergantung pada model. Di TokenLab, request keluarga Veo 3 default ke `true` saat field ini dihilangkan. `kling-3.0-video` menerima selector ini untuk request tanpa referensi elemen dan memetakannya ke kontrol sound upstream yang kompatibel; request Kling yang menghilangkan field ini defaultnya silent. Jangan gabungkan `output_audio=true` dengan `kling_elements`. Model video publik lain mengikuti perilaku default yang sudah digovern. Alias camelCase `outputAudio` diterima untuk kompatibilitas.
 </ParamField>
 
 <ParamField body="fps" type="integer">
@@ -147,8 +147,8 @@ Untuk integrasi produksi, sebaiknya gunakan URL `https` publik untuk gambar, vid
 ## Catatan kompatibilitas
 
 - Field publik kanonis menggunakan snake_case: `reference_images`, `reference_image_type`, dan `output_audio`.
-- Untuk kompatibilitas, AI Sonar juga menerima alias camelCase `referenceImages`, `referenceImageType`, dan `outputAudio`.
-- Jika `operation` tidak dikirim, AI Sonar akan menebaknya dari input yang tersedia. Meski begitu, untuk produksi tetap disarankan untuk mengirimkannya secara eksplisit.
+- Untuk kompatibilitas, TokenLab juga menerima alias camelCase `referenceImages`, `referenceImageType`, dan `outputAudio`.
+- Jika `operation` tidak dikirim, TokenLab akan menebaknya dari input yang tersedia. Meski begitu, untuk produksi tetap disarankan untuk mengirimkannya secara eksplisit.
 
 ## Praktik terbaik untuk input media
 
@@ -171,7 +171,7 @@ Untuk integrasi produksi, sebaiknya gunakan URL `https` publik untuk gambar, vid
 </ResponseField>
 
 <ResponseField name="billing_transaction_id" type="string">
-  ID transaksi billing AI Sonar saat settlement sudah selesai. Ini adalah identitas transaksi untuk dashboard/rekonsiliasi dan terpisah dari `id` / `task_id` async.
+  ID transaksi billing TokenLab saat settlement sudah selesai. Ini adalah identitas transaksi untuk dashboard/rekonsiliasi dan terpisah dari `id` / `task_id` async.
 </ResponseField>
 
 <ResponseField name="status" type="string">
@@ -188,7 +188,7 @@ Untuk integrasi produksi, sebaiknya gunakan URL `https` publik untuk gambar, vid
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/videos/generations" \
+curl -X POST "https://api.tokenlab.sh/v1/videos/generations" \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -218,7 +218,7 @@ curl -X POST "https://api.aisonar.dev/v1/videos/generations" \
 
 ```python
 response = requests.post(
-    "https://api.aisonar.dev/v1/videos/generations",
+    "https://api.tokenlab.sh/v1/videos/generations",
     headers={"Authorization": "Bearer sk-your-api-key"},
     json={
         "model": "hailuo-2.3-standard",
@@ -236,7 +236,7 @@ response = requests.post(
 Gunakan `kling_elements` dengan `kling-3.0-video` saat memerlukan referensi elemen. Sertakan request yang dikondisikan gambar (`image_url`, `image_urls`, `start_image`, atau `end_image`) dan referensikan setiap elemen di prompt dengan `@name`. Jangan gabungkan `kling_elements` dengan `output_audio=true`; hilangkan `output_audio` atau set ke `false` saat memakai referensi elemen.
 
 ```python
-response = requests.post("https://api.aisonar.dev/v1/videos/generations",
+response = requests.post("https://api.tokenlab.sh/v1/videos/generations",
     headers=headers,
     json={
         "model": "kling-3.0-video",
@@ -261,11 +261,11 @@ response = requests.post("https://api.aisonar.dev/v1/videos/generations",
 
 ## Reference to video
 
-Gunakan `operation=reference-to-video` ketika model mendukung conditioning referensi khusus. Dalam kontrak publik AI Sonar, referensi gambar menggunakan `reference_images`, sedangkan video dan audio referensi multimodal menggunakan `video_urls` dan `audio_urls`. Untuk `seedance-2.0` dan `seedance-2.0-fast`, AI Sonar saat ini mendukung hingga 9 gambar referensi, ditambah hingga 3 video referensi dan 3 audio referensi. `duration` hanya mengatur panjang output yang dihasilkan; field ini tidak menetapkan batas terpisah untuk durasi input video referensi. Untuk `grok-imagine-video`, reference-to-video menerima hingga 7 referensi gambar (`reference_images` atau `image_urls`) dan `duration` dibatasi maksimal 10 detik. Jangan gabungkan referensi gambar dengan input frame awal `image_url` / `image`. `grok-imagine-video-1.5-preview` hanya mendukung image-to-video.
+Gunakan `operation=reference-to-video` ketika model mendukung conditioning referensi khusus. Dalam kontrak publik TokenLab, referensi gambar menggunakan `reference_images`, sedangkan video dan audio referensi multimodal menggunakan `video_urls` dan `audio_urls`. Untuk `seedance-2.0` dan `seedance-2.0-fast`, TokenLab saat ini mendukung hingga 9 gambar referensi, ditambah hingga 3 video referensi dan 3 audio referensi. `duration` hanya mengatur panjang output yang dihasilkan; field ini tidak menetapkan batas terpisah untuk durasi input video referensi. Untuk `grok-imagine-video`, reference-to-video menerima hingga 7 referensi gambar (`reference_images` atau `image_urls`) dan `duration` dibatasi maksimal 10 detik. Jangan gabungkan referensi gambar dengan input frame awal `image_url` / `image`. `grok-imagine-video-1.5-preview` hanya mendukung image-to-video.
 
 ```python
 response = requests.post(
-    "https://api.aisonar.dev/v1/videos/generations",
+    "https://api.tokenlab.sh/v1/videos/generations",
     headers={"Authorization": "Bearer sk-your-api-key"},
     json={
         "model": "veo3.1",
@@ -289,7 +289,7 @@ Gunakan `start_image` dan `end_image` untuk mengontrol frame pertama dan frame t
 
 ```python
 response = requests.post(
-    "https://api.aisonar.dev/v1/videos/generations",
+    "https://api.tokenlab.sh/v1/videos/generations",
     headers={"Authorization": "Bearer sk-your-api-key"},
     json={
         "model": "viduq2-pro",
@@ -306,13 +306,13 @@ response = requests.post(
 
 ## Video to video
 
-Untuk video-to-video dengan `grok-imagine-video`, kirim URL HTTPS publik `.mp4` di `video_url`. AI Sonar menerjemahkannya menjadi body REST xAI `video.url`. Anda dapat mengatur `resolution` ke `480p` atau `720p`; `duration` dan `aspect_ratio` tidak diterima untuk alur edit ini.
+Untuk video-to-video dengan `grok-imagine-video`, kirim URL HTTPS publik `.mp4` di `video_url`. TokenLab menerjemahkannya menjadi body REST xAI `video.url`. Anda dapat mengatur `resolution` ke `480p` atau `720p`; `duration` dan `aspect_ratio` tidak diterima untuk alur edit ini.
 
 Jika model menerima video yang sudah ada sebagai input utama, gunakan `operation=video-to-video`.
 
 ```python
 response = requests.post(
-    "https://api.aisonar.dev/v1/videos/generations",
+    "https://api.tokenlab.sh/v1/videos/generations",
     headers={"Authorization": "Bearer sk-your-api-key"},
     json={
         "model": "topaz-video-upscale",
@@ -326,11 +326,11 @@ response = requests.post(
 
 ## Motion control
 
-Jika model membutuhkan gambar subjek sekaligus video referensi gerakan, gunakan `operation=motion-control`. AI Sonar akan menormalkan bentuk publik `image_url` + `video_url` ke kontrak upstream yang sesuai.
+Jika model membutuhkan gambar subjek sekaligus video referensi gerakan, gunakan `operation=motion-control`. TokenLab akan menormalkan bentuk publik `image_url` + `video_url` ke kontrak upstream yang sesuai.
 
 ```python
 response = requests.post(
-    "https://api.aisonar.dev/v1/videos/generations",
+    "https://api.tokenlab.sh/v1/videos/generations",
     headers={"Authorization": "Bearer sk-your-api-key"},
     json={
         "model": "kling-3.0-motion-control",
@@ -345,7 +345,7 @@ response = requests.post(
 
 ## Ketersediaan audio-to-video dan video-extension saat ini
 
-Kontrak publik AI Sonar menerima `audio-to-video` dan `video-extension` untuk alur khusus model tertentu. Namun, dalam inventaris model publik yang umumnya diaktifkan pada build dokumentasi ini, belum ada model yang secara luas diaktifkan dan secara publik mengiklankan dua kemampuan tersebut. Sebelum mengintegrasikan alur ini, cek ketersediaan terbaru melalui [Models API](/id/api-reference/models/list-models) atau [halaman model](https://aisonar.dev/models).
+Kontrak publik TokenLab menerima `audio-to-video` dan `video-extension` untuk alur khusus model tertentu. Namun, dalam inventaris model publik yang umumnya diaktifkan pada build dokumentasi ini, belum ada model yang secara luas diaktifkan dan secara publik mengiklankan dua kemampuan tersebut. Sebelum mengintegrasikan alur ini, cek ketersediaan terbaru melalui [Models API](/id/api-reference/models/list-models) atau [halaman model](https://tokenlab.sh/id/models).
 
 ## Inventaris model video publik yang sedang aktif
 

@@ -1,6 +1,6 @@
 ---
 title: "Claude Code"
-description: "Utilisez AI Sonar avec le CLI Claude Code d'Anthropic"
+description: "Utilisez TokenLab avec le CLI Claude Code d'Anthropic"
 ---
 
 <span data-mintlify-rebuild="2026-05-19-after-mdx-parse-fix" aria-hidden="true" />
@@ -17,7 +17,7 @@ description: "Utilisez AI Sonar avec le CLI Claude Code d'Anthropic"
 **Niveau de support**: Chemin natif fort
 </Note>
 
-[Claude Code](https://docs.anthropic.com/en/docs/claude-code) est l’outil CLI officiel d’Anthropic pour le développement assisté par IA. Vous pouvez le configurer pour utiliser AI Sonar comme fournisseur d’API.
+[Claude Code](https://docs.anthropic.com/en/docs/claude-code) est l’outil CLI officiel d’Anthropic pour le développement assisté par IA. Vous pouvez le configurer pour utiliser TokenLab comme fournisseur d’API.
 
 ## Installation
 
@@ -44,14 +44,14 @@ N’utilisez pas `sudo npm install -g` pour Claude Code.
 Définissez les variables d’environnement suivantes :
 
 ```bash
-export ANTHROPIC_API_KEY="sk-your-api-key"
-export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
+export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
+export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
 ```
 
 Ajoutez-les à votre profil shell (`~/.bashrc`, `~/.zshrc`, etc.) pour qu’elles persistent.
 
 <Note>
-Pour AI Sonar, conservez `ANTHROPIC_BASE_URL` à `https://api.aisonar.dev` sans suffixe `/v1`. Cela correspond au format des endpoints de style Anthropic et au modèle de gateway unifiée documenté par Claude Code.
+Pour TokenLab, conservez `ANTHROPIC_BASE_URL` à `https://api.tokenlab.sh` sans suffixe `/v1`. Cela correspond au format des endpoints de style Anthropic et au modèle de gateway unifiée documenté par Claude Code.
 </Note>
 
 ### Fichier de configuration
@@ -61,8 +61,8 @@ Vous pouvez aussi créer ou modifier `~/.claude/settings.json` :
 ```json
 {
   "env": {
-    "ANTHROPIC_API_KEY": "sk-your-api-key",
-    "ANTHROPIC_BASE_URL": "https://api.aisonar.dev"
+    "ANTHROPIC_API_KEY": "sk-your-tokenlab-key",
+    "ANTHROPIC_BASE_URL": "https://api.tokenlab.sh"
   }
 }
 ```
@@ -91,7 +91,7 @@ claude doctor
 
 ## Modèles disponibles
 
-AI Sonar prend en charge tous les modèles Claude :
+TokenLab prend en charge tous les modèles Claude :
 
 | Modèle | Description |
 |-------|-------------|
@@ -112,8 +112,8 @@ Ou définissez une valeur par défaut dans votre configuration :
 ```json
 {
   "env": {
-    "ANTHROPIC_API_KEY": "sk-your-api-key",
-    "ANTHROPIC_BASE_URL": "https://api.aisonar.dev"
+    "ANTHROPIC_API_KEY": "sk-your-tokenlab-key",
+    "ANTHROPIC_BASE_URL": "https://api.tokenlab.sh"
   },
   "model": "claude-sonnet-4-6"
 }
@@ -131,15 +131,15 @@ claude --model claude-opus-4-6 "Design a microservices architecture for..."
 
 <AccordionGroup>
   <Accordion title="Erreurs de connexion">
-    Vérifiez que l’URL de base est exactement `https://api.aisonar.dev` (sans suffixe `/v1` pour les requêtes de style Anthropic).
+    Vérifiez que l’URL de base est exactement `https://api.tokenlab.sh` (sans suffixe `/v1` pour les requêtes de style Anthropic).
   </Accordion>
 
   <Accordion title="Clé API invalide">
-    Assurez-vous que votre clé API AI Sonar commence par `sk-` et dispose d’un solde suffisant.
+    Assurez-vous que votre clé API TokenLab commence par `sk-` et dispose d’un solde suffisant.
   </Accordion>
 
   <Accordion title="La gateway nécessite un bearer token Authorization">
-    Le mode gateway de Claude Code prend également en charge `ANTHROPIC_AUTH_TOKEN`. Continuez à utiliser `ANTHROPIC_API_KEY` pour la configuration standard de AI Sonar, sauf si vous avez volontairement modifié le comportement d’authentification de votre gateway.
+    Le mode gateway de Claude Code prend également en charge `ANTHROPIC_AUTH_TOKEN`. Continuez à utiliser `ANTHROPIC_API_KEY` pour la configuration standard de TokenLab, sauf si vous avez volontairement modifié le comportement d’authentification de votre gateway.
   </Accordion>
 
   <Accordion title="Modèle introuvable">

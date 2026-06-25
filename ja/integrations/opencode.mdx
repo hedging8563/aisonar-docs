@@ -1,6 +1,6 @@
 ---
 title: "OpenCode"
-description: "AI Sonar API を使用するように OpenCode を設定する"
+description: "TokenLab API を使用するように OpenCode を設定する"
 ---
 
 <span data-mintlify-rebuild="2026-05-19-after-mdx-parse-fix" aria-hidden="true" />
@@ -17,7 +17,7 @@ description: "AI Sonar API を使用するように OpenCode を設定する"
 **サポートレベル**: サポート済みパス
 </Note>
 
-OpenCode は、ターミナルで動作するオープンソースの AI コーディングアシスタントです。複数の LLM プロバイダーをサポートしており、AI Sonar の API を使用するように設定することで、300 以上のモデルにアクセスできます。
+OpenCode は、ターミナルで動作するオープンソースの AI コーディングアシスタントです。複数の LLM プロバイダーをサポートしており、TokenLab の API を使用するように設定することで、300 以上のモデルにアクセスできます。
 
 ## インストール
 
@@ -55,29 +55,29 @@ opencode --version
 ### ステップ 1: 環境変数を設定する
 
 ```bash
-export OPENAI_API_KEY="sk-your-api-key"
+export OPENAI_API_KEY="sk-your-tokenlab-key"
 ```
 
 永続的に設定するには、`~/.bashrc` または `~/.zshrc` に追加します:
 
 ```bash
-echo 'export OPENAI_API_KEY="sk-your-api-key"' >> ~/.zshrc
+echo 'export OPENAI_API_KEY="sk-your-tokenlab-key"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 ### ステップ 2: OpenCode を設定する
 
-OpenCode の現在のドキュメントでは、`opencode.json` または `opencode.jsonc` を通じてプロバイダーを設定することが推奨されています。AI Sonar では、組み込みの `openai` プロバイダーを流用するのではなく、カスタムプロバイダーを使用してください:
+OpenCode の現在のドキュメントでは、`opencode.json` または `opencode.jsonc` を通じてプロバイダーを設定することが推奨されています。TokenLab では、組み込みの `openai` プロバイダーを流用するのではなく、カスタムプロバイダーを使用してください:
 
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "aisonar": {
+    "tokenlab": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "AI Sonar",
+      "name": "TokenLab",
       "options": {
-        "baseURL": "https://api.aisonar.dev/v1",
+        "baseURL": "https://api.tokenlab.sh/v1",
         "apiKey": "{env:OPENAI_API_KEY}"
       },
       "models": {
@@ -90,7 +90,7 @@ OpenCode の現在のドキュメントでは、`opencode.json` または `openc
       }
     }
   },
-  "model": "aisonar/gpt-5.4"
+  "model": "tokenlab/gpt-5.4"
 }
 ```
 
@@ -115,7 +115,7 @@ opencode "Explain this codebase"
 **モデルを指定する:**
 
 ```bash
-opencode --model aisonar/gpt-5.4 "Fix the bugs in main.py"
+opencode --model tokenlab/gpt-5.4 "Fix the bugs in main.py"
 ```
 
 ## 利用可能なモデル
@@ -168,21 +168,21 @@ opencode "Fix the TypeScript errors in this project"
 
 <AccordionGroup>
   <Accordion title="接続エラー">
-    - `options.baseURL` が `https://api.aisonar.dev/v1` に設定されていることを確認してください
+    - `options.baseURL` が `https://api.tokenlab.sh/v1` に設定されていることを確認してください
     - ネットワーク接続を確認してください
-    - テストとして `curl https://api.aisonar.dev/v1/models` を試してください
+    - テストとして `curl https://api.tokenlab.sh/v1/models` を試してください
   </Accordion>
 
   <Accordion title="認証に失敗しました">
     - `OPENAI_API_KEY` 環境変数が設定されていることを確認してください
     - `options.apiKey` が `{env:OPENAI_API_KEY}` または別の有効な secret ソースを参照していることを確認してください
     - キーが `sk-` で始まっていることを確認してください
-    - AI Sonar ダッシュボードでキーが有効になっていることを確認してください
+    - TokenLab ダッシュボードでキーが有効になっていることを確認してください
   </Accordion>
 
   <Accordion title="モデルが見つかりません">
     - 設定内のモデル名が完全に一致していることを確認してください
-    - [aisonar.dev/en/models](https://aisonar.dev/models) でモデルの利用可否を確認してください
+    - [tokenlab.sh/en/models](https://tokenlab.sh/ja/models) でモデルの利用可否を確認してください
   </Accordion>
 </AccordionGroup>
 

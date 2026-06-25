@@ -1,6 +1,6 @@
 ---
 title: "Codex CLI"
-description: "OpenAI Codex CLI konfigurieren, um die AI Sonar API zu verwenden"
+description: "OpenAI Codex CLI konfigurieren, um die TokenLab API zu verwenden"
 ---
 
 ## Übersicht
@@ -17,7 +17,7 @@ description: "OpenAI Codex CLI konfigurieren, um die AI Sonar API zu verwenden"
 
 OpenAI Codex ist ein Open-Source-Kommandozeilenwerkzeug (CLI), das als leichtgewichtiger Coding-Agent dient und in der Lage ist, Code im Terminal zu lesen, zu ändern und auszuführen. Es basiert auf GPT-Modellen und ist für Code-Generierung optimiert.
 
-Für AI Sonar kann Codex CLI `/v1/responses` verwenden, aber Sie sollten dies als einen erweiterten Kompatibilitätspfad behandeln. Einige Responses-only-Funktionen sind nicht für jedes Modell und jeden gerouteten Pfad garantiert.
+Für TokenLab kann Codex CLI `/v1/responses` verwenden, aber Sie sollten dies als einen erweiterten Kompatibilitätspfad behandeln. Einige Responses-only-Funktionen sind nicht für jedes Modell und jeden gerouteten Pfad garantiert.
 
 Remote Compaction in Codex CLI wird über `POST /v1/responses/compact` unterstützt. Codex sendet bei `/compact` und Auto-Compact das aktuelle Sitzungs-`model` in `body.model`, daher muss das gewünschte Modell auf dem Responses-Pfad verfügbar sein. Konfigurieren Sie nicht `/v1/compact`.
 
@@ -46,7 +46,7 @@ codex --version
 **Temporär (aktuelle Sitzung):**
 
 ```bash
-export OPENAI_API_KEY="sk-your-api-key"
+export OPENAI_API_KEY="sk-your-tokenlab-key"
 ```
 
 **Dauerhafte Konfiguration:**
@@ -54,7 +54,7 @@ export OPENAI_API_KEY="sk-your-api-key"
 In `~/.bashrc`, `~/.zshrc` oder `~/.bash_profile` hinzufügen:
 
 ```bash
-export OPENAI_API_KEY="sk-your-api-key"
+export OPENAI_API_KEY="sk-your-tokenlab-key"
 ```
 
 Dann neu laden:
@@ -68,7 +68,7 @@ source ~/.zshrc  # or source ~/.bashrc
 Bearbeiten Sie `~/.codex/config.toml`:
 
 ```toml
-model_provider = "aisonar"
+model_provider = "tokenlab"
 model = "gpt-5.4"
 model_reasoning_effort = "xhigh"
 plan_mode_reasoning_effort = "xhigh"
@@ -82,10 +82,10 @@ disable_response_storage = false
 personality = "friendly"
 service_tier = "fast"
 
-[model_providers.aisonar]
+[model_providers.tokenlab]
 env_key = "OPENAI_API_KEY"
-name = "AI Sonar"
-base_url = "https://api.aisonar.dev/v1"
+name = "TokenLab"
+base_url = "https://api.tokenlab.sh/v1"
 wire_api = "responses"
 supports_websockets = true
 websocket_connect_timeout_ms = 15000
@@ -102,11 +102,11 @@ Wenn die Konfigurationsdatei nicht existiert, führen Sie `codex` einmal aus, um
 </Note>
 
 <Warning>
-Codex stellt die Unterstützung für `chat/completions` bei benutzerdefinierten Providern ein. Belassen Sie `wire_api = "responses"` für AI Sonar, es sei denn, Sie verwenden absichtlich einen älteren Kompatibilitätspfad.
+Codex stellt die Unterstützung für `chat/completions` bei benutzerdefinierten Providern ein. Belassen Sie `wire_api = "responses"` für TokenLab, es sei denn, Sie verwenden absichtlich einen älteren Kompatibilitätspfad.
 </Warning>
 
 <Note>
-Wenn eine Anfrage Responses-only-Felder verwendet, die für das ausgewählte Modell oder den gewählten Pfad nicht unterstützt werden, gibt AI Sonar einen expliziten Fehler zurück, anstatt die Anfrage stillschweigend herunterzustufen.
+Wenn eine Anfrage Responses-only-Felder verwendet, die für das ausgewählte Modell oder den gewählten Pfad nicht unterstützt werden, gibt TokenLab einen expliziten Fehler zurück, anstatt die Anfrage stillschweigend herunterzustufen.
 </Note>
 
 ## Grundlegende Verwendung
@@ -192,7 +192,7 @@ cat main.py | codex "Explain what this code does"
 
 <AccordionGroup>
   <Accordion title="Verbindungsfehler">
-    - Überprüfen Sie, ob `base_url` in config.toml genau `https://api.aisonar.dev/v1` ist
+    - Überprüfen Sie, ob `base_url` in config.toml genau `https://api.tokenlab.sh/v1` ist
     - Prüfen Sie die Netzwerkverbindung
     - Stellen Sie sicher, dass kein Proxy stört
   </Accordion>
@@ -201,22 +201,22 @@ cat main.py | codex "Explain what this code does"
     - Überprüfen Sie, ob `env_key = "OPENAI_API_KEY"` in `~/.codex/config.toml` vorhanden ist
     - Überprüfen Sie, ob die Umgebungsvariable `OPENAI_API_KEY` gesetzt ist
     - Prüfen Sie, ob der Schlüssel mit `sk-` beginnt
-    - Stellen Sie sicher, dass der Schlüssel im AI Sonar-Dashboard aktiv ist
+    - Stellen Sie sicher, dass der Schlüssel im TokenLab-Dashboard aktiv ist
   </Accordion>
 
   <Accordion title="Modell nicht gefunden">
     - Prüfen Sie, ob der Modellname genau übereinstimmt
-    - Überprüfen Sie die Modellverfügbarkeit unter [aisonar.dev/en/models](https://aisonar.dev/models)
+    - Überprüfen Sie die Modellverfügbarkeit unter [tokenlab.sh/en/models](https://tokenlab.sh/de/models)
   </Accordion>
 
   <Accordion title="Responses-native Feld abgelehnt">
-    - Einige Felder sind nur auf `/v1/responses` verfügbar, wenn AI Sonar dieses Verhalten für das ausgewählte Modell und den gewählten Pfad garantieren kann
+    - Einige Felder sind nur auf `/v1/responses` verfügbar, wenn TokenLab dieses Verhalten für das ausgewählte Modell und den gewählten Pfad garantieren kann
     - Wenn Sie `unsupported_request_field` sehen, entfernen Sie dieses Feld oder wechseln Sie zu einem Workflow, der nicht davon abhängt
   </Accordion>
 
   <Accordion title="/compact oder Auto-Compact schlägt fehl">
     - Codex CLI ruft `POST /v1/responses/compact` auf, nicht `/v1/compact`
     - Die Compaction-Anfrage verwendet das aktuelle Sitzungs-`model`, daher muss dieses Modell auf dem Responses-Pfad verfügbar sein
-    - Behalten Sie `wire_api = "responses"` und `base_url = "https://api.aisonar.dev/v1"` bei
+    - Behalten Sie `wire_api = "responses"` und `base_url = "https://api.tokenlab.sh/v1"` bei
   </Accordion>
 </AccordionGroup>

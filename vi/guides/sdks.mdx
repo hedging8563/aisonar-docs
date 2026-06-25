@@ -1,11 +1,11 @@
 ---
 title: "SDK & Thư viện"
-description: "Các SDK và thư viện được khuyến nghị cho tích hợp AI Sonar"
+description: "Các SDK và thư viện được khuyến nghị cho tích hợp TokenLab"
 ---
 
 ## Tổng quan
 
-AI Sonar dễ tích hợp nhất khi khớp SDK với hành vi bạn cần:
+TokenLab dễ tích hợp nhất khi khớp SDK với hành vi bạn cần:
 - các **SDK Anthropic** chính thức cho hành vi gốc của Claude `/v1/messages`
 - công cụ **Gemini / Google AI** chính thức cho các định dạng yêu cầu gốc của Gemini
 - các **SDK OpenAI** chính thức cho các route `/v1` tương thích với OpenAI và cách sử dụng kiểu Responses
@@ -38,12 +38,12 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.responses.create(
     model="gpt-5.4",
-    input="Explain AI Sonar in one sentence."
+    input="Explain TokenLab in one sentence."
 )
 
 print(response.output_text)
@@ -62,7 +62,7 @@ import (
 func main() {
     client := openai.NewClient(
         option.WithAPIKey("sk-your-api-key"),
-        option.WithBaseURL("https://api.aisonar.dev/v1"),
+        option.WithBaseURL("https://api.tokenlab.sh/v1"),
     )
 
     _ = client
@@ -76,7 +76,7 @@ from anthropic import Anthropic
 
 client = Anthropic(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev"
+    base_url="https://api.tokenlab.sh"
 )
 
 message = client.messages.create(
@@ -91,7 +91,7 @@ message = client.messages.create(
 | Mục tiêu | Đường dẫn được khuyến nghị |
 |------|------------------|
 | Hành vi gốc của nhà cung cấp | SDK hoặc tuyến của nhà cung cấp gốc |
-| Máy khách tương thích với OpenAI hiện có | OpenAI SDK trên AI Sonar `/v1` |
+| Máy khách tương thích với OpenAI hiện có | OpenAI SDK trên TokenLab `/v1` |
 | Chat di động / embeddings | Các route tương thích với OpenAI `/v1` |
 | Tính năng gốc của Claude | Anthropic SDK |
 | Cấu trúc yêu cầu gốc của Gemini | API / SDK gốc của Gemini |
@@ -105,10 +105,10 @@ message = client.messages.create(
   </Accordion>
 
   <Accordion title="Dùng `/v1` tương thích OpenAI để di chuyển">
-    Các SDK tương thích OpenAI là lựa chọn tốt nhất cho các client kiểu OpenAI hiện có, chat di động và embeddings. Hãy xem chúng như một tuyến tương thích, không phải là bề mặt API duy nhất của AI Sonar.
+    Các SDK tương thích OpenAI là lựa chọn tốt nhất cho các client kiểu OpenAI hiện có, chat di động và embeddings. Hãy xem chúng như một tuyến tương thích, không phải là bề mặt API duy nhất của TokenLab.
   </Accordion>
 
   <Accordion title="Giữ Base URL rõ ràng">
-    Hãy truyền trực tiếp các URL gốc của AI Sonar trong cấu hình client của bạn thay vì dựa vào các bí danh biến môi trường cũ.
+    Hãy truyền trực tiếp các URL gốc của TokenLab trong cấu hình client của bạn thay vì dựa vào các bí danh biến môi trường cũ.
   </Accordion>
 </AccordionGroup>

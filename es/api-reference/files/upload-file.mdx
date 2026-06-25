@@ -6,7 +6,7 @@ description: "Sube un archivo de entrada en formato JSONL para su posterior crea
 
 ## Descripción General
 
-Este endpoint es parte de la API por lotes compatible con OpenAI de AI Sonar. Los trabajos por lotes utilizan archivos JSONL subidos, se ejecutan de manera asíncrona y pueden devolver archivos de salida/error más tarde.
+Este endpoint es parte de la API por lotes compatible con OpenAI de TokenLab. Los trabajos por lotes utilizan archivos JSONL subidos, se ejecutan de manera asíncrona y pueden devolver archivos de salida/error más tarde.
 
 ## Notas
 
@@ -19,7 +19,7 @@ Este endpoint es parte de la API por lotes compatible con OpenAI de AI Sonar. Lo
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/files" \
+curl -X POST "https://api.tokenlab.sh/v1/files" \
   -H "Authorization: Bearer sk-your-api-key" \
   -F "purpose=batch" \
   -F "file=@batch-input.jsonl;type=application/jsonl"

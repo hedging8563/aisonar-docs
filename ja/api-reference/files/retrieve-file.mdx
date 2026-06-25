@@ -6,7 +6,7 @@ description: "単一のアップロード済みファイルのメタデータを
 
 ## 概要
 
-このエンドポイントは主に、AI Sonar の OpenAI 互換 Batch API ファイルオブジェクトを対象としています。
+このエンドポイントは主に、TokenLab の OpenAI 互換 Batch API ファイルオブジェクトを対象としています。
 
 リクエストが Anthropic Files 互換モードを選ぶ場合、同じルートはバインドされたワークスペース向けの Anthropic スタイルのファイルメタデータも返せます。
 
@@ -22,7 +22,7 @@ description: "単一のアップロード済みファイルのメタデータを
 
 <RequestExample>
 ```bash cURL
-curl -X GET "https://api.aisonar.dev/v1/files/file_abc123" \
+curl -X GET "https://api.tokenlab.sh/v1/files/file_abc123" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>

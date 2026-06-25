@@ -6,7 +6,7 @@ description: "Membatalkan pekerjaan batch yang sedang antre atau berjalan."
 
 ## Ikhtisar
 
-Endpoint ini adalah bagian dari Batch API yang kompatibel dengan OpenAI dari AI Sonar. Pekerjaan batch menggunakan file JSONL yang diunggah, berjalan secara asinkron, dan dapat mengembalikan file output/error di kemudian hari.
+Endpoint ini adalah bagian dari Batch API yang kompatibel dengan OpenAI dari TokenLab. Pekerjaan batch menggunakan file JSONL yang diunggah, berjalan secara asinkron, dan dapat mengembalikan file output/error di kemudian hari.
 
 ## Catatan
 
@@ -19,7 +19,7 @@ Endpoint ini adalah bagian dari Batch API yang kompatibel dengan OpenAI dari AI 
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/batches/batch_abc123/cancel" \
+curl -X POST "https://api.tokenlab.sh/v1/batches/batch_abc123/cancel" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>

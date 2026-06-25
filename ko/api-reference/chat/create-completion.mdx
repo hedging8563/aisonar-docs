@@ -7,7 +7,7 @@ description: "채팅 메시지에 대한 응답을 생성합니다."
 ## 요청 본문
 
 <ParamField body="model" type="string" required>
-  사용할 모델의 ID입니다. 사용 가능한 옵션은 [Models](https://aisonar.dev/models)을 참조하세요.
+  사용할 모델의 ID입니다. 사용 가능한 옵션은 [Models](https://tokenlab.sh/ko/models)을 참조하세요.
 </ParamField>
 
 <ParamField body="messages" type="array" required>
@@ -17,13 +17,13 @@ description: "채팅 메시지에 대한 응답을 생성합니다."
   - `role` (string): `system`, `user`, 또는 `assistant`
   - `content` (string | array): 메시지 내용
 
-  `content`가 배열인 경우, AI Sonar는 호환되는 모델에 대해 구조화된 멀티모달 블록을 지원합니다:
+  `content`가 배열인 경우, TokenLab는 호환되는 모델에 대해 구조화된 멀티모달 블록을 지원합니다:
   - text: `{ "type": "text", "text": "..." }`
   - 이미지: `{ "type": "image_url", "image_url": { "url": "https://..." } }`
   - 비디오: `{ "type": "video_url", "video_url": { "url": "https://..." } }`
   - 오디오: `{ "type": "audio_url", "audio_url": { "url": "https://..." } }`
 
-  멀티모달 프로덕션 트래픽의 경우, 공개 `https` URL을 우선 사용하세요. AI Sonar는 이러한 미디어 블록을 라우팅된 물리적 모델에서 요구하는 제공자별 요청 형식으로 변환합니다.
+  멀티모달 프로덕션 트래픽의 경우, 공개 `https` URL을 우선 사용하세요. TokenLab는 이러한 미디어 블록을 라우팅된 물리적 모델에서 요구하는 제공자별 요청 형식으로 변환합니다.
 </ParamField>
 
 <ParamField body="temperature" type="number" default="1">
@@ -148,7 +148,7 @@ description: "채팅 메시지에 대한 응답을 생성합니다."
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/chat/completions" \
+curl -X POST "https://api.tokenlab.sh/v1/chat/completions" \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -167,7 +167,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.chat.completions.create(
@@ -188,7 +188,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 const response = await client.chat.completions.create({
@@ -206,7 +206,7 @@ console.log(response.choices[0].message.content);
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.aisonar.dev/v1/chat/completions');
+$ch = curl_init('https://api.tokenlab.sh/v1/chat/completions');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,

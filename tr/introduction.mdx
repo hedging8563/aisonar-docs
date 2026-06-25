@@ -3,9 +3,9 @@ title: "Giriş"
 description: "Tek bir API üzerinden yüzlerce AI modeline erişim"
 ---
 
-## AI Sonar Nedir?
+## TokenLab Nedir?
 
-AI Sonar, OpenAI, Anthropic, Google, DeepSeek, Moonshot, MiniMax ve diğerleri gibi sağlayıcılardan **yüzlerce AI modele** birleşik erişim sağlayan bir AI API toplama platformudur.
+TokenLab, OpenAI, Anthropic, Google, DeepSeek, Moonshot, MiniMax ve diğerleri gibi sağlayıcılardan **yüzlerce AI modele** birleşik erişim sağlayan bir AI API toplama platformudur.
 
 <CardGroup cols={2}>
   <Card title="Yerel + uyumlu" icon="plug">
@@ -41,13 +41,13 @@ AI Sonar, OpenAI, Anthropic, Google, DeepSeek, Moonshot, MiniMax ve diğerleri g
 <CodeGroup>
 
 ```bash cURL
-curl https://api.aisonar.dev/v1/chat/completions \
+curl https://api.tokenlab.sh/v1/chat/completions \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gpt-5.4",
     "messages": [
-      {"role": "user", "content": "Explain what AI Sonar does in one sentence."}
+      {"role": "user", "content": "Explain what TokenLab does in one sentence."}
     ]
   }'
 ```
@@ -57,12 +57,12 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.chat.completions.create(
     model="gpt-5.4",
-    messages=[{"role": "user", "content": "Explain what AI Sonar does in one sentence."}]
+    messages=[{"role": "user", "content": "Explain what TokenLab does in one sentence."}]
 )
 
 print(response.choices[0].message.content)
@@ -73,12 +73,12 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 const response = await client.chat.completions.create({
   model: 'gpt-5.4',
-  messages: [{ role: 'user', content: 'Explain what AI Sonar does in one sentence.' }],
+  messages: [{ role: 'user', content: 'Explain what TokenLab does in one sentence.' }],
 });
 
 console.log(response.choices[0].message.content);
@@ -116,7 +116,7 @@ Yalnızca Responses'a özgü davranışa açıkça ihtiyaç duyduğunuzda `POST 
   <Card title="Entegrasyonlar" icon="puzzle-piece" href="/integrations/openai-sdk">
     SDK, IDE ve uygulama entegrasyonlarıyla başlayın.
   </Card>
-  <Card title="Modeller" icon="robot" href="https://aisonar.dev/models">
+  <Card title="Modeller" icon="robot" href="https://tokenlab.sh/tr/models">
     Mevcut model kullanılabilirliğini ve fiyatlandırmayı inceleyin.
   </Card>
 </CardGroup>

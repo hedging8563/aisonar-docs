@@ -6,7 +6,7 @@ description: "Cancela un trabajo de lote en cola o en ejecución."
 
 ## Descripción General
 
-Este endpoint es parte de la API de Lote compatible con OpenAI de AI Sonar. Los trabajos de lote utilizan archivos JSONL subidos, se ejecutan de manera asíncrona y pueden devolver archivos de salida/error más tarde.
+Este endpoint es parte de la API de Lote compatible con OpenAI de TokenLab. Los trabajos de lote utilizan archivos JSONL subidos, se ejecutan de manera asíncrona y pueden devolver archivos de salida/error más tarde.
 
 ## Notas
 
@@ -19,7 +19,7 @@ Este endpoint es parte de la API de Lote compatible con OpenAI de AI Sonar. Los 
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/batches/batch_abc123/cancel" \
+curl -X POST "https://api.tokenlab.sh/v1/batches/batch_abc123/cancel" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>

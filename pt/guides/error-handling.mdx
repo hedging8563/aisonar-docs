@@ -25,7 +25,7 @@ Todos os erros retornam um formato JSON consistente com [dicas Agent-First](/gui
 
 Os campos base (`message`, `type`, `code`, `param`) estão sempre presentes. Os campos de sugestão (`did_you_mean`, `suggestions`, `hint`, `retryable`, `retry_after`, `balance_usd`, `estimated_cost_usd`) são extensões opcionais para autocorreção de agentes de IA. Veja o [Guia da Agent-First API](/guides/agent-first-api) para mais detalhes.
 
-Endpoints compatíveis com OpenAI usam os tipos de erro estáveis do gateway da AI Sonar. Endpoints compatíveis com Anthropic e Gemini usam suas próprias famílias nativas de erro e formatos de resposta.
+Endpoints compatíveis com OpenAI usam os tipos de erro estáveis do gateway da TokenLab. Endpoints compatíveis com Anthropic e Gemini usam suas próprias famílias nativas de erro e formatos de resposta.
 
 ## Códigos de Status HTTP
 
@@ -112,12 +112,12 @@ except APIStatusError as e:
     "code": "model_not_found",
     "did_you_mean": "gpt-5.4",
     "suggestions": [{"id": "gpt-5.4"}, {"id": "gpt-5-mini"}],
-    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.aisonar.dev/v1/models to list all available models."
+    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.tokenlab.sh/v1/models to list all available models."
   }
 }
 ```
 
-Rotas públicas não distinguem no corpo da resposta estados como erro de digitação, modelo oculto, diferido ou não público. Se um modelo não estiver atualmente disponível através do contrato público, a AI Sonar retorna `model_not_found`.
+Rotas públicas não distinguem no corpo da resposta estados como erro de digitação, modelo oculto, diferido ou não público. Se um modelo não estiver atualmente disponível através do contrato público, a TokenLab retorna `model_not_found`.
 
 ### Erros de Limite de Taxa (429)
 
@@ -196,7 +196,7 @@ from openai import OpenAI, APIError, RateLimitError, APIConnectionError
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 def chat_with_retry(messages, max_retries=3):
@@ -227,7 +227,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 async function chatWithRetry(messages, maxRetries = 3) {

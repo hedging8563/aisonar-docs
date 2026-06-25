@@ -7,7 +7,7 @@ description: "Petunjuk kesalahan terstruktur agar agen AI dapat mengoreksi diri 
 
 ## Ikhtisar
 
-Agent-First API AI Sonar memperkaya respons kesalahan dengan petunjuk terstruktur yang dapat diurai dan ditindaklanjuti langsung oleh agen AI — tanpa pencarian web, tanpa mencari dokumentasi, tanpa tebak-tebakan.
+Agent-First API TokenLab memperkaya respons kesalahan dengan petunjuk terstruktur yang dapat diurai dan ditindaklanjuti langsung oleh agen AI — tanpa pencarian web, tanpa mencari dokumentasi, tanpa tebak-tebakan.
 
 Setiap respons kesalahan menyertakan field opsional seperti `did_you_mean`, `suggestions`, `hint`, `retryable`, dan `retry_after` di dalam objek `error` standar. Field-field ini kompatibel ke belakang — klien yang tidak menggunakannya tidak akan melihat perbedaan.
 
@@ -45,7 +45,7 @@ Ketika nama model tidak cocok dengan model aktif manapun:
       {"id": "gpt-5-mini"},
       {"id": "claude-sonnet-4-6"}
     ],
-    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.aisonar.dev/v1/models to list all available models."
+    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.tokenlab.sh/v1/models to list all available models."
   }
 }
 ```
@@ -73,7 +73,7 @@ Saat saldo akun terlalu rendah untuk estimasi biaya:
       {"id": "gpt-5-mini"},
       {"id": "deepseek-v3-2"}
     ],
-    "hint": "Insufficient balance: need ~$0.3500 for claude-sonnet-4-6, but balance is $0.1200. Try a cheaper model, or top up at https://console.aisonar.dev/billing."
+    "hint": "Insufficient balance: need ~$0.3500 for claude-sonnet-4-6, but balance is $0.1200. Try a cheaper model, or top up at https://tokenlab.sh/dashboard/billing."
   }
 }
 ```
@@ -122,7 +122,7 @@ Ketika semua saluran hulu untuk sebuah model tidak tersedia:
 Nilai `retry_after` dihitung dari waktu reset jendela batas laju yang sebenarnya.
 
 <Note>
-Endpoint yang kompatibel dengan OpenAI menggunakan tipe kesalahan publik stabil AI Sonar seperti `rate_limit_exceeded`, `upstream_error`, dan `all_channels_failed`. Endpoint yang kompatibel dengan Anthropic dan Gemini menggunakan bentuk respons asli mereka sendiri.
+Endpoint yang kompatibel dengan OpenAI menggunakan tipe kesalahan publik stabil TokenLab seperti `rate_limit_exceeded`, `upstream_error`, dan `all_channels_failed`. Endpoint yang kompatibel dengan Anthropic dan Gemini menggunakan bentuk respons asli mereka sendiri.
 </Note>
 
 ### context_length_exceeded (400)
@@ -149,7 +149,10 @@ Ketika input melebihi jendela konteks model (kesalahan hulu, diperkaya dengan pe
 
 Saat Anda memanggil `/v1/chat/completions` dengan model yang memiliki endpoint native (Anthropic atau Gemini), **respons sukses** menyertakan header optimisasi:
 
-
+```
+X-TokenLab-Hint: This model supports native Anthropic format. Use POST /v1/messages for better performance (no format conversion).
+X-TokenLab-Native-Endpoint: /v1/messages
+```
 
 | Penyedia Model | Endpoint yang Disarankan | Manfaat |
 |---------------|--------------------------|---------|
@@ -166,7 +169,7 @@ Header ini muncul pada respons streaming maupun non-streaming.
 ```json
 {
   "id": "gemini-2.5-flash-image",
-  "aisonar": {
+  "tokenlab": {
     "category": "image",
     "pricing_unit": "per_request",
     "agent_preferences": {
@@ -204,9 +207,9 @@ Saat `recommended_for` ada, `agent_preferences` diturunkan dari snapshot tingkat
 ### Penyaringan Kategori
 
 ```bash
-GET https://api.aisonar.dev/v1/models?category=chat          # Chat models only
-GET https://api.aisonar.dev/v1/models?category=image         # Image generation models
-GET https://api.aisonar.dev/v1/models?tag=coding&category=chat  # Coding-optimized chat models
+GET https://api.tokenlab.sh/v1/models?category=chat          # Chat models only
+GET https://api.tokenlab.sh/v1/models?category=image         # Image generation models
+GET https://api.tokenlab.sh/v1/models?tag=coding&category=chat  # Coding-optimized chat models
 ```
 
 ### Penemuan Rekomendasi
@@ -214,9 +217,9 @@ GET https://api.aisonar.dev/v1/models?tag=coding&category=chat  # Coding-optimiz
 Untuk alur kerja non-chat, agen harus mengambil daftar singkat rekomendasi saat ini terlebih dahulu:
 
 ```bash
-GET https://api.aisonar.dev/v1/models?recommended_for=image
-GET https://api.aisonar.dev/v1/models?recommended_for=translation
-GET https://api.aisonar.dev/v1/models?category=tts&recommended_for=tts
+GET https://api.tokenlab.sh/v1/models?recommended_for=image
+GET https://api.tokenlab.sh/v1/models?recommended_for=translation
+GET https://api.tokenlab.sh/v1/models?category=tts&recommended_for=tts
 ```
 
 Nilai `recommended_for` yang valid adalah:
@@ -245,7 +248,7 @@ Alur agen yang direkomendasikan:
 Ringkasan API yang dapat dibaca mesin tersedia di:
 
 ```
-GET https://api.aisonar.dev/llms.txt
+GET https://api.tokenlab.sh/llms.txt
 ```
 
 Ini mencakup:
@@ -266,7 +269,7 @@ from openai import OpenAI, BadRequestError
 
 client = OpenAI(
     api_key="sk-your-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 def smart_chat(messages, model="gpt-4o"):
@@ -291,7 +294,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 async function smartChat(messages, model = 'gpt-4o') {

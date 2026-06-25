@@ -18,7 +18,7 @@ description: "獲取非同步圖片生成任務的狀態與結果"
 你也可以用 `/v1/images/{id}` 輪詢 `ldtask_...` 這類公開圖片任務 ID。這個相容 alias 會沿用與 `/v1/images/generations/{id}` 完全相同的鑑權、ownership 檢查、計費 header、終態快照和回應格式。
 
 
-如果任務已不存在，或無法再透過公開的 async-task 合約解析，AI Sonar 會回傳 `async_task_not_found`，訊息為 `Task not found or no longer available.`
+如果任務已不存在，或無法再透過公開的 async-task 合約解析，TokenLab 會回傳 `async_task_not_found`，訊息為 `Task not found or no longer available.`
 </Info>
 
 ## 響應
@@ -49,7 +49,7 @@ description: "獲取非同步圖片生成任務的狀態與結果"
 
 <RequestExample>
 ```bash cURL
-curl "https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
+curl "https://api.tokenlab.sh/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
@@ -57,7 +57,7 @@ curl "https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" 
 import requests
 
 response = requests.get(
-    "https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "https://api.tokenlab.sh/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     headers={"Authorization": "Bearer sk-your-api-key"}
 )
 
@@ -70,7 +70,7 @@ if data["status"] == "completed":
 
 ```javascript JavaScript
 const response = await fetch(
-  'https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+  'https://api.tokenlab.sh/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
   {
     headers: {
       'Authorization': 'Bearer sk-your-api-key'
@@ -145,7 +145,7 @@ import time
 
 def poll_image_task(task_id, api_key, max_wait=300, interval=3):
     """Poll for image generation result with timeout."""
-    url = f"https://api.aisonar.dev/v1/tasks/{task_id}"
+    url = f"https://api.tokenlab.sh/v1/tasks/{task_id}"
     headers = {"Authorization": f"Bearer {api_key}"}
 
     start_time = time.time()

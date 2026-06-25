@@ -6,7 +6,7 @@ description: "Tải lên một tệp đầu vào JSONL theo lô để tạo theo
 
 ## Tổng Quan
 
-Điểm cuối này là một phần của Batch API tương thích với OpenAI của AI Sonar. Các công việc theo lô sử dụng các tệp JSONL đã tải lên, chạy không đồng bộ và có thể trả về các tệp đầu ra/lỗi sau.
+Điểm cuối này là một phần của Batch API tương thích với OpenAI của TokenLab. Các công việc theo lô sử dụng các tệp JSONL đã tải lên, chạy không đồng bộ và có thể trả về các tệp đầu ra/lỗi sau.
 
 ## Ghi Chú
 
@@ -19,7 +19,7 @@ description: "Tải lên một tệp đầu vào JSONL theo lô để tạo theo
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/files" \
+curl -X POST "https://api.tokenlab.sh/v1/files" \
   -H "Authorization: Bearer sk-your-api-key" \
   -F "purpose=batch" \
   -F "file=@batch-input.jsonl;type=application/jsonl"

@@ -1,6 +1,6 @@
 ---
 title: "OpenCode"
-description: "設定 OpenCode 以使用 AI Sonar API"
+description: "設定 OpenCode 以使用 TokenLab API"
 ---
 
 ## 概覽
@@ -15,7 +15,7 @@ description: "設定 OpenCode 以使用 AI Sonar API"
 **支援級別**: 支援路徑
 </Note>
 
-OpenCode 是一個在終端機中執行的開源 AI 程式設計助理。它支援多種 LLM 供應商，並可設定為使用 AI Sonar 的 API，以存取數百個模型。
+OpenCode 是一個在終端機中執行的開源 AI 程式設計助理。它支援多種 LLM 供應商，並可設定為使用 TokenLab 的 API，以存取數百個模型。
 
 ## 安裝
 
@@ -53,29 +53,29 @@ opencode --version
 ### 步驟 1：設定環境變數
 
 ```bash
-export OPENAI_API_KEY="sk-your-api-key"
+export OPENAI_API_KEY="sk-your-tokenlab-key"
 ```
 
 如需永久設定，請加入至 `~/.bashrc` 或 `~/.zshrc`：
 
 ```bash
-echo 'export OPENAI_API_KEY="sk-your-api-key"' >> ~/.zshrc
+echo 'export OPENAI_API_KEY="sk-your-tokenlab-key"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 ### 步驟 2：設定 OpenCode
 
-OpenCode 目前的文件建議透過 `opencode.json` 或 `opencode.jsonc` 設定供應商。對於 AI Sonar，請使用自訂供應商，而不是覆寫內建的 `openai` 供應商：
+OpenCode 目前的文件建議透過 `opencode.json` 或 `opencode.jsonc` 設定供應商。對於 TokenLab，請使用自訂供應商，而不是覆寫內建的 `openai` 供應商：
 
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "aisonar": {
+    "tokenlab": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "AI Sonar",
+      "name": "TokenLab",
       "options": {
-        "baseURL": "https://api.aisonar.dev/v1",
+        "baseURL": "https://api.tokenlab.sh/v1",
         "apiKey": "{env:OPENAI_API_KEY}"
       },
       "models": {
@@ -88,7 +88,7 @@ OpenCode 目前的文件建議透過 `opencode.json` 或 `opencode.jsonc` 設定
       }
     }
   },
-  "model": "aisonar/gpt-5.4"
+  "model": "tokenlab/gpt-5.4"
 }
 ```
 
@@ -113,7 +113,7 @@ opencode "Explain this codebase"
 **指定模型：**
 
 ```bash
-opencode --model aisonar/gpt-5.4 "Fix the bugs in main.py"
+opencode --model tokenlab/gpt-5.4 "Fix the bugs in main.py"
 ```
 
 ## 可用模型
@@ -166,21 +166,21 @@ opencode "Fix the TypeScript errors in this project"
 
 <AccordionGroup>
   <Accordion title="連線錯誤">
-    - 確認 `options.baseURL` 已設為 `https://api.aisonar.dev/v1`
+    - 確認 `options.baseURL` 已設為 `https://api.tokenlab.sh/v1`
     - 檢查網路連線
-    - 嘗試 `curl https://api.aisonar.dev/v1/models` 進行測試
+    - 嘗試 `curl https://api.tokenlab.sh/v1/models` 進行測試
   </Accordion>
 
   <Accordion title="驗證失敗">
     - 確認已設定 `OPENAI_API_KEY` 環境變數
     - 確認 `options.apiKey` 參照的是 `{env:OPENAI_API_KEY}` 或其他有效的 secret 來源
     - 檢查 key 是否以 `sk-` 開頭
-    - 確保該 key 已在 AI Sonar dashboard 中啟用
+    - 確保該 key 已在 TokenLab dashboard 中啟用
   </Accordion>
 
   <Accordion title="找不到模型">
     - 檢查設定中的模型名稱是否完全一致
-    - 在 [aisonar.dev/en/models](https://aisonar.dev/models) 確認模型是否可用
+    - 在 [tokenlab.sh/en/models](https://tokenlab.sh/zh-TW/models) 確認模型是否可用
   </Accordion>
 </AccordionGroup>
 

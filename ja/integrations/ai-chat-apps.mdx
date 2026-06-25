@@ -1,15 +1,15 @@
 ---
 title: "AI チャットアプリケーション"
-description: "人気の AI チャットアプリケーションで AI Sonar の OpenAI 互換 API を使用するための設定"
+description: "人気の AI チャットアプリケーションで TokenLab の OpenAI 互換 API を使用するための設定"
 ---
 
 ## 概要
 
-ほとんどの汎用 AI チャットアプリは、標準の OpenAI 互換チャット経路を通じて AI Sonar に接続します。
+ほとんどの汎用 AI チャットアプリは、標準の OpenAI 互換チャット経路を通じて TokenLab に接続します。
 
 実際には、これは次のことを意味します:
-- アプリが完全なエンドポイント URL を明示的に要求しない限り、ベース URL として `https://api.aisonar.dev/v1` を使用します
-- OpenAI スタイルの API キーとして AI Sonar API キーを使用します
+- アプリが完全なエンドポイント URL を明示的に要求しない限り、ベース URL として `https://api.tokenlab.sh/v1` を使用します
+- OpenAI スタイルの API キーとして TokenLab API キーを使用します
 - アプリが標準的なチャット運用フローで使用できるモデルを選択します
 
 <Note>
@@ -41,12 +41,12 @@ description: "人気の AI チャットアプリケーションで AI Sonar の 
 
 | 項目 | 値 |
 |-------|-------|
-| ベースURL | `https://api.aisonar.dev/v1` |
-| APIキー | `sk-your-api-key` |
+| ベースURL | `https://api.tokenlab.sh/v1` |
+| APIキー | `sk-your-tokenlab-key` |
 | APIタイプ | OpenAI互換 |
 
 アプリがベース URL ではなく**完全なエンドポイント URL**を要求する場合は、次を使用してください:
-- Chat Completions: `https://api.aisonar.dev/v1/chat/completions`
+- Chat Completions: `https://api.tokenlab.sh/v1/chat/completions`
 
 ## アプリ設定例
 
@@ -55,24 +55,24 @@ description: "人気の AI チャットアプリケーションで AI Sonar の 
     **セルフホスト版 LobeChat**
 
     ```bash
-    OPENAI_API_KEY=sk-your-api-key
-    OPENAI_PROXY_URL=https://api.aisonar.dev/v1
+    OPENAI_API_KEY=sk-your-tokenlab-key
+    OPENAI_PROXY_URL=https://api.tokenlab.sh/v1
     ```
 
     **LobeChat Cloud**
     1. **Settings** → **AI サービスプロバイダー** を開きます
     2. **OpenAI** を選択します
-    3. AI Sonar API キーを入力します
-    4. カスタムエンドポイントを `https://api.aisonar.dev/v1` に設定します
+    3. TokenLab API キーを入力します
+    4. カスタムエンドポイントを `https://api.tokenlab.sh/v1` に設定します
   </Tab>
 
   <Tab title="Cherry Studio">
     1. **Settings** → **モデルプロバイダー** を開きます
     2. **OpenAI 互換** プロバイダーを追加します
     3. 次を入力します:
-       - **Name**: AI Sonar
-       - **API Base URL**: `https://api.aisonar.dev/v1`
-       - **API Key**: `sk-your-api-key`
+       - **Name**: TokenLab
+       - **API Base URL**: `https://api.tokenlab.sh/v1`
+       - **API Key**: `sk-your-tokenlab-key`
     4. 使用したい model を追加します
   </Tab>
 
@@ -80,8 +80,8 @@ description: "人気の AI チャットアプリケーションで AI Sonar の 
     1. **Settings** → **AI Model** を開きます
     2. **OpenAI API Compatible** を選択します
     3. 次を入力します:
-       - **API Host**: `https://api.aisonar.dev/v1`
-       - **API Key**: `sk-your-api-key`
+       - **API Host**: `https://api.tokenlab.sh/v1`
+       - **API Key**: `sk-your-tokenlab-key`
        - **Model**: `gpt-5-mini` または `gpt-4o`
   </Tab>
 
@@ -89,8 +89,8 @@ description: "人気の AI チャットアプリケーションで AI Sonar の 
     1. **Settings** を開きます
     2. **カスタム エンドポイント** を選択します
     3. 次を入力します:
-       - **エンドポイント URL**: `https://api.aisonar.dev/v1/chat/completions`
-       - **API Key**: `sk-your-api-key`
+       - **エンドポイント URL**: `https://api.tokenlab.sh/v1/chat/completions`
+       - **API Key**: `sk-your-tokenlab-key`
     4. 公開したい model を設定します
   </Tab>
 
@@ -98,8 +98,8 @@ description: "人気の AI チャットアプリケーションで AI Sonar の 
     1. **Admin Settings** → **Connections** を開きます
     2. **OpenAI 互換** 接続を追加します
     3. 次を入力します:
-       - **Base URL**: `https://api.aisonar.dev/v1`
-       - **API Key**: `sk-your-api-key`
+       - **Base URL**: `https://api.tokenlab.sh/v1`
+       - **API Key**: `sk-your-tokenlab-key`
     4. 保存し、公開したい model を選びます
   </Tab>
 
@@ -108,9 +108,9 @@ description: "人気の AI チャットアプリケーションで AI Sonar の 
 
     ```yaml
     customEndpoints:
-      - name: AI Sonar
+      - name: TokenLab
         apiKey: '${OPENAI_API_KEY}'
-        baseURL: 'https://api.aisonar.dev/v1'
+        baseURL: 'https://api.tokenlab.sh/v1'
         models:
           default: ['gpt-5-mini', 'gpt-5.4', 'claude-sonnet-4-6']
           fetch: false
@@ -131,7 +131,7 @@ description: "人気の AI チャットアプリケーションで AI Sonar の 
 
 <AccordionGroup>
   <Accordion title="アプリが対応している場合はベース URL を優先する">
-    ほとんどのアプリでは、完全なエンドポイント URL ではなく、ベース URL として `https://api.aisonar.dev/v1` を指定する方が設定しやすく、壊れにくくなります。
+    ほとんどのアプリでは、完全なエンドポイント URL ではなく、ベース URL として `https://api.tokenlab.sh/v1` を指定する方が設定しやすく、壊れにくくなります。
   </Accordion>
 
   <Accordion title="まずは小さなモデルから使う">
@@ -147,20 +147,20 @@ description: "人気の AI チャットアプリケーションで AI Sonar の 
 
 <AccordionGroup>
   <Accordion title="接続エラー">
-    - ベース URL が正確に `https://api.aisonar.dev/v1` であることを確認してください
+    - ベース URL が正確に `https://api.tokenlab.sh/v1` であることを確認してください
     - アプリがパスを自動追加する場合は、末尾のスラッシュを削除してください
-    - アプリが完全なエンドポイント URL を必要とする場合は、`https://api.aisonar.dev/v1/chat/completions` を使用してください
+    - アプリが完全なエンドポイント URL を必要とする場合は、`https://api.tokenlab.sh/v1/chat/completions` を使用してください
   </Accordion>
 
   <Accordion title="401 Unauthorized">
     - API キーを再確認してください
-    - key が AI Sonar ダッシュボードで有効になっていることを確認してください
+    - key が TokenLab ダッシュボードで有効になっていることを確認してください
     - 余分な空白や改行が含まれていないことを確認してください
   </Accordion>
 
   <Accordion title="モデルを利用できません">
     - model 名が正確であることを確認してください
     - `gpt-5-mini`、`gpt-4o`、または `claude-sonnet-4-6` のような広くサポートされているデフォルトを試してください
-    - 現在の利用可否を AI Sonar docs または ダッシュボード で確認してください
+    - 現在の利用可否を TokenLab docs または ダッシュボード で確認してください
   </Accordion>
 </AccordionGroup>

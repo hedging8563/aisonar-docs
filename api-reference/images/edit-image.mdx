@@ -22,14 +22,14 @@ Nano Banana reference-image requests (`nano-banana`, `nano-banana-2`, and `nano-
 
 xAI Grok Imagine image edit models (`grok-imagine-image`, `grok-imagine-image-quality`, and legacy `grok-imagine-image-pro`) accept at most 3 source images. Requests with more than 3 source images fail before upstream forwarding with `400 too_many_images`.
 
-Compatibility note: if `input_fidelity` is sent with `gpt-image-2`, AI Sonar removes it before forwarding because GPT Image 2 already handles image inputs at high fidelity.
+Compatibility note: if `input_fidelity` is sent with `gpt-image-2`, TokenLab removes it before forwarding because GPT Image 2 already handles image inputs at high fidelity.
 </Note>
 
 ## Request Body
 
 **Synchronous request timeout:** Some routed image providers return the final image inline and wait for generation to finish. High-resolution or high-quality requests can take close to a minute or longer, so set your HTTP client timeout to at least `120s`. If the create response includes `status: "pending"`, `task_id`, or `poll_url`, follow the returned `poll_url` instead.
 
-Remote image URLs: when the routed provider requires multipart input, AI Sonar fetches JSON `image_url`, `image_urls`, or `images[].image_url` and forwards the bytes as multipart `image` parts. URLs must be public `http`/`https`, without embedded credentials or fragments, and must not resolve to localhost, private, or reserved IP ranges; each redirect is checked again. The fetched payload must be a real PNG, JPEG, or WebP image. Limits are `50MB` per image, `200MB` total for URL-fetched images in one request, `10s` fetch timeout, and up to `3` redirects.
+Remote image URLs: when the routed provider requires multipart input, TokenLab fetches JSON `image_url`, `image_urls`, or `images[].image_url` and forwards the bytes as multipart `image` parts. URLs must be public `http`/`https`, without embedded credentials or fragments, and must not resolve to localhost, private, or reserved IP ranges; each redirect is checked again. The fetched payload must be a real PNG, JPEG, or WebP image. Limits are `50MB` per image, `200MB` total for URL-fetched images in one request, `10s` fetch timeout, and up to `3` redirects.
 
 <ParamField body="image" type="file">
   Multipart source images. Repeat `image` to provide multiple GPT Image sources. Files must be PNG, JPEG, or WebP, up to 16 source images and `50MB` each. xAI Grok Imagine edit models use the same input fields but cap source images at 3. Legacy DALL-E 2 mask edits still expect PNG inputs with transparent areas, or a separate `mask`.
@@ -58,7 +58,7 @@ Remote image URLs: when the routed provider requires multipart input, AI Sonar f
 <ParamField body="response_format" type="string" default="url">
   The format in which generated images are returned. Must be `url` or `b64_json`; the default is `url`.
 
-  For Azure Official or Azure-compatible `gpt-image-2` routes, AI Sonar does not forward `response_format` upstream. The gateway always receives upstream image data as `b64_json`; for `url` requests it uploads every image to the CDN and returns `data[].url`. If CDN storage is unavailable or upload fails, the request fails instead of falling back to Base64. For `b64_json`, the raw Base64 is returned.
+  For Azure Official or Azure-compatible `gpt-image-2` routes, TokenLab does not forward `response_format` upstream. The gateway always receives upstream image data as `b64_json`; for `url` requests it uploads every image to the CDN and returns `data[].url`. If CDN storage is unavailable or upload fails, the request fails instead of falling back to Base64. For `b64_json`, the raw Base64 is returned.
 </ParamField>
 
 <ParamField body="async" type="boolean" default="false">
@@ -93,7 +93,7 @@ Billing may reserve the estimated amount when the task is created. Completed tas
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/images/edits" \
+curl -X POST "https://api.tokenlab.sh/v1/images/edits" \
   -H "Authorization: Bearer sk-your-api-key" \
   -F "image=@sunlit_lounge.png" \
   -F "mask=@mask.png" \
@@ -107,7 +107,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.images.edit(
@@ -128,7 +128,7 @@ import fs from 'fs';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 const response = await client.images.edit({
@@ -174,7 +174,7 @@ func main() {
     writer.WriteField("size", "1024x1024")
     writer.Close()
 
-    req, _ := http.NewRequest("POST", "https://api.aisonar.dev/v1/images/edits", body)
+    req, _ := http.NewRequest("POST", "https://api.tokenlab.sh/v1/images/edits", body)
     req.Header.Set("Authorization", "Bearer sk-your-api-key")
     req.Header.Set("Content-Type", writer.FormDataContentType())
 
@@ -189,7 +189,7 @@ func main() {
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.aisonar.dev/v1/images/edits');
+$ch = curl_init('https://api.tokenlab.sh/v1/images/edits');
 
 $image = new CURLFile('sunlit_lounge.png', 'image/png', 'sunlit_lounge.png');
 $mask = new CURLFile('mask.png', 'image/png', 'mask.png');

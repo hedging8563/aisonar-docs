@@ -34,13 +34,13 @@ description: "ينشئ صوتًا من النص المُدخل"
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/audio/speech" \
+curl -X POST "https://api.tokenlab.sh/v1/audio/speech" \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "tts-1-hd",
     "voice": "nova",
-    "input": "Hello, welcome to AI Sonar!"
+    "input": "Hello, welcome to TokenLab!"
   }' \
   --output speech.mp3
 ```
@@ -50,13 +50,13 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.audio.speech.create(
     model="tts-1-hd",
     voice="nova",
-    input="Hello, welcome to AI Sonar!"
+    input="Hello, welcome to TokenLab!"
 )
 
 response.stream_to_file("speech.mp3")
@@ -68,13 +68,13 @@ import fs from 'fs';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 const response = await client.audio.speech.create({
   model: 'tts-1-hd',
   voice: 'nova',
-  input: 'Hello, welcome to AI Sonar!'
+  input: 'Hello, welcome to TokenLab!'
 });
 
 const buffer = Buffer.from(await response.arrayBuffer());
@@ -83,7 +83,7 @@ fs.writeFileSync('speech.mp3', buffer);
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.aisonar.dev/v1/audio/speech');
+$ch = curl_init('https://api.tokenlab.sh/v1/audio/speech');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -95,7 +95,7 @@ curl_setopt_array($ch, [
     CURLOPT_POSTFIELDS => json_encode([
         'model' => 'tts-1-hd',
         'voice' => 'nova',
-        'input' => 'Hello, welcome to AI Sonar!'
+        'input' => 'Hello, welcome to TokenLab!'
     ])
 ]);
 

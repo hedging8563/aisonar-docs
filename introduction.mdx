@@ -3,9 +3,9 @@ title: "Introduction"
 description: "Access hundreds of AI models through a unified API"
 ---
 
-## What Is AI Sonar?
+## What Is TokenLab?
 
-AI Sonar is an AI API aggregation platform that gives you unified access to **hundreds of AI models** from providers such as OpenAI, Anthropic, Google, DeepSeek, Moonshot, MiniMax, and more.
+TokenLab is an AI API aggregation platform that gives you unified access to **hundreds of AI models** from providers such as OpenAI, Anthropic, Google, DeepSeek, Moonshot, MiniMax, and more.
 
 <CardGroup cols={2}>
   <Card title="Native + Compatible" icon="plug">
@@ -41,13 +41,13 @@ Start with the route that matches the behavior you need. Use native Anthropic/Ge
 <CodeGroup>
 
 ```bash cURL
-curl https://api.aisonar.dev/v1/chat/completions \
+curl https://api.tokenlab.sh/v1/chat/completions \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gpt-5.4",
     "messages": [
-      {"role": "user", "content": "Explain what AI Sonar does in one sentence."}
+      {"role": "user", "content": "Explain what TokenLab does in one sentence."}
     ]
   }'
 ```
@@ -57,12 +57,12 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.chat.completions.create(
     model="gpt-5.4",
-    messages=[{"role": "user", "content": "Explain what AI Sonar does in one sentence."}]
+    messages=[{"role": "user", "content": "Explain what TokenLab does in one sentence."}]
 )
 
 print(response.choices[0].message.content)
@@ -73,12 +73,12 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 const response = await client.chat.completions.create({
   model: 'gpt-5.4',
-  messages: [{ role: 'user', content: 'Explain what AI Sonar does in one sentence.' }],
+  messages: [{ role: 'user', content: 'Explain what TokenLab does in one sentence.' }],
 });
 
 console.log(response.choices[0].message.content);
@@ -116,7 +116,7 @@ Use `POST /v1/responses` only when you explicitly need Responses-specific behavi
   <Card title="Integrations" icon="puzzle-piece" href="/integrations/openai-sdk">
     Start with SDK, IDE, and app integrations.
   </Card>
-  <Card title="Models" icon="robot" href="https://aisonar.dev/models">
+  <Card title="Models" icon="robot" href="https://tokenlab.sh/en/models">
     Browse current model availability and pricing.
   </Card>
 </CardGroup>

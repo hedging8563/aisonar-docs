@@ -48,7 +48,7 @@ Si una respuesta de creación incluye `poll_url`, llama a esa ruta exacta. Para 
 
 ## Comportamiento de error
 
-Si la tarea ya no existe, ha expirado o no puede resolverse mediante el contrato público de tareas async, AI Sonar devuelve:
+Si la tarea ya no existe, ha expirado o no puede resolverse mediante el contrato público de tareas async, TokenLab devuelve:
 
 ```json
 {
@@ -64,7 +64,7 @@ Si la tarea ya no existe, ha expirado o no puede resolverse mediante el contrato
 
 <RequestExample>
 ```bash cURL
-curl "https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
+curl "https://api.tokenlab.sh/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>
@@ -74,7 +74,7 @@ import requests
 
 poll_url = "/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 response = requests.get(
-    f"https://api.aisonar.dev{poll_url}",
+    f"https://api.tokenlab.sh{poll_url}",
     headers={"Authorization": "Bearer sk-your-api-key"},
 )
 print(response.json())
@@ -82,7 +82,7 @@ print(response.json())
 
 ```javascript JavaScript
 const pollUrl = '/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-const response = await fetch(`https://api.aisonar.dev${pollUrl}`, {
+const response = await fetch(`https://api.tokenlab.sh${pollUrl}`, {
   headers: { Authorization: 'Bearer sk-your-api-key' },
 });
 console.log(await response.json());

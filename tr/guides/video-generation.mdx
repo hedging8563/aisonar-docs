@@ -5,17 +5,17 @@ description: "Metinden videoya, image-to-video, reference-to-video, ilk/son kare
 
 ## Genel bakış
 
-AI Sonar video oluşturmayı tek bir birleşik API üzerinden sunar. Üretim **asenkron** olarak çalışır: istek gönderirsiniz, `task_id` ve `poll_url` alırsınız, ardından nihai sonuç hazır olana kadar durumu düzenli olarak sorgularsınız.
+TokenLab video oluşturmayı tek bir birleşik API üzerinden sunar. Üretim **asenkron** olarak çalışır: istek gönderirsiniz, `task_id` ve `poll_url` alırsınız, ardından nihai sonuç hazır olana kadar durumu düzenli olarak sorgularsınız.
 
 ### Kullanılabilirlik ve polling
 
 Eğer oluşturma yanıtı `poll_url` döndürüyorsa, doğrudan o adresi kullanın. Bu URL `/v1/tasks/{id}` ise, bunu video işleri için kanonik durum uç noktası olarak kabul edin; `/v1/videos/generations/{id}` yalnızca geriye dönük uyumluluk içindir.
 
-Güncel herkese açık video modeli envanterini [Models API](/tr/api-reference/models/list-models) üzerinden veya [modeller sayfasında](https://aisonar.dev/models) görebilirsiniz.
+Güncel herkese açık video modeli envanterini [Models API](/tr/api-reference/models/list-models) üzerinden veya [modeller sayfasında](https://tokenlab.sh/tr/models) görebilirsiniz.
 
 ### Model ve medya davranışı
 
-Ses davranışı modele bağlıdır. AI Sonar’da `output_audio` gönderilmezse Veo 3 ailesi varsayılan olarak sesi açık kabul eder. Diğer herkese açık modeller sessiz olabilir ya da kararlı bir ses anahtarı sunmayabilir.
+Ses davranışı modele bağlıdır. TokenLab’da `output_audio` gönderilmezse Veo 3 ailesi varsayılan olarak sesi açık kabul eder. Diğer herkese açık modeller sessiz olabilir ya da kararlı bir ses anahtarı sunmayabilir.
 
 Üretim entegrasyonlarında görsel, video ve ses girdileri için herkese açık `https` URL’lerini tercih edin. Uyumlu modeller `data:` URL’lerini kabul etmeye devam eder, ancak herkese açık URL’ler yeniden deneme, gözlemlenebilirlik ve hata ayıklama açısından daha sağlamdır.
 
@@ -24,25 +24,25 @@ Ses davranışı modele bağlıdır. AI Sonar’da `output_audio` gönderilmezse
 ```mermaid
 sequenceDiagram
     participant Client
-    participant AI Sonar
+    participant TokenLab
     participant Provider
 
-    Client->>AI Sonar: POST /v1/videos/generations
-    AI Sonar->>Provider: Normalize edilmiş isteği ilet
-    Provider-->>AI Sonar: task_id + pending
-    AI Sonar-->>Client: { task_id, poll_url, status: "pending" }
+    Client->>TokenLab: POST /v1/videos/generations
+    TokenLab->>Provider: Normalize edilmiş isteği ilet
+    Provider-->>TokenLab: task_id + pending
+    TokenLab-->>Client: { task_id, poll_url, status: "pending" }
 
     loop Her 5-10 saniyede bir sorgula
-        Client->>AI Sonar: GET poll_url
-        AI Sonar->>Provider: Durumu sorgula
-        Provider-->>AI Sonar: Durum güncellemesi
-        AI Sonar-->>Client: { status, video_url? }
+        Client->>TokenLab: GET poll_url
+        TokenLab->>Provider: Durumu sorgula
+        Provider-->>TokenLab: Durum güncellemesi
+        TokenLab-->>Client: { status, video_url? }
     end
 ```
 
 ## Güncel herkese açık işlemler
 
-AI Sonar’nın güncel herkese açık video sözleşmesi şu işlemlere odaklanır:
+TokenLab’nın güncel herkese açık video sözleşmesi şu işlemlere odaklanır:
 
 - `text-to-video`
 - `image-to-video`
@@ -222,7 +222,7 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ### Reference-to-video
 
-`seedance-2.0` ve `seedance-2.0-fast` için AI Sonar şu anda en fazla 9 referans görseli, ayrıca en fazla 3 referans video ve 3 referans sesi destekler. `duration` yalnızca üretilen çıktının süresini kontrol eder; referans video girdisi için ayrı bir süre sınırı tanımlamaz. `grok-imagine-video` için reference-to-video en fazla 7 görüntü referansı (`reference_images` veya `image_urls`) kabul eder ve `duration` en fazla 10 saniyedir. Referans görüntüleri `image_url` / `image` ilk kare girdileriyle birlikte göndermeyin. `grok-imagine-video-1.5-preview` yalnızca image-to-video destekler.
+`seedance-2.0` ve `seedance-2.0-fast` için TokenLab şu anda en fazla 9 referans görseli, ayrıca en fazla 3 referans video ve 3 referans sesi destekler. `duration` yalnızca üretilen çıktının süresini kontrol eder; referans video girdisi için ayrı bir süre sınırı tanımlamaz. `grok-imagine-video` için reference-to-video en fazla 7 görüntü referansı (`reference_images` veya `image_urls`) kabul eder ve `duration` en fazla 10 saniyedir. Referans görüntüleri `image_url` / `image` ilk kare girdileriyle birlikte göndermeyin. `grok-imagine-video-1.5-preview` yalnızca image-to-video destekler.
 
 ```python
 response = requests.post(f"{BASE}/videos/generations",
@@ -262,7 +262,7 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ### Videodan videoya
 
-`grok-imagine-video` video-to-video için `video_url` içinde herkese açık HTTPS `.mp4` URL gönderin. AI Sonar bunu xAI REST `video.url` gövdesine çevirir. `resolution` için `480p` veya `720p` gönderebilirsiniz; bu düzenleme akışı `duration` ve `aspect_ratio` kabul etmez.
+`grok-imagine-video` video-to-video için `video_url` içinde herkese açık HTTPS `.mp4` URL gönderin. TokenLab bunu xAI REST `video.url` gövdesine çevirir. `resolution` için `480p` veya `720p` gönderebilirsiniz; bu düzenleme akışı `duration` ve `aspect_ratio` kabul etmez.
 
 ```python
 response = requests.post(f"{BASE}/videos/generations",
@@ -324,4 +324,4 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ## Faturalama
 
-Faturalama modele bağlıdır. Bazı herkese açık video modelleri pratikte istek başına fiyatlandırılırken, bazıları saniye bazlı fiyatlandırmaya daha yakındır. Güncel herkese açık fiyat yüzeyi için [modeller sayfasına](https://aisonar.dev/models) veya [Pricing API](/tr/api-reference/pricing/get-pricing) bakın.
+Faturalama modele bağlıdır. Bazı herkese açık video modelleri pratikte istek başına fiyatlandırılırken, bazıları saniye bazlı fiyatlandırmaya daha yakındır. Güncel herkese açık fiyat yüzeyi için [modeller sayfasına](https://tokenlab.sh/tr/models) veya [Pricing API](/tr/api-reference/pricing/get-pricing) bakın.

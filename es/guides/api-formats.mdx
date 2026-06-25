@@ -7,7 +7,7 @@ description: "Usa los formatos OpenAI, Anthropic o Gemini con una sola clave API
 
 ## Descripción general
 
-AI Sonar admite **tres formatos de API nativos** con una sola clave API. Elige el formato que mejor se adapte a tu caso de uso: no se necesitan cambios de configuración.
+TokenLab admite **tres formatos de API nativos** con una sola clave API. Elige el formato que mejor se adapte a tu caso de uso: no se necesitan cambios de configuración.
 
 <CardGroup cols={3}>
   <Card title="Formato OpenAI" icon="plug">
@@ -53,8 +53,8 @@ Usa esta ruta de compatibilidad para integraciones OpenAI SDK existentes y flujo
 from openai import OpenAI
 
 client = OpenAI(
-    api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    api_key="sk-your-tokenlab-key",
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 # Portable chat works across many models
@@ -80,8 +80,8 @@ API Messages nativa de Anthropic. Requerido para funciones específicas de Claud
 from anthropic import Anthropic
 
 client = Anthropic(
-    api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev"  # No /v1 suffix!
+    api_key="sk-your-tokenlab-key",
+    base_url="https://api.tokenlab.sh"  # No /v1 suffix!
 )
 
 message = client.messages.create(
@@ -127,8 +127,8 @@ for block in message.content:
 Formato nativo de la API Gemini de Google para integración con el ecosistema de Google.
 
 ```bash
-curl "https://api.aisonar.dev/v1beta/models/gemini-2.5-flash:generateContent" \
-  -H "Authorization: Bearer sk-your-api-key" \
+curl "https://api.tokenlab.sh/v1beta/models/gemini-2.5-flash:generateContent" \
+  -H "Authorization: Bearer sk-your-tokenlab-key" \
   -H "Content-Type: application/json" \
   -d '{
     "contents": [{
@@ -143,8 +143,8 @@ curl "https://api.aisonar.dev/v1beta/models/gemini-2.5-flash:generateContent" \
 ### Transmisión
 
 ```bash
-curl "https://api.aisonar.dev/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse" \
-  -H "Authorization: Bearer sk-your-api-key" \
+curl "https://api.tokenlab.sh/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse" \
+  -H "Authorization: Bearer sk-your-tokenlab-key" \
   -H "Content-Type: application/json" \
   -d '{
     "contents": [{"parts": [{"text": "Write a story"}]}]
@@ -156,7 +156,7 @@ curl "https://api.aisonar.dev/v1beta/models/gemini-2.5-flash:streamGenerateConte
 - Código existente del SDK de Gemini
 - Funciones nativas de Gemini
 
-**Gemini Files y Cache:** La ruta nativa de Gemini admite `/upload/v1beta/files`, `/v1beta/files`, `/v1beta/files:register` y `/v1beta/cachedContents`. Files usa canales upstream compatibles con Gemini File API; los recursos de Cache explícitos también pueden enrutarse por canales de Vertex AI. Los recursos creados mediante AI Sonar quedan vinculados al mismo canal/key upstream para llamadas posteriores a `generateContent`.
+**Gemini Files y Cache:** La ruta nativa de Gemini admite `/upload/v1beta/files`, `/v1beta/files`, `/v1beta/files:register` y `/v1beta/cachedContents`. Files usa canales upstream compatibles con Gemini File API; los recursos de Cache explícitos también pueden enrutarse por canales de Vertex AI. Los recursos creados mediante TokenLab quedan vinculados al mismo canal/key upstream para llamadas posteriores a `generateContent`.
 
 ## Límite de compatibilidad de herramientas
 
@@ -166,7 +166,7 @@ Las herramientas de función pueden convertirse entre formatos cuando la ruta de
 - Las herramientas server/native de Anthropic, como `web_search_*`, `web_fetch_*`, `code_execution_*`, `tool_search_*`, bash, computer-use y text-editor, requieren `/v1/messages`.
 - Las herramientas integradas de Gemini, como `googleSearch`, `codeExecution`, `urlContext`, `computerUse` y campos `tools` similares, requieren `/v1beta`.
 
-Si AI Sonar no puede enrutar una solicitud con herramientas nativas a una ruta upstream compatible con formato nativo, devuelve un error unsupported-field explícito en lugar de descartar la herramienta en silencio o fingir que es una función de Chat Completions. Las herramientas de función definidas por el usuario siguen siendo la ruta más portable.
+Si TokenLab no puede enrutar una solicitud con herramientas nativas a una ruta upstream compatible con formato nativo, devuelve un error unsupported-field explícito en lugar de descartar la herramienta en silencio o fingir que es una función de Chat Completions. Las herramientas de función definidas por el usuario siguen siendo la ruta más portable.
 
 ## Cómo elegir el formato correcto
 
@@ -191,10 +191,10 @@ graph TD
 # Before (OpenAI)
 client = OpenAI(api_key="sk-openai-key")
 
-# After (AI Sonar)
+# After (TokenLab)
 client = OpenAI(
-    api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"  # Add this line
+    api_key="sk-tokenlab-key",
+    base_url="https://api.tokenlab.sh/v1"  # Add this line
 )
 # That's it! Same code works
 ```
@@ -207,10 +207,10 @@ client = OpenAI(
 # Before (Anthropic)
 client = Anthropic(api_key="sk-ant-key")
 
-# After (AI Sonar)
+# After (TokenLab)
 client = Anthropic(
-    api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev"  # Add this line (no /v1!)
+    api_key="sk-tokenlab-key",
+    base_url="https://api.tokenlab.sh"  # Add this line (no /v1!)
 )
 ```
 
@@ -221,19 +221,19 @@ client = Anthropic(
 import google.generativeai as genai
 genai.configure(api_key="google-api-key")
 
-# After (AI Sonar) - Use REST API
+# After (TokenLab) - Use REST API
 import requests
 
 response = requests.post(
-    "https://api.aisonar.dev/v1beta/models/gemini-2.5-flash:generateContent",
-    headers={"Authorization": "Bearer sk-your-api-key"},
+    "https://api.tokenlab.sh/v1beta/models/gemini-2.5-flash:generateContent",
+    headers={"Authorization": "Bearer sk-tokenlab-key"},
     json={"contents": [{"parts": [{"text": "Hello"}]}]}
 )
 ```
 
 ## Compatibilidad entre modelos
 
-La magia de AI Sonar: usa **cualquier SDK** con **cualquier modelo**. La pasarela gestiona automáticamente la conversión de formatos.
+La magia de TokenLab: usa **cualquier SDK** con **cualquier modelo**. La pasarela gestiona automáticamente la conversión de formatos.
 
 ### Cualquier SDK → Cualquier modelo
 
@@ -242,8 +242,8 @@ La magia de AI Sonar: usa **cualquier SDK** con **cualquier modelo**. La pasarel
 from anthropic import Anthropic
 
 client = Anthropic(
-    api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev"
+    api_key="sk-tokenlab-key",
+    base_url="https://api.tokenlab.sh"
 )
 
 response = client.messages.create(
@@ -262,7 +262,7 @@ response = client.messages.create(model="deepseek-r1", ...)       # ✅ Works!
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="https://api.aisonar.dev/v1", api_key="sk-...")
+client = OpenAI(base_url="https://api.tokenlab.sh/v1", api_key="sk-...")
 
 # These portable chat calls use the same /v1 compatibility SDK:
 response = client.chat.completions.create(model="gpt-4o", ...)
@@ -274,7 +274,7 @@ response = client.chat.completions.create(model="gemini-2.5-flash", ...)
 
 | Plataforma | Formato OpenAI | Formato Anthropic | Formato Gemini | API de Responses |
 |----------|:---:|:---:|:---:|:---:|
-| **AI Sonar** | ✅ Todos los modelos | ✅ Todos los modelos | ✅ Todos los modelos | ✅ Todos los modelos |
+| **TokenLab** | ✅ Todos los modelos | ✅ Todos los modelos | ✅ Todos los modelos | ✅ Todos los modelos |
 | OpenRouter | ✅ Todos los modelos | ❌ | ❌ | ❌ |
 | Together AI | ✅ Todos los modelos | ❌ | ❌ | ❌ |
 | Fireworks | ✅ Todos los modelos | ❌ | ❌ | ❌ |

@@ -80,7 +80,7 @@ A requisição PATCH deve incluir pelo menos um campo.
 - `logicalModel` se refere ao modelo lógico público solicitado por quem faz a chamada.
 - `modelVendor` se refere ao fornecedor público do modelo, e não à rota física oculta.
 - `scene` é a cena pública da solicitação derivada do endpoint ou do tipo de tarefa.
-- `accessChannel=platform` significa que a solicitação foi cobrada pelo canal de plataforma da AI Sonar.
+- `accessChannel=platform` significa que a solicitação foi cobrada pelo canal de plataforma da TokenLab.
 - `accessChannel=byok` significa que a solicitação usou sua própria chave do provedor upstream.
 
 As respostas expõem apenas campos públicos de faturamento e reporting. Os detalhes internos de roteamento e a metadata física do provedor permanecem ocultos.
@@ -96,7 +96,7 @@ Comece consultando o saldo da organização com o token de gerenciamento atual.
 
 <RequestExample>
 ```bash cURL
-curl -X GET "https://api.aisonar.dev/v1/management/balance" \
+curl -X GET "https://api.tokenlab.sh/v1/management/balance" \
   -H "Authorization: Bearer mt-your-management-token"
 ```
 </RequestExample>
@@ -105,7 +105,7 @@ Em seguida, liste as API Keys disponíveis para esse mesmo token de gerenciament
 
 <RequestExample>
 ```bash cURL
-curl "https://api.aisonar.dev/v1/management/api-keys" \
+curl "https://api.tokenlab.sh/v1/management/api-keys" \
   -H "Authorization: Bearer mt-your-management-token"
 ```
 </RequestExample>

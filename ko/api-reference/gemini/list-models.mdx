@@ -39,7 +39,7 @@ Gemini 스타일의 `?key=` 또는 `x-goog-api-key` 힌트는 이곳의 응답 �
 
 <RequestExample>
 ```bash cURL
-curl "https://api.aisonar.dev/v1beta/models?pageSize=5" \
+curl "https://api.tokenlab.sh/v1beta/models?pageSize=5" \
   -H "x-goog-api-key: sk-your-api-key"
 ```
 
@@ -49,7 +49,7 @@ import google.generativeai as genai
 genai.configure(
     api_key="sk-your-api-key",
     transport="rest",
-    client_options={"api_endpoint": "api.aisonar.dev"}
+    client_options={"api_endpoint": "api.tokenlab.sh"}
 )
 
 for model in genai.list_models():
@@ -58,7 +58,7 @@ for model in genai.list_models():
 
 ```javascript JavaScript
 const response = await fetch(
-  "https://api.aisonar.dev/v1beta/models?pageSize=5",
+  "https://api.tokenlab.sh/v1beta/models?pageSize=5",
   { headers: { "x-goog-api-key": "sk-your-api-key" } }
 );
 const { models } = await response.json();
@@ -74,7 +74,7 @@ models.forEach(m => console.log(m.name));
       "name": "models/gemini-2.5-pro",
       "version": "1.0",
       "displayName": "gemini-2.5-pro",
-      "description": "gemini-2.5-pro model available via AI Sonar",
+      "description": "gemini-2.5-pro model available via TokenLab",
       "inputTokenLimit": 1048576,
       "outputTokenLimit": 65536,
       "supportedGenerationMethods": ["generateContent", "countTokens"],
@@ -87,7 +87,7 @@ models.forEach(m => console.log(m.name));
       "name": "models/gemini-2.5-flash",
       "version": "1.0",
       "displayName": "gemini-2.5-flash",
-      "description": "gemini-2.5-flash model available via AI Sonar",
+      "description": "gemini-2.5-flash model available via TokenLab",
       "inputTokenLimit": 1048576,
       "outputTokenLimit": 65536,
       "supportedGenerationMethods": ["generateContent", "countTokens"],

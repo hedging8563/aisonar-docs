@@ -38,7 +38,7 @@ Siehe [Modellauswahl-Leitfaden](/de/guides/coding-agent-models) für detailliert
 
 ### Prompt Cache (Provider-Ebene)
 
-[Upstream-Prompt-Cache](/de/guides/prompt-cache) funktioniert automatisch über AI Sonar:
+[Upstream-Prompt-Cache](/de/guides/prompt-cache) funktioniert automatisch über TokenLab:
 
 | Anbieter | Cache-Rabatt | Min. Tokens |
 |----------|-------------|-------------|
@@ -70,8 +70,8 @@ Geschätzte Kosten für eine typische 1-Stunden-Coding-Sitzung (~3M Tokens):
 | Setup | Kosten/Stunde | Monatlich (160h) |
 |-------|---------------|------------------|
 | Direkte API (Premium-Modell) | ~$15–25 | ~$2.400–4.000 |
-| AI Sonar (Smart Routing) | ~$10–18 | ~$1.600–2.900 |
-| AI Sonar + Prompt Cache | ~$4–8 | ~$640–1.280 |
+| TokenLab (Smart Routing) | ~$10–18 | ~$1.600–2.900 |
+| TokenLab + Prompt Cache | ~$4–8 | ~$640–1.280 |
 
 <Warning>
 Dies sind illustrative Schätzungen. Tatsächliche Kosten hängen von Modellwahl, Nutzungsmustern und Cache-Trefferquoten ab. Aktuelle Tarife unter [Echtzeit-Preise](/de/api-reference/pricing/get-pricing).
@@ -106,30 +106,30 @@ Dies sind illustrative Schätzungen. Tatsächliche Kosten hängen von Modellwahl
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-api-key"
-    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
+    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
+    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
     ```
     [Vollständige Anleitung →](/de/integrations/claude-code)
   </Accordion>
 
   <Accordion title="Cursor">
-    Einstellungen → Modelle → OpenAI-API-Schlüssel: `sk-your-key`, Basis-URL: `https://api.aisonar.dev/v1`
+    Einstellungen → Modelle → OpenAI-API-Schlüssel: `sk-your-key`, Basis-URL: `https://api.tokenlab.sh/v1`
 
     [Vollständige Anleitung →](/de/integrations/cursor)
   </Accordion>
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-api-key"
-    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
+    export OPENAI_API_KEY="sk-your-tokenlab-key"
+    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
     ```
     [Vollständige Anleitung →](/de/integrations/codex-cli)
   </Accordion>
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-api-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
+    export GEMINI_API_KEY="sk-your-tokenlab-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
     ```
     [Vollständige Anleitung →](/de/integrations/gemini-cli)
   </Accordion>

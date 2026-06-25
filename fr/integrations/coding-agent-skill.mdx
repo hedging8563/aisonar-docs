@@ -1,10 +1,10 @@
 ---
-title: "✨ Compétence d'intégration API AI Sonar"
-description: "Installez la compétence partagée d'intégration API AI Sonar pour n'importe quel agent de codage, avec récupération d'erreurs Agent-First."
+title: "✨ Compétence d'intégration API TokenLab"
+description: "Installez la compétence partagée d'intégration API TokenLab pour n'importe quel agent de codage, avec récupération d'erreurs Agent-First."
 ---
 
 <Note>
-Cette compétence apprend à votre agent de codage comment intégrer les **centaines d'API IA** de AI Sonar simplement en décrivant ce dont vous avez besoin. Elle est empaquetée sous forme d'une compétence partagée agent-first et fonctionne avec tout agent de codage prenant en charge les fichiers de compétences ou de règles.
+Cette compétence apprend à votre agent de codage comment intégrer les **centaines d'API IA** de TokenLab simplement en décrivant ce dont vous avez besoin. Elle est empaquetée sous forme d'une compétence partagée agent-first et fonctionne avec tout agent de codage prenant en charge les fichiers de compétences ou de règles.
 
 L'API est **[Agent-First](/guides/agent-first-api)** — même si l'agent devine mal un nom de modèle, la réponse d'erreur lui indique exactement comment le corriger.
 </Note>
@@ -27,12 +27,12 @@ Cette page documente une couche de mise en paquet de compétence réutilisable, 
 Utilisez la commande d'installation canonique non interactive :
 
 ```bash
-npx skills add https://github.com/hedging8563/aisonar-skills --skill aisonar-api-integration -y
+npx skills add https://github.com/hedging8563/tokenlab-skills --skill tokenlab-api-integration -y
 ```
 
-Cela installe la compétence partagée `aisonar-api-integration` depuis le dépôt de compétences AI Sonar.
+Cela installe la compétence partagée `tokenlab-api-integration` depuis le dépôt de compétences TokenLab.
 
-Si votre outil ne prend pas en charge l'installateur, copiez le dossier `skills/aisonar-api-integration/` du dépôt dans le répertoire partagé de compétences ou de règles de votre outil.
+Si votre outil ne prend pas en charge l'installateur, copiez le dossier `skills/tokenlab-api-integration/` du dépôt dans le répertoire partagé de compétences ou de règles de votre outil.
 </Note>
 
 ### Vérifier l'installation
@@ -42,19 +42,19 @@ Demandez à votre agent de codage :
 Quelles skills sont disponibles ?
 ```
 
-Si vous voyez `aisonar-api-integration`, l'installation a réussi.
+Si vous voyez `tokenlab-api-integration`, l'installation a réussi.
 
 ## Obtenez votre clé API
 
 <Steps>
-  <Step title="Visitez AI Sonar">
-    Rendez-vous sur [aisonar.dev](https://aisonar.dev)
+  <Step title="Visitez TokenLab">
+    Rendez-vous sur [tokenlab.sh](https://tokenlab.sh)
   </Step>
   <Step title="Connectez-vous">
     Créez un compte ou connectez-vous
   </Step>
   <Step title="Obtenez une clé API">
-    Accédez à [Dashboard → API Keys](https://console.aisonar.dev/api) et créez une nouvelle clé
+    Accédez à [Dashboard → API Keys](https://tokenlab.sh/dashboard/api) et créez une nouvelle clé
   </Step>
   <Step title="Copiez la clé">
     Votre clé commence par `sk-...` — conservez-la en lieu sûr
@@ -81,7 +81,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.environ["TOKENLAB_API_KEY"],
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.chat.completions.create(
@@ -106,7 +106,7 @@ Si l'agent devine un mauvais nom de modèle (par ex. `gpt5`), l'API renvoie :
     "code": "model_not_found",
     "did_you_mean": "gpt-5.4",
     "suggestions": [{"id": "gpt-5.4"}, {"id": "gpt-5-mini"}],
-    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.aisonar.dev/v1/models to list all available models."
+    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.tokenlab.sh/v1/models to list all available models."
   }
 }
 ```
@@ -148,9 +148,12 @@ Chaque réponse d'erreur inclut des indications structurées que tout agent de c
 
 Lorsque vous appelez `/v1/chat/completions` avec un modèle Claude ou Gemini, l'API renvoie des en-têtes d'optimisation :
 
+```
+X-TokenLab-Hint: This model supports native Anthropic format. Use POST /v1/messages for better performance.
+X-TokenLab-Native-Endpoint: /v1/messages
+```
 
-
-Traitez ces headers comme des indications de routage, pas comme un basculement automatique forcé. Les appels natifs Claude utilisent `/v1/messages`; les appels natifs Gemini doivent suivre l’endpoint annoncé par the native endpoint hint header, généralement `/v1beta/gemini`.
+Traitez ces headers comme des indications de routage, pas comme un basculement automatique forcé. Les appels natifs Claude utilisent `/v1/messages`; les appels natifs Gemini doivent suivre l’endpoint annoncé par `X-TokenLab-Native-Endpoint`, généralement `/v1beta/gemini`.
 
 ### Découverte des modèles
 
@@ -158,21 +161,21 @@ Pas besoin de rechercher dans la documentation :
 
 ```bash
 # Vue d'ensemble de l'API lisible par machine
-curl https://api.aisonar.dev/llms.txt
+curl https://api.tokenlab.sh/llms.txt
 
 # List models by category
-curl "https://api.aisonar.dev/v1/models?category=chat" -H "Authorization: Bearer sk-KEY"
-curl "https://api.aisonar.dev/v1/models?category=image" -H "Authorization: Bearer sk-KEY"
+curl "https://api.tokenlab.sh/v1/models?category=chat" -H "Authorization: Bearer sk-KEY"
+curl "https://api.tokenlab.sh/v1/models?category=image" -H "Authorization: Bearer sk-KEY"
 
 # Liste recommandée pour les scénarios hors chat
-curl "https://api.aisonar.dev/v1/models?recommended_for=image" -H "Authorization: Bearer sk-KEY"
-curl "https://api.aisonar.dev/v1/models?recommended_for=translation" -H "Authorization: Bearer sk-KEY"
+curl "https://api.tokenlab.sh/v1/models?recommended_for=image" -H "Authorization: Bearer sk-KEY"
+curl "https://api.tokenlab.sh/v1/models?recommended_for=translation" -H "Authorization: Bearer sk-KEY"
 
 # Lisez le contrat public d’un modèle avant de retenter une requête hors chat
-curl "https://api.aisonar.dev/v1/models/gpt-image-2" -H "Authorization: Bearer sk-KEY"
+curl "https://api.tokenlab.sh/v1/models/gpt-image-2" -H "Authorization: Bearer sk-KEY"
 
 # Filtrer par capacité
-curl "https://api.aisonar.dev/v1/models?tag=coding" -H "Authorization: Bearer sk-KEY"
+curl "https://api.tokenlab.sh/v1/models?tag=coding" -H "Authorization: Bearer sk-KEY"
 ```
 
 ## Capacités prises en charge
@@ -194,10 +197,10 @@ curl "https://api.aisonar.dev/v1/models?tag=coding" -H "Authorization: Bearer sk
     Utilisez des variables d'environnement. Ne versionnez jamais des clés dans git et ne les exposez jamais dans le code frontend.
   </Card>
   <Card title="Gestion des coûts" icon="wallet">
-    Définissez des limites d'utilisation dans votre [dashboard](https://console.aisonar.dev). Vérifiez `error.balance_usd` pour surveiller les coûts par programmation.
+    Définissez des limites d'utilisation dans votre [dashboard](https://tokenlab.sh/dashboard). Vérifiez `error.balance_usd` pour surveiller les coûts par programmation.
   </Card>
   <Card title="Soyez direct" icon="bullseye">
-    Dites "Je veux générer des images en Python" au lieu de "Est-ce que AI Sonar a une API d'image ?"
+    Dites "Je veux générer des images en Python" au lieu de "Est-ce que TokenLab a une API d'image ?"
   </Card>
   <Card title="Décrivez votre scénario" icon="message">
     "Je construis un chatbot avec GPT-4" donne plus de contexte à l'agent que "Utilise GPT-4".
@@ -208,24 +211,24 @@ curl "https://api.aisonar.dev/v1/models?tag=coding" -H "Authorization: Bearer sk
 
 <AccordionGroup>
   <Accordion title="La compétence ne se déclenche pas automatiquement ?">
-    Essayez de mentionner "AI Sonar" ou "AI Sonar API" dans votre requête :
+    Essayez de mentionner "TokenLab" ou "TokenLab API" dans votre requête :
     ```
-    Je veux intégrer GPT-4 à mon projet avec AI Sonar
+    Je veux intégrer GPT-4 à mon projet avec TokenLab
     ```
   </Accordion>
 
   <Accordion title="Comment l'API aide-t-elle l'agent à trouver le bon modèle ?">
-    L'[API Agent-First](/guides/agent-first-api) de AI Sonar renvoie des indications d'erreur structurées. Si l'agent devine un mauvais nom de modèle, l'erreur inclut `did_you_mean` avec le nom correct et `suggestions` avec des alternatives. L'agent les lit et se corrige automatiquement à la tentative suivante.
+    L'[API Agent-First](/guides/agent-first-api) de TokenLab renvoie des indications d'erreur structurées. Si l'agent devine un mauvais nom de modèle, l'erreur inclut `did_you_mean` avec le nom correct et `suggestions` avec des alternatives. L'agent les lit et se corrige automatiquement à la tentative suivante.
   </Accordion>
 
   <Accordion title="Quels agents de codage sont pris en charge ?">
-    Tout agent de codage qui prend en charge des répertoires partagés de compétences ou de règles. Lorsque l'installateur est pris en charge, `npx skills add` place automatiquement la compétence partagée `aisonar-api-integration` à l'emplacement détecté.
+    Tout agent de codage qui prend en charge des répertoires partagés de compétences ou de règles. Lorsque l'installateur est pris en charge, `npx skills add` place automatiquement la compétence partagée `tokenlab-api-integration` à l'emplacement détecté.
   </Accordion>
 
   <Accordion title="Comment mettre à jour la compétence ?">
     Réexécutez l'installateur :
     ```bash
-    npx skills add https://github.com/hedging8563/aisonar-skills --skill aisonar-api-integration -y
+    npx skills add https://github.com/hedging8563/tokenlab-skills --skill tokenlab-api-integration -y
     ```
   </Accordion>
 </AccordionGroup>
@@ -236,17 +239,17 @@ curl "https://api.aisonar.dev/v1/models?tag=coding" -H "Authorization: Bearer sk
   <Card title="API Agent-First" icon="robot" href="/fr/guides/agent-first-api">
     Référence complète des indications d'erreur structurées
   </Card>
-  <Card title="Documentation API" icon="book" href="https://docs.aisonar.dev">
+  <Card title="Documentation API" icon="book" href="https://docs.tokenlab.sh">
     Référence API complète
   </Card>
-  <Card title="Modèles" icon="sparkles" href="https://aisonar.dev/models">
+  <Card title="Modèles" icon="sparkles" href="https://tokenlab.sh/fr/models">
     Parcourez des centaines de modèles disponibles
   </Card>
-  <Card title="llms.txt" icon="file-lines" href="https://api.aisonar.dev/llms.txt">
+  <Card title="llms.txt" icon="file-lines" href="https://api.tokenlab.sh/llms.txt">
     Vue d'ensemble de l'API lisible par machine pour les agents IA
   </Card>
 </CardGroup>
 
 <Info>
-**Vous avez des questions ?** Consultez nos [GitHub Issues](https://github.com/hedging8563/aisonar-skills/issues) ou contactez [support@aisonar.dev](mailto:support@aisonar.dev)
+**Vous avez des questions ?** Consultez nos [GitHub Issues](https://github.com/hedging8563/tokenlab-skills/issues) ou contactez [support@tokenlab.sh](mailto:support@tokenlab.sh)
 </Info>

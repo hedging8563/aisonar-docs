@@ -1,6 +1,6 @@
 ---
 title: "LlamaIndex"
-description: "Integrate AI Sonar with LlamaIndex using OpenAI-compatible integrations"
+description: "Integrate TokenLab with LlamaIndex using OpenAI-compatible integrations"
 ---
 
 ## Overview
@@ -15,11 +15,11 @@ description: "Integrate AI Sonar with LlamaIndex using OpenAI-compatible integra
 **Support Confidence**: Supported via OpenAILike
 </Note>
 
-For AI Sonar, the more robust LlamaIndex setup is to use **OpenAI-compatible integrations** instead of the built-in OpenAI classes.
+For TokenLab, the more robust LlamaIndex setup is to use **OpenAI-compatible integrations** instead of the built-in OpenAI classes.
 
 Current LlamaIndex docs explicitly recommend `OpenAILike` for third-party OpenAI-compatible endpoints, because the built-in OpenAI classes infer metadata from official model names.
 
-In other words: treat `OpenAILike` as the supported AI Sonar path here, not the built-in OpenAI classes.
+In other words: treat `OpenAILike` as the supported TokenLab path here, not the built-in OpenAI classes.
 
 ## Installation
 
@@ -39,15 +39,15 @@ from llama_index.embeddings.openai_like import OpenAILikeEmbedding
 
 llm = OpenAILike(
     model="gpt-5.4",
-    api_base="https://api.aisonar.dev/v1",
-    api_key="sk-your-api-key",
+    api_base="https://api.tokenlab.sh/v1",
+    api_key="sk-your-tokenlab-key",
     is_chat_model=True,
 )
 
 embed_model = OpenAILikeEmbedding(
     model_name="text-embedding-3-small",
-    api_base="https://api.aisonar.dev/v1",
-    api_key="sk-your-api-key",
+    api_base="https://api.tokenlab.sh/v1",
+    api_key="sk-your-tokenlab-key",
 )
 
 Settings.llm = llm
@@ -57,7 +57,7 @@ Settings.embed_model = embed_model
 ## Basic Usage
 
 ```python
-response = llm.complete("Explain AI Sonar in one sentence.")
+response = llm.complete("Explain TokenLab in one sentence.")
 print(response.text)
 ```
 
@@ -107,7 +107,7 @@ print(response)
 ```python
 chat_engine = index.as_chat_engine(chat_mode="condense_question")
 
-response = chat_engine.chat("What is AI Sonar?")
+response = chat_engine.chat("What is TokenLab?")
 print(response)
 
 response = chat_engine.chat("How many models does it support?")
@@ -129,12 +129,12 @@ asyncio.run(main())
 ## Best Practices
 
 <AccordionGroup>
-  <Accordion title="Use OpenAILike for AI Sonar">
-    Prefer `llama_index.llms.openai_like.OpenAILike` and `llama_index.embeddings.openai_like.OpenAILikeEmbedding` for AI Sonar and other third-party OpenAI-compatible gateways.
+  <Accordion title="Use OpenAILike for TokenLab">
+    Prefer `llama_index.llms.openai_like.OpenAILike` and `llama_index.embeddings.openai_like.OpenAILikeEmbedding` for TokenLab and other third-party OpenAI-compatible gateways.
   </Accordion>
 
   <Accordion title="Set api_base explicitly">
-    Pass `api_base="https://api.aisonar.dev/v1"` directly in code instead of relying on older OpenAI environment-variable names.
+    Pass `api_base="https://api.tokenlab.sh/v1"` directly in code instead of relying on older OpenAI environment-variable names.
   </Accordion>
 
   <Accordion title="Keep model roles separated">

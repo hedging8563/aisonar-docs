@@ -54,7 +54,7 @@ description: "Choisir le bon modèle pour chaque tâche de codage — tableau co
   </Accordion>
 </AccordionGroup>
 
-## Fonctionnement du routage AI Sonar
+## Fonctionnement du routage TokenLab
 
 ### Stratégies de routage
 
@@ -73,14 +73,14 @@ Requête : claude-sonnet-4-6
 
 ### Routage en format natif
 
-Lorsque le modèle sélectionné et le canal acheminé le prennent en charge, AI Sonar peut acheminer les requêtes via le format d'API natif de la famille de modèles pour une meilleure compatibilité :
+Lorsque le modèle sélectionné et le canal acheminé le prennent en charge, TokenLab peut acheminer les requêtes via le format d'API natif de la famille de modèles pour une meilleure compatibilité :
 
 | Famille de modèle | Format d'API | URL de base |
 |-------------|------------|----------|
-| Claude | Anthropic Messages | `https://api.aisonar.dev` |
-| GPT | Réponses OpenAI | `https://api.aisonar.dev/v1` |
-| Gemini | API native Gemini | `https://api.aisonar.dev` ou `https://api.aisonar.dev/v1beta` selon le chemin du client |
-| DeepSeek | Chat OpenAI | `https://api.aisonar.dev/v1` |
+| Claude | Anthropic Messages | `https://api.tokenlab.sh` |
+| GPT | Réponses OpenAI | `https://api.tokenlab.sh/v1` |
+| Gemini | API native Gemini | `https://api.tokenlab.sh` ou `https://api.tokenlab.sh/v1beta` selon le chemin du client |
+| DeepSeek | Chat OpenAI | `https://api.tokenlab.sh/v1` |
 
 Claude Code constitue un chemin Anthropic-native solide. Les API Gemini-native existent aussi, mais Gemini CLI reste lui-même un chemin de compatibilité best-effort et ne doit pas être présenté comme un flux de travail durablement stable.
 
@@ -89,8 +89,8 @@ Claude Code constitue un chemin Anthropic-native solide. Les API Gemini-native e
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-api-key"
-    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
+    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
+    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
     ```
     Sélection du modèle : `claude --model claude-sonnet-4-6`
 
@@ -99,24 +99,24 @@ Claude Code constitue un chemin Anthropic-native solide. Les API Gemini-native e
 
   <Accordion title="Cursor">
     Settings → Models :
-    - API Key : `sk-your-api-key`
-    - Base URL : `https://api.aisonar.dev/v1`
+    - API Key : `sk-your-tokenlab-key`
+    - Base URL : `https://api.tokenlab.sh/v1`
 
     [Guide complet →](/fr/integrations/cursor)
   </Accordion>
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-api-key"
-    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
+    export OPENAI_API_KEY="sk-your-tokenlab-key"
+    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
     ```
     [Guide complet →](/fr/integrations/codex-cli)
   </Accordion>
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-api-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
+    export GEMINI_API_KEY="sk-your-tokenlab-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
     ```
 
     Considérez ce chemin comme une compatibilité best-effort, et non comme un contrat upstream stable.
@@ -127,8 +127,8 @@ Claude Code constitue un chemin Anthropic-native solide. Les API Gemini-native e
     ```json
     {
       "provider": "openai",
-      "apiKey": "sk-your-api-key",
-      "baseURL": "https://api.aisonar.dev/v1"
+      "apiKey": "sk-your-tokenlab-key",
+      "baseURL": "https://api.tokenlab.sh/v1"
     }
     ```
     [Guide complet →](/fr/integrations/opencode)

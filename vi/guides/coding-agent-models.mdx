@@ -54,7 +54,7 @@ description: "Chọn mô hình phù hợp cho từng tác vụ lập trình — 
   </Accordion>
 </AccordionGroup>
 
-## Cách định tuyến AI Sonar hoạt động
+## Cách định tuyến TokenLab hoạt động
 
 ### Chiến lược định tuyến
 
@@ -73,14 +73,14 @@ Yêu cầu: claude-sonnet-4-6
 
 ### Định tuyến định dạng gốc
 
-Khi model đã chọn và kênh định tuyến hỗ trợ, AI Sonar có thể định tuyến yêu cầu qua định dạng API gốc của gia đình model để tương thích tốt hơn:
+Khi model đã chọn và kênh định tuyến hỗ trợ, TokenLab có thể định tuyến yêu cầu qua định dạng API gốc của gia đình model để tương thích tốt hơn:
 
 | Họ mô hình | Định dạng API | URL cơ sở |
 |-------------|------------|----------|
-| Claude | Anthropic Messages | `https://api.aisonar.dev` |
-| GPT | OpenAI Responses | `https://api.aisonar.dev/v1` |
-| Gemini | Gemini Native API | `https://api.aisonar.dev` hoặc `https://api.aisonar.dev/v1beta` tùy theo đường dẫn của client |
-| DeepSeek | OpenAI Chat | `https://api.aisonar.dev/v1` |
+| Claude | Anthropic Messages | `https://api.tokenlab.sh` |
+| GPT | OpenAI Responses | `https://api.tokenlab.sh/v1` |
+| Gemini | Gemini Native API | `https://api.tokenlab.sh` hoặc `https://api.tokenlab.sh/v1beta` tùy theo đường dẫn của client |
+| DeepSeek | OpenAI Chat | `https://api.tokenlab.sh/v1` |
 
 Claude Code là một đường Anthropic-native mạnh. Các API Gemini-native cũng tồn tại, nhưng bản thân Gemini CLI vẫn chỉ là một đường tương thích best-effort và không nên được xem là quy trình ổn định lâu dài.
 
@@ -89,8 +89,8 @@ Claude Code là một đường Anthropic-native mạnh. Các API Gemini-native 
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-api-key"
-    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
+    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
+    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
     ```
     Chọn mô hình: `claude --model claude-sonnet-4-6`
 
@@ -99,24 +99,24 @@ Claude Code là một đường Anthropic-native mạnh. Các API Gemini-native 
 
   <Accordion title="Cursor">
     Settings → Models:
-    - API Key: `sk-your-api-key`
-    - Base URL: `https://api.aisonar.dev/v1`
+    - API Key: `sk-your-tokenlab-key`
+    - Base URL: `https://api.tokenlab.sh/v1`
 
     [Hướng dẫn đầy đủ →](/vi/integrations/cursor)
   </Accordion>
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-api-key"
-    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
+    export OPENAI_API_KEY="sk-your-tokenlab-key"
+    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
     ```
     [Hướng dẫn đầy đủ →](/vi/integrations/codex-cli)
   </Accordion>
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-api-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
+    export GEMINI_API_KEY="sk-your-tokenlab-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
     ```
 
     Hãy coi đây là đường tương thích best-effort chứ không phải hợp đồng upstream ổn định.
@@ -127,8 +127,8 @@ Claude Code là một đường Anthropic-native mạnh. Các API Gemini-native 
     ```json
     {
       "provider": "openai",
-      "apiKey": "sk-your-api-key",
-      "baseURL": "https://api.aisonar.dev/v1"
+      "apiKey": "sk-your-tokenlab-key",
+      "baseURL": "https://api.tokenlab.sh/v1"
     }
     ```
     [Hướng dẫn đầy đủ →](/vi/integrations/opencode)

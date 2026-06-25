@@ -28,13 +28,13 @@ description: "Récupère une instance de modèle"
   Fournisseur du modèle.
 </ResponseField>
 
-<ResponseField name="aisonar" type="object">
-  Métadonnées publiques spécifiques à AI Sonar. La route de détail peut inclure `category`, `pricing_unit`, `capability_flags`, `supported_operations`, `pricing_provenance`, `public_contract_summary`, le `public_contract` complet et les `agent_preferences` au niveau de la scène pour les instantanés de recommandation non-chat.
+<ResponseField name="tokenlab" type="object">
+  Métadonnées publiques spécifiques à TokenLab. La route de détail peut inclure `category`, `pricing_unit`, `capability_flags`, `supported_operations`, `pricing_provenance`, `public_contract_summary`, le `public_contract` complet et les `agent_preferences` au niveau de la scène pour les instantanés de recommandation non-chat.
 </ResponseField>
 
 <RequestExample>
 ```bash cURL
-curl "https://api.aisonar.dev/v1/models/gpt-5.4" \
+curl "https://api.tokenlab.sh/v1/models/gpt-5.4" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
@@ -43,7 +43,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 model = client.models.retrieve("gpt-5.4")
@@ -55,7 +55,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 const model = await client.models.retrieve('gpt-5.4');
@@ -72,7 +72,7 @@ import (
 )
 
 func main() {
-    req, _ := http.NewRequest("GET", "https://api.aisonar.dev/v1/models/gpt-5.4", nil)
+    req, _ := http.NewRequest("GET", "https://api.tokenlab.sh/v1/models/gpt-5.4", nil)
     req.Header.Set("Authorization", "Bearer sk-your-api-key")
 
     resp, _ := http.DefaultClient.Do(req)
@@ -86,7 +86,7 @@ func main() {
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.aisonar.dev/v1/models/gpt-5.4');
+$ch = curl_init('https://api.tokenlab.sh/v1/models/gpt-5.4');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -130,7 +130,7 @@ Si le modèle n’existe pas, vous recevrez une erreur 404 :
 
 ## Métadonnées de recommandation non-chat
 
-Pour les modèles non-chat, la route de détail renvoie aussi `aisonar.agent_preferences.<scene>`.
+Pour les modèles non-chat, la route de détail renvoie aussi `tokenlab.agent_preferences.<scene>`.
 
 Utilisez-la pour inspecter :
 
@@ -146,8 +146,8 @@ La réponse publique garde volontairement `basis.channel_id` et `basis.physical_
 
 Par rapport à `GET /v1/models`, la route de détail peut également renvoyer :
 
-- `aisonar.capability_flags`
-- `aisonar.supported_operations`
-- `aisonar.pricing_provenance`
-- `aisonar.public_contract_summary`
-- `aisonar.public_contract`
+- `tokenlab.capability_flags`
+- `tokenlab.supported_operations`
+- `tokenlab.pricing_provenance`
+- `tokenlab.public_contract_summary`
+- `tokenlab.public_contract`

@@ -4,12 +4,12 @@ openapi: "POST /v1/responses"
 description: "OpenAI Responses API formatını kullanarak bir yanıt oluşturur"
 ---
 
-Responses API, OpenAI'nin daha yeni durumlu konuşma API'sidir. AI Sonar bu formatı uyumlu modeller için gelişmiş isteğe bağlı bir yol olarak destekler; Responses'a özgü davranışlara açıkça ihtiyacınız olmadıkça varsayılan OpenAI-uyumlu yol olarak `POST /v1/chat/completions` kullanın.
+Responses API, OpenAI'nin daha yeni durumlu konuşma API'sidir. TokenLab bu formatı uyumlu modeller için gelişmiş isteğe bağlı bir yol olarak destekler; Responses'a özgü davranışlara açıkça ihtiyacınız olmadıkça varsayılan OpenAI-uyumlu yol olarak `POST /v1/chat/completions` kullanın.
 
 ## İstek Gövdesi
 
 <ParamField body="model" type="string" required>
-  Kullanılacak modelin ID'si. Mevcut seçenekler için [Models](https://aisonar.dev/models) sayfasına bakın.
+  Kullanılacak modelin ID'si. Mevcut seçenekler için [Models](https://tokenlab.sh/tr/models) sayfasına bakın.
 </ParamField>
 
 <ParamField body="input" type="array" required>
@@ -43,7 +43,7 @@ Responses API, OpenAI'nin daha yeni durumlu konuşma API'sidir. AI Sonar bu form
 <ParamField body="tools" type="array">
   Modelin çağırabileceği araçların listesi.
 
-  Varsayılan görüntü aracı modelini kullanan veya açıkça `model: "gpt-image-2"` ayarlayan hosted `image_generation` araçlarında AI Sonar, isteği iletmeden önce desteklenmeyen `input_fidelity` alanını kaldırır; çünkü GPT Image 2 görüntü girdilerini zaten yüksek sadakatle işler. Bu araç için `background: "transparent"` göndermeyin; AI Sonar bunu sessizce kaldırmaz, çünkü çıktı semantiği değişir.
+  Varsayılan görüntü aracı modelini kullanan veya açıkça `model: "gpt-image-2"` ayarlayan hosted `image_generation` araçlarında TokenLab, isteği iletmeden önce desteklenmeyen `input_fidelity` alanını kaldırır; çünkü GPT Image 2 görüntü girdilerini zaten yüksek sadakatle işler. Bu araç için `background: "transparent"` göndermeyin; TokenLab bunu sessizce kaldırmaz, çünkü çıktı semantiği değişir.
 </ParamField>
 
 <ParamField body="stream" type="boolean" default="false">
@@ -104,7 +104,7 @@ Responses API, OpenAI'nin daha yeni durumlu konuşma API'sidir. AI Sonar bu form
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/responses" \
+curl -X POST "https://api.tokenlab.sh/v1/responses" \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -121,7 +121,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.responses.create(
@@ -140,7 +140,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 const response = await client.responses.create({
@@ -174,7 +174,7 @@ func main() {
     }
     body, _ := json.Marshal(payload)
 
-    req, _ := http.NewRequest("POST", "https://api.aisonar.dev/v1/responses", bytes.NewBuffer(body))
+    req, _ := http.NewRequest("POST", "https://api.tokenlab.sh/v1/responses", bytes.NewBuffer(body))
     req.Header.Set("Authorization", "Bearer sk-your-api-key")
     req.Header.Set("Content-Type", "application/json")
 
@@ -190,7 +190,7 @@ func main() {
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.aisonar.dev/v1/responses');
+$ch = curl_init('https://api.tokenlab.sh/v1/responses');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,

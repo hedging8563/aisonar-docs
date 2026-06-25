@@ -8,18 +8,18 @@ description: "ينشئ صورة بناءً على prompt"
 
 للوكلاء البرمجيين، اكتشف أولًا القائمة القصيرة الموصى بها للصور باستخدام `GET /v1/models?recommended_for=image`، ثم أرسل `model` المختار صراحةً إلى هذه النقطة النهائية.
 
-`gpt-image-2` هو نموذج GPT Image تُحسب تكلفته حسب الـ tokens. تتبع AI Sonar تفاصيل `usage` الرسمية من OpenAI لتسوية tokens إدخال النص، وإدخال الصور، والإدخال المخزن مؤقتًا عند الإبلاغ عنه، وtokens إخراج الصور؛ ولا يتم التعامل معه كنموذج بسعر ثابت لكل صورة.
+`gpt-image-2` هو نموذج GPT Image تُحسب تكلفته حسب الـ tokens. تتبع TokenLab تفاصيل `usage` الرسمية من OpenAI لتسوية tokens إدخال النص، وإدخال الصور، والإدخال المخزن مؤقتًا عند الإبلاغ عنه، وtokens إخراج الصور؛ ولا يتم التعامل معه كنموذج بسعر ثابت لكل صورة.
 
-بالنسبة إلى إنشاء الصور باستخدام `gpt-image-2`، تدعم الواجهة العامة المعلمات `prompt` و`n` و`size` و`quality` و`response_format` و`async` و`background` و`output_format` و`output_compression` أو `compression` و`moderation` و`partial_images` و`user`. إذا لم ترسل `size` أو `quality` تستخدم AI Sonar القيمة `auto`؛ ويجب أن تستخدم قيم `size` المخصصة عقد `WIDTHxHEIGHT` المرن الموضح أدناه.
+بالنسبة إلى إنشاء الصور باستخدام `gpt-image-2`، تدعم الواجهة العامة المعلمات `prompt` و`n` و`size` و`quality` و`response_format` و`async` و`background` و`output_format` و`output_compression` أو `compression` و`moderation` و`partial_images` و`user`. إذا لم ترسل `size` أو `quality` تستخدم TokenLab القيمة `auto`؛ ويجب أن تستخدم قيم `size` المخصصة عقد `WIDTHxHEIGHT` المرن الموضح أدناه.
 
-ملاحظة توافق: إذا أرسل طلب `gpt-image-2` الحقل `input_fidelity`، تزيله AI Sonar قبل التمرير لأن GPT Image 2 يعالج مدخلات الصور تلقائيا بدقة عالية.
+ملاحظة توافق: إذا أرسل طلب `gpt-image-2` الحقل `input_fidelity`، تزيله TokenLab قبل التمرير لأن GPT Image 2 يعالج مدخلات الصور تلقائيا بدقة عالية.
 
 ### ملاحظات سلوك النموذج
 
 Google Gemini في عقد اختيار واحد:
 
 - تدعم `gemini-3.1-flash-image-preview` و`gemini-3-pro-image-preview` و`nano-banana-pro` كلًا من `aspect_ratio` و`resolution` (`1k` و`2k` و`4k`) في عمليات text-to-image وimage-edit/image-to-image العامة.
-- يدعم `nano-banana-2` كلًا من `aspect_ratio` و`resolution` (`1k` و`2k` و`4k`) في text-to-image فقط ضمن عقد AI Sonar الحالي.
+- يدعم `nano-banana-2` كلًا من `aspect_ratio` و`resolution` (`1k` و`2k` و`4k`) في text-to-image فقط ضمن عقد TokenLab الحالي.
 - تدعم `gemini-2.5-flash-image` و`nano-banana` و`nano-banana-edit` الحقل `aspect_ratio` لكنها لا تعرض اختيار `resolution` عامًا.
 - `gemini-2.0-flash-preview-image-generation` موثّق هنا على أنه تحويل نص إلى صورة يعتمد على prompt فقط.
 - لطلبات Nano Banana مع صورة مرجعية، استخدم `nano-banana-edit` أو `nano-banana-pro` على هذه الواجهة (`/v1/images/generations`) مع `operation: "image-to-image"` و`image_urls`. لا ترسل طلبات Nano Banana المرجعية إلى `/v1/images/edits`.
@@ -65,7 +65,7 @@ Google Gemini في عقد اختيار واحد:
 <ParamField body="size" type="string" default="1024x1024">
   حجم الصورة. استخدمه لعائلات الصور بأسلوب OpenAI والنماذج الأخرى التي تقبل أحجام بكسل دقيقة.
 
-  بالنسبة إلى `gpt-image-2`، تقبل `size` القيمة `auto` أو `WIDTHxHEIGHT`. يجب أن يكون كل من البعدين من مضاعفات 16، وألا يتجاوز أطول ضلع `3840px`، وألا تتجاوز نسبة الضلع الطويل إلى القصير `3:1`، وأن يكون إجمالي عدد البكسلات بين `655,360` و`8,294,400`. لا تُعد `aspect_ratio` و`resolution` جزءًا من العقد العام الحالي في AI Sonar لـ `gpt-image-2`.
+  بالنسبة إلى `gpt-image-2`، تقبل `size` القيمة `auto` أو `WIDTHxHEIGHT`. يجب أن يكون كل من البعدين من مضاعفات 16، وألا يتجاوز أطول ضلع `3840px`، وألا تتجاوز نسبة الضلع الطويل إلى القصير `3:1`، وأن يكون إجمالي عدد البكسلات بين `655,360` و`8,294,400`. لا تُعد `aspect_ratio` و`resolution` جزءًا من العقد العام الحالي في TokenLab لـ `gpt-image-2`.
 
   بالنسبة إلى عائلات صور Google Gemini، يتم التعامل مع `size` كاسم بديل للتوافق يطابق عقد `aspect_ratio` العام للنموذج، و`resolution` عند دعمه. لهذه النماذج، يُفضّل إرسال `aspect_ratio` مباشرةً.
 </ParamField>
@@ -89,7 +89,7 @@ Google Gemini في عقد اختيار واحد:
 <ParamField body="response_format" type="string" default="url">
   تنسيق الاستجابة: `url` أو `b64_json`. القيمة الافتراضية هي `url`.
 
-  بالنسبة إلى مسارات `gpt-image-2` على Azure Official أو القنوات المتوافقة مع Azure، لا تمرّر AI Sonar الحقل `response_format` إلى upstream. يحصل gateway دائمًا على بيانات الصور من upstream بصيغة `b64_json`؛ عند طلب `url` يرفع كل صورة إلى CDN ويعيد `data[].url`. إذا لم يكن تخزين CDN متاحًا أو فشل الرفع، يفشل الطلب بدلاً من الرجوع إلى Base64. عند طلب `b64_json` يُعاد Base64 الخام.
+  بالنسبة إلى مسارات `gpt-image-2` على Azure Official أو القنوات المتوافقة مع Azure، لا تمرّر TokenLab الحقل `response_format` إلى upstream. يحصل gateway دائمًا على بيانات الصور من upstream بصيغة `b64_json`؛ عند طلب `url` يرفع كل صورة إلى CDN ويعيد `data[].url`. إذا لم يكن تخزين CDN متاحًا أو فشل الرفع، يفشل الطلب بدلاً من الرجوع إلى Base64. عند طلب `b64_json` يُعاد Base64 الخام.
 </ParamField>
 
 <ParamField body="async" type="boolean" default="false">
@@ -153,7 +153,7 @@ Google Gemini في عقد اختيار واحد:
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/images/generations" \
+curl -X POST "https://api.tokenlab.sh/v1/images/generations" \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -170,7 +170,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.images.generate(
@@ -189,7 +189,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 const response = await client.images.generate({
@@ -205,7 +205,7 @@ console.log(response.data[0].url);
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.aisonar.dev/v1/images/generations');
+$ch = curl_init('https://api.tokenlab.sh/v1/images/generations');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -257,7 +257,7 @@ echo $data['data'][0]['url'];
 للصور المصدر الخاصة أو المحلية، استخدم رفع multipart مباشرًا. لا ترسل `file_id` إلى `/v1/images/generations`:
 
 ```bash
-curl -X POST "https://api.aisonar.dev/v1/images/generations" \
+curl -X POST "https://api.tokenlab.sh/v1/images/generations" \
   -H "Authorization: Bearer sk-your-api-key" \
   -F "model=nano-banana-pro" \
   -F "prompt=Create a clean cinematic character image based on this reference" \
@@ -319,7 +319,7 @@ import time
 def generate_image(prompt, model="midjourney"):
     # Create image request
     response = requests.post(
-        "https://api.aisonar.dev/v1/images/generations",
+        "https://api.tokenlab.sh/v1/images/generations",
         headers={"Authorization": "Bearer sk-your-api-key"},
         json={"model": model, "prompt": prompt}
     )
@@ -334,7 +334,7 @@ def generate_image(prompt, model="midjourney"):
         # Poll for result
         while True:
             status_resp = requests.get(
-                f"https://api.aisonar.dev{poll_url}" if poll_url else f"https://api.aisonar.dev/v1/tasks/{task_id}",
+                f"https://api.tokenlab.sh{poll_url}" if poll_url else f"https://api.tokenlab.sh/v1/tasks/{task_id}",
                 headers={"Authorization": "Bearer sk-your-api-key"}
             )
             status_data = status_resp.json()

@@ -1,11 +1,11 @@
 ---
 title: "LangChain"
-description: "Standart OpenAI uyumlu chat ve embeddings kullanarak AI Sonar'yı LangChain ile entegre edin"
+description: "Standart OpenAI uyumlu chat ve embeddings kullanarak TokenLab'yı LangChain ile entegre edin"
 ---
 
 ## Genel Bakış
 
-AI Sonar, standart OpenAI uyumlu chat ve embeddings yüzeyinde kaldığınızda LangChain'in `ChatOpenAI` ve `OpenAIEmbeddings` entegrasyonlarıyla iyi çalışır.
+TokenLab, standart OpenAI uyumlu chat ve embeddings yüzeyinde kaldığınızda LangChain'in `ChatOpenAI` ve `OpenAIEmbeddings` entegrasyonlarıyla iyi çalışır.
 
 <Note>
 Güncel LangChain dokümantasyonu, `ChatOpenAI`'ın resmi OpenAI uyumlu request/response biçimlerini hedeflediğini belirtir. Sağlayıcıya özgü, standart dışı response alanlarına ihtiyacınız varsa, `ChatOpenAI`'a güvenmek yerine sağlayıcıya özgü bir LangChain entegrasyonu kullanın.
@@ -34,11 +34,11 @@ from langchain_openai import ChatOpenAI
 
 llm = ChatOpenAI(
     model="gpt-5.4",
-    api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1",
+    api_key="sk-your-tokenlab-key",
+    base_url="https://api.tokenlab.sh/v1",
 )
 
-response = llm.invoke("Explain AI Sonar in one sentence.")
+response = llm.invoke("Explain TokenLab in one sentence.")
 print(response.content)
 ```
 
@@ -50,25 +50,25 @@ from langchain_openai import ChatOpenAI
 gpt = ChatOpenAI(
     model="gpt-5.4",
     api_key="sk-your-key",
-    base_url="https://api.aisonar.dev/v1",
+    base_url="https://api.tokenlab.sh/v1",
 )
 
 claude = ChatOpenAI(
     model="claude-sonnet-4-6",
     api_key="sk-your-key",
-    base_url="https://api.aisonar.dev/v1",
+    base_url="https://api.tokenlab.sh/v1",
 )
 
 gemini = ChatOpenAI(
     model="gemini-2.5-flash",
     api_key="sk-your-key",
-    base_url="https://api.aisonar.dev/v1",
+    base_url="https://api.tokenlab.sh/v1",
 )
 
 deepseek = ChatOpenAI(
     model="deepseek-r1",
     api_key="sk-your-key",
-    base_url="https://api.aisonar.dev/v1",
+    base_url="https://api.tokenlab.sh/v1",
 )
 ```
 
@@ -102,7 +102,7 @@ from langchain_openai import OpenAIEmbeddings
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
     api_key="sk-your-key",
-    base_url="https://api.aisonar.dev/v1",
+    base_url="https://api.tokenlab.sh/v1",
 )
 
 vector = embeddings.embed_query("Hello world")
@@ -120,12 +120,12 @@ from langchain_core.runnables import RunnablePassthrough
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
     api_key="sk-your-key",
-    base_url="https://api.aisonar.dev/v1",
+    base_url="https://api.tokenlab.sh/v1",
 )
 
 texts = [
-    "AI Sonar provides one API for many AI models.",
-    "AI Sonar supports OpenAI-compatible integrations."
+    "TokenLab provides one API for many AI models.",
+    "TokenLab supports OpenAI-compatible integrations."
 ]
 
 vectorstore = FAISS.from_texts(texts, embeddings)
@@ -141,7 +141,7 @@ rag_chain = (
     | llm
 )
 
-response = rag_chain.invoke("What does AI Sonar provide?")
+response = rag_chain.invoke("What does TokenLab provide?")
 print(response.content)
 ```
 
@@ -172,7 +172,7 @@ prompt = ChatPromptTemplate.from_messages([
 agent = create_openai_tools_agent(llm, tools, prompt)
 executor = AgentExecutor(agent=agent, tools=tools)
 
-result = executor.invoke({"input": "Search for AI Sonar pricing"})
+result = executor.invoke({"input": "Search for TokenLab pricing"})
 print(result["output"])
 ```
 
@@ -180,7 +180,7 @@ print(result["output"])
 
 <AccordionGroup>
   <Accordion title="`base_url` değerini açıkça iletin">
-    En güvenilir AI Sonar kurulumu, eski environment variable alias'larına bağlı kalmak yerine `base_url="https://api.aisonar.dev/v1"` değerini doğrudan `ChatOpenAI` ve `OpenAIEmbeddings`'e iletmektir.
+    En güvenilir TokenLab kurulumu, eski environment variable alias'larına bağlı kalmak yerine `base_url="https://api.tokenlab.sh/v1"` değerini doğrudan `ChatOpenAI` ve `OpenAIEmbeddings`'e iletmektir.
   </Accordion>
 
   <Accordion title="Burada standart özellikleri kullanın">

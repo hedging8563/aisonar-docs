@@ -1,6 +1,6 @@
 ---
 title: "Gemini CLI"
-description: "Configure Google Gemini CLI to use AI Sonar API"
+description: "Configure Google Gemini CLI to use TokenLab API"
 ---
 
 ## Overview
@@ -15,10 +15,10 @@ description: "Configure Google Gemini CLI to use AI Sonar API"
 **Support Confidence**: Best-effort
 </Note>
 
-Google Gemini CLI is a command-line tool for interacting with Gemini models. AI Sonar compatibility here is experimental: Gemini CLI officially documents Google-native authentication and settings, but does not currently document a stable custom AI Sonar-style base URL workflow.
+Google Gemini CLI is a command-line tool for interacting with Gemini models. TokenLab compatibility here is experimental: Gemini CLI officially documents Google-native authentication and settings, but does not currently document a stable custom TokenLab-style base URL workflow.
 
 <Warning>
-Treat this integration as best-effort compatibility, not a guaranteed long-term setup. If you need a stable AI Sonar terminal coding workflow, prefer Codex CLI, Claude Code, or OpenCode.
+Treat this integration as best-effort compatibility, not a guaranteed long-term setup. If you need a stable TokenLab terminal coding workflow, prefer Codex CLI, Claude Code, or OpenCode.
 </Warning>
 
 
@@ -43,8 +43,8 @@ gemini --version
 
 ### Step 1: Get Your API Key
 
-1. Log into [AI Sonar Dashboard](https://console.aisonar.dev)
-2. Navigate to [API Keys](https://console.aisonar.dev/api)
+1. Log into [TokenLab Dashboard](https://tokenlab.sh/dashboard)
+2. Navigate to [API Keys](https://tokenlab.sh/dashboard/api)
 3. Create and copy your API key (format: `sk-...`)
 
 ### Step 2: Set Environment Variables
@@ -54,8 +54,8 @@ The following setup is the current compatibility path people use with proxy or g
 **Temporary (current session):**
 
 ```bash
-export GEMINI_API_KEY="sk-your-api-key"
-export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
+export GEMINI_API_KEY="sk-your-tokenlab-key"
+export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
 ```
 
 **Permanent configuration:**
@@ -65,22 +65,22 @@ Add to your shell configuration file:
 <Tabs>
   <Tab title="Bash">
     ```bash
-    echo 'export GEMINI_API_KEY="sk-your-api-key"' >> ~/.bashrc
-    echo 'export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"' >> ~/.bashrc
+    echo 'export GEMINI_API_KEY="sk-your-tokenlab-key"' >> ~/.bashrc
+    echo 'export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"' >> ~/.bashrc
     source ~/.bashrc
     ```
   </Tab>
   <Tab title="Zsh">
     ```bash
-    echo 'export GEMINI_API_KEY="sk-your-api-key"' >> ~/.zshrc
-    echo 'export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"' >> ~/.zshrc
+    echo 'export GEMINI_API_KEY="sk-your-tokenlab-key"' >> ~/.zshrc
+    echo 'export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"' >> ~/.zshrc
     source ~/.zshrc
     ```
   </Tab>
   <Tab title="Fish">
     ```bash
-    set -Ux GEMINI_API_KEY "sk-your-api-key"
-    set -Ux GOOGLE_GEMINI_BASE_URL "https://api.aisonar.dev"
+    set -Ux GEMINI_API_KEY "sk-your-tokenlab-key"
+    set -Ux GOOGLE_GEMINI_BASE_URL "https://api.tokenlab.sh"
     ```
   </Tab>
 </Tabs>
@@ -156,7 +156,7 @@ gemini
 
 <AccordionGroup>
   <Accordion title="Connection Error">
-    - Verify `GOOGLE_GEMINI_BASE_URL` is set to `https://api.aisonar.dev`
+    - Verify `GOOGLE_GEMINI_BASE_URL` is set to `https://api.tokenlab.sh`
     - Note: Do not add `/v1` for this compatibility path
     - Check network connectivity
   </Accordion>
@@ -164,17 +164,17 @@ gemini
   <Accordion title="Authentication Failed">
     - Verify `GEMINI_API_KEY` environment variable is set
     - Check that the key starts with `sk-`
-    - Ensure the key is active in AI Sonar dashboard
+    - Ensure the key is active in TokenLab dashboard
   </Accordion>
 
   <Accordion title="Model Not Available">
-    - Check Gemini models availability at [aisonar.dev/en/models](https://aisonar.dev/models)
+    - Check Gemini models availability at [tokenlab.sh/en/models](https://tokenlab.sh/en/models)
     - Try a different Gemini model variant
   </Accordion>
 
   <Accordion title="Need a more stable coding workflow">
     - Gemini CLI's custom gateway compatibility can regress between releases
-    - Prefer Codex CLI, Claude Code, or OpenCode if you need a documented AI Sonar path
+    - Prefer Codex CLI, Claude Code, or OpenCode if you need a documented TokenLab path
   </Accordion>
 </AccordionGroup>
 

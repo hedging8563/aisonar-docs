@@ -1,15 +1,15 @@
 ---
 title: "تطبيقات دردشة AI"
-description: "قم بتكوين تطبيقات دردشة AI الشائعة لاستخدام API المتوافق مع OpenAI من AI Sonar"
+description: "قم بتكوين تطبيقات دردشة AI الشائعة لاستخدام API المتوافق مع OpenAI من TokenLab"
 ---
 
 ## نظرة عامة
 
-تتصل معظم تطبيقات دردشة AI العامة بـ AI Sonar من خلال مسار الدردشة القياسي المتوافق مع OpenAI.
+تتصل معظم تطبيقات دردشة AI العامة بـ TokenLab من خلال مسار الدردشة القياسي المتوافق مع OpenAI.
 
 عمليًا، هذا يعني:
-- استخدم `https://api.aisonar.dev/v1` باعتباره عنوان URL الأساسي ما لم يطلب التطبيق صراحةً عنوان URL كاملًا لنقطة النهاية
-- استخدم مفتاح API الخاص بـ AI Sonar كمفتاح API بأسلوب OpenAI
+- استخدم `https://api.tokenlab.sh/v1` باعتباره عنوان URL الأساسي ما لم يطلب التطبيق صراحةً عنوان URL كاملًا لنقطة النهاية
+- استخدم مفتاح API الخاص بـ TokenLab كمفتاح API بأسلوب OpenAI
 - اختر النماذج التي يمكن للتطبيق استخدامها ضمن سير عمل دردشة قياسي
 
 <Note>
@@ -41,12 +41,12 @@ description: "قم بتكوين تطبيقات دردشة AI الشائعة لا
 
 | الحقل | القيمة |
 |-------|-------|
-| عنوان URL الأساسي | `https://api.aisonar.dev/v1` |
-| مفتاح API | `sk-your-api-key` |
+| عنوان URL الأساسي | `https://api.tokenlab.sh/v1` |
+| مفتاح API | `sk-your-tokenlab-key` |
 | نوع API | متوافق مع OpenAI |
 
 إذا طلب التطبيق **عنوان URL كاملًا لنقطة النهاية** بدلًا من عنوان URL الأساسي، فاستخدم:
-- Chat Completions: `https://api.aisonar.dev/v1/chat/completions`
+- Chat Completions: `https://api.tokenlab.sh/v1/chat/completions`
 
 ## أمثلة على إعدادات التطبيقات
 
@@ -55,24 +55,24 @@ description: "قم بتكوين تطبيقات دردشة AI الشائعة لا
     **LobeChat المستضاف ذاتيًا**
 
     ```bash
-    OPENAI_API_KEY=sk-your-api-key
-    OPENAI_PROXY_URL=https://api.aisonar.dev/v1
+    OPENAI_API_KEY=sk-your-tokenlab-key
+    OPENAI_PROXY_URL=https://api.tokenlab.sh/v1
     ```
 
     **LobeChat Cloud**
     1. افتح **Settings** → **AI Service Provider**
     2. اختر **OpenAI**
-    3. أدخل مفتاح API الخاص بـ AI Sonar
-    4. عيّن نقطة النهاية المخصصة إلى `https://api.aisonar.dev/v1`
+    3. أدخل مفتاح API الخاص بـ TokenLab
+    4. عيّن نقطة النهاية المخصصة إلى `https://api.tokenlab.sh/v1`
   </Tab>
 
   <Tab title="Cherry Studio">
     1. افتح **Settings** → **Model Provider**
     2. أضف مزوّدًا **متوافقًا مع OpenAI**
     3. أدخل:
-       - **Name**: AI Sonar
-       - **API Base URL**: `https://api.aisonar.dev/v1`
-       - **API Key**: `sk-your-api-key`
+       - **Name**: TokenLab
+       - **API Base URL**: `https://api.tokenlab.sh/v1`
+       - **API Key**: `sk-your-tokenlab-key`
     4. أضف النماذج التي تريد استخدامها
   </Tab>
 
@@ -80,8 +80,8 @@ description: "قم بتكوين تطبيقات دردشة AI الشائعة لا
     1. افتح **Settings** → **AI Model**
     2. اختر **OpenAI API Compatible**
     3. أدخل:
-       - **API Host**: `https://api.aisonar.dev/v1`
-       - **API Key**: `sk-your-api-key`
+       - **API Host**: `https://api.tokenlab.sh/v1`
+       - **API Key**: `sk-your-tokenlab-key`
        - **النموذج**: `gpt-5-mini` أو `gpt-4o`
   </Tab>
 
@@ -89,8 +89,8 @@ description: "قم بتكوين تطبيقات دردشة AI الشائعة لا
     1. افتح **Settings**
     2. اختر **Custom Endpoint**
     3. أدخل:
-       - **Endpoint URL**: `https://api.aisonar.dev/v1/chat/completions`
-       - **API Key**: `sk-your-api-key`
+       - **Endpoint URL**: `https://api.tokenlab.sh/v1/chat/completions`
+       - **API Key**: `sk-your-tokenlab-key`
     4. قم بتكوين النماذج التي تريد إتاحتها
   </Tab>
 
@@ -98,8 +98,8 @@ description: "قم بتكوين تطبيقات دردشة AI الشائعة لا
     1. افتح **Admin Settings** → **Connections**
     2. أضف اتصالًا **متوافق مع OpenAI**
     3. أدخل:
-       - **Base URL**: `https://api.aisonar.dev/v1`
-       - **API Key**: `sk-your-api-key`
+       - **Base URL**: `https://api.tokenlab.sh/v1`
+       - **API Key**: `sk-your-tokenlab-key`
     4. احفظ ثم اختر النماذج التي تريد إتاحتها
   </Tab>
 
@@ -108,9 +108,9 @@ description: "قم بتكوين تطبيقات دردشة AI الشائعة لا
 
     ```yaml
     customEndpoints:
-      - name: AI Sonar
+      - name: TokenLab
         apiKey: '${OPENAI_API_KEY}'
-        baseURL: 'https://api.aisonar.dev/v1'
+        baseURL: 'https://api.tokenlab.sh/v1'
         models:
           default: ['gpt-5-mini', 'gpt-5.4', 'claude-sonnet-4-6']
           fetch: false
@@ -131,7 +131,7 @@ description: "قم بتكوين تطبيقات دردشة AI الشائعة لا
 
 <AccordionGroup>
   <Accordion title="فضّل Base URL عندما يدعمه التطبيق">
-    تكون معظم التطبيقات أسهل في التكوين وأقل عرضة للأخطاء عندما توفّر `https://api.aisonar.dev/v1` باعتباره عنوان URL أساسيًا بدلًا من عنوان URL كامل لنقطة النهاية.
+    تكون معظم التطبيقات أسهل في التكوين وأقل عرضة للأخطاء عندما توفّر `https://api.tokenlab.sh/v1` باعتباره عنوان URL أساسيًا بدلًا من عنوان URL كامل لنقطة النهاية.
   </Accordion>
 
   <Accordion title="استخدم النماذج الأصغر أولًا">
@@ -147,20 +147,20 @@ description: "قم بتكوين تطبيقات دردشة AI الشائعة لا
 
 <AccordionGroup>
   <Accordion title="خطأ في الاتصال">
-    - تحقّق من أن عنوان URL الأساسي هو بالضبط `https://api.aisonar.dev/v1`
+    - تحقّق من أن عنوان URL الأساسي هو بالضبط `https://api.tokenlab.sh/v1`
     - أزل الشرطات المائلة اللاحقة إذا كان التطبيق يضيف المسارات تلقائيًا
-    - إذا كان التطبيق يريد عنوان URL كاملًا لنقطة النهاية، فاستخدم `https://api.aisonar.dev/v1/chat/completions`
+    - إذا كان التطبيق يريد عنوان URL كاملًا لنقطة النهاية، فاستخدم `https://api.tokenlab.sh/v1/chat/completions`
   </Accordion>
 
   <Accordion title="401 Unauthorized">
     - تحقّق مرة أخرى من مفتاح API الخاص بك
-    - أكّد أن المفتاح نشط في لوحة تحكم AI Sonar
+    - أكّد أن المفتاح نشط في لوحة تحكم TokenLab
     - تأكد من عدم وجود مسافات إضافية أو فواصل أسطر
   </Accordion>
 
   <Accordion title="النموذج غير متاح">
     - تحقّق من اسم النموذج بدقة
     - جرّب افتراضيًا مدعومًا على نطاق واسع مثل `gpt-5-mini`, `gpt-4o`, أو `claude-sonnet-4-6`
-    - تحقّق من التوفر الحالي في وثائق AI Sonar أو لوحة التحكم
+    - تحقّق من التوفر الحالي في وثائق TokenLab أو لوحة التحكم
   </Accordion>
 </AccordionGroup>

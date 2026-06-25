@@ -1,18 +1,18 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "AI Sonar AI Gateway",
+    "title": "TokenLab AI Gateway",
     "description": "Organization balance, API key management, and key-level usage/billing via management token",
     "version": "1.0.0",
-    "termsOfService": "https://aisonar.dev/tos",
+    "termsOfService": "https://tokenlab.sh/tos",
     "contact": {
       "name": "Technical Support",
-      "email": "support@aisonar.dev"
+      "email": "support@tokenlab.sh"
     }
   },
   "servers": [
     {
-      "url": "https://api.aisonar.dev",
+      "url": "https://api.tokenlab.sh",
       "description": "Production server"
     },
     {
@@ -513,7 +513,7 @@
                   "summary": "Basic TTS",
                   "value": {
                     "model": "tts-1",
-                    "input": "Hello, welcome to AI Sonar!",
+                    "input": "Hello, welcome to TokenLab!",
                     "voice": "alloy"
                   }
                 },
@@ -909,7 +909,7 @@
           "Models"
         ],
         "summary": "List models",
-        "description": "Lists the currently available models. Default responses are trimmed for discovery. Non-chat models may include a lightweight `aisonar.public_contract_summary` with only `public_operations` and `request_endpoint`; `agent_preferences` appears only when `recommended_for` is present. Deprecated `aisonar` is still returned as a compatibility alias during the migration.",
+        "description": "Lists the currently available models. Default responses are trimmed for discovery. Non-chat models may include a lightweight `tokenlab.public_contract_summary` with only `public_operations` and `request_endpoint`; `agent_preferences` appears only when `recommended_for` is present. Deprecated `lemondata` is still returned as a compatibility alias during the migration.",
         "operationId": "listModels",
         "responses": {
           "200": {
@@ -1673,7 +1673,7 @@
                       "type": "object",
                       "additionalProperties": true
                     },
-                    "description": "Tools available to the model. For hosted image_generation tools that use the default image tool model or explicitly set model: gpt-image-2, AI Sonar removes unsupported input_fidelity before forwarding because GPT Image 2 already treats image inputs as high fidelity. Do not send background: transparent for that tool; AI Sonar does not silently remove it because that changes output semantics."
+                    "description": "Tools available to the model. For hosted image_generation tools that use the default image tool model or explicitly set model: gpt-image-2, TokenLab removes unsupported input_fidelity before forwarding because GPT Image 2 already treats image inputs as high fidelity. Do not send background: transparent for that tool; TokenLab does not silently remove it because that changes output semantics."
                   },
                   "tool_choice": {
                     "oneOf": [
@@ -2703,7 +2703,7 @@
                   },
                   "model": {
                     "type": "string",
-                    "description": "Optional AI Sonar extension for image file uploads. Defaults to gpt-image-2 and binds the returned file_id to the selected upstream image-edit channel."
+                    "description": "Optional TokenLab extension for image file uploads. Defaults to gpt-image-2 and binds the returned file_id to the selected upstream image-edit channel."
                   }
                 }
               }
@@ -2765,7 +2765,7 @@
                 "batch_output"
               ]
             },
-            "description": "Listing currently covers AI Sonar batch files. Image file uploads are bound for reuse by file_id but are not listed from local storage."
+            "description": "Listing currently covers TokenLab batch files. Image file uploads are bound for reuse by file_id but are not listed from local storage."
           }
         ],
         "responses": {
@@ -3262,7 +3262,7 @@
                   "image_url": {
                     "type": "string",
                     "format": "uri",
-                    "description": "Single source image URL. Kept for AI Sonar compatibility; use images for the official JSON shape."
+                    "description": "Single source image URL. Kept for TokenLab compatibility; use images for the official JSON shape."
                   },
                   "n": {
                     "type": "integer",
@@ -3352,7 +3352,7 @@
                         },
                         "file_id": {
                           "type": "string",
-                          "description": "A file id returned by AI Sonar /v1/files and bound to the same upstream image-edit channel."
+                          "description": "A file id returned by TokenLab /v1/files and bound to the same upstream image-edit channel."
                         }
                       },
                       "additionalProperties": false
@@ -4682,7 +4682,7 @@
               "audio-to-video",
               "motion-control"
             ],
-            "description": "Requested video operation. If omitted, AI Sonar infers the operation from the provided inputs. Explicit operation is recommended for production reliability."
+            "description": "Requested video operation. If omitted, TokenLab infers the operation from the provided inputs. Explicit operation is recommended for production reliability."
           },
           "image": {
             "type": "string",
@@ -5105,17 +5105,17 @@
             "description": "Model provider",
             "example": "openai"
           },
-          "aisonar": {
-            "$ref": "#/components/schemas/ModelAI SonarExtension"
+          "tokenlab": {
+            "$ref": "#/components/schemas/ModelTokenLabExtension"
           },
-          "aisonar": {
+          "lemondata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ModelAisonarExtension"
+                "$ref": "#/components/schemas/ModelLemondataExtension"
               }
             ],
             "deprecated": true,
-            "description": "Deprecated alias for aisonar. Retained for compatibility during the AI Sonar migration."
+            "description": "Deprecated alias for tokenlab. Retained for compatibility during the TokenLab migration."
           }
         },
         "required": [
@@ -5123,7 +5123,7 @@
           "object",
           "created",
           "owned_by",
-          "aisonar"
+          "tokenlab"
         ],
         "additionalProperties": false
       },
@@ -6080,9 +6080,9 @@
         },
         "additionalProperties": false
       },
-      "ModelListAisonarExtension": {
+      "ModelListLemondataExtension": {
         "type": "object",
-        "description": "AI Sonar discovery fields for the list route. Detail-only metadata such as capability flags, pricing provenance, full public contracts, and empty recommendation snapshots are omitted.",
+        "description": "TokenLab discovery fields for the list route. Detail-only metadata such as capability flags, pricing provenance, full public contracts, and empty recommendation snapshots are omitted.",
         "properties": {
           "aliases": {
             "type": "array",
@@ -6184,17 +6184,17 @@
             "description": "Model provider",
             "example": "openai"
           },
-          "aisonar": {
+          "lemondata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ModelListAisonarExtension"
+                "$ref": "#/components/schemas/ModelListLemondataExtension"
               }
             ],
             "deprecated": true,
-            "description": "Deprecated alias for aisonar. Retained for compatibility during the AI Sonar migration."
+            "description": "Deprecated alias for tokenlab. Retained for compatibility during the TokenLab migration."
           },
-          "aisonar": {
-            "$ref": "#/components/schemas/ModelListAI SonarExtension"
+          "tokenlab": {
+            "$ref": "#/components/schemas/ModelListTokenLabExtension"
           }
         },
         "required": [
@@ -6202,13 +6202,13 @@
           "object",
           "created",
           "owned_by",
-          "aisonar"
+          "tokenlab"
         ],
         "additionalProperties": false
       },
-      "ModelAisonarExtension": {
+      "ModelLemondataExtension": {
         "type": "object",
-        "description": "AI Sonar extension fields for the detail route, including pricing, capabilities, recommendation metadata, and the full non-chat public contract.",
+        "description": "TokenLab extension fields for the detail route, including pricing, capabilities, recommendation metadata, and the full non-chat public contract.",
         "properties": {
           "aliases": {
             "type": "array",
@@ -7359,9 +7359,9 @@
         },
         "additionalProperties": true
       },
-      "ModelListAI SonarExtension": {
+      "ModelListTokenLabExtension": {
         "type": "object",
-        "description": "AI Sonar discovery fields for the list route. Detail-only metadata such as capability flags, pricing provenance, full public contracts, and empty recommendation snapshots are omitted.",
+        "description": "TokenLab discovery fields for the list route. Detail-only metadata such as capability flags, pricing provenance, full public contracts, and empty recommendation snapshots are omitted.",
         "properties": {
           "aliases": {
             "type": "array",
@@ -7440,9 +7440,9 @@
         ],
         "additionalProperties": false
       },
-      "ModelAI SonarExtension": {
+      "ModelTokenLabExtension": {
         "type": "object",
-        "description": "AI Sonar extension fields for the detail route, including pricing, capabilities, recommendation metadata, and the full non-chat public contract.",
+        "description": "TokenLab extension fields for the detail route, including pricing, capabilities, recommendation metadata, and the full non-chat public contract.",
         "properties": {
           "aliases": {
             "type": "array",

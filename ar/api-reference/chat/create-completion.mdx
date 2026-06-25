@@ -7,7 +7,7 @@ description: "ينشئ استكمالًا لرسالة المحادثة"
 ## جسم الطلب
 
 <ParamField body="model" type="string" required>
-  معرف النموذج المستخدم. راجع [Models](https://aisonar.dev/models) للاطلاع على الخيارات المتاحة.
+  معرف النموذج المستخدم. راجع [Models](https://tokenlab.sh/ar/models) للاطلاع على الخيارات المتاحة.
 </ParamField>
 
 <ParamField body="messages" type="array" required>
@@ -17,13 +17,13 @@ description: "ينشئ استكمالًا لرسالة المحادثة"
   - `role` (string): `system`, `user`, أو `assistant`
   - `content` (string | array): محتوى الرسالة
 
-  عندما تكون `content` مصفوفة، يدعم AI Sonar كتلًا مُهيكلة متعددة الوسائط للنماذج المتوافقة:
+  عندما تكون `content` مصفوفة، يدعم TokenLab كتلًا مُهيكلة متعددة الوسائط للنماذج المتوافقة:
   - text: `{ "type": "text", "text": "..." }`
   - image: `{ "type": "image_url", "image_url": { "url": "https://..." } }`
   - video: `{ "type": "video_url", "video_url": { "url": "https://..." } }`
   - audio: `{ "type": "audio_url", "audio_url": { "url": "https://..." } }`
 
-  لحركة المرور متعددة الوسائط في الإنتاج، يُفضّل استخدام روابط `https` عامة. سيقوم AI Sonar بترجمة هذه الكتل الوسائطية إلى شكل الطلب الخاص بمزود الخدمة المطلوب للنموذج الفيزيائي الموجه.
+  لحركة المرور متعددة الوسائط في الإنتاج، يُفضّل استخدام روابط `https` عامة. سيقوم TokenLab بترجمة هذه الكتل الوسائطية إلى شكل الطلب الخاص بمزود الخدمة المطلوب للنموذج الفيزيائي الموجه.
 </ParamField>
 
 <ParamField body="temperature" type="number" default="1">
@@ -148,7 +148,7 @@ description: "ينشئ استكمالًا لرسالة المحادثة"
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/chat/completions" \
+curl -X POST "https://api.tokenlab.sh/v1/chat/completions" \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -167,7 +167,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.chat.completions.create(
@@ -188,7 +188,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 const response = await client.chat.completions.create({
@@ -206,7 +206,7 @@ console.log(response.choices[0].message.content);
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.aisonar.dev/v1/chat/completions');
+$ch = curl_init('https://api.tokenlab.sh/v1/chat/completions');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,

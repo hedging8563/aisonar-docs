@@ -24,7 +24,7 @@ Endpoint này dùng cho nhận dạng giọng nói, tổng hợp giọng nói, d
 ```javascript JavaScript
 import WebSocket from 'ws';
 
-const socket = new WebSocket('wss://api.aisonar.dev/v1/realtime?model=qwen-tts-realtime', {
+const socket = new WebSocket('wss://api.tokenlab.sh/v1/realtime?model=qwen-tts-realtime', {
   headers: { Authorization: 'Bearer sk-your-api-key' }
 });
 
@@ -38,17 +38,17 @@ socket.on('message', (data) => {
 ```
 
 ```bash cURL
-curl "https://api.aisonar.dev/v1/realtime" \
+curl "https://api.tokenlab.sh/v1/realtime" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>
 
 ## Tin nhắn
 
-AI Sonar chuyển tiếp tin nhắn WebSocket giữa client và nhà cung cấp realtime đã định tuyến. Giữ đúng dạng sự kiện chính thức của mô hình đã chọn và truyền `model` trong query string.
+TokenLab chuyển tiếp tin nhắn WebSocket giữa client và nhà cung cấp realtime đã định tuyến. Giữ đúng dạng sự kiện chính thức của mô hình đã chọn và truyền `model` trong query string.
 
 ## Tính phí và đóng kết nối
 
-Phiên realtime dùng cùng số dư API key. AI Sonar trừ trước một ước tính nhỏ khi socket mở, rồi quyết toán hoặc hoàn tiền khi phiên đóng.
+Phiên realtime dùng cùng số dư API key. TokenLab trừ trước một ước tính nhỏ khi socket mở, rồi quyết toán hoặc hoàn tiền khi phiên đóng.
 
-Đóng socket client khi phiên hoàn tất. Nếu upstream đóng trước, AI Sonar sẽ chuyển tiếp close code khi có thể.
+Đóng socket client khi phiên hoàn tất. Nếu upstream đóng trước, TokenLab sẽ chuyển tiếp close code khi có thể.

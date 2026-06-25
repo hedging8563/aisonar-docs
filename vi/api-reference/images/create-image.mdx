@@ -8,18 +8,18 @@ description: "Tạo một hình ảnh từ prompt"
 
 Dành cho coding agents, hãy khám phá shortlist hình ảnh được khuyến nghị hiện tại trước bằng `GET /v1/models?recommended_for=image`, rồi gửi rõ `model` đã chọn đến endpoint này.
 
-`gpt-image-2` là model GPT Image tính phí theo token. AI Sonar bám theo chi tiết `usage` chính thức của OpenAI để tính token đầu vào văn bản, đầu vào hình ảnh, đầu vào cache khi được báo cáo, và token đầu ra hình ảnh; model này không được tính như giá cố định cho mỗi ảnh.
+`gpt-image-2` là model GPT Image tính phí theo token. TokenLab bám theo chi tiết `usage` chính thức của OpenAI để tính token đầu vào văn bản, đầu vào hình ảnh, đầu vào cache khi được báo cáo, và token đầu ra hình ảnh; model này không được tính như giá cố định cho mỗi ảnh.
 
-Với tạo ảnh bằng `gpt-image-2`, các tham số public được hỗ trợ gồm `prompt`, `n`, `size`, `quality`, `response_format`, `async`, `background`, `output_format`, `output_compression` hoặc `compression`, `moderation`, `partial_images`, và `user`. Nếu bỏ qua `size` hoặc `quality`, AI Sonar dùng `auto`; giá trị `size` tùy chỉnh phải theo hợp đồng linh hoạt `WIDTHxHEIGHT` được mô tả bên dưới.
+Với tạo ảnh bằng `gpt-image-2`, các tham số public được hỗ trợ gồm `prompt`, `n`, `size`, `quality`, `response_format`, `async`, `background`, `output_format`, `output_compression` hoặc `compression`, `moderation`, `partial_images`, và `user`. Nếu bỏ qua `size` hoặc `quality`, TokenLab dùng `auto`; giá trị `size` tùy chỉnh phải theo hợp đồng linh hoạt `WIDTHxHEIGHT` được mô tả bên dưới.
 
-Ghi chu tuong thich: neu yeu cau `gpt-image-2` gui `input_fidelity`, AI Sonar se xoa truong nay truoc khi chuyen tiep vi GPT Image 2 tu dong xu ly dau vao hinh anh voi do trung thuc cao.
+Ghi chu tuong thich: neu yeu cau `gpt-image-2` gui `input_fidelity`, TokenLab se xoa truong nay truoc khi chuyen tiep vi GPT Image 2 tu dong xu ly dau vao hinh anh voi do trung thuc cao.
 
 ### Ghi chú hành vi mô hình
 
 Google Gemini không dùng cùng một hợp đồng selector:
 
 - `gemini-3.1-flash-image-preview`, `gemini-3-pro-image-preview`, và `nano-banana-pro` hỗ trợ `aspect_ratio` cùng `resolution` (`1k`, `2k`, `4k`) cho các operation text-to-image và image-edit/image-to-image công khai.
-- `nano-banana-2` chỉ hỗ trợ `aspect_ratio` cùng `resolution` (`1k`, `2k`, `4k`) cho text-to-image trong contract AI Sonar hiện tại.
+- `nano-banana-2` chỉ hỗ trợ `aspect_ratio` cùng `resolution` (`1k`, `2k`, `4k`) cho text-to-image trong contract TokenLab hiện tại.
 - `gemini-2.5-flash-image`, `nano-banana`, và `nano-banana-edit` hỗ trợ `aspect_ratio` nhưng không công khai `resolution`.
 - `gemini-2.0-flash-preview-image-generation` được tài liệu hoá ở đây như một mô hình text-to-image chỉ dùng prompt.
 - Với request Nano Banana dùng ảnh tham chiếu, hãy dùng `nano-banana-edit` hoặc `nano-banana-pro` trên endpoint này (`/v1/images/generations`) với `operation: "image-to-image"` và `image_urls`. Đừng gửi request ảnh tham chiếu Nano Banana tới `/v1/images/edits`.
@@ -65,7 +65,7 @@ Các model hình ảnh xAI Grok Imagine (`grok-imagine-image`, `grok-imagine-ima
 <ParamField body="size" type="string" default="1024x1024">
   Kích thước ảnh. Dùng cho các dòng ảnh kiểu OpenAI và các model khác chấp nhận kích thước pixel chính xác.
 
-  Với `gpt-image-2`, `size` chấp nhận `auto` hoặc `WIDTHxHEIGHT`. Kích thước tùy chỉnh phải có cả hai cạnh là bội số của 16, cạnh dài nhất không quá `3840px`, tỷ lệ cạnh dài/cạnh ngắn không quá `3:1`, và tổng số pixel nằm trong khoảng `655,360` đến `8,294,400`. `aspect_ratio` và `resolution` hiện không thuộc hợp đồng công khai của AI Sonar cho `gpt-image-2`.
+  Với `gpt-image-2`, `size` chấp nhận `auto` hoặc `WIDTHxHEIGHT`. Kích thước tùy chỉnh phải có cả hai cạnh là bội số của 16, cạnh dài nhất không quá `3840px`, tỷ lệ cạnh dài/cạnh ngắn không quá `3:1`, và tổng số pixel nằm trong khoảng `655,360` đến `8,294,400`. `aspect_ratio` và `resolution` hiện không thuộc hợp đồng công khai của TokenLab cho `gpt-image-2`.
 
   Với các dòng ảnh Google Gemini, `size` được xem là alias tương thích ánh xạ sang hợp đồng công khai `aspect_ratio` của model và, khi được hỗ trợ, `resolution`. Với các model này, nên gửi trực tiếp `aspect_ratio`.
 </ParamField>
@@ -89,7 +89,7 @@ Các model hình ảnh xAI Grok Imagine (`grok-imagine-image`, `grok-imagine-ima
 <ParamField body="response_format" type="string" default="url">
   Định dạng response: `url` hoặc `b64_json`. Mặc định là `url`.
 
-  Với các tuyến `gpt-image-2` Azure Official hoặc tương thích Azure, AI Sonar không chuyển `response_format` lên upstream. Gateway luôn nhận dữ liệu ảnh upstream dưới dạng `b64_json`; với request `url`, gateway tải từng ảnh lên CDN rồi trả về `data[].url`. Nếu CDN storage không khả dụng hoặc upload thất bại, request sẽ fail thay vì fallback về Base64. Với `b64_json`, Base64 gốc được trả về.
+  Với các tuyến `gpt-image-2` Azure Official hoặc tương thích Azure, TokenLab không chuyển `response_format` lên upstream. Gateway luôn nhận dữ liệu ảnh upstream dưới dạng `b64_json`; với request `url`, gateway tải từng ảnh lên CDN rồi trả về `data[].url`. Nếu CDN storage không khả dụng hoặc upload thất bại, request sẽ fail thay vì fallback về Base64. Với `b64_json`, Base64 gốc được trả về.
 </ParamField>
 
 <ParamField body="async" type="boolean" default="false">
@@ -153,7 +153,7 @@ Khi bạn nhận được `status: "pending"`, hãy dùng `poll_url` hoặc `GET
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/images/generations" \
+curl -X POST "https://api.tokenlab.sh/v1/images/generations" \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -170,7 +170,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.images.generate(
@@ -189,7 +189,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 const response = await client.images.generate({
@@ -205,7 +205,7 @@ console.log(response.data[0].url);
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.aisonar.dev/v1/images/generations');
+$ch = curl_init('https://api.tokenlab.sh/v1/images/generations');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -257,7 +257,7 @@ Ví dụ Nano Banana Pro dùng ảnh tham chiếu: gửi request tới `/v1/imag
 Với ảnh nguồn riêng tư hoặc trên máy local, hãy upload trực tiếp bằng multipart. Đừng gửi `file_id` tới `/v1/images/generations`:
 
 ```bash
-curl -X POST "https://api.aisonar.dev/v1/images/generations" \
+curl -X POST "https://api.tokenlab.sh/v1/images/generations" \
   -H "Authorization: Bearer sk-your-api-key" \
   -F "model=nano-banana-pro" \
   -F "prompt=Create a clean cinematic character image based on this reference" \

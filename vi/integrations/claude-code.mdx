@@ -1,6 +1,6 @@
 ---
 title: "Claude Code"
-description: "Sử dụng AI Sonar với CLI Claude Code của Anthropic"
+description: "Sử dụng TokenLab với CLI Claude Code của Anthropic"
 ---
 
 ## Tổng quan
@@ -15,7 +15,7 @@ description: "Sử dụng AI Sonar với CLI Claude Code của Anthropic"
 **Mức hỗ trợ**: Đường native mạnh
 </Note>
 
-[Claude Code](https://docs.anthropic.com/en/docs/claude-code) là công cụ CLI chính thức của Anthropic dành cho việc lập trình có hỗ trợ AI. Bạn có thể cấu hình nó để sử dụng AI Sonar làm nhà cung cấp API.
+[Claude Code](https://docs.anthropic.com/en/docs/claude-code) là công cụ CLI chính thức của Anthropic dành cho việc lập trình có hỗ trợ AI. Bạn có thể cấu hình nó để sử dụng TokenLab làm nhà cung cấp API.
 
 ## Cài đặt
 
@@ -42,14 +42,14 @@ Không sử dụng `sudo npm install -g` cho Claude Code.
 Thiết lập các biến môi trường sau:
 
 ```bash
-export ANTHROPIC_API_KEY="sk-your-api-key"
-export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
+export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
+export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
 ```
 
 Thêm các biến này vào hồ sơ shell của bạn (`~/.bashrc`, `~/.zshrc`, v.v.) để duy trì lâu dài.
 
 <Note>
-Đối với AI Sonar, hãy giữ `ANTHROPIC_BASE_URL` là `https://api.aisonar.dev` mà không có hậu tố `/v1`. Điều này khớp với dạng endpoint kiểu Anthropic và mẫu gateway hợp nhất được Claude Code tài liệu hóa.
+Đối với TokenLab, hãy giữ `ANTHROPIC_BASE_URL` là `https://api.tokenlab.sh` mà không có hậu tố `/v1`. Điều này khớp với dạng endpoint kiểu Anthropic và mẫu gateway hợp nhất được Claude Code tài liệu hóa.
 </Note>
 
 ### Tệp cấu hình
@@ -59,8 +59,8 @@ Ngoài ra, hãy tạo hoặc chỉnh sửa `~/.claude/settings.json`:
 ```json
 {
   "env": {
-    "ANTHROPIC_API_KEY": "sk-your-api-key",
-    "ANTHROPIC_BASE_URL": "https://api.aisonar.dev"
+    "ANTHROPIC_API_KEY": "sk-your-tokenlab-key",
+    "ANTHROPIC_BASE_URL": "https://api.tokenlab.sh"
   }
 }
 ```
@@ -89,7 +89,7 @@ claude doctor
 
 ## Các model khả dụng
 
-AI Sonar hỗ trợ tất cả các model Claude:
+TokenLab hỗ trợ tất cả các model Claude:
 
 | Mô hình | Mô tả |
 |-------|-------------|
@@ -110,8 +110,8 @@ Hoặc đặt mặc định trong cấu hình của bạn:
 ```json
 {
   "env": {
-    "ANTHROPIC_API_KEY": "sk-your-api-key",
-    "ANTHROPIC_BASE_URL": "https://api.aisonar.dev"
+    "ANTHROPIC_API_KEY": "sk-your-tokenlab-key",
+    "ANTHROPIC_BASE_URL": "https://api.tokenlab.sh"
   },
   "model": "claude-sonnet-4-6"
 }
@@ -129,15 +129,15 @@ claude --model claude-opus-4-6 "Design a microservices architecture for..."
 
 <AccordionGroup>
   <Accordion title="Lỗi kết nối">
-    Xác minh base URL chính xác là `https://api.aisonar.dev` (không có hậu tố `/v1` cho các request kiểu Anthropic).
+    Xác minh base URL chính xác là `https://api.tokenlab.sh` (không có hậu tố `/v1` cho các request kiểu Anthropic).
   </Accordion>
 
   <Accordion title="API key không hợp lệ">
-    Đảm bảo API key AI Sonar của bạn bắt đầu bằng `sk-` và có đủ số dư.
+    Đảm bảo API key TokenLab của bạn bắt đầu bằng `sk-` và có đủ số dư.
   </Accordion>
 
   <Accordion title="Gateway yêu cầu Authorization bearer token">
-    Chế độ gateway của Claude Code cũng hỗ trợ `ANTHROPIC_AUTH_TOKEN`. Hãy tiếp tục sử dụng `ANTHROPIC_API_KEY` cho thiết lập AI Sonar tiêu chuẩn trừ khi bạn đã chủ động chuyển đổi hành vi xác thực gateway của mình.
+    Chế độ gateway của Claude Code cũng hỗ trợ `ANTHROPIC_AUTH_TOKEN`. Hãy tiếp tục sử dụng `ANTHROPIC_API_KEY` cho thiết lập TokenLab tiêu chuẩn trừ khi bạn đã chủ động chuyển đổi hành vi xác thực gateway của mình.
   </Accordion>
 
   <Accordion title="Không tìm thấy model">

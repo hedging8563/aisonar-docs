@@ -1,13 +1,13 @@
 ---
 title: "Xác thực"
-description: "Bảo mật các yêu cầu AI Sonar API của bạn bằng API key"
+description: "Bảo mật các yêu cầu TokenLab API của bạn bằng API key"
 ---
 
 <span data-mintlify-rebuild="2026-05-19-after-mdx-parse-fix" aria-hidden="true" />
 
 ## API Key
 
-Tất cả các yêu cầu AI Sonar API đều yêu cầu một API key.
+Tất cả các yêu cầu TokenLab API đều yêu cầu một API key.
 
 Đối với các endpoint tương thích OpenAI, gửi nó dưới dạng:
 
@@ -23,7 +23,7 @@ x-api-key: sk-your-api-key
 
 ## Lấy API Key của bạn
 
-1. Đăng nhập vào [AI Sonar Dashboard](https://console.aisonar.dev) của bạn
+1. Đăng nhập vào [TokenLab Dashboard](https://tokenlab.sh/dashboard) của bạn
 2. Mở **API Keys**
 3. Tạo một key mới
 4. Đặt cho nó một tên mang tính mô tả
@@ -42,7 +42,7 @@ x-api-key: sk-your-api-key
 <CodeGroup>
 
 ```bash cURL
-curl https://api.aisonar.dev/v1/responses \
+curl https://api.tokenlab.sh/v1/responses \
   -H "Authorization: Bearer $TOKENLAB_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -57,7 +57,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.environ.get("TOKENLAB_API_KEY"),
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 ```
 
@@ -66,7 +66,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: process.env.TOKENLAB_API_KEY,
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 ```
 
@@ -85,14 +85,14 @@ Bạn có thể đặt giới hạn sử dụng cho từng API key:
 
 ### Tiền tố của Key
 
-Tất cả API key của AI Sonar đều bắt đầu bằng `sk-`.
+Tất cả API key của TokenLab đều bắt đầu bằng `sk-`.
 
 ## Tương thích Anthropic
 
 Đối với endpoint `/v1/messages`, header theo kiểu Anthropic hoạt động như mong đợi:
 
 ```bash
-curl https://api.aisonar.dev/v1/messages \
+curl https://api.tokenlab.sh/v1/messages \
   -H "x-api-key: sk-your-api-key" \
   -H "anthropic-version: 2023-06-01" \
   -H "Content-Type: application/json" \
@@ -104,7 +104,7 @@ curl https://api.aisonar.dev/v1/messages \
 ```
 
 <Note>
-Sử dụng `Authorization: Bearer ...` cho các endpoint tương thích OpenAI như `/v1/responses`, `/v1/chat/completions`, `/v1/models`, và hầu hết các route AI Sonar khác.
+Sử dụng `Authorization: Bearer ...` cho các endpoint tương thích OpenAI như `/v1/responses`, `/v1/chat/completions`, `/v1/models`, và hầu hết các route TokenLab khác.
 </Note>
 
 ## Phản hồi lỗi

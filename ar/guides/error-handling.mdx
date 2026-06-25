@@ -27,7 +27,7 @@ description: "التعامل مع أخطاء API بشكل مناسب"
 
 الحقول الأساسية (`message`, `type`, `code`, `param`) موجودة دائمًا. حقول التلميح (`did_you_mean`, `suggestions`, `hint`, `retryable`, `retry_after`, `balance_usd`, `estimated_cost_usd`) هي امتدادات اختيارية لتصحيح ذاتي لوكلاء الذكاء الاصطناعي. راجع [دليل Agent-First API](/guides/agent-first-api) للتفاصيل.
 
-تستخدم نقاط النهاية المتوافقة مع OpenAI أنواع أخطاء بوابة AI Sonar المستقرة. تستخدم نقاط النهاية المتوافقة مع Anthropic وGemini عائلات أخطائها وشكل الاستجابات الخاصة بها.
+تستخدم نقاط النهاية المتوافقة مع OpenAI أنواع أخطاء بوابة TokenLab المستقرة. تستخدم نقاط النهاية المتوافقة مع Anthropic وGemini عائلات أخطائها وشكل الاستجابات الخاصة بها.
 
 ## رموز حالة HTTP
 
@@ -114,12 +114,12 @@ except APIStatusError as e:
     "code": "model_not_found",
     "did_you_mean": "gpt-5.4",
     "suggestions": [{"id": "gpt-5.4"}, {"id": "gpt-5-mini"}],
-    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.aisonar.dev/v1/models to list all available models."
+    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.tokenlab.sh/v1/models to list all available models."
   }
 }
 ```
 
-لا تميز المسارات العامة بين حالات الخطأ الإملائي أو المخفي أو المؤجل أو غير العام في جسم الاستجابة. إذا لم يكن النموذج متوفرًا حاليًا عبر العقدة العامة، تعيد AI Sonar `model_not_found`.
+لا تميز المسارات العامة بين حالات الخطأ الإملائي أو المخفي أو المؤجل أو غير العام في جسم الاستجابة. إذا لم يكن النموذج متوفرًا حاليًا عبر العقدة العامة، تعيد TokenLab `model_not_found`.
 
 ### أخطاء حد المعدل (429)
 
@@ -198,7 +198,7 @@ from openai import OpenAI, APIError, RateLimitError, APIConnectionError
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 def chat_with_retry(messages, max_retries=3):
@@ -229,7 +229,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 async function chatWithRetry(messages, maxRetries = 3) {

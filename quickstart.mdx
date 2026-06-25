@@ -1,13 +1,13 @@
 ---
 title: "Quickstart"
-description: "Get started with AI Sonar API in 2 minutes"
+description: "Get started with TokenLab API in 2 minutes"
 ---
 
 ## Step 1: Start with Trial Credits
 
 <Steps>
   <Step title="Create an account">
-    Sign up at [aisonar.dev](https://aisonar.dev) using your email, Gmail, or GitHub account.
+    Sign up at [tokenlab.sh](https://tokenlab.sh) using your email, Gmail, or GitHub account.
   </Step>
   <Step title="Use the included trial credits">
     Your account starts with trial credits for the first small test requests. You do not need to top up before Quickstart.
@@ -50,7 +50,7 @@ For most new integrations, start with **Chat Completions** on `POST /v1/chat/com
 <CodeGroup>
 
 ```bash cURL
-curl https://api.aisonar.dev/v1/chat/completions \
+curl https://api.tokenlab.sh/v1/chat/completions \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -66,7 +66,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.chat.completions.create(
@@ -82,7 +82,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 
 const response = await client.chat.completions.create({
@@ -105,7 +105,7 @@ The included trial credits are for the first small tests. Add credits in **Dashb
 
 ## Try Different Models
 
-AI Sonar supports hundreds of models. Change only the `model` field:
+TokenLab supports hundreds of models. Change only the `model` field:
 
 ```python
 response = client.chat.completions.create(model="gpt-5.4", messages=[{"role": "user", "content": "Hello"}])
@@ -142,7 +142,7 @@ for chunk in stream:
   <Card title="API Reference" icon="book" href="/api-reference/introduction">
     Explore the full endpoint reference.
   </Card>
-  <Card title="Models" icon="robot" href="https://aisonar.dev/models">
+  <Card title="Models" icon="robot" href="https://tokenlab.sh/en/models">
     Browse current model availability and pricing.
   </Card>
 </CardGroup>

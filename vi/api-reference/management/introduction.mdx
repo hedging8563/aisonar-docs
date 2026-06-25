@@ -80,7 +80,7 @@ PATCH phải có ít nhất một trường.
 - `logicalModel` là model logic công khai mà người gọi yêu cầu.
 - `modelVendor` là nhà cung cấp model công khai, không phải tuyến vật lý ẩn.
 - `scene` là ngữ cảnh yêu cầu công khai được suy ra từ endpoint hoặc loại tác vụ.
-- `accessChannel=platform` nghĩa là request được tính phí qua kênh platform của AI Sonar.
+- `accessChannel=platform` nghĩa là request được tính phí qua kênh platform của TokenLab.
 - `accessChannel=byok` nghĩa là request dùng khóa upstream provider của chính bạn.
 
 Phản hồi chỉ hiển thị các trường billing và reporting công khai. Chi tiết routing nội bộ và metadata provider vật lý vẫn bị ẩn.
@@ -96,7 +96,7 @@ Bắt đầu bằng cách kiểm tra số dư tổ chức với management token
 
 <RequestExample>
 ```bash cURL
-curl -X GET "https://api.aisonar.dev/v1/management/balance" \
+curl -X GET "https://api.tokenlab.sh/v1/management/balance" \
   -H "Authorization: Bearer mt-your-management-token"
 ```
 </RequestExample>
@@ -105,7 +105,7 @@ Sau đó liệt kê các API key hiện có cho cùng management token:
 
 <RequestExample>
 ```bash cURL
-curl "https://api.aisonar.dev/v1/management/api-keys" \
+curl "https://api.tokenlab.sh/v1/management/api-keys" \
   -H "Authorization: Bearer mt-your-management-token"
 ```
 </RequestExample>

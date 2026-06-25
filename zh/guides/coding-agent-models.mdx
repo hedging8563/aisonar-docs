@@ -54,9 +54,9 @@ description: "为每种编码任务选择合适的模型——对比表格、推
   </Accordion>
 </AccordionGroup>
 
-## AI Sonar 路由机制
+## TokenLab 路由机制
 
-AI Sonar 自动将请求路由到最佳可用提供方。
+TokenLab 自动将请求路由到最佳可用提供方。
 
 ### 路由策略
 
@@ -69,7 +69,7 @@ AI Sonar 自动将请求路由到最佳可用提供方。
 
 ### 自动降级
 
-如果某个提供方不可用或返回错误，AI Sonar 自动重试下一个提供方：
+如果某个提供方不可用或返回错误，TokenLab 自动重试下一个提供方：
 
 ```
 请求：claude-sonnet-4-6
@@ -81,14 +81,14 @@ AI Sonar 自动将请求路由到最佳可用提供方。
 
 ### 原生格式路由
 
-当所选模型和路由到的渠道支持时，AI Sonar 可以通过该模型系列的原生 API 格式路由请求，以获得更好的兼容性：
+当所选模型和路由到的渠道支持时，TokenLab 可以通过该模型系列的原生 API 格式路由请求，以获得更好的兼容性：
 
 | 模型系列 | API 格式 | Base URL |
 |---------|----------|----------|
-| Claude | Anthropic Messages | `https://api.aisonar.dev` |
-| GPT | OpenAI Responses | `https://api.aisonar.dev/v1` |
-| Gemini | Gemini Native API | `https://api.aisonar.dev` 或 `https://api.aisonar.dev/v1beta`，取决于客户端路径 |
-| DeepSeek | OpenAI Chat | `https://api.aisonar.dev/v1` |
+| Claude | Anthropic Messages | `https://api.tokenlab.sh` |
+| GPT | OpenAI Responses | `https://api.tokenlab.sh/v1` |
+| Gemini | Gemini Native API | `https://api.tokenlab.sh` 或 `https://api.tokenlab.sh/v1beta`，取决于客户端路径 |
+| DeepSeek | OpenAI Chat | `https://api.tokenlab.sh/v1` |
 
 Claude Code 是一条强 Anthropic 原生路径。Gemini 原生 API 也存在，但 Gemini CLI 本身仍属于 best-effort 兼容路径，不应被视为长期稳定工作流。
 
@@ -97,8 +97,8 @@ Claude Code 是一条强 Anthropic 原生路径。Gemini 原生 API 也存在，
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-api-key"
-    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
+    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
+    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
     ```
 
     选择模型：`claude --model claude-sonnet-4-6`
@@ -108,8 +108,8 @@ Claude Code 是一条强 Anthropic 原生路径。Gemini 原生 API 也存在，
 
   <Accordion title="Cursor">
     在 Settings → Models 中：
-    - API Key: `sk-your-api-key`
-    - Base URL: `https://api.aisonar.dev/v1`
+    - API Key: `sk-your-tokenlab-key`
+    - Base URL: `https://api.tokenlab.sh/v1`
     - Model: `claude-sonnet-4-6` 或 `gpt-5-mini`
 
     [完整指南 →](/zh/integrations/cursor)
@@ -117,8 +117,8 @@ Claude Code 是一条强 Anthropic 原生路径。Gemini 原生 API 也存在，
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-api-key"
-    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
+    export OPENAI_API_KEY="sk-your-tokenlab-key"
+    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
     ```
 
     [完整指南 →](/zh/integrations/codex-cli)
@@ -126,8 +126,8 @@ Claude Code 是一条强 Anthropic 原生路径。Gemini 原生 API 也存在，
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-api-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
+    export GEMINI_API_KEY="sk-your-tokenlab-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
     ```
 
     请将此路径视为 best-effort 兼容，而不是稳定的上游契约。
@@ -139,8 +139,8 @@ Claude Code 是一条强 Anthropic 原生路径。Gemini 原生 API 也存在，
     ```json
     {
       "provider": "openai",
-      "apiKey": "sk-your-api-key",
-      "baseURL": "https://api.aisonar.dev/v1"
+      "apiKey": "sk-your-tokenlab-key",
+      "baseURL": "https://api.tokenlab.sh/v1"
     }
     ```
 

@@ -56,9 +56,9 @@ description: "Pilih model yang tepat untuk setiap tugas coding — tabel perband
   </Accordion>
 </AccordionGroup>
 
-## Cara Kerja Routing AI Sonar
+## Cara Kerja Routing TokenLab
 
-AI Sonar secara otomatis mengarahkan permintaan Anda ke provider terbaik yang tersedia.
+TokenLab secara otomatis mengarahkan permintaan Anda ke provider terbaik yang tersedia.
 
 ### Strategi Routing
 
@@ -71,7 +71,7 @@ Anda dapat mengatur strategi pilihan Anda di dashboard.
 
 ### Fallback Otomatis
 
-Jika provider tidak tersedia atau mengembalikan error, AI Sonar secara otomatis mencoba ulang dengan provider berikutnya:
+Jika provider tidak tersedia atau mengembalikan error, TokenLab secara otomatis mencoba ulang dengan provider berikutnya:
 
 ```
 Permintaan: claude-sonnet-4-6
@@ -83,14 +83,14 @@ Ini terjadi secara transparan — coding agent Anda melihat respons normal.
 
 ### Routing Format Native
 
-Ketika model yang dipilih dan kanal perutean mendukungnya, AI Sonar dapat merutekan permintaan melalui format API native keluarga model untuk kompatibilitas yang lebih baik:
+Ketika model yang dipilih dan kanal perutean mendukungnya, TokenLab dapat merutekan permintaan melalui format API native keluarga model untuk kompatibilitas yang lebih baik:
 
 | Keluarga Model | Format API | URL Dasar |
 |-------------|------------|----------|
-| Claude | Anthropic Messages | `https://api.aisonar.dev` |
-| GPT | Respons OpenAI | `https://api.aisonar.dev/v1` |
-| Gemini | Gemini Native API | `https://api.aisonar.dev` atau `https://api.aisonar.dev/v1beta` tergantung jalur klien |
-| DeepSeek | Obrolan OpenAI | `https://api.aisonar.dev/v1` |
+| Claude | Anthropic Messages | `https://api.tokenlab.sh` |
+| GPT | Respons OpenAI | `https://api.tokenlab.sh/v1` |
+| Gemini | Gemini Native API | `https://api.tokenlab.sh` atau `https://api.tokenlab.sh/v1beta` tergantung jalur klien |
+| DeepSeek | Obrolan OpenAI | `https://api.tokenlab.sh/v1` |
 
 Claude Code adalah jalur Anthropic-native yang kuat. API Gemini-native juga ada, tetapi Gemini CLI sendiri tetap merupakan jalur kompatibilitas best-effort dan tidak boleh dianggap sebagai alur kerja yang stabil untuk jangka panjang.
 
@@ -99,8 +99,8 @@ Claude Code adalah jalur Anthropic-native yang kuat. API Gemini-native juga ada,
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-api-key"
-    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
+    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
+    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
     ```
 
     Pilih model: `claude --model claude-sonnet-4-6`
@@ -110,8 +110,8 @@ Claude Code adalah jalur Anthropic-native yang kuat. API Gemini-native juga ada,
 
   <Accordion title="Cursor">
     Di Settings → Models:
-    - API Key: `sk-your-api-key`
-    - Base URL: `https://api.aisonar.dev/v1`
+    - API Key: `sk-your-tokenlab-key`
+    - Base URL: `https://api.tokenlab.sh/v1`
     - Model: `claude-sonnet-4-6` atau `gpt-5-mini`
 
     [Panduan lengkap →](/integrations/cursor)
@@ -119,8 +119,8 @@ Claude Code adalah jalur Anthropic-native yang kuat. API Gemini-native juga ada,
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-api-key"
-    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
+    export OPENAI_API_KEY="sk-your-tokenlab-key"
+    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
     ```
 
     [Panduan lengkap →](/integrations/codex-cli)
@@ -128,8 +128,8 @@ Claude Code adalah jalur Anthropic-native yang kuat. API Gemini-native juga ada,
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-api-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
+    export GEMINI_API_KEY="sk-your-tokenlab-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
     ```
 
     Perlakukan jalur ini sebagai kompatibilitas best-effort, bukan kontrak upstream yang stabil.
@@ -141,8 +141,8 @@ Claude Code adalah jalur Anthropic-native yang kuat. API Gemini-native juga ada,
     ```json
     {
       "provider": "openai",
-      "apiKey": "sk-your-api-key",
-      "baseURL": "https://api.aisonar.dev/v1"
+      "apiKey": "sk-your-tokenlab-key",
+      "baseURL": "https://api.tokenlab.sh/v1"
     }
     ```
 

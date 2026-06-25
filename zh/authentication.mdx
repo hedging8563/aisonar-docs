@@ -1,13 +1,13 @@
 ---
 title: "身份验证"
-description: "使用 API key 保护你的 AI Sonar API 请求"
+description: "使用 API key 保护你的 TokenLab API 请求"
 ---
 
 <span data-mintlify-rebuild="2026-05-19-after-mdx-parse-fix" aria-hidden="true" />
 
 ## API key
 
-所有 AI Sonar API 请求都需要 API key。
+所有 TokenLab API 请求都需要 API key。
 
 对于兼容 OpenAI 的端点，请按如下方式发送：
 
@@ -23,7 +23,7 @@ x-api-key: sk-your-api-key
 
 ## 获取你的 API key
 
-1. 登录你的 [AI Sonar Dashboard](https://console.aisonar.dev)
+1. 登录你的 [TokenLab Dashboard](https://tokenlab.sh/dashboard)
 2. 打开 **API Keys**
 3. 创建一个新 key
 4. 为其指定一个便于识别的名称
@@ -42,7 +42,7 @@ x-api-key: sk-your-api-key
 <CodeGroup>
 
 ```bash cURL
-curl https://api.aisonar.dev/v1/responses \
+curl https://api.tokenlab.sh/v1/responses \
   -H "Authorization: Bearer $TOKENLAB_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -57,7 +57,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.environ.get("TOKENLAB_API_KEY"),
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 ```
 
@@ -66,7 +66,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: process.env.TOKENLAB_API_KEY,
-  baseURL: 'https://api.aisonar.dev/v1'
+  baseURL: 'https://api.tokenlab.sh/v1'
 });
 ```
 
@@ -85,14 +85,14 @@ const client = new OpenAI({
 
 ### key 前缀
 
-所有 AI Sonar API key 都以 `sk-` 开头。
+所有 TokenLab API key 都以 `sk-` 开头。
 
 ## Anthropic 兼容性
 
 对于 `/v1/messages` 端点，Anthropic 风格的请求头可按预期工作：
 
 ```bash
-curl https://api.aisonar.dev/v1/messages \
+curl https://api.tokenlab.sh/v1/messages \
   -H "x-api-key: sk-your-api-key" \
   -H "anthropic-version: 2023-06-01" \
   -H "Content-Type: application/json" \
@@ -104,7 +104,7 @@ curl https://api.aisonar.dev/v1/messages \
 ```
 
 <Note>
-对于兼容 OpenAI 的端点，例如 `/v1/responses`、`/v1/chat/completions`、`/v1/models` 以及大多数其他 AI Sonar 路由，请使用 `Authorization: Bearer ...`。
+对于兼容 OpenAI 的端点，例如 `/v1/responses`、`/v1/chat/completions`、`/v1/models` 以及大多数其他 TokenLab 路由，请使用 `Authorization: Bearer ...`。
 </Note>
 
 ## 错误响应

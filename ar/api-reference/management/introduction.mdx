@@ -80,7 +80,7 @@ Authorization: Bearer mt-your-management-token
 - يشير `logicalModel` إلى النموذج المنطقي العام الذي طلبه المستدعي.
 - يشير `modelVendor` إلى مزود النموذج العام، وليس المسار الفيزيائي المخفي.
 - تمثل `scene` مشهد الطلب العام المشتق من الواجهة أو نوع المهمة.
-- تعني `accessChannel=platform` أن الطلب تمت محاسبته عبر قناة منصة AI Sonar.
+- تعني `accessChannel=platform` أن الطلب تمت محاسبته عبر قناة منصة TokenLab.
 - تعني `accessChannel=byok` أن الطلب استخدم مفتاح مزود upstream الخاص بك.
 
 لا تكشف الاستجابات إلا حقول الفوترة والتقارير العامة. أما تفاصيل التوجيه الداخلي وبيانات المزود الفيزيائية فتبقى مخفية.
@@ -96,7 +96,7 @@ Authorization: Bearer mt-your-management-token
 
 <RequestExample>
 ```bash cURL
-curl -X GET "https://api.aisonar.dev/v1/management/balance" \
+curl -X GET "https://api.tokenlab.sh/v1/management/balance" \
   -H "Authorization: Bearer mt-your-management-token"
 ```
 </RequestExample>
@@ -105,7 +105,7 @@ curl -X GET "https://api.aisonar.dev/v1/management/balance" \
 
 <RequestExample>
 ```bash cURL
-curl "https://api.aisonar.dev/v1/management/api-keys" \
+curl "https://api.tokenlab.sh/v1/management/api-keys" \
   -H "Authorization: Bearer mt-your-management-token"
 ```
 </RequestExample>

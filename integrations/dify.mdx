@@ -1,18 +1,18 @@
 ---
 title: "Dify"
-description: "Integrate AI Sonar with Dify using the OpenAI provider and a custom base URL"
+description: "Integrate TokenLab with Dify using the OpenAI provider and a custom base URL"
 ---
 
 ## Overview
 
-Dify works well with AI Sonar through its OpenAI-compatible model provider flow.
+Dify works well with TokenLab through its OpenAI-compatible model provider flow.
 
 This is a chat-completions-oriented integration path. It should not be read as a guarantee that Dify exposes the same Responses or WebSocket behavior as dedicated Codex integrations.
 
 For current Dify versions, the safest path is usually:
 - choose the built-in **OpenAI** provider
-- set your AI Sonar API key
-- set a custom base URL of `https://api.aisonar.dev/v1`
+- set your TokenLab API key
+- set a custom base URL of `https://api.tokenlab.sh/v1`
 
 <Note>
 Some older Dify builds expose this as `OpenAI-API-compatible` instead of the built-in `OpenAI` provider with a custom base URL field. If your Dify UI looks different, use the closest OpenAI-compatible custom provider flow available in that version.
@@ -28,15 +28,15 @@ Some older Dify builds expose this as `OpenAI-API-compatible` instead of the bui
 
 ## Prerequisites
 
-- AI Sonar account with API access
+- TokenLab account with API access
 - Dify Cloud or self-hosted Dify
 
 ## Configuration Steps
 
 ### Step 1: Get Your API Key
 
-1. Log into [AI Sonar Dashboard](https://console.aisonar.dev)
-2. Open [API Keys](https://console.aisonar.dev/api)
+1. Log into [TokenLab Dashboard](https://tokenlab.sh/dashboard)
+2. Open [API Keys](https://tokenlab.sh/dashboard/api)
 3. Create or copy an API key that starts with `sk-`
 
 ### Step 2: Configure the Provider
@@ -48,13 +48,13 @@ Some older Dify builds expose this as `OpenAI-API-compatible` instead of the bui
   <Step title="Select OpenAI">
     Open the **OpenAI** provider settings. If your Dify version does not offer a custom base URL here, use the OpenAI-compatible custom provider option exposed by that version instead.
   </Step>
-  <Step title="Enter AI Sonar Settings">
+  <Step title="Enter TokenLab Settings">
     Use these values:
 
     | Field | Value |
     |-------|-------|
-    | API Key | `sk-your-api-key` |
-    | API Base URL / Custom Base URL | `https://api.aisonar.dev/v1` |
+    | API Key | `sk-your-tokenlab-key` |
+    | API Base URL / Custom Base URL | `https://api.tokenlab.sh/v1` |
   </Step>
   <Step title="Add Models">
     Add the models you want to use, for example:
@@ -96,7 +96,7 @@ Then set it as the default embedding model in the relevant knowledge base or app
 
 <AccordionGroup>
   <Accordion title="Start with the built-in OpenAI provider">
-    In newer Dify versions, the built-in OpenAI provider with a custom base URL is usually the cleanest setup for AI Sonar.
+    In newer Dify versions, the built-in OpenAI provider with a custom base URL is usually the cleanest setup for TokenLab.
   </Accordion>
 
   <Accordion title="Use cheaper models for iteration">
@@ -112,20 +112,20 @@ Then set it as the default embedding model in the relevant knowledge base or app
 
 <AccordionGroup>
   <Accordion title="Connection Error">
-    - Verify the base URL is exactly `https://api.aisonar.dev/v1`
+    - Verify the base URL is exactly `https://api.tokenlab.sh/v1`
     - Remove trailing slashes if Dify duplicates them
-    - Confirm the Dify server can reach AI Sonar over the public internet
+    - Confirm the Dify server can reach TokenLab over the public internet
   </Accordion>
 
   <Accordion title="401 Unauthorized">
     - Double-check the API key
-    - Confirm the key is active in AI Sonar dashboard
+    - Confirm the key is active in TokenLab dashboard
     - Make sure the value pasted into Dify does not contain extra spaces or line breaks
   </Accordion>
 
   <Accordion title="Model Not Found">
     - Verify the model name exactly
     - Re-add the model entry if the provider UI cached an older value
-    - Check current model availability in AI Sonar docs or dashboard
+    - Check current model availability in TokenLab docs or dashboard
   </Accordion>
 </AccordionGroup>

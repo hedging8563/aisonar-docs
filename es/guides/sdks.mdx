@@ -1,11 +1,11 @@
 ---
 title: "SDKs y bibliotecas"
-description: "SDKs y bibliotecas recomendados para integraciones de AI Sonar"
+description: "SDKs y bibliotecas recomendados para integraciones de TokenLab"
 ---
 
 ## Descripción general
 
-La forma más sencilla de integrar AI Sonar es elegir el SDK según el comportamiento que necesitas:
+La forma más sencilla de integrar TokenLab es elegir el SDK según el comportamiento que necesitas:
 - **Anthropic SDKs** oficiales para comportamiento Claude-native /v1/messages
 - herramientas **Gemini / Google AI** oficiales para formatos nativos de Gemini
 - **OpenAI SDKs** oficiales para rutas /v1 compatibles con OpenAI y uso estilo Responses
@@ -38,12 +38,12 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 response = client.responses.create(
     model="gpt-5.4",
-    input="Explain AI Sonar in one sentence."
+    input="Explain TokenLab in one sentence."
 )
 
 print(response.output_text)
@@ -62,7 +62,7 @@ import (
 func main() {
     client := openai.NewClient(
         option.WithAPIKey("sk-your-api-key"),
-        option.WithBaseURL("https://api.aisonar.dev/v1"),
+        option.WithBaseURL("https://api.tokenlab.sh/v1"),
     )
 
     _ = client
@@ -76,7 +76,7 @@ from anthropic import Anthropic
 
 client = Anthropic(
     api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev"
+    base_url="https://api.tokenlab.sh"
 )
 
 message = client.messages.create(
@@ -91,7 +91,7 @@ message = client.messages.create(
 | Objetivo | Ruta recomendada |
 |------|------------------|
 | Comportamiento nativo del proveedor | SDK o ruta nativa del proveedor |
-| Cliente compatible con OpenAI existente | OpenAI SDK en AI Sonar /v1 |
+| Cliente compatible con OpenAI existente | OpenAI SDK en TokenLab /v1 |
 | Chat portable / embeddings | Rutas /v1 compatibles con OpenAI |
 | Funciones Claude-native | Anthropic SDK |
 | Formatos Gemini-native | Gemini-native API / SDK |
@@ -105,10 +105,10 @@ message = client.messages.create(
   </Accordion>
 
   <Accordion title="Usa /v1 compatible con OpenAI para migraciones">
-    Los SDKs compatibles con OpenAI son la mejor ruta para clientes existentes estilo OpenAI, chat portable y embeddings. Es una ruta de compatibilidad, no la única superficie API de AI Sonar.
+    Los SDKs compatibles con OpenAI son la mejor ruta para clientes existentes estilo OpenAI, chat portable y embeddings. Es una ruta de compatibilidad, no la única superficie API de TokenLab.
   </Accordion>
 
   <Accordion title="Mantén explícitas las base URLs">
-    Pasa las base URLs de AI Sonar directamente en la configuración del cliente en vez de depender de alias antiguos por variables de entorno.
+    Pasa las base URLs de TokenLab directamente en la configuración del cliente en vez de depender de alias antiguos por variables de entorno.
   </Accordion>
 </AccordionGroup>

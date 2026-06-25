@@ -5,7 +5,7 @@ description: "استخدم صيغ OpenAI أو Anthropic أو Gemini بمفتاح
 
 ## نظرة عامة
 
-تدعم AI Sonar **ثلاث صيغ API أصلية** باستخدام مفتاح API واحد. اختر الصيغة التي تناسب حالة الاستخدام لديك — لا حاجة لتغيير أي إعدادات.
+تدعم TokenLab **ثلاث صيغ API أصلية** باستخدام مفتاح API واحد. اختر الصيغة التي تناسب حالة الاستخدام لديك — لا حاجة لتغيير أي إعدادات.
 
 <CardGroup cols={3}>
   <Card title="صيغة OpenAI" icon="plug">
@@ -51,8 +51,8 @@ description: "استخدم صيغ OpenAI أو Anthropic أو Gemini بمفتاح
 from openai import OpenAI
 
 client = OpenAI(
-    api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"
+    api_key="sk-your-tokenlab-key",
+    base_url="https://api.tokenlab.sh/v1"
 )
 
 # Portable chat works across many models
@@ -78,8 +78,8 @@ response = client.chat.completions.create(
 from anthropic import Anthropic
 
 client = Anthropic(
-    api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev"  # No /v1 suffix!
+    api_key="sk-your-tokenlab-key",
+    base_url="https://api.tokenlab.sh"  # No /v1 suffix!
 )
 
 message = client.messages.create(
@@ -125,8 +125,8 @@ for block in message.content:
 صيغة Google Gemini الأصلية لتكامل نظام Google البيئي.
 
 ```bash
-curl "https://api.aisonar.dev/v1beta/models/gemini-2.5-flash:generateContent" \
-  -H "Authorization: Bearer sk-your-api-key" \
+curl "https://api.tokenlab.sh/v1beta/models/gemini-2.5-flash:generateContent" \
+  -H "Authorization: Bearer sk-your-tokenlab-key" \
   -H "Content-Type: application/json" \
   -d '{
     "contents": [{
@@ -141,8 +141,8 @@ curl "https://api.aisonar.dev/v1beta/models/gemini-2.5-flash:generateContent" \
 ### البث
 
 ```bash
-curl "https://api.aisonar.dev/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse" \
-  -H "Authorization: Bearer sk-your-api-key" \
+curl "https://api.tokenlab.sh/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse" \
+  -H "Authorization: Bearer sk-your-tokenlab-key" \
   -H "Content-Type: application/json" \
   -d '{
     "contents": [{"parts": [{"text": "Write a story"}]}]
@@ -154,7 +154,7 @@ curl "https://api.aisonar.dev/v1beta/models/gemini-2.5-flash:streamGenerateConte
 - مشروعات قائمة باستخدام Gemini SDK
 - ميزات Gemini الأصلية
 
-**Gemini Files و Cache:** يدعم مسار Gemini الأصلي `/upload/v1beta/files` و `/v1beta/files` و `/v1beta/files:register` و `/v1beta/cachedContents`. تستخدم Files قنوات upstream متوافقة مع Gemini File API؛ ويمكن أيضًا توجيه موارد Cache الصريحة عبر قنوات Vertex AI. الموارد التي يتم إنشاؤها عبر AI Sonar ترتبط بالقناة/key نفسها في upstream لاستخدامها لاحقًا في استدعاءات `generateContent`.
+**Gemini Files و Cache:** يدعم مسار Gemini الأصلي `/upload/v1beta/files` و `/v1beta/files` و `/v1beta/files:register` و `/v1beta/cachedContents`. تستخدم Files قنوات upstream متوافقة مع Gemini File API؛ ويمكن أيضًا توجيه موارد Cache الصريحة عبر قنوات Vertex AI. الموارد التي يتم إنشاؤها عبر TokenLab ترتبط بالقناة/key نفسها في upstream لاستخدامها لاحقًا في استدعاءات `generateContent`.
 
 ## حدود توافق الأدوات
 
@@ -164,7 +164,7 @@ curl "https://api.aisonar.dev/v1beta/models/gemini-2.5-flash:streamGenerateConte
 - أدوات Anthropic server/native مثل `web_search_*` و`web_fetch_*` و`code_execution_*` و`tool_search_*` وbash وcomputer-use وtext-editor تتطلب `/v1/messages`.
 - أدوات Gemini المدمجة مثل `googleSearch` و`codeExecution` و`urlContext` و`computerUse` وحقول `tools` المشابهة تتطلب `/v1beta`.
 
-إذا لم يتمكن AI Sonar من توجيه طلب يحتوي على أدوات أصلية إلى مسار upstream يدعم الصيغة الأصلية، فإنه يعيد خطأ unsupported-field واضحًا بدلًا من إسقاط الأداة بصمت أو تقديمها كدالة Chat Completions. تظل أدوات الدوال التي يعرّفها المستخدم هي المسار الأكثر قابلية للنقل.
+إذا لم يتمكن TokenLab من توجيه طلب يحتوي على أدوات أصلية إلى مسار upstream يدعم الصيغة الأصلية، فإنه يعيد خطأ unsupported-field واضحًا بدلًا من إسقاط الأداة بصمت أو تقديمها كدالة Chat Completions. تظل أدوات الدوال التي يعرّفها المستخدم هي المسار الأكثر قابلية للنقل.
 
 ## اختيار الصيغة المناسبة
 
@@ -189,10 +189,10 @@ graph TD
 # Before (OpenAI)
 client = OpenAI(api_key="sk-openai-key")
 
-# After (AI Sonar)
+# After (TokenLab)
 client = OpenAI(
-    api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev/v1"  # Add this line
+    api_key="sk-tokenlab-key",
+    base_url="https://api.tokenlab.sh/v1"  # Add this line
 )
 # That's it! Same code works
 ```
@@ -203,10 +203,10 @@ client = OpenAI(
 # Before (Anthropic)
 client = Anthropic(api_key="sk-ant-key")
 
-# After (AI Sonar)
+# After (TokenLab)
 client = Anthropic(
-    api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev"  # Add this line (no /v1!)
+    api_key="sk-tokenlab-key",
+    base_url="https://api.tokenlab.sh"  # Add this line (no /v1!)
 )
 ```
 
@@ -217,19 +217,19 @@ client = Anthropic(
 import google.generativeai as genai
 genai.configure(api_key="google-api-key")
 
-# After (AI Sonar) - Use REST API
+# After (TokenLab) - Use REST API
 import requests
 
 response = requests.post(
-    "https://api.aisonar.dev/v1beta/models/gemini-2.5-flash:generateContent",
-    headers={"Authorization": "Bearer sk-your-api-key"},
+    "https://api.tokenlab.sh/v1beta/models/gemini-2.5-flash:generateContent",
+    headers={"Authorization": "Bearer sk-tokenlab-key"},
     json={"contents": [{"parts": [{"text": "Hello"}]}]}
 )
 ```
 
 ## التوافق بين النماذج
 
-ميزة AI Sonar: استخدم **أي SDK** مع **أي نموذج**. تقوم البوابة تلقائيًا بتحويل الصيغ.
+ميزة TokenLab: استخدم **أي SDK** مع **أي نموذج**. تقوم البوابة تلقائيًا بتحويل الصيغ.
 
 ### أي SDK → أي نموذج
 
@@ -238,8 +238,8 @@ response = requests.post(
 from anthropic import Anthropic
 
 client = Anthropic(
-    api_key="sk-your-api-key",
-    base_url="https://api.aisonar.dev"
+    api_key="sk-tokenlab-key",
+    base_url="https://api.tokenlab.sh"
 )
 
 response = client.messages.create(
@@ -258,7 +258,7 @@ response = client.messages.create(model="deepseek-r1", ...)       # ✅ Works!
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="https://api.aisonar.dev/v1", api_key="sk-...")
+client = OpenAI(base_url="https://api.tokenlab.sh/v1", api_key="sk-...")
 
 # These portable chat calls use the same /v1 compatibility SDK:
 response = client.chat.completions.create(model="gpt-4o", ...)
@@ -270,7 +270,7 @@ response = client.chat.completions.create(model="gemini-2.5-flash", ...)
 
 | المنصة | OpenAI Format | Anthropic Format | Gemini Format | Responses API |
 |----------|:---:|:---:|:---:|:---:|
-| **AI Sonar** | ✅ جميع النماذج | ✅ جميع النماذج | ✅ جميع النماذج | ✅ جميع النماذج |
+| **TokenLab** | ✅ جميع النماذج | ✅ جميع النماذج | ✅ جميع النماذج | ✅ جميع النماذج |
 | OpenRouter | ✅ جميع النماذج | ❌ | ❌ | ❌ |
 | Together AI | ✅ جميع النماذج | ❌ | ❌ | ❌ |
 | Fireworks | ✅ جميع النماذج | ❌ | ❌ | ❌ |

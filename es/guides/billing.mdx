@@ -1,11 +1,11 @@
 ---
 title: "Facturación y Precios"
-description: "Comprenda el modelo de precios de pago por uso de AI Sonar"
+description: "Comprenda el modelo de precios de pago por uso de TokenLab"
 ---
 
 ## Resumen
 
-AI Sonar utiliza un **modelo de precios de pago por uso**. Solo paga por lo que utiliza, sin suscripciones ni compromisos mínimos.
+TokenLab utiliza un **modelo de precios de pago por uso**. Solo paga por lo que utiliza, sin suscripciones ni compromisos mínimos.
 
 ## Cómo funciona la facturación
 
@@ -33,7 +33,7 @@ La mayoría de los modelos de generación de texto tienen un precio por millón 
 | DeepSeek V3.2 | $0.196 | $0.294 |
 
 <Note>
-  Los precios mostrados son precios de plataforma con descuento. Los precios reales pueden variar. Consulte la [página de precios](https://aisonar.dev/es/pricing) para conocer las tarifas actuales.
+  Los precios mostrados son precios de plataforma con descuento. Los precios reales pueden variar. Consulte la [página de precios](https://tokenlab.sh/es/pricing) para conocer las tarifas actuales.
 </Note>
 
 ### Precios por solicitud
@@ -55,12 +55,12 @@ Los modelos de imagen, vídeo y audio tienen un precio por solicitud:
 
 Para flujos de generación basados en tareas (vídeo, música, 3D y algunos modelos de imagen):
 
-1. Envía la tarea. AI Sonar puede aplicar una reserva o predescuento estimado para verificar el saldo y los límites de gasto de la API Key.
+1. Envía la tarea. TokenLab puede aplicar una reserva o predescuento estimado para verificar el saldo y los límites de gasto de la API Key.
 2. Consulta la `poll_url` devuelta, o llama a `GET /v1/tasks/{id}`, hasta que la tarea alcance un estado terminal.
 3. Cuando la tarea se completa correctamente, la liquidación final registra el uso y la respuesta de la tarea incluye `billing_transaction_id`.
 4. Si la creación falla o el estado terminal es failed, el importe pendiente se reembolsa o libera y la solicitud se marca como no facturable.
 
-Si el dashboard no refleja la liquidación o el reembolso después de que el estado terminal sea visible, contacta con support@aisonar.dev.
+Si el dashboard no refleja la liquidación o el reembolso después de que el estado terminal sea visible, contacta con support@tokenlab.sh.
 
 ```python
 # Ejemplo: Facturación de generación de vídeo
@@ -105,7 +105,7 @@ print(f"Token count: {len(tokens)}")
 
 ### Panel de control
 
-Monitoree su uso en el [Panel de control](https://console.aisonar.dev):
+Monitoree su uso en el [Panel de control](https://tokenlab.sh/dashboard):
 
 - Saldo en tiempo real
 - Historial de uso por modelo
@@ -166,7 +166,7 @@ Configure alertas para cuando su saldo disminuya:
 
 ### Pasos
 
-1. Inicie sesión en el [Panel de control](https://console.aisonar.dev)
+1. Inicie sesión en el [Panel de control](https://tokenlab.sh/dashboard)
 2. Haga clic en **Añadir créditos**
 3. Seleccione la cantidad y el método de pago
 4. Complete el pago
@@ -193,4 +193,4 @@ Para cuentas de empresa, las facturas están disponibles:
 
 ## ¿Preguntas?
 
-Póngase en contacto con support@aisonar.dev para consultas de facturación.
+Póngase en contacto con support@tokenlab.sh para consultas de facturación.

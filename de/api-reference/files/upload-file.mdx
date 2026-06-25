@@ -6,7 +6,7 @@ description: "Lädt eine JSONL-Batch-Eingabedatei für die spätere Batch-Erstel
 
 ## Übersicht
 
-Dieser Endpunkt ist Teil von AI Sonars OpenAI-kompatibler Batch-API. Batch-Jobs verwenden hochgeladene JSONL-Dateien, laufen asynchron und können später Ausgabedateien/Fehlerdateien zurückgeben.
+Dieser Endpunkt ist Teil von TokenLabs OpenAI-kompatibler Batch-API. Batch-Jobs verwenden hochgeladene JSONL-Dateien, laufen asynchron und können später Ausgabedateien/Fehlerdateien zurückgeben.
 
 ## Hinweise
 
@@ -19,7 +19,7 @@ Dieser Endpunkt ist Teil von AI Sonars OpenAI-kompatibler Batch-API. Batch-Jobs 
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.aisonar.dev/v1/files" \
+curl -X POST "https://api.tokenlab.sh/v1/files" \
   -H "Authorization: Bearer sk-your-api-key" \
   -F "purpose=batch" \
   -F "file=@batch-input.jsonl;type=application/jsonl"

@@ -1,0 +1,186 @@
+---
+title: "TokenLab プロバイダの設定"
+description: "OpenAI、Responses、Anthropic、Gemini 互換ルートを使用して OpenClaw にカスタムプロバイダとして TokenLab を構成する"
+---
+
+<Note>
+このガイドは、**self-hosted OpenClaw** ユーザー向けで、TokenLab を AI プロバイダとして接続したい方向けです。
+</Note>
+
+## 概要
+
+現在の OpenClaw バージョンでは、推奨される方法は `models.providers` 経由で TokenLab を構成することです。
+
+素早く始めたいだけなら、`tokenlab` のみを構成するだけで十分です。**Responses API**、**Claude native**、**Gemini native**、または **MiniMax native** の動作が明示的に必要な場合にのみ、他のプロバイダを追加してください。
+
+| プロバイダー | OpenClaw `api` | 最適用途 | baseUrl |
+|----------|----------------|----------|---------|
+| `tokenlab` | `openai-completions` | GPT、DeepSeek、Qwen、およびほとんどの OpenAI 互換コール | `https://api.tokenlab.sh/v1` |
+| `tokenlab-responses` | `openai-responses` | `/v1/responses` セマンティクスを期待する OpenAI Responses ワークフロー | `https://api.tokenlab.sh/v1` |
+| `tokenlab-claude` | `anthropic-messages` | Claude のネイティブ Messages API | `https://api.tokenlab.sh` |
+| `tokenlab-gemini` | `google-generative-ai` | Gemini のネイティブ API 形式 | `https://api.tokenlab.sh` |
+| `tokenlab-minimax` | `anthropic-messages` | MiniMax のネイティブルーティング | `https://api.tokenlab.sh` |
+
+<Warning>
+`/v1` サフィックスは `openai-completions` と `openai-responses` のみで使用してください。
+
+`anthropic-messages` や `google-generative-ai` のようなネイティブプロバイダは、`/v1` なしの `https://api.tokenlab.sh` を使用する必要があります。さもないと OpenClaw が誤ったアップストリームパスを構築する可能性があります。
+</Warning>
+
+## 前提条件
+
+- セルフホストの OpenClaw インスタンス
+- TokenLab API Key — [Get one here](https://tokenlab.sh/dashboard)
+
+## 設定
+
+OpenClaw の設定を編集します:
+
+- **セルフホスト**: `~/.openclaw/openclaw.json`
+
+`models.providers` の下に TokenLab プロバイダを追加します:
+
+```json5
+{
+  agents: {
+    defaults: {
+      model: {
+        primary: "tokenlab-claude/claude-sonnet-4-6"
+      }
+    }
+  },
+  models: {
+    mode: "merge",
+    providers: {
+      tokenlab: {
+        api: "openai-completions",
+        baseUrl: "https://api.tokenlab.sh/v1",
+        apiKey: "sk-your-tokenlab-key",
+        models: [
+          { id: "gpt-4o", name: "GPT-4o" },
+          { id: "deepseek-r1", name: "DeepSeek R1" },
+          { id: "qwen3-32b", name: "Qwen 3 32B" }
+        ]
+      },
+      "tokenlab-responses": {
+        api: "openai-responses",
+        baseUrl: "https://api.tokenlab.sh/v1",
+        apiKey: "sk-your-tokenlab-key",
+        models: [
+          { id: "gpt-4o", name: "GPT-4o (Responses)" },
+          { id: "gpt-5.2", name: "GPT-5.2 (Responses)" }
+        ]
+      },
+      "tokenlab-claude": {
+        api: "anthropic-messages",
+        baseUrl: "https://api.tokenlab.sh",
+        apiKey: "sk-your-tokenlab-key",
+        models: [
+          { id: "claude-sonnet-4-6", name: "Claude Sonnet 4.6" },
+          { id: "claude-opus-4-6", name: "Claude Opus 4.6" }
+        ]
+      },
+      "tokenlab-gemini": {
+        api: "google-generative-ai",
+        baseUrl: "https://api.tokenlab.sh",
+        apiKey: "sk-your-tokenlab-key",
+        models: [
+          { id: "gemini-2.5-flash", name: "Gemini 2.5 Flash" },
+          { id: "gemini-3-flash-preview", name: "Gemini 3 Flash Preview" }
+        ]
+      },
+      "tokenlab-minimax": {
+        api: "anthropic-messages",
+        baseUrl: "https://api.tokenlab.sh",
+        apiKey: "sk-your-tokenlab-key",
+        models: [
+          { id: "minimax-m1", name: "MiniMax M1" }
+        ]
+      }
+    }
+  }
+}
+```
+
+<Info>
+5 つのプロバイダはすべて **同じ API Key** を使用します。TokenLab アカウントは 1 つあれば十分です。
+</Info>
+
+<Info>
+上記の `models` 配列は一般的な例のみを示しています。必要に応じて各プロバイダにモデル ID を追加してください。
+</Info>
+
+## モデルの使用
+
+OpenClaw は引き続き `provider/model` 形式でモデルを参照します:
+
+```json5
+{
+  agents: {
+    defaults: {
+      model: {
+        primary: "tokenlab-gemini/gemini-2.5-flash"
+      }
+    }
+  }
+}
+```
+
+### モデルの例
+
+| プロバイダー | モデル参照 | 説明 |
+|----------|-----------------|-------------|
+| `tokenlab` | `tokenlab/gpt-4o` | OpenAI 互換ルート |
+| `tokenlab` | `tokenlab/deepseek-r1` | DeepSeek 推論モデル |
+| `tokenlab-responses` | `tokenlab-responses/gpt-4o` | Responses API ルート |
+| `tokenlab-claude` | `tokenlab-claude/claude-sonnet-4-6` | ネイティブ Claude Messages ルート |
+| `tokenlab-gemini` | `tokenlab-gemini/gemini-2.5-flash` | ネイティブ Gemini ルート |
+| `tokenlab-minimax` | `tokenlab-minimax/minimax-m1` | ネイティブ MiniMax ルート |
+
+利用可能なモデルの一覧は [tokenlab.sh/models](https://tokenlab.sh/ja/models) を参照してください。
+
+## どのプロバイダを使うべきか
+
+- `tokenlab`: 一般的なエージェントやチャット用途のデフォルト選択。
+- `tokenlab-responses`: OpenClaw のワークフローが OpenAI Responses のセマンティクスに明示的に依存する場合に使用。
+- `tokenlab-claude`: Claude のネイティブ Messages 動作を利用したい場合に使用。
+- `tokenlab-gemini`: Gemini ネイティブのリクエスト/レスポンス形式や既存の Gemini スタイル統合を使いたい場合に使用。
+- `tokenlab-minimax`: MiniMax をネイティブルートで利用したい場合に使用。
+
+Gemini ネイティブの動作が不要な場合でも、OpenAI 互換ルートの `tokenlab/gemini-*` 経由で Gemini モデルを呼び出すことができます。
+
+## よくある間違い
+
+<AccordionGroup>
+  <Accordion title="古いトップレベルの providers 配列をまだ使っている">
+    現在の OpenClaw ドキュメントは `models.providers` を使用します。古いトップレベルの `providers` 配列形式のままにしておくと、OpenClaw が設定を無視したり、プロバイダプレフィックスの解決に失敗したりする可能性があります。
+  </Accordion>
+  <Accordion title="tokenlab-responses で /v1 を忘れる">
+    `openai-responses` は TokenLab の `/v1/responses` パスにマップされるため、`tokenlab-responses` は `https://api.tokenlab.sh/v1` を使用する必要があります。
+  </Accordion>
+  <Accordion title="tokenlab-claude、tokenlab-gemini、tokenlab-minimax に /v1 を追加してしまう">
+    `anthropic-messages` や `google-generative-ai` は `https://api.tokenlab.sh` を `/v1` なしで使用するべきです。`/v1` を追加すると不正確なリクエストパスが生成される可能性があります。
+  </Accordion>
+  <Accordion title="OpenClaw はまだネイティブ Gemini をサポートしていますか？">
+    はい。現在の OpenClaw ドキュメントは組み込みの `google` プロバイダを引き続き含み、`api: "google-generative-ai"` を使ったカスタムプロバイダもサポートしています。したがって `tokenlab-gemini` は OpenClaw ユーザーにとって有効なネイティブ Gemini ルートのままです。
+  </Accordion>
+</AccordionGroup>
+
+## 設定の検証
+
+設定を保存したら、OpenClaw インスタンスを再起動し、簡単なメッセージでテストしてください。レスポンスが返ってくれば、プロバイダは正しく構成されています。
+
+```bash
+# セルフホスト: サービスを再起動
+systemctl --user restart openclaw    # Linux
+launchctl stop cc.tokenlab.openclaw && launchctl start cc.tokenlab.openclaw  # macOS
+```
+
+## 次のステップ
+
+OpenClaw が接続されたら、以下のガイドが TokenLab をより効果的に使うのに役立ちます:
+
+- [API 形式](/guides/api-formats) — OpenAI、Responses、Anthropic、Gemini ルートの違いを理解する
+- [IDE / SDK Compatibility](/guides/ide-sdk-compatibility) — `/v1/responses` が適している場合を確認する
+- [エラー処理](/guides/error-handling) — 一般的な失敗モードと回復パターンを学ぶ
+- [モデル概要](https://tokenlab.sh/ja/models) — エージェントに組み込む前にモデル ID を参照する
