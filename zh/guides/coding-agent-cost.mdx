@@ -40,7 +40,7 @@ Coding Agent 非常适合缓存，因为它们不断重复相似的模式。
 
 ### Prompt Cache（提供方级别）
 
-[上游 Prompt Cache](/zh/guides/prompt-cache) 通过 TokenLab 自动生效。长系统提示——Coding Agent 每次都会包含——在提供方层被缓存：
+[上游 Prompt Cache](/zh/guides/prompt-cache) 通过 AI Sonar 自动生效。长系统提示——Coding Agent 每次都会包含——在提供方层被缓存：
 
 | 提供方 | 缓存折扣 | 最低 token 数 |
 |----------|---------|-------------|
@@ -71,8 +71,8 @@ Coding Agent 非常适合缓存，因为它们不断重复相似的模式。
 | 方案 | 每小时成本 | 每月（160h） |
 |------|-----------|-------------|
 | 直连 API（高端模型） | ~$15–25 | ~$2,400–4,000 |
-| TokenLab（智能路由） | ~$10–18 | ~$1,600–2,900 |
-| TokenLab + Prompt Cache | ~$4–8 | ~$640–1,280 |
+| AI Sonar（智能路由） | ~$10–18 | ~$1,600–2,900 |
+| AI Sonar + Prompt Cache | ~$4–8 | ~$640–1,280 |
 
 <Warning>
 以上为示意性估算。实际成本取决于模型选择、使用模式和缓存命中率。查看[实时定价](/zh/api-reference/pricing/get-pricing)获取当前费率。
@@ -110,35 +110,35 @@ Coding Agent 非常适合缓存，因为它们不断重复相似的模式。
 
 ## 快速配置
 
-每个工具只需几行配置即可通过 TokenLab 连接：
+每个工具只需几行配置即可通过 AI Sonar 连接：
 
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
-    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
+    export ANTHROPIC_API_KEY="sk-your-api-key"
+    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
     ```
     [完整配置指南 →](/zh/integrations/claude-code)
   </Accordion>
 
   <Accordion title="Cursor">
-    Settings → Models → OpenAI API Key: `sk-your-key`，Base URL: `https://api.tokenlab.sh/v1`
+    Settings → Models → OpenAI API Key: `sk-your-key`，Base URL: `https://api.aisonar.dev/v1`
 
     [完整配置指南 →](/zh/integrations/cursor)
   </Accordion>
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-tokenlab-key"
-    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
+    export OPENAI_API_KEY="sk-your-api-key"
+    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
     ```
     [完整配置指南 →](/zh/integrations/codex-cli)
   </Accordion>
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-tokenlab-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
+    export GEMINI_API_KEY="sk-your-api-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
     ```
     [完整配置指南 →](/zh/integrations/gemini-cli)
   </Accordion>

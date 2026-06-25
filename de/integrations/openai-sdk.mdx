@@ -1,11 +1,11 @@
 ---
 title: "OpenAI SDK"
-description: "Verwenden Sie TokenLab mit offiziellen OpenAI-SDKs und OpenAI-kompatiblen Clients"
+description: "Verwenden Sie AI Sonar mit offiziellen OpenAI-SDKs und OpenAI-kompatiblen Clients"
 ---
 
 ## Übersicht
 
-TokenLab funktioniert mit den offiziellen OpenAI-SDKs, indem der Client auf `https://api.tokenlab.sh/v1` zeigt.
+AI Sonar funktioniert mit den offiziellen OpenAI-SDKs, indem der Client auf `https://api.aisonar.dev/v1` zeigt.
 
 Bei den meisten neuen Projekten sollten Sie **Chat Completions** als standardmäßigen OpenAI-kompatiblen Pfad bevorzugen. Verwenden Sie die **Responses API** nur, wenn Sie explizit Responses-spezifisches Verhalten benötigen.
 
@@ -53,8 +53,8 @@ Verwenden Sie `POST /v1/responses` nur, wenn Sie explizit Responses-spezifisches
 from openai import OpenAI
 
 client = OpenAI(
-    api_key="sk-your-tokenlab-key",
-    base_url="https://api.tokenlab.sh/v1",
+    api_key="sk-your-api-key",
+    base_url="https://api.aisonar.dev/v1",
 )
 ```
 
@@ -62,8 +62,8 @@ client = OpenAI(
 import OpenAI from 'openai';
 
 const client = new OpenAI({
-  apiKey: 'sk-your-tokenlab-key',
-  baseURL: 'https://api.tokenlab.sh/v1',
+  apiKey: 'sk-your-api-key',
+  baseURL: 'https://api.aisonar.dev/v1',
 });
 ```
 
@@ -77,8 +77,8 @@ import (
 
 func main() {
     client := openai.NewClient(
-        option.WithAPIKey("sk-your-tokenlab-key"),
-        option.WithBaseURL("https://api.tokenlab.sh/v1"),
+        option.WithAPIKey("sk-your-api-key"),
+        option.WithBaseURL("https://api.aisonar.dev/v1"),
     )
 
     _ = client
@@ -94,7 +94,7 @@ func main() {
 ```python Python
 response = client.chat.completions.create(
     model="gpt-5.4",
-    messages=[{"role": "user", "content": "Explain what TokenLab does in one sentence."}]
+    messages=[{"role": "user", "content": "Explain what AI Sonar does in one sentence."}]
 )
 
 print(response.choices[0].message.content)
@@ -103,20 +103,20 @@ print(response.choices[0].message.content)
 ```javascript JavaScript
 const response = await client.chat.completions.create({
   model: 'gpt-5.4',
-  messages: [{ role: 'user', content: 'Explain what TokenLab does in one sentence.' }],
+  messages: [{ role: 'user', content: 'Explain what AI Sonar does in one sentence.' }],
 });
 
 console.log(response.choices[0].message.content);
 ```
 
 ```bash cURL
-curl https://api.tokenlab.sh/v1/chat/completions \
-  -H "Authorization: Bearer sk-your-tokenlab-key" \
+curl https://api.aisonar.dev/v1/chat/completions \
+  -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gpt-5.4",
     "messages": [
-      {"role": "user", "content": "Explain what TokenLab does in one sentence."}
+      {"role": "user", "content": "Explain what AI Sonar does in one sentence."}
     ]
   }'
 ```
@@ -215,7 +215,7 @@ print(response.data[0].embedding[:5])
 
 ## Chat Completions
 
-Chat Completions ist der standardmäßige OpenAI-kompatible Pfad für TokenLab:
+Chat Completions ist der standardmäßige OpenAI-kompatible Pfad für AI Sonar:
 
 ```python
 response = client.chat.completions.create(
@@ -233,14 +233,14 @@ print(response.choices[0].message.content)
 
 <AccordionGroup>
   <Accordion title="Verbindungsfehler">
-    - Überprüfen Sie, ob die Basis-URL genau `https://api.tokenlab.sh/v1` ist
+    - Überprüfen Sie, ob die Basis-URL genau `https://api.aisonar.dev/v1` ist
     - Prüfen Sie auf Proxy-Interferenzen oder benutzerdefinierte HTTP-Client-Überschreibungen
     - Stellen Sie sicher, dass Ihre SDK-Version aktuell ist, bevor Sie das Verhalten des Providers debuggen
   </Accordion>
 
   <Accordion title="Authentifizierung fehlgeschlagen">
     - Prüfen Sie, ob Ihr API-Schlüssel mit `sk-` beginnt
-    - Überprüfen Sie, ob der Schlüssel im TokenLab-Dashboard aktiv ist
+    - Überprüfen Sie, ob der Schlüssel im AI Sonar-Dashboard aktiv ist
     - Bestätigen Sie, dass das SDK `Authorization: Bearer ...` sendet
   </Accordion>
 

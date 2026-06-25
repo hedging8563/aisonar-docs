@@ -40,7 +40,7 @@ Coding agents sangat ideal untuk caching karena mereka terus-menerus mengulang p
 
 ### Prompt Cache (Level Provider)
 
-[Prompt caching upstream](/id/guides/prompt-cache) berjalan otomatis melalui TokenLab. System prompt panjang — yang selalu disertakan coding agents — di-cache di level provider:
+[Prompt caching upstream](/id/guides/prompt-cache) berjalan otomatis melalui AI Sonar. System prompt panjang — yang selalu disertakan coding agents — di-cache di level provider:
 
 | Penyedia | Diskon Cache | Min Token |
 |----------|-------------|-----------|
@@ -71,9 +71,9 @@ Estimasi biaya untuk sesi coding 1 jam yang tipikal (~3 juta token):
 | Setup | Biaya per Jam | Bulanan (160 jam) |
 |-------|---------------|-------------------|
 | API langsung (model premium) | ~$15–25 | ~$2.400–4.000 |
-| TokenLab (smart routing) | ~$10–18 | ~$1.600–2.900 |
-| TokenLab + prompt cache | ~$4–8 | ~$640–1.280 |
-| TokenLab + kedua cache | ~$2–5 | ~$320–800 |
+| AI Sonar (smart routing) | ~$10–18 | ~$1.600–2.900 |
+| AI Sonar + prompt cache | ~$4–8 | ~$640–1.280 |
+| AI Sonar + kedua cache | ~$2–5 | ~$320–800 |
 
 <Warning>
 Ini adalah estimasi ilustratif. Biaya aktual bergantung pada pilihan model, pola penggunaan, dan tingkat cache hit Anda. Periksa [harga real-time](/api-reference/pricing/get-pricing) untuk tarif terkini.
@@ -111,35 +111,35 @@ Sebagian besar coding agents mendukung pemadatan konteks — merangkum giliran p
 
 ## Konfigurasi Cepat
 
-Setiap tool hanya membutuhkan beberapa baris untuk terhubung melalui TokenLab:
+Setiap tool hanya membutuhkan beberapa baris untuk terhubung melalui AI Sonar:
 
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
-    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
+    export ANTHROPIC_API_KEY="sk-your-api-key"
+    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
     ```
     [Panduan setup lengkap →](/integrations/claude-code)
   </Accordion>
 
   <Accordion title="Cursor">
-    Pengaturan → Model → Kunci API OpenAI: `sk-your-key`, Base URL: `https://api.tokenlab.sh/v1`
+    Pengaturan → Model → Kunci API OpenAI: `sk-your-key`, Base URL: `https://api.aisonar.dev/v1`
 
     [Panduan setup lengkap →](/integrations/cursor)
   </Accordion>
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-tokenlab-key"
-    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
+    export OPENAI_API_KEY="sk-your-api-key"
+    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
     ```
     [Panduan setup lengkap →](/integrations/codex-cli)
   </Accordion>
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-tokenlab-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
+    export GEMINI_API_KEY="sk-your-api-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
     ```
     [Panduan setup lengkap →](/integrations/gemini-cli)
   </Accordion>

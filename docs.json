@@ -3,14 +3,14 @@
   "theme": "mint",
   "name": "AI Sonar",
   "colors": {
-    "primary": "#0F766E",
-    "light": "#14B8A6",
-    "dark": "#0B4F4A"
+    "primary": "#6D28D9",
+    "light": "#7C3AED",
+    "dark": "#4C1D95"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/logo/aisonar-favicon.svg",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
+    "light": "/logo/aisonar-light.svg",
+    "dark": "/logo/aisonar-dark.svg",
     "href": "https://aisonar.dev"
   },
   "api": {
@@ -28,17 +28,17 @@
       "anchors": [
         {
           "anchor": "Models",
-          "href": "https://aisonar.dev#models",
+          "href": "https://aisonar.dev/models",
           "icon": "robot"
         },
         {
           "anchor": "Dashboard",
-          "href": "https://admin.aisonar.dev",
+          "href": "https://console.aisonar.dev",
           "icon": "gauge"
         },
         {
           "anchor": "API Status",
-          "href": "https://aisonar.dev/status",
+          "href": "https://api.aisonar.dev/health",
           "icon": "signal"
         }
       ]
@@ -79,7 +79,7 @@
                   "guides/coding-agents",
                   "guides/coding-agent-cost",
                   "guides/coding-agent-models",
-                  "guides/tokenlab-provider"
+                  "guides/aisonar-provider"
                 ]
               }
             ]
@@ -252,7 +252,7 @@
                   "zh/guides/coding-agents",
                   "zh/guides/coding-agent-cost",
                   "zh/guides/coding-agent-models",
-                  "zh/guides/tokenlab-provider"
+                  "zh/guides/aisonar-provider"
                 ]
               }
             ]
@@ -425,7 +425,7 @@
                   "zh-Hant/guides/coding-agents",
                   "zh-Hant/guides/coding-agent-cost",
                   "zh-Hant/guides/coding-agent-models",
-                  "zh-Hant/guides/tokenlab-provider"
+                  "zh-Hant/guides/aisonar-provider"
                 ]
               }
             ]
@@ -598,7 +598,7 @@
                   "ja/guides/coding-agents",
                   "ja/guides/coding-agent-cost",
                   "ja/guides/coding-agent-models",
-                  "ja/guides/tokenlab-provider"
+                  "ja/guides/aisonar-provider"
                 ]
               }
             ]
@@ -771,7 +771,7 @@
                   "ko/guides/coding-agents",
                   "ko/guides/coding-agent-cost",
                   "ko/guides/coding-agent-models",
-                  "ko/guides/tokenlab-provider"
+                  "ko/guides/aisonar-provider"
                 ]
               }
             ]
@@ -944,7 +944,7 @@
                   "de/guides/coding-agents",
                   "de/guides/coding-agent-cost",
                   "de/guides/coding-agent-models",
-                  "de/guides/tokenlab-provider"
+                  "de/guides/aisonar-provider"
                 ]
               }
             ]
@@ -1117,7 +1117,7 @@
                   "fr/guides/coding-agents",
                   "fr/guides/coding-agent-cost",
                   "fr/guides/coding-agent-models",
-                  "fr/guides/tokenlab-provider"
+                  "fr/guides/aisonar-provider"
                 ]
               }
             ]
@@ -1290,7 +1290,7 @@
                   "es/guides/coding-agents",
                   "es/guides/coding-agent-cost",
                   "es/guides/coding-agent-models",
-                  "es/guides/tokenlab-provider"
+                  "es/guides/aisonar-provider"
                 ]
               }
             ]
@@ -1463,7 +1463,7 @@
                   "pt/guides/coding-agents",
                   "pt/guides/coding-agent-cost",
                   "pt/guides/coding-agent-models",
-                  "pt/guides/tokenlab-provider"
+                  "pt/guides/aisonar-provider"
                 ]
               }
             ]
@@ -1636,7 +1636,7 @@
                   "ar/guides/coding-agents",
                   "ar/guides/coding-agent-cost",
                   "ar/guides/coding-agent-models",
-                  "ar/guides/tokenlab-provider"
+                  "ar/guides/aisonar-provider"
                 ]
               }
             ]
@@ -1809,7 +1809,7 @@
                   "vi/guides/coding-agents",
                   "vi/guides/coding-agent-cost",
                   "vi/guides/coding-agent-models",
-                  "vi/guides/tokenlab-provider"
+                  "vi/guides/aisonar-provider"
                 ]
               }
             ]
@@ -1982,7 +1982,7 @@
                   "id/guides/coding-agents",
                   "id/guides/coding-agent-cost",
                   "id/guides/coding-agent-models",
-                  "id/guides/tokenlab-provider"
+                  "id/guides/aisonar-provider"
                 ]
               }
             ]
@@ -2155,7 +2155,7 @@
                   "tr/guides/coding-agents",
                   "tr/guides/coding-agent-cost",
                   "tr/guides/coding-agent-models",
-                  "tr/guides/tokenlab-provider"
+                  "tr/guides/aisonar-provider"
                 ]
               }
             ]
@@ -2300,7 +2300,7 @@
     "primary": {
       "type": "button",
       "label": "Open Console",
-      "href": "https://admin.aisonar.dev"
+      "href": "https://console.aisonar.dev"
     }
   },
   "redirects": [

@@ -18,13 +18,13 @@ description: "Mevcut tüm modelleri listeler"
   - `object` (string): `model`
   - `created` (integer): Oluşturulma zaman damgası
   - `owned_by` (string): Model sağlayıcısı
-  - `tokenlab.category` (string): Genel model kategorisi
-  - `tokenlab.pricing_unit` (string veya `null`): Varsa genel fiyatlandırma birimi
-  - `tokenlab.capability_flags` (object veya `null`): Genel yetenek özeti
-  - `tokenlab.supported_operations` (array veya `null`): Model için genel chat dışı işlemler
-  - `tokenlab.pricing_provenance` (object veya `null`): Genel fiyat kaynağı metadata'sı
-  - `tokenlab.public_contract_summary` (object veya `null`): Yalnızca `public_operations` ve `request_endpoint` içeren hafif chat dışı discovery özeti
-  - `tokenlab.agent_preferences` (object): Yalnızca `recommended_for` mevcut olduğunda döner
+  - `aisonar.category` (string): Genel model kategorisi
+  - `aisonar.pricing_unit` (string veya `null`): Varsa genel fiyatlandırma birimi
+  - `aisonar.capability_flags` (object veya `null`): Genel yetenek özeti
+  - `aisonar.supported_operations` (array veya `null`): Model için genel chat dışı işlemler
+  - `aisonar.pricing_provenance` (object veya `null`): Genel fiyat kaynağı metadata'sı
+  - `aisonar.public_contract_summary` (object veya `null`): Yalnızca `public_operations` ve `request_endpoint` içeren hafif chat dışı discovery özeti
+  - `aisonar.agent_preferences` (object): Yalnızca `recommended_for` mevcut olduğunda döner
 </ResponseField>
 
 <Note>
@@ -55,7 +55,7 @@ description: "Mevcut tüm modelleri listeler"
 
 <RequestExample>
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/models" \
+curl "https://api.aisonar.dev/v1/models" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
@@ -64,7 +64,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 models = client.models.list()
@@ -78,7 +78,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const models = await client.models.list();
@@ -98,7 +98,7 @@ import (
 )
 
 func main() {
-    req, _ := http.NewRequest("GET", "https://api.tokenlab.sh/v1/models", nil)
+    req, _ := http.NewRequest("GET", "https://api.aisonar.dev/v1/models", nil)
     req.Header.Set("Authorization", "Bearer sk-your-api-key")
 
     resp, _ := http.DefaultClient.Do(req)
@@ -121,7 +121,7 @@ func main() {
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.tokenlab.sh/v1/models');
+$ch = curl_init('https://api.aisonar.dev/v1/models');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -202,7 +202,7 @@ anthropic_models = [m for m in models.data if m.owned_by == "anthropic"]
       "object": "model",
       "created": 1706000000,
       "owned_by": "google",
-      "tokenlab": {
+      "aisonar": {
         "category": "image",
         "pricing_unit": "per_request",
         "agent_preferences": {
@@ -236,7 +236,7 @@ anthropic_models = [m for m in models.data if m.owned_by == "anthropic"]
       "object": "model",
       "created": 1706000000,
       "owned_by": "google",
-      "tokenlab": {
+      "aisonar": {
         "category": "image",
         "pricing_unit": "per_request",
         "agent_preferences": {

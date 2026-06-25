@@ -5,7 +5,7 @@ description: "Structured error hints for AI agents to self-correct on the first 
 
 ## Overview
 
-TokenLab's Agent-First API enriches error responses with structured hints that AI agents can parse and act on immediately — no web searches, no doc lookups, no guesswork.
+AI Sonar's Agent-First API enriches error responses with structured hints that AI agents can parse and act on immediately — no web searches, no doc lookups, no guesswork.
 
 Every error response includes optional fields like `did_you_mean`, `suggestions`, `hint`, `retryable`, and `retry_after` inside the standard `error` object. These fields are backward-compatible — clients that don't use them see no difference.
 
@@ -43,7 +43,7 @@ When a model name doesn't match any active model:
       {"id": "gpt-5-mini"},
       {"id": "claude-sonnet-4-6"}
     ],
-    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.tokenlab.sh/v1/models to list all available models."
+    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.aisonar.dev/v1/models to list all available models."
   }
 }
 ```
@@ -71,7 +71,7 @@ When account balance is too low for the estimated cost:
       {"id": "gpt-5-mini"},
       {"id": "deepseek-v3-2"}
     ],
-    "hint": "Insufficient balance: need ~$0.3500 for claude-sonnet-4-6, but balance is $0.1200. Try a cheaper model, or top up at https://tokenlab.sh/dashboard/billing."
+    "hint": "Insufficient balance: need ~$0.3500 for claude-sonnet-4-6, but balance is $0.1200. Try a cheaper model, or top up at https://console.aisonar.dev/billing."
   }
 }
 ```
@@ -120,7 +120,7 @@ When all upstream channels for a model are unavailable:
 The `retry_after` value is calculated from the actual rate limit window reset time.
 
 <Note>
-OpenAI-compatible endpoints use TokenLab's stable public error types such as `rate_limit_exceeded`, `upstream_error`, and `all_channels_failed`. Anthropic-compatible and Gemini-compatible endpoints use their own native response shapes.
+OpenAI-compatible endpoints use AI Sonar's stable public error types such as `rate_limit_exceeded`, `upstream_error`, and `all_channels_failed`. Anthropic-compatible and Gemini-compatible endpoints use their own native response shapes.
 </Note>
 
 ### context_length_exceeded (400)
@@ -147,10 +147,7 @@ When input exceeds the model's context window (upstream error, enriched with hin
 
 When you call `/v1/chat/completions` with a model that has a native endpoint (Anthropic or Gemini), the **success response** includes optimization headers:
 
-```
-X-TokenLab-Hint: This model supports native Anthropic format. Use POST /v1/messages for better performance (no format conversion).
-X-TokenLab-Native-Endpoint: /v1/messages
-```
+
 
 | Model Provider | Suggested Endpoint | Benefit |
 |---------------|-------------------|---------|
@@ -167,7 +164,7 @@ These headers appear on both streaming and non-streaming responses.
 ```json
 {
   "id": "gemini-2.5-flash-image",
-  "tokenlab": {
+  "aisonar": {
     "category": "image",
     "pricing_unit": "per_request",
     "agent_preferences": {
@@ -205,9 +202,9 @@ When `recommended_for` is present, `agent_preferences` is derived from a cached 
 ### Category Filtering
 
 ```bash
-GET https://api.tokenlab.sh/v1/models?category=chat          # Chat models only
-GET https://api.tokenlab.sh/v1/models?category=image         # Image generation models
-GET https://api.tokenlab.sh/v1/models?tag=coding&category=chat  # Coding-optimized chat models
+GET https://api.aisonar.dev/v1/models?category=chat          # Chat models only
+GET https://api.aisonar.dev/v1/models?category=image         # Image generation models
+GET https://api.aisonar.dev/v1/models?tag=coding&category=chat  # Coding-optimized chat models
 ```
 
 ### Recommendation Discovery
@@ -215,9 +212,9 @@ GET https://api.tokenlab.sh/v1/models?tag=coding&category=chat  # Coding-optimiz
 For non-chat workflows, agents should fetch the current recommended shortlist first:
 
 ```bash
-GET https://api.tokenlab.sh/v1/models?recommended_for=image
-GET https://api.tokenlab.sh/v1/models?recommended_for=translation
-GET https://api.tokenlab.sh/v1/models?category=tts&recommended_for=tts
+GET https://api.aisonar.dev/v1/models?recommended_for=image
+GET https://api.aisonar.dev/v1/models?recommended_for=translation
+GET https://api.aisonar.dev/v1/models?category=tts&recommended_for=tts
 ```
 
 Valid `recommended_for` values are:
@@ -246,7 +243,7 @@ Recommended agent flow:
 A machine-readable API overview is available at:
 
 ```
-GET https://api.tokenlab.sh/llms.txt
+GET https://api.aisonar.dev/llms.txt
 ```
 
 It includes:
@@ -267,7 +264,7 @@ from openai import OpenAI, BadRequestError
 
 client = OpenAI(
     api_key="sk-your-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 def smart_chat(messages, model="gpt-4o"):
@@ -292,7 +289,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 async function smartChat(messages, model = 'gpt-4o') {

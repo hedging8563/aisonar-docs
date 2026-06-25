@@ -16,7 +16,7 @@ If the create response included `poll_url`, prefer calling that exact URL for po
 You can also poll public image task IDs such as `ldtask_...` at `/v1/images/{id}`. This compatibility alias uses the same authorization, ownership checks, billing headers, terminal snapshots, and response shape as `/v1/images/generations/{id}`.
 
 
-If the task no longer exists or can no longer be resolved through the public async-task contract, TokenLab returns `async_task_not_found` with the message `Task not found or no longer available.`
+If the task no longer exists or can no longer be resolved through the public async-task contract, AI Sonar returns `async_task_not_found` with the message `Task not found or no longer available.`
 </Info>
 
 ## Response
@@ -47,7 +47,7 @@ If the task no longer exists or can no longer be resolved through the public asy
 
 <RequestExample>
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
+curl "https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
@@ -55,7 +55,7 @@ curl "https://api.tokenlab.sh/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" 
 import requests
 
 response = requests.get(
-    "https://api.tokenlab.sh/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     headers={"Authorization": "Bearer sk-your-api-key"}
 )
 
@@ -68,7 +68,7 @@ if data["status"] == "completed":
 
 ```javascript JavaScript
 const response = await fetch(
-  'https://api.tokenlab.sh/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+  'https://api.aisonar.dev/v1/tasks/ldtask_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
   {
     headers: {
       'Authorization': 'Bearer sk-your-api-key'
@@ -143,7 +143,7 @@ import time
 
 def poll_image_task(task_id, api_key, max_wait=300, interval=3):
     """Poll for image generation result with timeout."""
-    url = f"https://api.tokenlab.sh/v1/tasks/{task_id}"
+    url = f"https://api.aisonar.dev/v1/tasks/{task_id}"
     headers = {"Authorization": f"Bearer {api_key}"}
 
     start_time = time.time()

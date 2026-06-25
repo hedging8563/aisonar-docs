@@ -1,15 +1,15 @@
 ---
 title: "AI-Chat-Anwendungen"
-description: "Konfigurieren Sie gängige AI-Chat-Anwendungen für die Verwendung der OpenAI-kompatiblen API von TokenLab"
+description: "Konfigurieren Sie gängige AI-Chat-Anwendungen für die Verwendung der OpenAI-kompatiblen API von AI Sonar"
 ---
 
 ## Überblick
 
-Die meisten allgemeinen AI-Chat-Apps verbinden sich über den standardmäßigen OpenAI-kompatiblen Chat-Pfad mit TokenLab.
+Die meisten allgemeinen AI-Chat-Apps verbinden sich über den standardmäßigen OpenAI-kompatiblen Chat-Pfad mit AI Sonar.
 
 In der Praxis bedeutet das:
-- Verwenden Sie `https://api.tokenlab.sh/v1` als Base URL, sofern die App nicht ausdrücklich nach einer vollständigen Endpunkt-URL fragt
-- Verwenden Sie Ihren TokenLab API-Schlüssel als API-Schlüssel im OpenAI-Stil
+- Verwenden Sie `https://api.aisonar.dev/v1` als Base URL, sofern die App nicht ausdrücklich nach einer vollständigen Endpunkt-URL fragt
+- Verwenden Sie Ihren AI Sonar API-Schlüssel als API-Schlüssel im OpenAI-Stil
 - Wählen Sie Modelle aus, die die App in einem standardmäßigen Chat-Ablauf verwenden kann
 
 <Note>
@@ -41,12 +41,12 @@ Allgemeine Chat-Apps sind in der Regel **auf Chat Completions ausgerichtet** und
 
 | Feld | Wert |
 |-------|-------|
-| Basis-URL | `https://api.tokenlab.sh/v1` |
-| API-Schlüssel | `sk-your-tokenlab-key` |
+| Basis-URL | `https://api.aisonar.dev/v1` |
+| API-Schlüssel | `sk-your-api-key` |
 | API-Typ | OpenAI-kompatibel |
 
 Wenn eine App statt einer Base URL eine **vollständige Endpunkt-URL** verlangt, verwenden Sie:
-- Chat Completions: `https://api.tokenlab.sh/v1/chat/completions`
+- Chat Completions: `https://api.aisonar.dev/v1/chat/completions`
 
 ## Beispiel-App-Einrichtungen
 
@@ -55,24 +55,24 @@ Wenn eine App statt einer Base URL eine **vollständige Endpunkt-URL** verlangt,
     **Selbst betriebenes LobeChat**
 
     ```bash
-    OPENAI_API_KEY=sk-your-tokenlab-key
-    OPENAI_PROXY_URL=https://api.tokenlab.sh/v1
+    OPENAI_API_KEY=sk-your-api-key
+    OPENAI_PROXY_URL=https://api.aisonar.dev/v1
     ```
 
     **LobeChat Cloud**
     1. Öffnen Sie **Settings** → **AI Service Provider**
     2. Wählen Sie **OpenAI**
-    3. Geben Sie Ihren TokenLab API-Schlüssel ein
-    4. Setzen Sie den benutzerdefinierten Endpunkt auf `https://api.tokenlab.sh/v1`
+    3. Geben Sie Ihren AI Sonar API-Schlüssel ein
+    4. Setzen Sie den benutzerdefinierten Endpunkt auf `https://api.aisonar.dev/v1`
   </Tab>
 
   <Tab title="Cherry Studio">
     1. Öffnen Sie **Settings** → **Model Provider**
     2. Fügen Sie einen **OpenAI-kompatibel** Anbieter hinzu
     3. Geben Sie ein:
-       - **Name**: TokenLab
-       - **API Base URL**: `https://api.tokenlab.sh/v1`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **Name**: AI Sonar
+       - **API Base URL**: `https://api.aisonar.dev/v1`
+       - **API Key**: `sk-your-api-key`
     4. Fügen Sie die Modelle hinzu, die Sie verwenden möchten
   </Tab>
 
@@ -80,8 +80,8 @@ Wenn eine App statt einer Base URL eine **vollständige Endpunkt-URL** verlangt,
     1. Öffnen Sie **Settings** → **AI Model**
     2. Wählen Sie **OpenAI API Compatible**
     3. Geben Sie ein:
-       - **API Host**: `https://api.tokenlab.sh/v1`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **API Host**: `https://api.aisonar.dev/v1`
+       - **API Key**: `sk-your-api-key`
        - **Model**: `gpt-5-mini` oder `gpt-4o`
   </Tab>
 
@@ -89,8 +89,8 @@ Wenn eine App statt einer Base URL eine **vollständige Endpunkt-URL** verlangt,
     1. Öffnen Sie **Settings**
     2. Wählen Sie **Custom Endpoint**
     3. Geben Sie ein:
-       - **Endpunkt-URL**: `https://api.tokenlab.sh/v1/chat/completions`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **Endpunkt-URL**: `https://api.aisonar.dev/v1/chat/completions`
+       - **API Key**: `sk-your-api-key`
     4. Konfigurieren Sie die Modelle, die Sie bereitstellen möchten
   </Tab>
 
@@ -98,8 +98,8 @@ Wenn eine App statt einer Base URL eine **vollständige Endpunkt-URL** verlangt,
     1. Öffnen Sie **Admin Settings** → **Connections**
     2. Fügen Sie eine **OpenAI-kompatible** Verbindung hinzu
     3. Geben Sie ein:
-       - **Base URL**: `https://api.tokenlab.sh/v1`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **Base URL**: `https://api.aisonar.dev/v1`
+       - **API Key**: `sk-your-api-key`
     4. Speichern Sie und wählen Sie die Modelle aus, die Sie freigeben möchten
   </Tab>
 
@@ -108,9 +108,9 @@ Wenn eine App statt einer Base URL eine **vollständige Endpunkt-URL** verlangt,
 
     ```yaml
     customEndpoints:
-      - name: TokenLab
+      - name: AI Sonar
         apiKey: '${OPENAI_API_KEY}'
-        baseURL: 'https://api.tokenlab.sh/v1'
+        baseURL: 'https://api.aisonar.dev/v1'
         models:
           default: ['gpt-5-mini', 'gpt-5.4', 'claude-sonnet-4-6']
           fetch: false
@@ -131,7 +131,7 @@ Wenn eine App statt einer Base URL eine **vollständige Endpunkt-URL** verlangt,
 
 <AccordionGroup>
   <Accordion title="Base URL bevorzugen, wenn die App sie unterstützt">
-    Die meisten Apps lassen sich einfacher konfigurieren und sind weniger fehleranfällig, wenn Sie `https://api.tokenlab.sh/v1` als Base URL statt einer vollständigen Endpunkt-URL angeben.
+    Die meisten Apps lassen sich einfacher konfigurieren und sind weniger fehleranfällig, wenn Sie `https://api.aisonar.dev/v1` als Base URL statt einer vollständigen Endpunkt-URL angeben.
   </Accordion>
 
   <Accordion title="Zuerst kleinere Modelle verwenden">
@@ -147,20 +147,20 @@ Wenn eine App statt einer Base URL eine **vollständige Endpunkt-URL** verlangt,
 
 <AccordionGroup>
   <Accordion title="Verbindungsfehler">
-    - Vergewissern Sie sich, dass die Base URL exakt `https://api.tokenlab.sh/v1` ist
+    - Vergewissern Sie sich, dass die Base URL exakt `https://api.aisonar.dev/v1` ist
     - Entfernen Sie abschließende Schrägstriche, wenn die App Pfade automatisch anhängt
-    - Wenn die App eine vollständige Endpunkt-URL verlangt, verwenden Sie `https://api.tokenlab.sh/v1/chat/completions`
+    - Wenn die App eine vollständige Endpunkt-URL verlangt, verwenden Sie `https://api.aisonar.dev/v1/chat/completions`
   </Accordion>
 
   <Accordion title="401 Unauthorized">
     - Überprüfen Sie Ihren API-Schlüssel erneut
-    - Bestätigen Sie, dass der Schlüssel im TokenLab-Dashboard aktiv ist
+    - Bestätigen Sie, dass der Schlüssel im AI Sonar-Dashboard aktiv ist
     - Stellen Sie sicher, dass keine zusätzlichen Leerzeichen oder Zeilenumbrüche vorhanden sind
   </Accordion>
 
   <Accordion title="Modell nicht verfügbar">
     - Überprüfen Sie den Modellnamen exakt
     - Versuchen Sie einen breit unterstützten Standard wie `gpt-5-mini`, `gpt-4o` oder `claude-sonnet-4-6`
-    - Prüfen Sie die aktuelle Verfügbarkeit in den TokenLab-Dokumenten oder im Dashboard
+    - Prüfen Sie die aktuelle Verfügbarkeit in den AI Sonar-Dokumenten oder im Dashboard
   </Accordion>
 </AccordionGroup>

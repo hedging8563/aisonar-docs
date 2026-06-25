@@ -1,14 +1,14 @@
 ---
 title: "SDK de Anthropic"
-description: "Usa TokenLab con el SDK de Anthropic para compatibilidad nativa con la Messages API de Claude"
+description: "Usa AI Sonar con el SDK de Anthropic para compatibilidad nativa con la Messages API de Claude"
 ---
 
 ## Resumen general
 
-TokenLab admite la ruta nativa de la **Messages API** de Anthropic, por lo que puedes usar directamente el SDK oficial de Anthropic para los modelos Claude.
+AI Sonar admite la ruta nativa de la **Messages API** de Anthropic, por lo que puedes usar directamente el SDK oficial de Anthropic para los modelos Claude.
 
 <Note>
-Para el SDK de Anthropic, usa `https://api.tokenlab.sh` como URL base, sin agregar `/v1` manualmente.
+Para el SDK de Anthropic, usa `https://api.aisonar.dev` como URL base, sin agregar `/v1` manualmente.
 </Note>
 
 <Note>
@@ -19,7 +19,7 @@ Para el SDK de Anthropic, usa `https://api.tokenlab.sh` como URL base, sin agreg
 **Nivel de soporte**: Ruta nativa fuerte
 </Note>
 
-Entre las rutas SDK documentadas, esta es una de las rutas de TokenLab con mejor compatibilidad para las funciones nativas de Claude.
+Entre las rutas SDK documentadas, esta es una de las rutas de AI Sonar con mejor compatibilidad para las funciones nativas de Claude.
 
 ## Instalación
 
@@ -43,8 +43,8 @@ npm install @anthropic-ai/sdk
 from anthropic import Anthropic
 
 client = Anthropic(
-    api_key="sk-your-tokenlab-key",
-    base_url="https://api.tokenlab.sh",
+    api_key="sk-your-api-key",
+    base_url="https://api.aisonar.dev",
 )
 ```
 
@@ -52,8 +52,8 @@ client = Anthropic(
 import Anthropic from '@anthropic-ai/sdk';
 
 const client = new Anthropic({
-  apiKey: 'sk-your-tokenlab-key',
-  baseURL: 'https://api.tokenlab.sh',
+  apiKey: 'sk-your-api-key',
+  baseURL: 'https://api.aisonar.dev',
 });
 ```
 
@@ -66,7 +66,7 @@ message = client.messages.create(
     model="claude-sonnet-4-6",
     max_tokens=1024,
     messages=[
-        {"role": "user", "content": "Explain TokenLab in one sentence."}
+        {"role": "user", "content": "Explain AI Sonar in one sentence."}
     ]
 )
 
@@ -189,18 +189,18 @@ for block in message.content:
 
 <AccordionGroup>
   <Accordion title="URL base incorrecta">
-    - Usa `https://api.tokenlab.sh`
+    - Usa `https://api.aisonar.dev`
     - No agregues manualmente `/v1` al configurar el SDK de Anthropic
   </Accordion>
 
   <Accordion title="Autenticación fallida">
-    - Verifica que tu API key de TokenLab comience con `sk-`
-    - Confirma que la key esté activa en el dashboard de TokenLab
+    - Verifica que tu API key de AI Sonar comience con `sk-`
+    - Confirma que la key esté activa en el dashboard de AI Sonar
     - Deja que el SDK de Anthropic gestione el encabezado de autenticación en lugar de agregar encabezados personalizados manualmente
   </Accordion>
 
   <Accordion title="Modelo no encontrado">
     - Verifica el nombre del modelo Claude exactamente
-    - Revisa la disponibilidad actual en el catálogo de modelos de TokenLab
+    - Revisa la disponibilidad actual en el catálogo de modelos de AI Sonar
   </Accordion>
 </AccordionGroup>

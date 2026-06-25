@@ -18,13 +18,13 @@ description: "Lists all available models"
   - `object` (string): `model`
   - `created` (integer): Creation timestamp
   - `owned_by` (string): Model provider
-  - `tokenlab.category` (string): Public model category
-  - `tokenlab.pricing_unit` (string or `null`): Public pricing unit when available
-  - `tokenlab.capability_flags` (object or `null`): Public capability summary
-  - `tokenlab.supported_operations` (array or `null`): Public non-chat operations for the model
-  - `tokenlab.pricing_provenance` (object or `null`): Public pricing source metadata
-  - `tokenlab.public_contract_summary` (object or `null`): Lightweight non-chat discovery summary with only `public_operations` and `request_endpoint`
-  - `tokenlab.agent_preferences` (object): Only returned when `recommended_for` is present
+  - `aisonar.category` (string): Public model category
+  - `aisonar.pricing_unit` (string or `null`): Public pricing unit when available
+  - `aisonar.capability_flags` (object or `null`): Public capability summary
+  - `aisonar.supported_operations` (array or `null`): Public non-chat operations for the model
+  - `aisonar.pricing_provenance` (object or `null`): Public pricing source metadata
+  - `aisonar.public_contract_summary` (object or `null`): Lightweight non-chat discovery summary with only `public_operations` and `request_endpoint`
+  - `aisonar.agent_preferences` (object): Only returned when `recommended_for` is present
 </ResponseField>
 
 <Note>
@@ -55,12 +55,12 @@ When `recommended_for` is present, `/v1/models` sorts non-chat models by the lat
 
 <RequestExample>
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/models" \
+curl "https://api.aisonar.dev/v1/models" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/models?recommended_for=image" \
+curl "https://api.aisonar.dev/v1/models?recommended_for=image" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
@@ -69,7 +69,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 models = client.models.list()
@@ -83,7 +83,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const models = await client.models.list();
@@ -103,7 +103,7 @@ import (
 )
 
 func main() {
-    req, _ := http.NewRequest("GET", "https://api.tokenlab.sh/v1/models", nil)
+    req, _ := http.NewRequest("GET", "https://api.aisonar.dev/v1/models", nil)
     req.Header.Set("Authorization", "Bearer sk-your-api-key")
 
     resp, _ := http.DefaultClient.Do(req)
@@ -126,7 +126,7 @@ func main() {
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.tokenlab.sh/v1/models');
+$ch = curl_init('https://api.aisonar.dev/v1/models');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -207,7 +207,7 @@ anthropic_models = [m for m in models.data if m.owned_by == "anthropic"]
       "object": "model",
       "created": 1706000000,
       "owned_by": "google",
-      "tokenlab": {
+      "aisonar": {
         "category": "image",
         "pricing_unit": "per_request",
         "agent_preferences": {

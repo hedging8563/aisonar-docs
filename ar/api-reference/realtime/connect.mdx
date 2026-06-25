@@ -24,7 +24,7 @@ description: "الاتصال بجلسات صوتية ومتعددة الوسائ
 ```javascript JavaScript
 import WebSocket from 'ws';
 
-const socket = new WebSocket('wss://api.tokenlab.sh/v1/realtime?model=qwen-tts-realtime', {
+const socket = new WebSocket('wss://api.aisonar.dev/v1/realtime?model=qwen-tts-realtime', {
   headers: { Authorization: 'Bearer sk-your-api-key' }
 });
 
@@ -38,17 +38,17 @@ socket.on('message', (data) => {
 ```
 
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/realtime" \
+curl "https://api.aisonar.dev/v1/realtime" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>
 
 ## الرسائل
 
-يمرر TokenLab رسائل WebSocket بين عميلك والمزود الفوري الذي تم اختياره. احتفظ بشكل الأحداث الرسمي للنموذج المحدد ومرر `model` في query string.
+يمرر AI Sonar رسائل WebSocket بين عميلك والمزود الفوري الذي تم اختياره. احتفظ بشكل الأحداث الرسمي للنموذج المحدد ومرر `model` في query string.
 
 ## الفوترة والإغلاق
 
-تستخدم جلسات realtime رصيد مفتاح API نفسه. يخصم TokenLab تقديراً صغيراً عند فتح socket، ثم يسوي المبلغ أو يرده عند الإغلاق.
+تستخدم جلسات realtime رصيد مفتاح API نفسه. يخصم AI Sonar تقديراً صغيراً عند فتح socket، ثم يسوي المبلغ أو يرده عند الإغلاق.
 
-أغلق socket العميل عند اكتمال الجلسة. إذا أغلق المزود أولاً، يحاول TokenLab تمرير رمز الإغلاق إلى العميل.
+أغلق socket العميل عند اكتمال الجلسة. إذا أغلق المزود أولاً، يحاول AI Sonar تمرير رمز الإغلاق إلى العميل.

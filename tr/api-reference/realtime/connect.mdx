@@ -24,7 +24,7 @@ Bu endpoint gerçek zamanlı konuşma tanıma, konuşma sentezi, konuşma çevir
 ```javascript JavaScript
 import WebSocket from 'ws';
 
-const socket = new WebSocket('wss://api.tokenlab.sh/v1/realtime?model=qwen-tts-realtime', {
+const socket = new WebSocket('wss://api.aisonar.dev/v1/realtime?model=qwen-tts-realtime', {
   headers: { Authorization: 'Bearer sk-your-api-key' }
 });
 
@@ -38,17 +38,17 @@ socket.on('message', (data) => {
 ```
 
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/realtime" \
+curl "https://api.aisonar.dev/v1/realtime" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>
 
 ## Mesajlar
 
-TokenLab, istemciniz ile yönlendirilen realtime sağlayıcı arasında WebSocket mesajlarını aktarır. Seçilen modelin resmi event biçimlerini koruyun ve `model` değerini query string içinde gönderin.
+AI Sonar, istemciniz ile yönlendirilen realtime sağlayıcı arasında WebSocket mesajlarını aktarır. Seçilen modelin resmi event biçimlerini koruyun ve `model` değerini query string içinde gönderin.
 
 ## Ücretlendirme ve kapatma
 
-Realtime oturumlar aynı API key bakiyesini kullanır. TokenLab socket açıldığında küçük bir tahmini tutarı önceden düşer, oturum kapanınca kesinleştirir veya iade eder.
+Realtime oturumlar aynı API key bakiyesini kullanır. AI Sonar socket açıldığında küçük bir tahmini tutarı önceden düşer, oturum kapanınca kesinleştirir veya iade eder.
 
-Oturum tamamlandığında client socket’i kapatın. Upstream önce kapatırsa TokenLab mümkün olduğunda close code’u iletir.
+Oturum tamamlandığında client socket’i kapatın. Upstream önce kapatırsa AI Sonar mümkün olduğunda close code’u iletir.

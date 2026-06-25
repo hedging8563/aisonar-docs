@@ -1,6 +1,6 @@
 ---
 title: "Codex CLI"
-description: "Konfigurasi OpenAI Codex CLI untuk menggunakan TokenLab API"
+description: "Konfigurasi OpenAI Codex CLI untuk menggunakan AI Sonar API"
 ---
 
 ## Gambaran Umum
@@ -17,7 +17,7 @@ description: "Konfigurasi OpenAI Codex CLI untuk menggunakan TokenLab API"
 
 OpenAI Codex adalah alat baris perintah (CLI) sumber terbuka yang berfungsi sebagai agen pengkodean ringan, mampu membaca, memodifikasi, dan menjalankan kode di terminal. Ini dibangun di atas model GPT dan dioptimalkan untuk pembuatan kode.
 
-Untuk TokenLab, Codex CLI dapat menggunakan `/v1/responses`, tetapi Anda harus menganggapnya sebagai jalur kompatibilitas lanjutan. Beberapa fitur khusus Responses tidak dijamin tersedia di setiap model dan jalur yang diarahkan.
+Untuk AI Sonar, Codex CLI dapat menggunakan `/v1/responses`, tetapi Anda harus menganggapnya sebagai jalur kompatibilitas lanjutan. Beberapa fitur khusus Responses tidak dijamin tersedia di setiap model dan jalur yang diarahkan.
 
 Kompaksi jarak jauh Codex CLI didukung di `POST /v1/responses/compact`. Codex mengirim `model` sesi saat ini di `body.model` untuk `/compact` dan auto-compact, jadi model yang ingin dipakai untuk kompaksi harus tersedia di jalur Responses. Jangan mengonfigurasi `/v1/compact`.
 
@@ -46,7 +46,7 @@ codex --version
 **Sementara (sesi saat ini):**
 
 ```bash
-export OPENAI_API_KEY="sk-your-tokenlab-key"
+export OPENAI_API_KEY="sk-your-api-key"
 ```
 
 **Konfigurasi permanen:**
@@ -54,7 +54,7 @@ export OPENAI_API_KEY="sk-your-tokenlab-key"
 Tambahkan ke `~/.bashrc`, `~/.zshrc`, atau `~/.bash_profile`:
 
 ```bash
-export OPENAI_API_KEY="sk-your-tokenlab-key"
+export OPENAI_API_KEY="sk-your-api-key"
 ```
 
 Kemudian muat ulang:
@@ -68,7 +68,7 @@ source ~/.zshrc  # or source ~/.bashrc
 Edit `~/.codex/config.toml`:
 
 ```toml
-model_provider = "tokenlab"
+model_provider = "aisonar"
 model = "gpt-5.4"
 model_reasoning_effort = "xhigh"
 plan_mode_reasoning_effort = "xhigh"
@@ -82,10 +82,10 @@ disable_response_storage = false
 personality = "friendly"
 service_tier = "fast"
 
-[model_providers.tokenlab]
+[model_providers.aisonar]
 env_key = "OPENAI_API_KEY"
-name = "TokenLab"
-base_url = "https://api.tokenlab.sh/v1"
+name = "AI Sonar"
+base_url = "https://api.aisonar.dev/v1"
 wire_api = "responses"
 supports_websockets = true
 websocket_connect_timeout_ms = 15000
@@ -102,11 +102,11 @@ Jika file konfigurasi tidak ada, jalankan `codex` sekali untuk menghasilkannya, 
 </Note>
 
 <Warning>
-Codex sedang menghentikan dukungan `chat/completions` untuk custom providers. Pertahankan `wire_api = "responses"` untuk TokenLab kecuali Anda sengaja menggunakan jalur kompatibilitas yang lebih lama.
+Codex sedang menghentikan dukungan `chat/completions` untuk custom providers. Pertahankan `wire_api = "responses"` untuk AI Sonar kecuali Anda sengaja menggunakan jalur kompatibilitas yang lebih lama.
 </Warning>
 
 <Note>
-Jika sebuah permintaan menggunakan field khusus Responses yang tidak didukung pada model atau jalur yang dipilih, TokenLab mengembalikan kesalahan eksplisit daripada menurunkan permintaan secara diam-diam.
+Jika sebuah permintaan menggunakan field khusus Responses yang tidak didukung pada model atau jalur yang dipilih, AI Sonar mengembalikan kesalahan eksplisit daripada menurunkan permintaan secara diam-diam.
 </Note>
 
 ## Penggunaan Dasar
@@ -192,7 +192,7 @@ cat main.py | codex "Explain what this code does"
 
 <AccordionGroup>
   <Accordion title="Kesalahan Koneksi">
-    - Pastikan `base_url` di config.toml persis `https://api.tokenlab.sh/v1`
+    - Pastikan `base_url` di config.toml persis `https://api.aisonar.dev/v1`
     - Periksa konektivitas jaringan
     - Pastikan tidak ada gangguan dari proxy
   </Accordion>
@@ -201,22 +201,22 @@ cat main.py | codex "Explain what this code does"
     - Periksa bahwa `env_key = "OPENAI_API_KEY"` ada di `~/.codex/config.toml`
     - Periksa bahwa variabel lingkungan `OPENAI_API_KEY` telah diatur
     - Periksa bahwa kunci dimulai dengan `sk-`
-    - Pastikan kunci aktif di dashboard TokenLab
+    - Pastikan kunci aktif di dashboard AI Sonar
   </Accordion>
 
   <Accordion title="Model Tidak Ditemukan">
     - Periksa nama model agar cocok secara tepat
-    - Verifikasi ketersediaan model di [tokenlab.sh/en/models](https://tokenlab.sh/id/models)
+    - Verifikasi ketersediaan model di [aisonar.dev/en/models](https://aisonar.dev/models)
   </Accordion>
 
   <Accordion title="Field khusus Responses ditolak">
-    - Beberapa field hanya tersedia di `/v1/responses` ketika TokenLab dapat menjamin perilaku tersebut untuk model dan jalur yang dipilih
+    - Beberapa field hanya tersedia di `/v1/responses` ketika AI Sonar dapat menjamin perilaku tersebut untuk model dan jalur yang dipilih
     - Jika Anda melihat `unsupported_request_field`, hapus field tersebut atau beralih ke alur kerja yang tidak bergantung padanya
   </Accordion>
 
   <Accordion title="/compact atau auto-compact gagal">
     - Codex CLI memanggil `POST /v1/responses/compact`, bukan `/v1/compact`
     - Permintaan kompaksi menggunakan `model` sesi saat ini, jadi model tersebut harus tersedia di jalur Responses
-    - Pertahankan `wire_api = "responses"` dan `base_url = "https://api.tokenlab.sh/v1"`
+    - Pertahankan `wire_api = "responses"` dan `base_url = "https://api.aisonar.dev/v1"`
   </Accordion>
 </AccordionGroup>

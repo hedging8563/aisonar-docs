@@ -1,15 +1,15 @@
 ---
 title: "Gemini CLI"
-description: "Konfigurasikan Google Gemini CLI untuk menggunakan TokenLab API"
+description: "Konfigurasikan Google Gemini CLI untuk menggunakan AI Sonar API"
 ---
 
 ## Ringkasan
 
-Google Gemini CLI adalah alat baris perintah (command-line tool) untuk berinteraksi dengan model Gemini. TokenLab menyediakan endpoint yang kompatibel yang memungkinkan Anda menggunakan Gemini CLI dengan akses ke ratusan model.
+Google Gemini CLI adalah alat baris perintah (command-line tool) untuk berinteraksi dengan model Gemini. AI Sonar menyediakan endpoint yang kompatibel yang memungkinkan Anda menggunakan Gemini CLI dengan akses ke ratusan model.
 
 
 <Warning>
-Anggap integrasi ini sebagai eksperimental: Gemini CLI saat ini belum mendokumentasikan alur Base URL kustom ala TokenLab secara stabil. Jika Anda membutuhkan integrasi TokenLab terminal yang benar-benar didukung, gunakan Codex CLI, Claude Code, atau OpenCode.
+Anggap integrasi ini sebagai eksperimental: Gemini CLI saat ini belum mendokumentasikan alur Base URL kustom ala AI Sonar secara stabil. Jika Anda membutuhkan integrasi AI Sonar terminal yang benar-benar didukung, gunakan Codex CLI, Claude Code, atau OpenCode.
 </Warning>
 
 
@@ -42,8 +42,8 @@ gemini --version
 
 ### Langkah 1: Dapatkan API Key Anda
 
-1. Masuk ke [TokenLab Dashboard](https://tokenlab.sh/dashboard)
-2. Navigasi ke [API Keys](https://tokenlab.sh/dashboard/api)
+1. Masuk ke [AI Sonar Dashboard](https://console.aisonar.dev)
+2. Navigasi ke [API Keys](https://console.aisonar.dev/api)
 3. Buat dan salin API key Anda (format: `sk-...`)
 
 ### Langkah 2: Atur Environment Variables
@@ -51,8 +51,8 @@ gemini --version
 **Sementara (sesi saat ini):**
 
 ```bash
-export GEMINI_API_KEY="sk-your-tokenlab-key"
-export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
+export GEMINI_API_KEY="sk-your-api-key"
+export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
 ```
 
 **Konfigurasi permanen:**
@@ -62,22 +62,22 @@ Tambahkan ke file konfigurasi shell Anda:
 <Tabs>
   <Tab title="Bash">
     ```bash
-    echo 'export GEMINI_API_KEY="sk-your-tokenlab-key"' >> ~/.bashrc
-    echo 'export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"' >> ~/.bashrc
+    echo 'export GEMINI_API_KEY="sk-your-api-key"' >> ~/.bashrc
+    echo 'export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"' >> ~/.bashrc
     source ~/.bashrc
     ```
   </Tab>
   <Tab title="Zsh">
     ```bash
-    echo 'export GEMINI_API_KEY="sk-your-tokenlab-key"' >> ~/.zshrc
-    echo 'export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"' >> ~/.zshrc
+    echo 'export GEMINI_API_KEY="sk-your-api-key"' >> ~/.zshrc
+    echo 'export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"' >> ~/.zshrc
     source ~/.zshrc
     ```
   </Tab>
   <Tab title="Fish">
     ```bash
-    set -Ux GEMINI_API_KEY "sk-your-tokenlab-key"
-    set -Ux GOOGLE_GEMINI_BASE_URL "https://api.tokenlab.sh"
+    set -Ux GEMINI_API_KEY "sk-your-api-key"
+    set -Ux GOOGLE_GEMINI_BASE_URL "https://api.aisonar.dev"
     ```
   </Tab>
 </Tabs>

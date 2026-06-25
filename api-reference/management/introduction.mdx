@@ -80,7 +80,7 @@ At least one PATCH field must be provided.
 - `logicalModel` refers to the public logical model requested by the caller.
 - `modelVendor` refers to the public model vendor, not the hidden physical route.
 - `scene` is the public request scene derived from the endpoint or task type.
-- `accessChannel=platform` means the request was billed via TokenLab’s platform channel.
+- `accessChannel=platform` means the request was billed via AI Sonar’s platform channel.
 - `accessChannel=byok` means the request used your own upstream provider key.
 
 Responses expose public billing and reporting fields only. Internal routing details and physical provider metadata remain hidden.
@@ -96,7 +96,7 @@ First check the current organization balance with the management token:
 
 <RequestExample>
 ```bash cURL
-curl -X GET "https://api.tokenlab.sh/v1/management/balance" \
+curl -X GET "https://api.aisonar.dev/v1/management/balance" \
   -H "Authorization: Bearer mt-your-management-token"
 ```
 </RequestExample>
@@ -105,7 +105,7 @@ Then list the API keys available to the same management token:
 
 <RequestExample>
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/management/api-keys" \
+curl "https://api.aisonar.dev/v1/management/api-keys" \
   -H "Authorization: Bearer mt-your-management-token"
 ```
 </RequestExample>

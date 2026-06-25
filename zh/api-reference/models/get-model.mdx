@@ -28,13 +28,13 @@ description: "检索一个模型实例"
   模型提供方。
 </ResponseField>
 
-<ResponseField name="tokenlab" type="object">
-  TokenLab 专属的公开元数据。详情路由可包含 `category`、`pricing_unit`、`capability_flags`、`supported_operations`、`pricing_provenance`、`public_contract_summary`、完整的 `public_contract`，以及非聊天推荐快照的场景级 `agent_preferences`。
+<ResponseField name="aisonar" type="object">
+  AI Sonar 专属的公开元数据。详情路由可包含 `category`、`pricing_unit`、`capability_flags`、`supported_operations`、`pricing_provenance`、`public_contract_summary`、完整的 `public_contract`，以及非聊天推荐快照的场景级 `agent_preferences`。
 </ResponseField>
 
 <RequestExample>
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/models/gpt-5.4" \
+curl "https://api.aisonar.dev/v1/models/gpt-5.4" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
@@ -43,7 +43,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 model = client.models.retrieve("gpt-5.4")
@@ -55,7 +55,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const model = await client.models.retrieve('gpt-5.4');
@@ -72,7 +72,7 @@ import (
 )
 
 func main() {
-    req, _ := http.NewRequest("GET", "https://api.tokenlab.sh/v1/models/gpt-5.4", nil)
+    req, _ := http.NewRequest("GET", "https://api.aisonar.dev/v1/models/gpt-5.4", nil)
     req.Header.Set("Authorization", "Bearer sk-your-api-key")
 
     resp, _ := http.DefaultClient.Do(req)
@@ -86,7 +86,7 @@ func main() {
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.tokenlab.sh/v1/models/gpt-5.4');
+$ch = curl_init('https://api.aisonar.dev/v1/models/gpt-5.4');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -116,7 +116,7 @@ echo "Model: {$model['id']}, Provider: {$model['owned_by']}\n";
 
 ## 非聊天推荐元数据
 
-对于非聊天模型，详情路由还会返回 `tokenlab.agent_preferences.<scene>`。
+对于非聊天模型，详情路由还会返回 `aisonar.agent_preferences.<scene>`。
 
 可用于查看：
 
@@ -132,11 +132,11 @@ echo "Model: {$model['id']}, Provider: {$model['owned_by']}\n";
 
 与 `GET /v1/models` 相比，详情路由还可以额外返回：
 
-- `tokenlab.capability_flags`
-- `tokenlab.supported_operations`
-- `tokenlab.pricing_provenance`
-- `tokenlab.public_contract_summary`
-- `tokenlab.public_contract`
+- `aisonar.capability_flags`
+- `aisonar.supported_operations`
+- `aisonar.pricing_provenance`
+- `aisonar.public_contract_summary`
+- `aisonar.public_contract`
 
 ## 错误处理
 

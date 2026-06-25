@@ -56,9 +56,9 @@ description: "Escolha o modelo certo para cada tarefa de código — tabela comp
   </Accordion>
 </AccordionGroup>
 
-## Como Funciona o Roteamento do TokenLab
+## Como Funciona o Roteamento do AI Sonar
 
-O TokenLab roteia suas requisições para o melhor provedor disponível automaticamente.
+O AI Sonar roteia suas requisições para o melhor provedor disponível automaticamente.
 
 ### Estratégias de Roteamento
 
@@ -71,7 +71,7 @@ Você pode definir sua estratégia preferida no dashboard.
 
 ### Fallback Automático
 
-Se um provedor estiver indisponível ou retornar um erro, o TokenLab tenta automaticamente com o próximo provedor:
+Se um provedor estiver indisponível ou retornar um erro, o AI Sonar tenta automaticamente com o próximo provedor:
 
 ```
 Requisição: claude-sonnet-4-6
@@ -83,14 +83,14 @@ Isso acontece de forma transparente — seu agente de código recebe uma respost
 
 ### Roteamento por Formato Nativo
 
-Quando o modelo selecionado e o canal roteado oferecerem suporte, o TokenLab pode rotear solicitações pelo formato nativo de API da família do modelo para obter melhor compatibilidade:
+Quando o modelo selecionado e o canal roteado oferecerem suporte, o AI Sonar pode rotear solicitações pelo formato nativo de API da família do modelo para obter melhor compatibilidade:
 
 | Família do modelo | Formato da API | URL base |
 |-------------|------------|----------|
-| Claude | Anthropic Messages | `https://api.tokenlab.sh` |
-| GPT | Respostas da OpenAI | `https://api.tokenlab.sh/v1` |
-| Gemini | Gemini Native API | `https://api.tokenlab.sh` ou `https://api.tokenlab.sh/v1beta` dependendo do caminho do cliente |
-| DeepSeek | Chat da OpenAI | `https://api.tokenlab.sh/v1` |
+| Claude | Anthropic Messages | `https://api.aisonar.dev` |
+| GPT | Respostas da OpenAI | `https://api.aisonar.dev/v1` |
+| Gemini | Gemini Native API | `https://api.aisonar.dev` ou `https://api.aisonar.dev/v1beta` dependendo do caminho do cliente |
+| DeepSeek | Chat da OpenAI | `https://api.aisonar.dev/v1` |
 
 Claude Code é um caminho Anthropic-native forte. APIs Gemini-native também existem, mas o próprio Gemini CLI continua sendo um caminho de compatibilidade best-effort e não deve ser tratado como um fluxo estável de longo prazo.
 
@@ -99,8 +99,8 @@ Claude Code é um caminho Anthropic-native forte. APIs Gemini-native também exi
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
-    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
+    export ANTHROPIC_API_KEY="sk-your-api-key"
+    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
     ```
 
     Selecionar modelo: `claude --model claude-sonnet-4-6`
@@ -110,8 +110,8 @@ Claude Code é um caminho Anthropic-native forte. APIs Gemini-native também exi
 
   <Accordion title="Cursor">
     Em Settings → Models:
-    - API Key: `sk-your-tokenlab-key`
-    - Base URL: `https://api.tokenlab.sh/v1`
+    - API Key: `sk-your-api-key`
+    - Base URL: `https://api.aisonar.dev/v1`
     - Model: `claude-sonnet-4-6` ou `gpt-5-mini`
 
     [Guia completo →](/integrations/cursor)
@@ -119,8 +119,8 @@ Claude Code é um caminho Anthropic-native forte. APIs Gemini-native também exi
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-tokenlab-key"
-    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
+    export OPENAI_API_KEY="sk-your-api-key"
+    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
     ```
 
     [Guia completo →](/integrations/codex-cli)
@@ -128,8 +128,8 @@ Claude Code é um caminho Anthropic-native forte. APIs Gemini-native também exi
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-tokenlab-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
+    export GEMINI_API_KEY="sk-your-api-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
     ```
 
     Trate este caminho como compatibilidade best-effort, e não como um contrato upstream estável.
@@ -141,8 +141,8 @@ Claude Code é um caminho Anthropic-native forte. APIs Gemini-native também exi
     ```json
     {
       "provider": "openai",
-      "apiKey": "sk-your-tokenlab-key",
-      "baseURL": "https://api.tokenlab.sh/v1"
+      "apiKey": "sk-your-api-key",
+      "baseURL": "https://api.aisonar.dev/v1"
     }
     ```
 

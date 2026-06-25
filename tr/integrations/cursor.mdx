@@ -1,6 +1,6 @@
 ---
 title: "Cursor"
-description: "TokenLab'yı Cursor AI kod editörü ile kullanın"
+description: "AI Sonar'yı Cursor AI kod editörü ile kullanın"
 ---
 
 ## Genel Bakış
@@ -15,19 +15,19 @@ description: "TokenLab'yı Cursor AI kod editörü ile kullanın"
 **Destek seviyesi**: Sınırlı olarak desteklenir
 </Note>
 
-[Cursor](https://cursor.sh), bring-your-own-key (BYOK) sağlayıcılarını destekler, ancak özel API anahtarları yalnızca standart chat modelleriyle çalışır. TokenLab'yı burada, chat tarzı editör iş akışları için OpenAI uyumlu bir uç nokta olarak kullanın; Cursor'daki her model özelliğinin tam bir yerine geçecek çözüm olarak değil.
+[Cursor](https://cursor.sh), bring-your-own-key (BYOK) sağlayıcılarını destekler, ancak özel API anahtarları yalnızca standart chat modelleriyle çalışır. AI Sonar'yı burada, chat tarzı editör iş akışları için OpenAI uyumlu bir uç nokta olarak kullanın; Cursor'daki her model özelliğinin tam bir yerine geçecek çözüm olarak değil.
 
 ## Yapılandırma
 
 1. Cursor Ayarları'nı açın (`Cmd/Ctrl + ,`)
 2. Sol kenar çubuğunda **Models** bölümüne gidin
 3. **OpenAI API Key** bölümüne kadar aşağı kaydırın
-4. TokenLab API anahtarınızı girin
+4. AI Sonar API anahtarınızı girin
 5. **Override OpenAI Base URL** seçeneğini etkinleştirin
 6. Base URL'yi şu şekilde ayarlayın:
 
 ```
-https://api.tokenlab.sh/v1
+https://api.aisonar.dev/v1
 ```
 
 <Warning>
@@ -40,7 +40,7 @@ Cursor’un özel API anahtarı akışı yalnızca standart chat modelleri için
 
 ## Model Seçimi
 
-Yapılandırmadan sonra, TokenLab üzerinden sunulan standart chat modellerini tercih edin:
+Yapılandırmadan sonra, AI Sonar üzerinden sunulan standart chat modellerini tercih edin:
 
 ### Kodlama için Önerilen Modeller
 
@@ -53,7 +53,7 @@ Yapılandırmadan sonra, TokenLab üzerinden sunulan standart chat modellerini t
 
 ### Chat ve editör akışları
 
-Cursor üzerinden TokenLab'yı şunlar için kullanın:
+Cursor üzerinden AI Sonar'yı şunlar için kullanın:
 
 - Kod açıklamaları
 - Hata düzeltme
@@ -62,7 +62,7 @@ Cursor üzerinden TokenLab'yı şunlar için kullanın:
 
 ### Cursor tarafından yönetilen modellerde kalanlar
 
-Bu özellikler TokenLab endpoint'inize güvenilir şekilde geçmez:
+Bu özellikler AI Sonar endpoint'inize güvenilir şekilde geçmez:
 
 - Sekme Tamamlama
 - Özelleşmiş standart dışı chat modelleri
@@ -83,7 +83,7 @@ Bu özellikler TokenLab endpoint'inize güvenilir şekilde geçmez:
     API anahtarınızın doğru olduğunu ve yeterli bakiyeye sahip olduğunu doğrulayın.
   </Accordion>
 
-  <Accordion title="TokenLab etkinleştirildikten sonra başka bir sağlayıcı çalışmayı durdurdu">
+  <Accordion title="AI Sonar etkinleştirildikten sonra başka bir sağlayıcı çalışmayı durdurdu">
     Cursor’un BYOK yapılandırması diğer sağlayıcı akışlarını etkileyebilir. OpenAI temel URL override özelliğini etkinleştirdikten sonra başka bir model yolu bozulursa, override'ı devre dışı bırakın ve Cursor'u yeniden başlatın.
   </Accordion>
 </AccordionGroup>
@@ -95,6 +95,6 @@ Bu özellikler TokenLab endpoint'inize güvenilir şekilde geçmez:
     Hızlı chat tarzı görevler için `gpt-5-mini`, daha ağır kodlama işleri için `gpt-5.4` kullanın.
   </Card>
   <Card title="Bakiyenizi kontrol edin" icon="wallet">
-    TokenLab panelinizden kullanımı izleyin.
+    AI Sonar panelinizden kullanımı izleyin.
   </Card>
 </CardGroup>

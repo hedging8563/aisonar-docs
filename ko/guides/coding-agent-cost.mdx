@@ -42,7 +42,7 @@ description: "코딩 에이전트 API 비용을 60~90% 절감하는 실용적인
 
 ### Prompt Cache (프로바이더 레벨)
 
-[업스트림 Prompt Cache](/ko/guides/prompt-cache)는 TokenLab를 통해 자동으로 작동합니다:
+[업스트림 Prompt Cache](/ko/guides/prompt-cache)는 AI Sonar를 통해 자동으로 작동합니다:
 
 | 프로바이더 | 캐시 할인 | 최소 토큰 |
 |-----------|---------|---------|
@@ -73,9 +73,9 @@ Prompt Cache 사용 (40,000 캐시 + 10,000 신규):
 | 설정 | 시간당 비용 | 월간 (160h) |
 |------|-----------|------------|
 | 직접 API (프리미엄 모델) | ~$15~25 | ~$2,400~4,000 |
-| TokenLab (스마트 라우팅) | ~$10~18 | ~$1,600~2,900 |
-| TokenLab + Prompt Cache | ~$4~8 | ~$640~1,280 |
-| TokenLab + 양쪽 캐시 | ~$2~5 | ~$320~800 |
+| AI Sonar (스마트 라우팅) | ~$10~18 | ~$1,600~2,900 |
+| AI Sonar + Prompt Cache | ~$4~8 | ~$640~1,280 |
+| AI Sonar + 양쪽 캐시 | ~$2~5 | ~$320~800 |
 
 <Warning>
 이는 예시 추정치입니다. 실제 비용은 모델 선택, 사용 패턴, 캐시 히트율에 따라 다릅니다. [실시간 가격](/ko/api-reference/pricing/get-pricing)에서 현재 요금을 확인하세요.
@@ -110,30 +110,30 @@ Prompt Cache 사용 (40,000 캐시 + 10,000 신규):
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
-    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
+    export ANTHROPIC_API_KEY="sk-your-api-key"
+    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
     ```
     [전체 가이드 →](/ko/integrations/claude-code)
   </Accordion>
 
   <Accordion title="Cursor">
-    설정 → 모델 → OpenAI API 키: `sk-your-key`, Base URL: `https://api.tokenlab.sh/v1`
+    설정 → 모델 → OpenAI API 키: `sk-your-key`, Base URL: `https://api.aisonar.dev/v1`
 
     [전체 가이드 →](/ko/integrations/cursor)
   </Accordion>
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-tokenlab-key"
-    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
+    export OPENAI_API_KEY="sk-your-api-key"
+    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
     ```
     [전체 가이드 →](/ko/integrations/codex-cli)
   </Accordion>
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-tokenlab-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
+    export GEMINI_API_KEY="sk-your-api-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
     ```
     [전체 가이드 →](/ko/integrations/gemini-cli)
   </Accordion>

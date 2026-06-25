@@ -1,6 +1,6 @@
 ---
 title: "Vercel AI SDK"
-description: "TokenLab'yı OpenAI ile uyumlu veya Responses native sağlayıcılar kullanarak Vercel AI SDK ile entegre edin"
+description: "AI Sonar'yı OpenAI ile uyumlu veya Responses native sağlayıcılar kullanarak Vercel AI SDK ile entegre edin"
 ---
 
 ## Genel Bakış
@@ -15,9 +15,9 @@ description: "TokenLab'yı OpenAI ile uyumlu veya Responses native sağlayıcıl
 **Destek seviyesi**: Önerilen entegrasyon deseni
 </Note>
 
-TokenLab için Vercel AI SDK'deki en kararlı varsayılan seçenek **OpenAI ile uyumlu sağlayıcı**dır.
+AI Sonar için Vercel AI SDK'deki en kararlı varsayılan seçenek **OpenAI ile uyumlu sağlayıcı**dır.
 
-Özellikle **Responses native** davranışına ihtiyacınız varsa, OpenAI sağlayıcısına geçebilir ve aynı TokenLab temel URL'sini kullanmaya devam edebilirsiniz.
+Özellikle **Responses native** davranışına ihtiyacınız varsa, OpenAI sağlayıcısına geçebilir ve aynı AI Sonar temel URL'sini kullanmaya devam edebilirsiniz.
 
 Bu sayfa önerilen bir entegrasyon deseni olarak okunmalıdır; bu depoda Vercel AI SDK içindeki her yardımcı için özel uçtan uca test bulunduğu iddiası olarak değil.
 
@@ -30,10 +30,10 @@ npm install ai @ai-sdk/openai-compatible
 ```typescript
 import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
 
-export const tokenlab = createOpenAICompatible({
-  name: 'tokenlab',
+export const aisonar = createOpenAICompatible({
+  name: 'aisonar',
   apiKey: process.env.TOKENLAB_API_KEY,
-  baseURL: 'https://api.tokenlab.sh/v1',
+  baseURL: 'https://api.aisonar.dev/v1',
 });
 ```
 
@@ -41,11 +41,11 @@ export const tokenlab = createOpenAICompatible({
 
 ```typescript
 import { generateText } from 'ai';
-import { tokenlab } from './tokenlab';
+import { aisonar } from './aisonar';
 
 const { text } = await generateText({
-  model: tokenlab.chatModel('gpt-5.4'),
-  prompt: 'Explain TokenLab in one sentence.',
+  model: aisonar.chatModel('gpt-5.4'),
+  prompt: 'Explain AI Sonar in one sentence.',
 });
 
 console.log(text);
@@ -55,10 +55,10 @@ console.log(text);
 
 ```typescript
 import { streamText } from 'ai';
-import { tokenlab } from './tokenlab';
+import { aisonar } from './aisonar';
 
 const result = await streamText({
-  model: tokenlab.chatModel('gpt-5.4'),
+  model: aisonar.chatModel('gpt-5.4'),
   prompt: 'Write a short poem about coding.',
 });
 
@@ -72,10 +72,10 @@ for await (const textPart of result.textStream) {
 ```typescript
 import { generateText, tool } from 'ai';
 import { z } from 'zod';
-import { tokenlab } from './tokenlab';
+import { aisonar } from './aisonar';
 
 const result = await generateText({
-  model: tokenlab.chatModel('gpt-5.4'),
+  model: aisonar.chatModel('gpt-5.4'),
   prompt: 'What is the weather in San Francisco?',
   tools: {
     weather: tool({
@@ -100,10 +100,10 @@ console.log(result.text);
 ```typescript
 import { generateObject } from 'ai';
 import { z } from 'zod';
-import { tokenlab } from './tokenlab';
+import { aisonar } from './aisonar';
 
 const { object } = await generateObject({
-  model: tokenlab.chatModel('gpt-5.4'),
+  model: aisonar.chatModel('gpt-5.4'),
   schema: z.object({
     name: z.string(),
     role: z.string(),
@@ -123,19 +123,19 @@ npm install ai @ai-sdk/openai
 ```typescript
 import { createOpenAI } from '@ai-sdk/openai';
 
-export const tokenlabResponses = createOpenAI({
+export const aisonarResponses = createOpenAI({
   apiKey: process.env.TOKENLAB_API_KEY,
-  baseURL: 'https://api.tokenlab.sh/v1',
+  baseURL: 'https://api.aisonar.dev/v1',
 });
 ```
 
 ```typescript
 import { generateText } from 'ai';
-import { tokenlabResponses } from './tokenlab-responses';
+import { aisonarResponses } from './aisonar-responses';
 
 const { text } = await generateText({
-  model: tokenlabResponses('gpt-5.4'),
-  prompt: 'Explain TokenLab in one sentence.',
+  model: aisonarResponses('gpt-5.4'),
+  prompt: 'Explain AI Sonar in one sentence.',
 });
 ```
 
@@ -147,7 +147,7 @@ Proxy tarzı entegrasyonlar için güvenli varsayılan olarak `@ai-sdk/openai-co
 
 ```bash
 # .env.local
-TOKENLAB_API_KEY=sk-your-tokenlab-key
+TOKENLAB_API_KEY=sk-your-api-key
 ```
 
 ## En İyi Uygulamalar
@@ -162,6 +162,6 @@ TOKENLAB_API_KEY=sk-your-tokenlab-key
   </Accordion>
 
   <Accordion title="Gizli bilgileri server tarafında tutun">
-    TokenLab API key'inizi asla client-side code içinde açığa çıkarmayın. Sağlayıcı kurulumunu server dosyalarına veya API route'larına yerleştirin.
+    AI Sonar API key'inizi asla client-side code içinde açığa çıkarmayın. Sağlayıcı kurulumunu server dosyalarına veya API route'larına yerleştirin.
   </Accordion>
 </AccordionGroup>

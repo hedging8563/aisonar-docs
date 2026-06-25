@@ -4,12 +4,12 @@ openapi: "POST /v1/responses"
 description: "ينشئ استجابة باستخدام تنسيق OpenAI Responses API"
 ---
 
-تُعد Responses API واجهة محادثة جديدة ذات حالة من OpenAI. يدعم TokenLab هذا التنسيق كمسار اختياري متقدم للنماذج المتوافقة؛ استخدم `POST /v1/chat/completions` كالمسار الافتراضي المتوافق مع OpenAI ما لم تكن تحتاج صراحةً إلى سلوك خاص بـ Responses.
+تُعد Responses API واجهة محادثة جديدة ذات حالة من OpenAI. يدعم AI Sonar هذا التنسيق كمسار اختياري متقدم للنماذج المتوافقة؛ استخدم `POST /v1/chat/completions` كالمسار الافتراضي المتوافق مع OpenAI ما لم تكن تحتاج صراحةً إلى سلوك خاص بـ Responses.
 
 ## جسم الطلب
 
 <ParamField body="model" type="string" required>
-  معرّف النموذج المطلوب استخدامه. راجع [Models](https://tokenlab.sh/ar/models) للاطلاع على الخيارات المتاحة.
+  معرّف النموذج المطلوب استخدامه. راجع [Models](https://aisonar.dev/models) للاطلاع على الخيارات المتاحة.
 </ParamField>
 
 <ParamField body="input" type="array" required>
@@ -43,7 +43,7 @@ description: "ينشئ استجابة باستخدام تنسيق OpenAI Respons
 <ParamField body="tools" type="array">
   قائمة بالأدوات التي قد يستدعيها النموذج.
 
-  بالنسبة إلى أدوات `image_generation` المستضافة التي تستخدم نموذج أداة الصور الافتراضي أو تضبط صراحةً `model: "gpt-image-2"`، تزيل TokenLab الحقل غير المدعوم `input_fidelity` قبل تمرير الطلب، لأن GPT Image 2 يعالج مدخلات الصور أصلًا بدقة عالية. لا ترسل `background: "transparent"` لهذه الأداة؛ لا تزيله TokenLab بصمت لأن ذلك يغيّر دلالة الخرج.
+  بالنسبة إلى أدوات `image_generation` المستضافة التي تستخدم نموذج أداة الصور الافتراضي أو تضبط صراحةً `model: "gpt-image-2"`، تزيل AI Sonar الحقل غير المدعوم `input_fidelity` قبل تمرير الطلب، لأن GPT Image 2 يعالج مدخلات الصور أصلًا بدقة عالية. لا ترسل `background: "transparent"` لهذه الأداة؛ لا تزيله AI Sonar بصمت لأن ذلك يغيّر دلالة الخرج.
 </ParamField>
 
 <ParamField body="stream" type="boolean" default="false">
@@ -104,7 +104,7 @@ description: "ينشئ استجابة باستخدام تنسيق OpenAI Respons
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.tokenlab.sh/v1/responses" \
+curl -X POST "https://api.aisonar.dev/v1/responses" \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -121,7 +121,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 response = client.responses.create(
@@ -140,7 +140,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const response = await client.responses.create({
@@ -174,7 +174,7 @@ func main() {
     }
     body, _ := json.Marshal(payload)
 
-    req, _ := http.NewRequest("POST", "https://api.tokenlab.sh/v1/responses", bytes.NewBuffer(body))
+    req, _ := http.NewRequest("POST", "https://api.aisonar.dev/v1/responses", bytes.NewBuffer(body))
     req.Header.Set("Authorization", "Bearer sk-your-api-key")
     req.Header.Set("Content-Type", "application/json")
 
@@ -190,7 +190,7 @@ func main() {
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.tokenlab.sh/v1/responses');
+$ch = curl_init('https://api.aisonar.dev/v1/responses');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,

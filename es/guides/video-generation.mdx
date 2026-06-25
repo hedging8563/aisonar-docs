@@ -5,17 +5,17 @@ description: "Accede mediante un contrato público unificado a texto a video, im
 
 ## Resumen
 
-TokenLab ofrece generación de video mediante una API unificada. La generación es **asíncrona**: envías una solicitud, recibes `task_id` y `poll_url`, y después consultas hasta obtener el resultado final.
+AI Sonar ofrece generación de video mediante una API unificada. La generación es **asíncrona**: envías una solicitud, recibes `task_id` y `poll_url`, y después consultas hasta obtener el resultado final.
 
 ### Disponibilidad y sondeo
 
-Puedes ver el inventario público actual de modelos de video a través de la [Models API](/es/api-reference/models/list-models) o en la [página de modelos](https://tokenlab.sh/es/models).
+Puedes ver el inventario público actual de modelos de video a través de la [Models API](/es/api-reference/models/list-models) o en la [página de modelos](https://aisonar.dev/models).
 
 Si una respuesta de creación devuelve `poll_url`, llama exactamente a esa URL. Cuando apunte a `/v1/tasks/{id}`, trátala como el endpoint fijo canónico de estado.
 
 ### Comportamiento de modelos y medios
 
-El comportamiento del audio depende del modelo. En TokenLab, la familia Veo 3 se trata por defecto como audio activado cuando se omite `output_audio`. Otros modelos públicos son silenciosos por defecto o no exponen un interruptor de audio estable.
+El comportamiento del audio depende del modelo. En AI Sonar, la familia Veo 3 se trata por defecto como audio activado cuando se omite `output_audio`. Otros modelos públicos son silenciosos por defecto o no exponen un interruptor de audio estable.
 
 En producción, es mejor usar URLs `https` públicas para imágenes, videos y audio. Los modelos compatibles siguen aceptando URLs `data:`, pero las URLs son más robustas para reintentos, observabilidad y depuración.
 
@@ -24,25 +24,25 @@ En producción, es mejor usar URLs `https` públicas para imágenes, videos y au
 ```mermaid
 sequenceDiagram
     participant Client
-    participant TokenLab
+    participant AI Sonar
     participant Provider
 
-    Client->>TokenLab: POST /v1/videos/generations
-    TokenLab->>Provider: Reenvía la solicitud normalizada
-    Provider-->>TokenLab: task_id + pending
-    TokenLab-->>Client: { task_id, poll_url, status: "pending" }
+    Client->>AI Sonar: POST /v1/videos/generations
+    AI Sonar->>Provider: Reenvía la solicitud normalizada
+    Provider-->>AI Sonar: task_id + pending
+    AI Sonar-->>Client: { task_id, poll_url, status: "pending" }
 
     loop Consultar cada 5-10 s
-        Client->>TokenLab: GET poll_url
-        TokenLab->>Provider: Consulta el estado
-        Provider-->>TokenLab: Actualización de estado
-        TokenLab-->>Client: { status, video_url? }
+        Client->>AI Sonar: GET poll_url
+        AI Sonar->>Provider: Consulta el estado
+        Provider-->>AI Sonar: Actualización de estado
+        AI Sonar-->>Client: { status, video_url? }
     end
 ```
 
 ## Operaciones públicas actuales
 
-El contrato público de video de TokenLab se centra actualmente en estas operaciones:
+El contrato público de video de AI Sonar se centra actualmente en estas operaciones:
 
 - `text-to-video`
 - `image-to-video`
@@ -222,7 +222,7 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ### Referencia a video
 
-Para `seedance-2.0` y `seedance-2.0-fast`, TokenLab admite actualmente hasta 9 imágenes de referencia, además de hasta 3 videos de referencia y 3 audios de referencia. `duration` solo controla la duración del resultado generado; no define un límite independiente para la duración del video de referencia de entrada. Para `grok-imagine-video`, reference-to-video acepta hasta 7 referencias de imagen (`reference_images` o `image_urls`) y `duration` está limitada a 10 segundos. No combines referencias de imagen con entradas de primer fotograma `image_url` / `image`. `grok-imagine-video-1.5-preview` solo admite image-to-video.
+Para `seedance-2.0` y `seedance-2.0-fast`, AI Sonar admite actualmente hasta 9 imágenes de referencia, además de hasta 3 videos de referencia y 3 audios de referencia. `duration` solo controla la duración del resultado generado; no define un límite independiente para la duración del video de referencia de entrada. Para `grok-imagine-video`, reference-to-video acepta hasta 7 referencias de imagen (`reference_images` o `image_urls`) y `duration` está limitada a 10 segundos. No combines referencias de imagen con entradas de primer fotograma `image_url` / `image`. `grok-imagine-video-1.5-preview` solo admite image-to-video.
 
 ```python
 response = requests.post(f"{BASE}/videos/generations",
@@ -262,7 +262,7 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ### Video a video
 
-Para video-to-video con `grok-imagine-video`, envía una URL HTTPS pública `.mp4` en `video_url`. TokenLab la traduce al cuerpo REST de xAI `video.url`. Puedes definir `resolution` como `480p` o `720p`; `duration` y `aspect_ratio` no se aceptan en ese flujo de edición.
+Para video-to-video con `grok-imagine-video`, envía una URL HTTPS pública `.mp4` en `video_url`. AI Sonar la traduce al cuerpo REST de xAI `video.url`. Puedes definir `resolution` como `480p` o `720p`; `duration` y `aspect_ratio` no se aceptan en ese flujo de edición.
 
 ```python
 response = requests.post(f"{BASE}/videos/generations",
@@ -324,4 +324,4 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ## Facturación
 
-La facturación depende del modelo. Algunos modelos públicos de video se comportan en la práctica como modelos cobrados por solicitud, mientras que otros se asemejan más a un cobro por segundo. Para la superficie pública de precios actual, consulta la [página de modelos](https://tokenlab.sh/es/models) o la [Pricing API](/es/api-reference/pricing/get-pricing).
+La facturación depende del modelo. Algunos modelos públicos de video se comportan en la práctica como modelos cobrados por solicitud, mientras que otros se asemejan más a un cobro por segundo. Para la superficie pública de precios actual, consulta la [página de modelos](https://aisonar.dev/models) o la [Pricing API](/es/api-reference/pricing/get-pricing).

@@ -1,15 +1,15 @@
 ---
 title: "AI Chat Applications"
-description: "Configure popular AI chat applications to use TokenLab's OpenAI-compatible API"
+description: "Configure popular AI chat applications to use AI Sonar's OpenAI-compatible API"
 ---
 
 ## Overview
 
-Most general AI chat apps connect to TokenLab through the standard OpenAI-compatible chat path.
+Most general AI chat apps connect to AI Sonar through the standard OpenAI-compatible chat path.
 
 In practice that means:
-- use `https://api.tokenlab.sh/v1` as the base URL unless the app explicitly asks for a full endpoint URL
-- use your TokenLab API key as the OpenAI-style API key
+- use `https://api.aisonar.dev/v1` as the base URL unless the app explicitly asks for a full endpoint URL
+- use your AI Sonar API key as the OpenAI-style API key
 - pick models that the app can use in a standard chat workflow
 
 <Note>
@@ -41,12 +41,12 @@ General chat apps are usually **chat-completions oriented**, not Codex Responses
 
 | Field | Value |
 |-------|-------|
-| Base URL | `https://api.tokenlab.sh/v1` |
-| API Key | `sk-your-tokenlab-key` |
+| Base URL | `https://api.aisonar.dev/v1` |
+| API Key | `sk-your-api-key` |
 | API Type | OpenAI Compatible |
 
 If an app asks for a **full endpoint URL** instead of a base URL, use:
-- Chat Completions: `https://api.tokenlab.sh/v1/chat/completions`
+- Chat Completions: `https://api.aisonar.dev/v1/chat/completions`
 
 ## Example App Setups
 
@@ -55,24 +55,24 @@ If an app asks for a **full endpoint URL** instead of a base URL, use:
     **Self-hosted LobeChat**
 
     ```bash
-    OPENAI_API_KEY=sk-your-tokenlab-key
-    OPENAI_PROXY_URL=https://api.tokenlab.sh/v1
+    OPENAI_API_KEY=sk-your-api-key
+    OPENAI_PROXY_URL=https://api.aisonar.dev/v1
     ```
 
     **LobeChat Cloud**
     1. Open **Settings** → **AI Service Provider**
     2. Select **OpenAI**
-    3. Enter your TokenLab API key
-    4. Set the custom endpoint to `https://api.tokenlab.sh/v1`
+    3. Enter your AI Sonar API key
+    4. Set the custom endpoint to `https://api.aisonar.dev/v1`
   </Tab>
 
   <Tab title="Cherry Studio">
     1. Open **Settings** → **Model Provider**
     2. Add an **OpenAI-compatible** provider
     3. Enter:
-       - **Name**: TokenLab
-       - **API Base URL**: `https://api.tokenlab.sh/v1`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **Name**: AI Sonar
+       - **API Base URL**: `https://api.aisonar.dev/v1`
+       - **API Key**: `sk-your-api-key`
     4. Add the models you want to use
   </Tab>
 
@@ -80,8 +80,8 @@ If an app asks for a **full endpoint URL** instead of a base URL, use:
     1. Open **Settings** → **AI Model**
     2. Choose **OpenAI API Compatible**
     3. Enter:
-       - **API Host**: `https://api.tokenlab.sh/v1`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **API Host**: `https://api.aisonar.dev/v1`
+       - **API Key**: `sk-your-api-key`
        - **Model**: `gpt-5-mini` or `gpt-4o`
   </Tab>
 
@@ -89,8 +89,8 @@ If an app asks for a **full endpoint URL** instead of a base URL, use:
     1. Open **Settings**
     2. Choose **Custom Endpoint**
     3. Enter:
-       - **Endpoint URL**: `https://api.tokenlab.sh/v1/chat/completions`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **Endpoint URL**: `https://api.aisonar.dev/v1/chat/completions`
+       - **API Key**: `sk-your-api-key`
     4. Configure the models you want to expose
   </Tab>
 
@@ -98,8 +98,8 @@ If an app asks for a **full endpoint URL** instead of a base URL, use:
     1. Open **Admin Settings** → **Connections**
     2. Add an **OpenAI-compatible** connection
     3. Enter:
-       - **Base URL**: `https://api.tokenlab.sh/v1`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **Base URL**: `https://api.aisonar.dev/v1`
+       - **API Key**: `sk-your-api-key`
     4. Save and select the models you want to expose
   </Tab>
 
@@ -108,9 +108,9 @@ If an app asks for a **full endpoint URL** instead of a base URL, use:
 
     ```yaml
     customEndpoints:
-      - name: TokenLab
+      - name: AI Sonar
         apiKey: '${OPENAI_API_KEY}'
-        baseURL: 'https://api.tokenlab.sh/v1'
+        baseURL: 'https://api.aisonar.dev/v1'
         models:
           default: ['gpt-5-mini', 'gpt-5.4', 'claude-sonnet-4-6']
           fetch: false
@@ -131,7 +131,7 @@ If an app asks for a **full endpoint URL** instead of a base URL, use:
 
 <AccordionGroup>
   <Accordion title="Prefer base URL when the app supports it">
-    Most apps are easier to configure and less fragile when you provide `https://api.tokenlab.sh/v1` as a base URL instead of a full endpoint URL.
+    Most apps are easier to configure and less fragile when you provide `https://api.aisonar.dev/v1` as a base URL instead of a full endpoint URL.
   </Accordion>
 
   <Accordion title="Use smaller models first">
@@ -147,20 +147,20 @@ If an app asks for a **full endpoint URL** instead of a base URL, use:
 
 <AccordionGroup>
   <Accordion title="Connection Error">
-    - Verify the base URL is exactly `https://api.tokenlab.sh/v1`
+    - Verify the base URL is exactly `https://api.aisonar.dev/v1`
     - Remove trailing slashes if the app auto-appends paths
-    - If the app wants a full endpoint URL, use `https://api.tokenlab.sh/v1/chat/completions`
+    - If the app wants a full endpoint URL, use `https://api.aisonar.dev/v1/chat/completions`
   </Accordion>
 
   <Accordion title="401 Unauthorized">
     - Double-check your API key
-    - Confirm the key is active in TokenLab dashboard
+    - Confirm the key is active in AI Sonar dashboard
     - Make sure there are no extra spaces or line breaks
   </Accordion>
 
   <Accordion title="Model Not Available">
     - Verify the model name exactly
     - Try a widely supported default like `gpt-5-mini`, `gpt-4o`, or `claude-sonnet-4-6`
-    - Check current availability in TokenLab docs or dashboard
+    - Check current availability in AI Sonar docs or dashboard
   </Accordion>
 </AccordionGroup>

@@ -20,7 +20,7 @@ The async task identifier may surface as `id` or `task_id` depending on the adap
 
 ### Model and media behavior
 
-Audio output is model-dependent. In TokenLab, Veo 3 family requests default to audio-on when `output_audio` is omitted. When a model supports audio control, use `output_audio` to explicitly toggle it. The camelCase alias `outputAudio` is also accepted for compatibility.
+Audio output is model-dependent. In AI Sonar, Veo 3 family requests default to audio-on when `output_audio` is omitted. When a model supports audio control, use `output_audio` to explicitly toggle it. The camelCase alias `outputAudio` is also accepted for compatibility.
 
 For production integrations, prefer publicly reachable `https` URLs for images, videos, and audio. Inline `data:` URLs remain supported for compatible models, but large base64 payloads are harder to retry, inspect, and debug.
 
@@ -35,7 +35,7 @@ For production integrations, prefer publicly reachable `https` URLs for images, 
 </ParamField>
 
 <ParamField body="operation" type="string">
-  Video operation to run. Supported contract values include `text-to-video`, `image-to-video`, `reference-to-video`, `start-end-to-video`, `video-to-video`, `video-extension`, `audio-to-video`, and `motion-control`. TokenLab can infer the operation from the supplied inputs, but explicit `operation` is recommended for production reliability.
+  Video operation to run. Supported contract values include `text-to-video`, `image-to-video`, `reference-to-video`, `start-end-to-video`, `video-to-video`, `video-extension`, `audio-to-video`, and `motion-control`. AI Sonar can infer the operation from the supplied inputs, but explicit `operation` is recommended for production reliability.
 </ParamField>
 
 <ParamField body="image_url" type="string">
@@ -47,7 +47,7 @@ For production integrations, prefer publicly reachable `https` URLs for images, 
 </ParamField>
 
 <ParamField body="reference_images" type="array">
-Reference image inputs for models that support dedicated reference conditioning. The supported count is model-dependent. For `seedance-2.0` and `seedance-2.0-fast`, TokenLab currently supports up to 9 reference images plus up to 3 reference videos and 3 reference audios. Public `https` URLs are recommended; compatible models also accept inline `data:` URLs. For `grok-imagine-video`, reference-to-video accepts up to 7 image references and `duration` is capped at 10 seconds. `grok-imagine-video-1.5-preview` is image-to-video only and does not accept reference images.
+Reference image inputs for models that support dedicated reference conditioning. The supported count is model-dependent. For `seedance-2.0` and `seedance-2.0-fast`, AI Sonar currently supports up to 9 reference images plus up to 3 reference videos and 3 reference audios. Public `https` URLs are recommended; compatible models also accept inline `data:` URLs. For `grok-imagine-video`, reference-to-video accepts up to 7 image references and `duration` is capped at 10 seconds. `grok-imagine-video-1.5-preview` is image-to-video only and does not accept reference images.
 </ParamField>
 
 <ParamField body="reference_image_type" type="string">
@@ -63,7 +63,7 @@ Reference image inputs for models that support dedicated reference conditioning.
 </ParamField>
 
 <ParamField body="video_urls" type="array">
-  Additional reference video inputs for models that support multimodal reference conditioning. The supported count is model-dependent. For `seedance-2.0` and `seedance-2.0-fast`, TokenLab currently supports up to 3 reference videos.
+  Additional reference video inputs for models that support multimodal reference conditioning. The supported count is model-dependent. For `seedance-2.0` and `seedance-2.0-fast`, AI Sonar currently supports up to 3 reference videos.
 </ParamField>
 
 <ParamField body="audio_url" type="string">
@@ -71,7 +71,7 @@ Reference image inputs for models that support dedicated reference conditioning.
 </ParamField>
 
 <ParamField body="audio_urls" type="array">
-  Additional reference audio inputs for models that support multimodal reference conditioning. The supported count is model-dependent. For `seedance-2.0` and `seedance-2.0-fast`, TokenLab currently supports up to 3 reference audios.
+  Additional reference audio inputs for models that support multimodal reference conditioning. The supported count is model-dependent. For `seedance-2.0` and `seedance-2.0-fast`, AI Sonar currently supports up to 3 reference audios.
 </ParamField>
 
 <ParamField body="task_id" type="string">
@@ -99,7 +99,7 @@ Reference image inputs for models that support dedicated reference conditioning.
 </ParamField>
 
 <ParamField body="output_audio" type="boolean">
-  Model-dependent audio output toggle. In TokenLab, Veo 3 family requests default to `true` when this field is omitted. `kling-3.0-video` accepts this selector for non-element-reference requests and maps it to the compatible upstream sound control; omitted Kling requests default to silent output. Do not combine `output_audio=true` with `kling_elements`. Other public video models follow their governed default behavior. The camelCase alias `outputAudio` is accepted for compatibility.
+  Model-dependent audio output toggle. In AI Sonar, Veo 3 family requests default to `true` when this field is omitted. `kling-3.0-video` accepts this selector for non-element-reference requests and maps it to the compatible upstream sound control; omitted Kling requests default to silent output. Do not combine `output_audio=true` with `kling_elements`. Other public video models follow their governed default behavior. The camelCase alias `outputAudio` is accepted for compatibility.
 </ParamField>
 
 <ParamField body="fps" type="integer">
@@ -149,8 +149,8 @@ Reference image inputs for models that support dedicated reference conditioning.
 ## Compatibility Notes
 
 - Canonical public fields are snake_case: `reference_images`, `reference_image_type`, and `output_audio`.
-- For compatibility, TokenLab also accepts the camelCase aliases `referenceImages`, `referenceImageType`, and `outputAudio`.
-- If `operation` is omitted, TokenLab infers it from the supplied inputs. For production traffic, explicit `operation` is still recommended.
+- For compatibility, AI Sonar also accepts the camelCase aliases `referenceImages`, `referenceImageType`, and `outputAudio`.
+- If `operation` is omitted, AI Sonar infers it from the supplied inputs. For production traffic, explicit `operation` is still recommended.
 
 ## Media Input Best Practices
 
@@ -173,7 +173,7 @@ Reference image inputs for models that support dedicated reference conditioning.
 </ResponseField>
 
 <ResponseField name="billing_transaction_id" type="string">
-  TokenLab billing transaction ID when settlement already completed. This is the dashboard/accounting transaction identifier and is separate from the async `id` / `task_id`.
+  AI Sonar billing transaction ID when settlement already completed. This is the dashboard/accounting transaction identifier and is separate from the async `id` / `task_id`.
 </ResponseField>
 
 <ResponseField name="status" type="string">
@@ -206,7 +206,7 @@ Reference image inputs for models that support dedicated reference conditioning.
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.tokenlab.sh/v1/videos/generations" \
+curl -X POST "https://api.aisonar.dev/v1/videos/generations" \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -222,7 +222,7 @@ curl -X POST "https://api.tokenlab.sh/v1/videos/generations" \
 import requests
 
 response = requests.post(
-    "https://api.tokenlab.sh/v1/videos/generations",
+    "https://api.aisonar.dev/v1/videos/generations",
     headers={
         "Authorization": "Bearer sk-your-api-key",
         "Content-Type": "application/json"
@@ -243,7 +243,7 @@ print(f"Task ID: {task_id}")
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.tokenlab.sh/v1/videos/generations', {
+const response = await fetch('https://api.aisonar.dev/v1/videos/generations', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer sk-your-api-key',
@@ -281,7 +281,7 @@ console.log(`Task ID: ${data.task_id}`);
 
 ```python
 response = requests.post(
-    "https://api.tokenlab.sh/v1/videos/generations",
+    "https://api.aisonar.dev/v1/videos/generations",
     headers={"Authorization": "Bearer sk-your-api-key"},
     json={
         "model": "hailuo-2.3-standard",
@@ -299,7 +299,7 @@ response = requests.post(
 Use `kling_elements` with `kling-3.0-video` when you need element references. Provide an image-conditioned request (`image_url`, `image_urls`, `start_image`, or `end_image`) and reference each element in the prompt with `@name`. Do not combine `kling_elements` with `output_audio=true`; omit `output_audio` or set it to `false` for element-reference requests.
 
 ```python
-response = requests.post("https://api.tokenlab.sh/v1/videos/generations",
+response = requests.post("https://api.aisonar.dev/v1/videos/generations",
     headers=headers,
     json={
         "model": "kling-3.0-video",
@@ -324,11 +324,11 @@ response = requests.post("https://api.tokenlab.sh/v1/videos/generations",
 
 ## Reference to Video
 
-Use `operation=reference-to-video` when the model supports dedicated reference conditioning. In TokenLab's public contract, image references use `reference_images`, while multimodal reference videos and audios use `video_urls` and `audio_urls`. For `seedance-2.0` and `seedance-2.0-fast`, TokenLab currently supports up to 9 reference images plus up to 3 reference videos and 3 reference audios. `duration` controls generated output length only; it does not set a separate limit for reference video input duration. For `grok-imagine-video`, reference-to-video accepts up to 7 image references (`reference_images` or `image_urls`) and `duration` is capped at 10 seconds. Do not combine reference images with `image_url` / `image` first-frame inputs. `grok-imagine-video-1.5-preview` is image-to-video only.
+Use `operation=reference-to-video` when the model supports dedicated reference conditioning. In AI Sonar's public contract, image references use `reference_images`, while multimodal reference videos and audios use `video_urls` and `audio_urls`. For `seedance-2.0` and `seedance-2.0-fast`, AI Sonar currently supports up to 9 reference images plus up to 3 reference videos and 3 reference audios. `duration` controls generated output length only; it does not set a separate limit for reference video input duration. For `grok-imagine-video`, reference-to-video accepts up to 7 image references (`reference_images` or `image_urls`) and `duration` is capped at 10 seconds. Do not combine reference images with `image_url` / `image` first-frame inputs. `grok-imagine-video-1.5-preview` is image-to-video only.
 
 ```python
 response = requests.post(
-    "https://api.tokenlab.sh/v1/videos/generations",
+    "https://api.aisonar.dev/v1/videos/generations",
     headers={"Authorization": "Bearer sk-your-api-key"},
     json={
         "model": "veo3.1",
@@ -352,7 +352,7 @@ Use `start_image` and `end_image` to control the first and last frames:
 
 ```python
 response = requests.post(
-    "https://api.tokenlab.sh/v1/videos/generations",
+    "https://api.aisonar.dev/v1/videos/generations",
     headers={"Authorization": "Bearer sk-your-api-key"},
     json={
         "model": "viduq2-pro",
@@ -369,13 +369,13 @@ response = requests.post(
 
 ## Video to Video
 
-For `grok-imagine-video` video-to-video, send a public HTTPS `.mp4` URL in `video_url`. TokenLab translates it to xAI's REST `video.url` body. You may set `resolution` to `480p` or `720p`; `duration` and `aspect_ratio` are not accepted for that edit flow.
+For `grok-imagine-video` video-to-video, send a public HTTPS `.mp4` URL in `video_url`. AI Sonar translates it to xAI's REST `video.url` body. You may set `resolution` to `480p` or `720p`; `duration` and `aspect_ratio` are not accepted for that edit flow.
 
 Use `operation=video-to-video` when the model accepts an existing video as the primary input.
 
 ```python
 response = requests.post(
-    "https://api.tokenlab.sh/v1/videos/generations",
+    "https://api.aisonar.dev/v1/videos/generations",
     headers={"Authorization": "Bearer sk-your-api-key"},
     json={
         "model": "topaz-video-upscale",
@@ -389,11 +389,11 @@ response = requests.post(
 
 ## Motion Control
 
-Use `operation=motion-control` when the model expects both a subject image and a motion reference video. TokenLab maps the public `image_url` + `video_url` request shape to the upstream motion-control contract.
+Use `operation=motion-control` when the model expects both a subject image and a motion reference video. AI Sonar maps the public `image_url` + `video_url` request shape to the upstream motion-control contract.
 
 ```python
 response = requests.post(
-    "https://api.tokenlab.sh/v1/videos/generations",
+    "https://api.aisonar.dev/v1/videos/generations",
     headers={"Authorization": "Bearer sk-your-api-key"},
     json={
         "model": "kling-3.0-motion-control",
@@ -408,7 +408,7 @@ response = requests.post(
 
 ## Audio-to-Video and Video Extension Availability
 
-TokenLab’s public contract accepts `audio-to-video` and `video-extension` for model-specific flows, but the current generally enabled public video model list in this docs build does not include a broad public model that advertises either capability. Use the [Models API](/api-reference/models/list-models) or the [Models page](https://tokenlab.sh/en/models) to confirm current availability before integrating those operations.
+AI Sonar’s public contract accepts `audio-to-video` and `video-extension` for model-specific flows, but the current generally enabled public video model list in this docs build does not include a broad public model that advertises either capability. Use the [Models API](/api-reference/models/list-models) or the [Models page](https://aisonar.dev/models) to confirm current availability before integrating those operations.
 
 ## Currently Enabled Public Video Models
 

@@ -24,7 +24,7 @@ description: "通过 WebSocket 连接实时语音和多模态会话"
 ```javascript JavaScript
 import WebSocket from 'ws';
 
-const socket = new WebSocket('wss://api.tokenlab.sh/v1/realtime?model=qwen-tts-realtime', {
+const socket = new WebSocket('wss://api.aisonar.dev/v1/realtime?model=qwen-tts-realtime', {
   headers: { Authorization: 'Bearer sk-your-api-key' }
 });
 
@@ -38,17 +38,17 @@ socket.on('message', (data) => {
 ```
 
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/realtime" \
+curl "https://api.aisonar.dev/v1/realtime" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>
 
 ## 消息
 
-TokenLab 会在客户端和路由后的实时提供方之间转发 WebSocket 消息。请保留所选模型的官方事件结构，并通过查询参数传入 `model`。
+AI Sonar 会在客户端和路由后的实时提供方之间转发 WebSocket 消息。请保留所选模型的官方事件结构，并通过查询参数传入 `model`。
 
 ## 计费与关闭
 
-实时会话使用同一 API Key 余额。TokenLab 会在 socket 打开时预扣小额估算费用，并在会话关闭时结算或退款。
+实时会话使用同一 API Key 余额。AI Sonar 会在 socket 打开时预扣小额估算费用，并在会话关闭时结算或退款。
 
-会话完成后关闭客户端 socket。如果上游先关闭，TokenLab 会尽可能把关闭码转发给客户端。
+会话完成后关闭客户端 socket。如果上游先关闭，AI Sonar 会尽可能把关闭码转发给客户端。

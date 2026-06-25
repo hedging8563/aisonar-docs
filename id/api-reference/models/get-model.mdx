@@ -28,13 +28,13 @@ description: "Ambil satu instance model"
   Provider model.
 </ResponseField>
 
-<ResponseField name="tokenlab" type="object">
-  Metadata publik khusus TokenLab. Route detail dapat mencakup `category`, `pricing_unit`, `capability_flags`, `supported_operations`, `pricing_provenance`, `public_contract_summary`, `public_contract` lengkap, dan `agent_preferences` level scene untuk snapshot rekomendasi non-chat.
+<ResponseField name="aisonar" type="object">
+  Metadata publik khusus AI Sonar. Route detail dapat mencakup `category`, `pricing_unit`, `capability_flags`, `supported_operations`, `pricing_provenance`, `public_contract_summary`, `public_contract` lengkap, dan `agent_preferences` level scene untuk snapshot rekomendasi non-chat.
 </ResponseField>
 
 <RequestExample>
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/models/gpt-5.4" \
+curl "https://api.aisonar.dev/v1/models/gpt-5.4" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
@@ -43,7 +43,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 model = client.models.retrieve("gpt-5.4")
@@ -55,7 +55,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const model = await client.models.retrieve('gpt-5.4');
@@ -72,7 +72,7 @@ import (
 )
 
 func main() {
-    req, _ := http.NewRequest("GET", "https://api.tokenlab.sh/v1/models/gpt-5.4", nil)
+    req, _ := http.NewRequest("GET", "https://api.aisonar.dev/v1/models/gpt-5.4", nil)
     req.Header.Set("Authorization", "Bearer sk-your-api-key")
 
     resp, _ := http.DefaultClient.Do(req)
@@ -86,7 +86,7 @@ func main() {
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.tokenlab.sh/v1/models/gpt-5.4');
+$ch = curl_init('https://api.aisonar.dev/v1/models/gpt-5.4');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -130,7 +130,7 @@ Jika model tidak ada, Anda akan menerima error 404:
 
 ## Metadata Rekomendasi Non-Chat
 
-Untuk model non-chat, route detail juga mengembalikan `tokenlab.agent_preferences.<scene>`.
+Untuk model non-chat, route detail juga mengembalikan `aisonar.agent_preferences.<scene>`.
 
 Gunakan untuk melihat:
 
@@ -146,8 +146,8 @@ Respons publik sengaja menjaga `basis.channel_id` dan `basis.physical_model` tet
 
 Dibandingkan `GET /v1/models`, route detail juga bisa mengembalikan:
 
-- `tokenlab.capability_flags`
-- `tokenlab.supported_operations`
-- `tokenlab.pricing_provenance`
-- `tokenlab.public_contract_summary`
-- `tokenlab.public_contract`
+- `aisonar.capability_flags`
+- `aisonar.supported_operations`
+- `aisonar.pricing_provenance`
+- `aisonar.public_contract_summary`
+- `aisonar.public_contract`

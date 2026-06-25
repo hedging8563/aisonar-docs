@@ -5,11 +5,11 @@ description: "Yapay zeka kodlama araçları, SDK'lar ve çerçeveler için kanı
 
 ## Genel Bakış
 
-TokenLab, yaygın kodlama araçlarının, SDK'ların ve çerçevelerin minimum bağlantı kodu ile entegre olabilmesi için birden fazla API formatı sunar.
+AI Sonar, yaygın kodlama araçlarının, SDK'ların ve çerçevelerin minimum bağlantı kodu ile entegre olabilmesi için birden fazla API formatı sunar.
 
 Bu sayfa kasıtlı olarak bir pazarlama matrisinden daha dar kapsamlıdır:
 
-- **Supported** belgelenmiş somut bir kurulum yolunu ve TokenLab'nın bu yolun beklediği protokol şekline uygunluğu sunduğu anlamına gelir.
+- **Supported** belgelenmiş somut bir kurulum yolunu ve AI Sonar'nın bu yolun beklediği protokol şekline uygunluğu sunduğu anlamına gelir.
 - **Güçlü native yol** depo ayrıca o protokol ailesi için doğrudan adaptör veya istek-formatı kanıtına sahip olduğunu gösterir.
 - **En iyi çaba** entegrasyonun çalışabileceği, ancak yukarı akış istemcisinin bu özel gateway iş akışını istikrarlı bir sözleşme olarak ele almadığı anlamına gelir.
 
@@ -35,7 +35,7 @@ Bu sayfa kasıtlı olarak bir pazarlama matrisinden daha dar kapsamlıdır:
 | **Cursor** | Sınırlamalarla desteklenir | OpenAI uyumlu | BYOK standart sohbet/düzenleyici akışları için çalışır; Cursor tarafından yönetilen Tab Completion gibi özelliklerin yerine geçmez |
 | **Claude Code CLI** | Güçlü native yol | Anthropic | Düşünme ve `tool_choice` için adaptör kapsamı ile yerel `/v1/messages` rotası |
 | **Codex CLI** | Model/yol sınırlarıyla desteklenir | OpenAI Responses | Codex-özel iş akışları için gelişmiş bir yol olarak `/v1/responses`'i ele alın; bazı yalnızca Responses alanları her model ve yönlendirilmiş yol için garanti edilmez |
-| **Gemini CLI** | En iyi çaba / deneysel | Gemini | Özel TokenLab base URL akışı istikrarlı bir yukarı akış sözleşmesi değildir |
+| **Gemini CLI** | En iyi çaba / deneysel | Gemini | Özel AI Sonar base URL akışı istikrarlı bir yukarı akış sözleşmesi değildir |
 | **OpenCode** | Supported | OpenAI uyumlu | Varsayılan olarak OpenAI uyumlu bir sağlayıcı kullanın; yalnızca açıkça ihtiyaç duyduğunuzda Responses-temelli bir sağlayıcıya geçin |
 
 <Note>
@@ -47,29 +47,29 @@ Bu sayfa kasıtlı olarak bir pazarlama matrisinden daha dar kapsamlıdır:
 <Tabs>
   <Tab title="Cursor">
     ```
-    Base URL: https://api.tokenlab.sh/v1
-    API Key: sk-your-tokenlab-key
+    Base URL: https://api.aisonar.dev/v1
+    API Key: sk-your-api-key
     ```
-    Cursor dahili olarak Anthropic tarzı araç formatını kullanır. TokenLab her iki formatı da destekler:
+    Cursor dahili olarak Anthropic tarzı araç formatını kullanır. AI Sonar her iki formatı da destekler:
     - OpenAI formatı: `{ type: "function", function: { name, parameters } }`
     - Anthropic formatı: `{ name, input_schema }` (type alanı yok)
   </Tab>
   <Tab title="Claude Code">
     ```bash
-    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
-    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
+    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
+    export ANTHROPIC_API_KEY="sk-your-api-key"
     ```
   </Tab>
   <Tab title="OpenCode">
     ```bash
-    export OPENAI_API_KEY="sk-your-tokenlab-key"
-    export LOCAL_ENDPOINT="https://api.tokenlab.sh/v1"
+    export OPENAI_API_KEY="sk-your-api-key"
+    export LOCAL_ENDPOINT="https://api.aisonar.dev/v1"
     ```
   </Tab>
   <Tab title="Aider">
     ```bash
-    export OPENAI_API_KEY="sk-your-tokenlab-key"
-    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
+    export OPENAI_API_KEY="sk-your-api-key"
+    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
     aider --model gpt-5.4
     ```
   </Tab>
@@ -85,7 +85,7 @@ Bu sayfa kasıtlı olarak bir pazarlama matrisinden daha dar kapsamlıdır:
 | **Anthropic SDK** | Python/JS | Güçlü native yol | Araçlar, düşünme ve prompt önbellekleme için doğrudan kanıtla yerel Messages rotası |
 | **Vercel AI SDK** | TypeScript | Önerilen entegrasyon deseni | `@ai-sdk/openai-compatible` tercih edin; yalnızca açıkça Responses-native davranışı istediğinizde `@ai-sdk/openai` kullanın |
 | **LangChain** | Python/JS | Desteklenen standart yüzeyler | Amaçlanan kapsam `ChatOpenAI` ve `OpenAIEmbeddings`'dir; satıcıya özgü ekstralar kapsam dışıdır |
-| **LlamaIndex** | Python | `OpenAILike` ile desteklenir | TokenLab gibi üçüncü taraf gateway'ler için dahili OpenAI sınıfları yerine `OpenAILike` kullanın |
+| **LlamaIndex** | Python | `OpenAILike` ile desteklenir | AI Sonar gibi üçüncü taraf gateway'ler için dahili OpenAI sınıfları yerine `OpenAILike` kullanın |
 | **Dify** | - | Kapsam sınırlarıyla desteklenir | OpenAI sağlayıcısı ve chat-completions odaklı akışlar amaçlanan yoldur; Codex-özel Responses veya WebSocket davranışı için uygun değildir |
 
 ## Chat Completions Parametreleri
@@ -318,7 +318,7 @@ Tüm endpoint'ler Server-Sent Events (SSE) akışını destekler:
 
 ```bash
 # Chat Completions
-curl https://api.tokenlab.sh/v1/chat/completions \
+curl https://api.aisonar.dev/v1/chat/completions \
   -H "Authorization: Bearer sk-xxx" \
   -d '{"model": "gpt-4o", "messages": [...], "stream": true}'
 
@@ -328,7 +328,7 @@ curl https://api.tokenlab.sh/v1/chat/completions \
 
 ## Hata İşleme
 
-TokenLab, OpenAI-uyumlu hata yanıtları döndürür:
+AI Sonar, OpenAI-uyumlu hata yanıtları döndürür:
 
 ```json
 {
@@ -354,6 +354,6 @@ Ayrıntılar için [Hata İşleme Rehberi](/guides/error-handling) bakınız.
   </Accordion>
 
   <Accordion title="Uygun tool_choice formatını kullanın">
-    SDK'nızın beklediği formata uyun. TokenLab hem OpenAI hem de Anthropic formatlarını kabul eder.
+    SDK'nızın beklediği formata uyun. AI Sonar hem OpenAI hem de Anthropic formatlarını kabul eder.
   </Accordion>
 </AccordionGroup>

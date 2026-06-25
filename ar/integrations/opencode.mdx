@@ -1,6 +1,6 @@
 ---
 title: "OpenCode"
-description: "قم بتهيئة OpenCode لاستخدام TokenLab API"
+description: "قم بتهيئة OpenCode لاستخدام AI Sonar API"
 ---
 
 ## نظرة عامة
@@ -15,7 +15,7 @@ description: "قم بتهيئة OpenCode لاستخدام TokenLab API"
 **مستوى الدعم**: مسار مدعوم
 </Note>
 
-OpenCode هو مساعد برمجة AI مفتوح المصدر يعمل داخل الطرفية الخاصة بك. وهو يدعم عدة مزوّدي LLM ويمكن تهيئته لاستخدام API الخاصة بـ TokenLab للوصول إلى مئات النماذج.
+OpenCode هو مساعد برمجة AI مفتوح المصدر يعمل داخل الطرفية الخاصة بك. وهو يدعم عدة مزوّدي LLM ويمكن تهيئته لاستخدام API الخاصة بـ AI Sonar للوصول إلى مئات النماذج.
 
 ## التثبيت
 
@@ -53,29 +53,29 @@ opencode --version
 ### الخطوة 1: تعيين متغيرات البيئة
 
 ```bash
-export OPENAI_API_KEY="sk-your-tokenlab-key"
+export OPENAI_API_KEY="sk-your-api-key"
 ```
 
 للتهيئة الدائمة، أضف إلى `~/.bashrc` أو `~/.zshrc`:
 
 ```bash
-echo 'export OPENAI_API_KEY="sk-your-tokenlab-key"' >> ~/.zshrc
+echo 'export OPENAI_API_KEY="sk-your-api-key"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 ### الخطوة 2: تهيئة OpenCode
 
-توصي وثائق OpenCode الحالية بتهيئة المزوّدين من خلال `opencode.json` أو `opencode.jsonc`. بالنسبة إلى TokenLab، استخدم مزوّدًا مخصصًا بدلًا من تحميل المزوّد المدمج `openai` فوق طاقته:
+توصي وثائق OpenCode الحالية بتهيئة المزوّدين من خلال `opencode.json` أو `opencode.jsonc`. بالنسبة إلى AI Sonar، استخدم مزوّدًا مخصصًا بدلًا من تحميل المزوّد المدمج `openai` فوق طاقته:
 
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "tokenlab": {
+    "aisonar": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "TokenLab",
+      "name": "AI Sonar",
       "options": {
-        "baseURL": "https://api.tokenlab.sh/v1",
+        "baseURL": "https://api.aisonar.dev/v1",
         "apiKey": "{env:OPENAI_API_KEY}"
       },
       "models": {
@@ -88,7 +88,7 @@ source ~/.zshrc
       }
     }
   },
-  "model": "tokenlab/gpt-5.4"
+  "model": "aisonar/gpt-5.4"
 }
 ```
 
@@ -113,7 +113,7 @@ opencode "Explain this codebase"
 **حدد النموذج:**
 
 ```bash
-opencode --model tokenlab/gpt-5.4 "Fix the bugs in main.py"
+opencode --model aisonar/gpt-5.4 "Fix the bugs in main.py"
 ```
 
 ## النماذج المتاحة
@@ -166,21 +166,21 @@ opencode "Fix the TypeScript errors in this project"
 
 <AccordionGroup>
   <Accordion title="خطأ في الاتصال">
-    - تحقق من أن `options.baseURL` مضبوط على `https://api.tokenlab.sh/v1`
+    - تحقق من أن `options.baseURL` مضبوط على `https://api.aisonar.dev/v1`
     - تحقق من اتصال الشبكة
-    - جرّب `curl https://api.tokenlab.sh/v1/models` للاختبار
+    - جرّب `curl https://api.aisonar.dev/v1/models` للاختبار
   </Accordion>
 
   <Accordion title="فشلت المصادقة">
     - تحقق من تعيين متغير البيئة `OPENAI_API_KEY`
     - تحقق من أن `options.apiKey` يشير إلى `{env:OPENAI_API_KEY}` أو إلى مصدر secret صالح آخر
     - تحقق من أن المفتاح يبدأ بـ `sk-`
-    - تأكد من أن المفتاح نشط في لوحة تحكم TokenLab
+    - تأكد من أن المفتاح نشط في لوحة تحكم AI Sonar
   </Accordion>
 
   <Accordion title="النموذج غير موجود">
     - تحقق من أن اسم النموذج في ملف التهيئة مطابق تمامًا
-    - تحقق من توفر النموذج على [tokenlab.sh/en/models](https://tokenlab.sh/ar/models)
+    - تحقق من توفر النموذج على [aisonar.dev/en/models](https://aisonar.dev/models)
   </Accordion>
 </AccordionGroup>
 

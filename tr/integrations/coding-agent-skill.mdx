@@ -1,10 +1,10 @@
 ---
-title: "✨ TokenLab API Entegrasyon Yeteneği"
-description: "Agent-First hata kurtarma ile, herhangi bir kodlama ajanı için paylaşılan TokenLab API entegrasyon yeteneğini yükleyin."
+title: "✨ AI Sonar API Entegrasyon Yeteneği"
+description: "Agent-First hata kurtarma ile, herhangi bir kodlama ajanı için paylaşılan AI Sonar API entegrasyon yeteneğini yükleyin."
 ---
 
 <Note>
-Bu yetenek, kodlama ajanınıza yalnızca neye ihtiyacınız olduğunu açıklayarak TokenLab'nın **yüzlerce AI API'sini** nasıl entegre edeceğini öğretir. Tek bir paylaşılan Agent-First yeteneği olarak paketlenmiştir ve skill veya rules dosyalarını destekleyen herhangi bir kodlama ajanı ile çalışır.
+Bu yetenek, kodlama ajanınıza yalnızca neye ihtiyacınız olduğunu açıklayarak AI Sonar'nın **yüzlerce AI API'sini** nasıl entegre edeceğini öğretir. Tek bir paylaşılan Agent-First yeteneği olarak paketlenmiştir ve skill veya rules dosyalarını destekleyen herhangi bir kodlama ajanı ile çalışır.
 
 API **[Agent-First](/guides/agent-first-api)** yaklaşımındadır — ajan bir model adını yanlış tahmin etse bile, hata yanıtı bunu tam olarak nasıl düzelteceğini söyler.
 </Note>
@@ -36,12 +36,12 @@ Bu sayfa yeniden kullanılabilir bir yetenek paketleme katmanını açıklar; bi
 Kanonik non-interactive kurulum komutunu kullanın:
 
 ```bash
-npx skills add https://github.com/hedging8563/tokenlab-skills --skill tokenlab-api-integration -y
+npx skills add https://github.com/hedging8563/aisonar-skills --skill aisonar-api-integration -y
 ```
 
-Bu, TokenLab skills deposundan paylaşılan `tokenlab-api-integration` yeteneğini yükler.
+Bu, AI Sonar skills deposundan paylaşılan `aisonar-api-integration` yeteneğini yükler.
 
-Aracınız yükleyiciyi desteklemiyorsa, depodaki `skills/tokenlab-api-integration/` klasörünü aracınızın paylaşılan yetenek veya rules dizinine kopyalayın.
+Aracınız yükleyiciyi desteklemiyorsa, depodaki `skills/aisonar-api-integration/` klasörünü aracınızın paylaşılan yetenek veya rules dizinine kopyalayın.
 </Note>
 
 ### Kurulumu Doğrulama
@@ -51,19 +51,19 @@ Kodlama ajanınıza şunu sorun:
 Hangi yetenekler kullanılabilir?
 ```
 
-`tokenlab-api-integration` görüyorsanız, kurulum başarılı olmuştur.
+`aisonar-api-integration` görüyorsanız, kurulum başarılı olmuştur.
 
 ## API Key'inizi Alın
 
 <Steps>
-  <Step title="TokenLab'yı Ziyaret Edin">
-    [tokenlab.sh](https://tokenlab.sh) adresine gidin
+  <Step title="AI Sonar'yı Ziyaret Edin">
+    [aisonar.dev](https://aisonar.dev) adresine gidin
   </Step>
   <Step title="Oturum Açın">
     Bir hesap oluşturun veya giriş yapın
   </Step>
   <Step title="API Key Alın">
-    [Dashboard → API Keys](https://tokenlab.sh/dashboard/api) sayfasına gidin ve yeni bir key oluşturun
+    [Dashboard → API Keys](https://console.aisonar.dev/api) sayfasına gidin ve yeni bir key oluşturun
   </Step>
   <Step title="Key'i Kopyalayın">
     Key'iniz `sk-...` ile başlar — güvenli bir şekilde saklayın
@@ -90,7 +90,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.environ["TOKENLAB_API_KEY"],
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 response = client.chat.completions.create(
@@ -115,7 +115,7 @@ Ajan yanlış bir model adı tahmin ederse (ör. `gpt5`), API şunu döndürür:
     "code": "model_not_found",
     "did_you_mean": "gpt-5.4",
     "suggestions": [{"id": "gpt-5.4"}, {"id": "gpt-5-mini"}],
-    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.tokenlab.sh/v1/models to list all available models."
+    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.aisonar.dev/v1/models to list all available models."
   }
 }
 ```
@@ -157,12 +157,9 @@ Her hata yanıtı, herhangi bir kodlama ajanının ayrıştırabileceği yapıla
 
 `/v1/chat/completions` çağrısını bir Claude veya Gemini modeliyle yaptığınızda, API optimizasyon header'ları döndürür:
 
-```
-X-TokenLab-Hint: This model supports native Anthropic format. Use POST /v1/messages for better performance.
-X-TokenLab-Native-Endpoint: /v1/messages
-```
 
-Bu header’ları zorunlu otomatik geçiş değil, yönlendirme ipucu olarak değerlendirin. Claude native çağrıları `/v1/messages` kullanır; Gemini native çağrıları `X-TokenLab-Native-Endpoint` tarafından bildirilen endpoint’i, genellikle `/v1beta/gemini` yolunu izlemelidir.
+
+Bu header’ları zorunlu otomatik geçiş değil, yönlendirme ipucu olarak değerlendirin. Claude native çağrıları `/v1/messages` kullanır; Gemini native çağrıları the native endpoint hint header tarafından bildirilen endpoint’i, genellikle `/v1beta/gemini` yolunu izlemelidir.
 
 ### Model Keşfi
 
@@ -170,21 +167,21 @@ Dokümantasyonda arama yapmanıza gerek yok:
 
 ```bash
 # Makine tarafından okunabilir API genel görünümü
-curl https://api.tokenlab.sh/llms.txt
+curl https://api.aisonar.dev/llms.txt
 
 # List models by category
-curl "https://api.tokenlab.sh/v1/models?category=chat" -H "Authorization: Bearer sk-KEY"
-curl "https://api.tokenlab.sh/v1/models?category=image" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models?category=chat" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models?category=image" -H "Authorization: Bearer sk-KEY"
 
 # Chat dışı senaryolar için önerilen liste
-curl "https://api.tokenlab.sh/v1/models?recommended_for=image" -H "Authorization: Bearer sk-KEY"
-curl "https://api.tokenlab.sh/v1/models?recommended_for=translation" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models?recommended_for=image" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models?recommended_for=translation" -H "Authorization: Bearer sk-KEY"
 
 # Chat dışı isteği tekrar denemeden önce bir modelin public contract bilgisini okuyun
-curl "https://api.tokenlab.sh/v1/models/gpt-image-2" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models/gpt-image-2" -H "Authorization: Bearer sk-KEY"
 
 # Yeteneğe göre filtrele
-curl "https://api.tokenlab.sh/v1/models?tag=coding" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models?tag=coding" -H "Authorization: Bearer sk-KEY"
 ```
 
 ## Desteklenen Yetenekler
@@ -206,10 +203,10 @@ curl "https://api.tokenlab.sh/v1/models?tag=coding" -H "Authorization: Bearer sk
     Environment variable'ları kullanın. Key'leri asla git'e commit etmeyin veya frontend kodunda açığa çıkarmayın.
   </Card>
   <Card title="Maliyet Yönetimi" icon="wallet">
-    [dashboard](https://tokenlab.sh/dashboard) üzerinde kullanım limitleri belirleyin. Maliyetleri programatik olarak izlemek için `error.balance_usd` değerini kontrol edin.
+    [dashboard](https://console.aisonar.dev) üzerinde kullanım limitleri belirleyin. Maliyetleri programatik olarak izlemek için `error.balance_usd` değerini kontrol edin.
   </Card>
   <Card title="Doğrudan Olun" icon="bullseye">
-    "TokenLab'nın bir görsel API'si var mı?" yerine "Python'da görsel üretmek istiyorum" deyin.
+    "AI Sonar'nın bir görsel API'si var mı?" yerine "Python'da görsel üretmek istiyorum" deyin.
   </Card>
   <Card title="Senaryonuzu Açıklayın" icon="message">
     "GPT-4 kullan" yerine "GPT-4 ile bir chatbot geliştiriyorum" demek, agent'e daha fazla context sağlar.
@@ -220,24 +217,24 @@ curl "https://api.tokenlab.sh/v1/models?tag=coding" -H "Authorization: Bearer sk
 
 <AccordionGroup>
   <Accordion title="Skill otomatik olarak tetiklenmiyor mu?">
-    İsteğinizde "TokenLab" veya "TokenLab API" ifadesini belirtmeyi deneyin:
+    İsteğinizde "AI Sonar" veya "AI Sonar API" ifadesini belirtmeyi deneyin:
     ```
-    Projeme GPT-4 entegre etmek için TokenLab kullan
+    Projeme GPT-4 entegre etmek için AI Sonar kullan
     ```
   </Accordion>
 
   <Accordion title="API, agent'in doğru modeli bulmasına nasıl yardımcı olur?">
-    TokenLab'nın [Agent-First API'si](/guides/agent-first-api) yapılandırılmış hata ipuçları döndürür. Agent yanlış bir model adı tahmin ederse, hata doğru adla birlikte `did_you_mean` ve alternatiflerle birlikte `suggestions` içerir. Agent bunları okur ve bir sonraki denemede otomatik düzeltme yapar.
+    AI Sonar'nın [Agent-First API'si](/guides/agent-first-api) yapılandırılmış hata ipuçları döndürür. Agent yanlış bir model adı tahmin ederse, hata doğru adla birlikte `did_you_mean` ve alternatiflerle birlikte `suggestions` içerir. Agent bunları okur ve bir sonraki denemede otomatik düzeltme yapar.
   </Accordion>
 
   <Accordion title="Hangi coding agent'ler destekleniyor?">
-    Paylaşılan skill veya rules dizinlerini destekleyen herhangi bir coding agent. Yükleyici desteklendiğinde, `npx skills add` paylaşılan `tokenlab-api-integration` skill'ini algılanan konuma otomatik olarak yerleştirir.
+    Paylaşılan skill veya rules dizinlerini destekleyen herhangi bir coding agent. Yükleyici desteklendiğinde, `npx skills add` paylaşılan `aisonar-api-integration` skill'ini algılanan konuma otomatik olarak yerleştirir.
   </Accordion>
 
   <Accordion title="Skill nasıl güncellenir?">
     Yükleyiciyi yeniden çalıştırın:
     ```bash
-    npx skills add https://github.com/hedging8563/tokenlab-skills --skill tokenlab-api-integration -y
+    npx skills add https://github.com/hedging8563/aisonar-skills --skill aisonar-api-integration -y
     ```
   </Accordion>
 </AccordionGroup>
@@ -248,17 +245,17 @@ curl "https://api.tokenlab.sh/v1/models?tag=coding" -H "Authorization: Bearer sk
   <Card title="Agent-First API" icon="robot" href="/tr/guides/agent-first-api">
     Yapılandırılmış hata ipuçları için tam referans
   </Card>
-  <Card title="API Dokümantasyonu" icon="book" href="https://docs.tokenlab.sh">
+  <Card title="API Dokümantasyonu" icon="book" href="https://docs.aisonar.dev">
     Tam API referansı
   </Card>
-  <Card title="Modeller" icon="sparkles" href="https://tokenlab.sh/tr/models">
+  <Card title="Modeller" icon="sparkles" href="https://aisonar.dev/models">
     Mevcut yüzlerce modeli inceleyin
   </Card>
-  <Card title="llms.txt" icon="file-lines" href="https://api.tokenlab.sh/llms.txt">
+  <Card title="llms.txt" icon="file-lines" href="https://api.aisonar.dev/llms.txt">
     AI agent'leri için makine tarafından okunabilir API genel görünümü
   </Card>
 </CardGroup>
 
 <Info>
-**Sorularınız mı var?** [GitHub Issues](https://github.com/hedging8563/tokenlab-skills/issues) sayfamıza göz atın veya [support@tokenlab.sh](mailto:support@tokenlab.sh) ile iletişime geçin
+**Sorularınız mı var?** [GitHub Issues](https://github.com/hedging8563/aisonar-skills/issues) sayfamıza göz atın veya [support@aisonar.dev](mailto:support@aisonar.dev) ile iletişime geçin
 </Info>

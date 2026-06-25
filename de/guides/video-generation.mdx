@@ -5,17 +5,17 @@ description: "Greifen Sie über einen einheitlichen öffentlichen Vertrag auf Te
 
 ## Überblick
 
-TokenLab bietet Video-Generierung über eine einheitliche API an. Die Generierung ist **asynchron**: Sie senden eine Anfrage, erhalten `task_id` und `poll_url` und pollen anschließend auf das Endergebnis.
+AI Sonar bietet Video-Generierung über eine einheitliche API an. Die Generierung ist **asynchron**: Sie senden eine Anfrage, erhalten `task_id` und `poll_url` und pollen anschließend auf das Endergebnis.
 
 ### Verfügbarkeit und Polling
 
-Den aktuellen Bestand öffentlicher Videomodelle finden Sie über die [Models API](/de/api-reference/models/list-models) oder auf der [Modellseite](https://tokenlab.sh/de/models).
+Den aktuellen Bestand öffentlicher Videomodelle finden Sie über die [Models API](/de/api-reference/models/list-models) oder auf der [Modellseite](https://aisonar.dev/models).
 
 Wenn eine Create-Response `poll_url` zurückgibt, verwenden Sie genau diese URL. Wenn sie auf `/v1/tasks/{id}` zeigt, behandeln Sie sie als kanonischen festen Status-Endpunkt.
 
 ### Modell- und Medienverhalten
 
-Das Audioverhalten ist modellabhängig. In TokenLab wird die Veo-3-Familie bei weggelassenem `output_audio` standardmäßig als audio-on behandelt. Andere öffentliche Modelle sind standardmäßig stumm oder veröffentlichen keinen stabilen Audio-Schalter.
+Das Audioverhalten ist modellabhängig. In AI Sonar wird die Veo-3-Familie bei weggelassenem `output_audio` standardmäßig als audio-on behandelt. Andere öffentliche Modelle sind standardmäßig stumm oder veröffentlichen keinen stabilen Audio-Schalter.
 
 In Produktion sollten Sie für Bild-, Video- und Audioeingaben öffentlich erreichbare `https`-URLs bevorzugen. Kompatible Modelle akzeptieren weiterhin `data:`-URLs, aber URLs sind für Retry, Observability und Debugging in der Regel robuster.
 
@@ -24,25 +24,25 @@ In Produktion sollten Sie für Bild-, Video- und Audioeingaben öffentlich errei
 ```mermaid
 sequenceDiagram
     participant Client
-    participant TokenLab
+    participant AI Sonar
     participant Provider
 
-    Client->>TokenLab: POST /v1/videos/generations
-    TokenLab->>Provider: Normalisierte Anfrage weiterleiten
-    Provider-->>TokenLab: task_id + pending
-    TokenLab-->>Client: { task_id, poll_url, status: "pending" }
+    Client->>AI Sonar: POST /v1/videos/generations
+    AI Sonar->>Provider: Normalisierte Anfrage weiterleiten
+    Provider-->>AI Sonar: task_id + pending
+    AI Sonar-->>Client: { task_id, poll_url, status: "pending" }
 
     loop Alle 5-10 Sekunden pollen
-        Client->>TokenLab: GET poll_url
-        TokenLab->>Provider: Status abfragen
-        Provider-->>TokenLab: Status-Update
-        TokenLab-->>Client: { status, video_url? }
+        Client->>AI Sonar: GET poll_url
+        AI Sonar->>Provider: Status abfragen
+        Provider-->>AI Sonar: Status-Update
+        AI Sonar-->>Client: { status, video_url? }
     end
 ```
 
 ## Aktuelle öffentliche Operationen
 
-Der öffentliche Videovertrag von TokenLab konzentriert sich derzeit auf diese Operationen:
+Der öffentliche Videovertrag von AI Sonar konzentriert sich derzeit auf diese Operationen:
 
 - `text-to-video`
 - `image-to-video`
@@ -222,7 +222,7 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ### Referenzbild-zu-Video
 
-Für `seedance-2.0` und `seedance-2.0-fast` unterstützt TokenLab derzeit bis zu 9 Referenzbilder sowie zusätzlich bis zu 3 Referenzvideos und 3 Referenzaudios. `duration` steuert nur die Länge des generierten Outputs und definiert kein separates Dauerlimit für Referenzvideo-Eingaben. Für `grok-imagine-video` akzeptiert reference-to-video bis zu 7 Bildreferenzen (`reference_images` oder `image_urls`) und `duration` ist auf 10 Sekunden begrenzt. Kombinieren Sie Referenzbilder nicht mit `image_url` / `image` als Startbild-Eingaben. `grok-imagine-video-1.5-preview` ist nur image-to-video.
+Für `seedance-2.0` und `seedance-2.0-fast` unterstützt AI Sonar derzeit bis zu 9 Referenzbilder sowie zusätzlich bis zu 3 Referenzvideos und 3 Referenzaudios. `duration` steuert nur die Länge des generierten Outputs und definiert kein separates Dauerlimit für Referenzvideo-Eingaben. Für `grok-imagine-video` akzeptiert reference-to-video bis zu 7 Bildreferenzen (`reference_images` oder `image_urls`) und `duration` ist auf 10 Sekunden begrenzt. Kombinieren Sie Referenzbilder nicht mit `image_url` / `image` als Startbild-Eingaben. `grok-imagine-video-1.5-preview` ist nur image-to-video.
 
 ```python
 response = requests.post(f"{BASE}/videos/generations",
@@ -262,7 +262,7 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ### Video-zu-Video
 
-Für `grok-imagine-video` video-to-video senden Sie eine öffentliche HTTPS-`.mp4`-URL in `video_url`. TokenLab übersetzt sie in den xAI-REST-Body `video.url`. Sie können `resolution` auf `480p` oder `720p` setzen; `duration` und `aspect_ratio` werden für diesen Edit-Flow nicht akzeptiert.
+Für `grok-imagine-video` video-to-video senden Sie eine öffentliche HTTPS-`.mp4`-URL in `video_url`. AI Sonar übersetzt sie in den xAI-REST-Body `video.url`. Sie können `resolution` auf `480p` oder `720p` setzen; `duration` und `aspect_ratio` werden für diesen Edit-Flow nicht akzeptiert.
 
 ```python
 response = requests.post(f"{BASE}/videos/generations",
@@ -324,4 +324,4 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ## Abrechnung
 
-Die Abrechnung ist modellabhängig. Einige öffentliche Videomodelle verhalten sich effektiv wie requestbasierte Modelle, andere eher wie sekundenbasierte Modelle. Verlassen Sie sich für die aktuelle öffentliche Preisfläche auf die [Modellseite](https://tokenlab.sh/de/models) oder die [Pricing API](/de/api-reference/pricing/get-pricing).
+Die Abrechnung ist modellabhängig. Einige öffentliche Videomodelle verhalten sich effektiv wie requestbasierte Modelle, andere eher wie sekundenbasierte Modelle. Verlassen Sie sich für die aktuelle öffentliche Preisfläche auf die [Modellseite](https://aisonar.dev/models) oder die [Pricing API](/de/api-reference/pricing/get-pricing).

@@ -9,7 +9,7 @@ description: "為聊天訊息建立補全"
 ## 請求本文
 
 <ParamField body="model" type="string" required>
-  要使用的模型 ID。可用選項請參閱 [Models](https://tokenlab.sh/zh-TW/models)。
+  要使用的模型 ID。可用選項請參閱 [Models](https://aisonar.dev/models)。
 </ParamField>
 
 <ParamField body="messages" type="array" required>
@@ -19,13 +19,13 @@ description: "為聊天訊息建立補全"
   - `role` (string): `system`, `user`, 或 `assistant`
   - `content` (string | array): 訊息內容
 
-  當 `content` 為陣列時，TokenLab 支援相容模型的結構化多模態區塊：
+  當 `content` 為陣列時，AI Sonar 支援相容模型的結構化多模態區塊：
   - text: `{ "type": "text", "text": "..." }`
   - 圖片: `{ "type": "image_url", "image_url": { "url": "https://..." } }`
   - 影片: `{ "type": "video_url", "video_url": { "url": "https://..." } }`
   - 音訊: `{ "type": "audio_url", "audio_url": { "url": "https://..." } }`
 
-  對於多模態生產流量，建議使用公開的 `https` URL。TokenLab 會將這些媒體區塊轉換為路由至實體模型所需的供應商專屬請求格式。
+  對於多模態生產流量，建議使用公開的 `https` URL。AI Sonar 會將這些媒體區塊轉換為路由至實體模型所需的供應商專屬請求格式。
 </ParamField>
 
 <ParamField body="temperature" type="number" default="1">
@@ -150,7 +150,7 @@ description: "為聊天訊息建立補全"
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.tokenlab.sh/v1/chat/completions" \
+curl -X POST "https://api.aisonar.dev/v1/chat/completions" \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -169,7 +169,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 response = client.chat.completions.create(
@@ -190,7 +190,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const response = await client.chat.completions.create({
@@ -208,7 +208,7 @@ console.log(response.choices[0].message.content);
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.tokenlab.sh/v1/chat/completions');
+$ch = curl_init('https://api.aisonar.dev/v1/chat/completions');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,

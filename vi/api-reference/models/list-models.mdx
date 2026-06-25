@@ -18,13 +18,13 @@ description: "Liệt kê tất cả model hiện có"
   - `object` (string): `model`
   - `created` (integer): Dấu thời gian tạo
   - `owned_by` (string): Nhà cung cấp model
-  - `tokenlab.category` (string): Danh mục model công khai
-  - `tokenlab.pricing_unit` (string hoặc `null`): Đơn vị giá công khai khi có
-  - `tokenlab.capability_flags` (object hoặc `null`): Tóm tắt năng lực công khai
-  - `tokenlab.supported_operations` (array hoặc `null`): Các thao tác phi-chat công khai của model
-  - `tokenlab.pricing_provenance` (object hoặc `null`): Metadata nguồn giá công khai
-  - `tokenlab.public_contract_summary` (object hoặc `null`): Tóm tắt khám phá phi-chat nhẹ, chỉ gồm `public_operations` và `request_endpoint`
-  - `tokenlab.agent_preferences` (object): Chỉ trả về khi có `recommended_for`
+  - `aisonar.category` (string): Danh mục model công khai
+  - `aisonar.pricing_unit` (string hoặc `null`): Đơn vị giá công khai khi có
+  - `aisonar.capability_flags` (object hoặc `null`): Tóm tắt năng lực công khai
+  - `aisonar.supported_operations` (array hoặc `null`): Các thao tác phi-chat công khai của model
+  - `aisonar.pricing_provenance` (object hoặc `null`): Metadata nguồn giá công khai
+  - `aisonar.public_contract_summary` (object hoặc `null`): Tóm tắt khám phá phi-chat nhẹ, chỉ gồm `public_operations` và `request_endpoint`
+  - `aisonar.agent_preferences` (object): Chỉ trả về khi có `recommended_for`
 </ResponseField>
 
 <Note>
@@ -55,7 +55,7 @@ Khi có `recommended_for`, `/v1/models` sắp xếp model phi-chat theo snapshot
 
 <RequestExample>
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/models" \
+curl "https://api.aisonar.dev/v1/models" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
@@ -64,7 +64,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 models = client.models.list()
@@ -78,7 +78,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const models = await client.models.list();
@@ -98,7 +98,7 @@ import (
 )
 
 func main() {
-    req, _ := http.NewRequest("GET", "https://api.tokenlab.sh/v1/models", nil)
+    req, _ := http.NewRequest("GET", "https://api.aisonar.dev/v1/models", nil)
     req.Header.Set("Authorization", "Bearer sk-your-api-key")
 
     resp, _ := http.DefaultClient.Do(req)
@@ -121,7 +121,7 @@ func main() {
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.tokenlab.sh/v1/models');
+$ch = curl_init('https://api.aisonar.dev/v1/models');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -202,7 +202,7 @@ anthropic_models = [m for m in models.data if m.owned_by == "anthropic"]
       "object": "model",
       "created": 1706000000,
       "owned_by": "google",
-      "tokenlab": {
+      "aisonar": {
         "category": "image",
         "pricing_unit": "per_request",
         "agent_preferences": {

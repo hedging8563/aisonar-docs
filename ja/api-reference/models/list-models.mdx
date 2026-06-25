@@ -18,13 +18,13 @@ description: "利用可能なすべてのモデルを一覧表示します"
   - `object` (string): `model`
   - `created` (integer): 作成タイムスタンプ
   - `owned_by` (string): モデルプロバイダー
-  - `tokenlab.category` (string): 公開モデルカテゴリ
-  - `tokenlab.pricing_unit` (string or `null`): 利用可能な場合の公開料金単位
-  - `tokenlab.capability_flags` (object or `null`): 公開されている機能サマリー
-  - `tokenlab.supported_operations` (array or `null`): モデルが公開サポートする非チャット操作
-  - `tokenlab.pricing_provenance` (object or `null`): 公開料金の出典メタデータ
-  - `tokenlab.public_contract_summary` (object or `null`): `public_operations` と `request_endpoint` のみを含む軽量な非チャット発見用サマリー
-  - `tokenlab.agent_preferences` (object): `recommended_for` がある場合のみ返されます
+  - `aisonar.category` (string): 公開モデルカテゴリ
+  - `aisonar.pricing_unit` (string or `null`): 利用可能な場合の公開料金単位
+  - `aisonar.capability_flags` (object or `null`): 公開されている機能サマリー
+  - `aisonar.supported_operations` (array or `null`): モデルが公開サポートする非チャット操作
+  - `aisonar.pricing_provenance` (object or `null`): 公開料金の出典メタデータ
+  - `aisonar.public_contract_summary` (object or `null`): `public_operations` と `request_endpoint` のみを含む軽量な非チャット発見用サマリー
+  - `aisonar.agent_preferences` (object): `recommended_for` がある場合のみ返されます
 </ResponseField>
 
 <Note>
@@ -55,7 +55,7 @@ description: "利用可能なすべてのモデルを一覧表示します"
 
 <RequestExample>
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/models" \
+curl "https://api.aisonar.dev/v1/models" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
@@ -64,7 +64,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 models = client.models.list()
@@ -78,7 +78,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const models = await client.models.list();
@@ -98,7 +98,7 @@ import (
 )
 
 func main() {
-    req, _ := http.NewRequest("GET", "https://api.tokenlab.sh/v1/models", nil)
+    req, _ := http.NewRequest("GET", "https://api.aisonar.dev/v1/models", nil)
     req.Header.Set("Authorization", "Bearer sk-your-api-key")
 
     resp, _ := http.DefaultClient.Do(req)
@@ -121,7 +121,7 @@ func main() {
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.tokenlab.sh/v1/models');
+$ch = curl_init('https://api.aisonar.dev/v1/models');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,

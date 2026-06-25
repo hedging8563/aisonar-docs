@@ -28,13 +28,13 @@ description: "Recupera uma instância de modelo"
   Provedor do modelo.
 </ResponseField>
 
-<ResponseField name="tokenlab" type="object">
-  Metadados públicos específicos da TokenLab. A rota de detalhe pode incluir `category`, `pricing_unit`, `capability_flags`, `supported_operations`, `pricing_provenance`, `public_contract_summary`, o `public_contract` completo e `agent_preferences` em nível de cena para instantâneos de recomendação não chat.
+<ResponseField name="aisonar" type="object">
+  Metadados públicos específicos da AI Sonar. A rota de detalhe pode incluir `category`, `pricing_unit`, `capability_flags`, `supported_operations`, `pricing_provenance`, `public_contract_summary`, o `public_contract` completo e `agent_preferences` em nível de cena para instantâneos de recomendação não chat.
 </ResponseField>
 
 <RequestExample>
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/models/gpt-5.4" \
+curl "https://api.aisonar.dev/v1/models/gpt-5.4" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
@@ -43,7 +43,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 model = client.models.retrieve("gpt-5.4")
@@ -55,7 +55,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const model = await client.models.retrieve('gpt-5.4');
@@ -72,7 +72,7 @@ import (
 )
 
 func main() {
-    req, _ := http.NewRequest("GET", "https://api.tokenlab.sh/v1/models/gpt-5.4", nil)
+    req, _ := http.NewRequest("GET", "https://api.aisonar.dev/v1/models/gpt-5.4", nil)
     req.Header.Set("Authorization", "Bearer sk-your-api-key")
 
     resp, _ := http.DefaultClient.Do(req)
@@ -86,7 +86,7 @@ func main() {
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.tokenlab.sh/v1/models/gpt-5.4');
+$ch = curl_init('https://api.aisonar.dev/v1/models/gpt-5.4');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -130,7 +130,7 @@ Se o modelo não existir, você receberá um erro 404:
 
 ## Metadados de recomendação para não chat
 
-Para modelos não chat, a rota de detalhe também retorna `tokenlab.agent_preferences.<scene>`.
+Para modelos não chat, a rota de detalhe também retorna `aisonar.agent_preferences.<scene>`.
 
 Use isso para inspecionar:
 
@@ -146,8 +146,8 @@ A resposta pública mantém `basis.channel_id` e `basis.physical_model` como `nu
 
 Em comparação com `GET /v1/models`, a rota de detalhe também pode retornar:
 
-- `tokenlab.capability_flags`
-- `tokenlab.supported_operations`
-- `tokenlab.pricing_provenance`
-- `tokenlab.public_contract_summary`
-- `tokenlab.public_contract`
+- `aisonar.capability_flags`
+- `aisonar.supported_operations`
+- `aisonar.pricing_provenance`
+- `aisonar.public_contract_summary`
+- `aisonar.public_contract`

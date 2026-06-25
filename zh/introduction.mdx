@@ -3,9 +3,9 @@ title: "简介"
 description: "通过统一的 API 访问数百个 AI 模型"
 ---
 
-## 什么是 TokenLab?
+## 什么是 AI Sonar?
 
-TokenLab 是一个 AI API 聚合平台，提供对来自 OpenAI、Anthropic、Google、DeepSeek、Moonshot、MiniMax 等提供者的 **数百个 AI 模型** 的统一访问。
+AI Sonar 是一个 AI API 聚合平台，提供对来自 OpenAI、Anthropic、Google、DeepSeek、Moonshot、MiniMax 等提供者的 **数百个 AI 模型** 的统一访问。
 
 <CardGroup cols={2}>
   <Card title="原生 + 兼容" icon="plug">
@@ -41,13 +41,13 @@ TokenLab 是一个 AI API 聚合平台，提供对来自 OpenAI、Anthropic、Go
 <CodeGroup>
 
 ```bash cURL
-curl https://api.tokenlab.sh/v1/chat/completions \
+curl https://api.aisonar.dev/v1/chat/completions \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gpt-5.4",
     "messages": [
-      {"role": "user", "content": "Explain what TokenLab does in one sentence."}
+      {"role": "user", "content": "Explain what AI Sonar does in one sentence."}
     ]
   }'
 ```
@@ -57,12 +57,12 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 response = client.chat.completions.create(
     model="gpt-5.4",
-    messages=[{"role": "user", "content": "Explain what TokenLab does in one sentence."}]
+    messages=[{"role": "user", "content": "Explain what AI Sonar does in one sentence."}]
 )
 
 print(response.choices[0].message.content)
@@ -73,12 +73,12 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const response = await client.chat.completions.create({
   model: 'gpt-5.4',
-  messages: [{ role: 'user', content: 'Explain what TokenLab does in one sentence.' }],
+  messages: [{ role: 'user', content: 'Explain what AI Sonar does in one sentence.' }],
 });
 
 console.log(response.choices[0].message.content);
@@ -116,7 +116,7 @@ console.log(response.choices[0].message.content);
   <Card title="集成" icon="puzzle-piece" href="/integrations/openai-sdk">
     从 SDK、IDE 和应用集成开始。
   </Card>
-  <Card title="模型" icon="robot" href="https://tokenlab.sh/zh/models">
+  <Card title="模型" icon="robot" href="https://aisonar.dev/models">
     浏览当前模型可用性与定价。
   </Card>
 </CardGroup>

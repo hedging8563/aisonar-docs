@@ -6,7 +6,7 @@ description: "Listet hochgeladene Dateien für Batch-Workflows und unterstützte
 
 ## Übersicht
 
-Dieser Endpunkt dient in erster Linie TokenLabs OpenAI-kompatibler Batch-API, einschließlich hochgeladener Batch-Eingaben sowie generierter Ausgabe- oder Fehlerdateien.
+Dieser Endpunkt dient in erster Linie AI Sonars OpenAI-kompatibler Batch-API, einschließlich hochgeladener Batch-Eingaben sowie generierter Ausgabe- oder Fehlerdateien.
 
 Wenn die Anfrage in den Anthropic-Files-Kompatibilitätsmodus wechselt, kann dieselbe Route außerdem Anthropic-ähnliche Dateien zurückgeben, die für den gebundenen Workspace verfügbar sind.
 
@@ -22,7 +22,7 @@ Wenn die Anfrage in den Anthropic-Files-Kompatibilitätsmodus wechselt, kann die
 
 <RequestExample>
 ```bash cURL
-curl -X GET "https://api.tokenlab.sh/v1/files?purpose=batch&limit=20" \
+curl -X GET "https://api.aisonar.dev/v1/files?purpose=batch&limit=20" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>

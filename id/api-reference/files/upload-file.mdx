@@ -6,7 +6,7 @@ description: "Mengunggah file input batch JSONL untuk pembuatan batch selanjutny
 
 ## Ikhtisar
 
-Endpoint ini adalah bagian dari Batch API TokenLab yang kompatibel dengan OpenAI. Pekerjaan batch menggunakan file JSONL yang diunggah, dijalankan secara asinkron, dan dapat mengembalikan file output/error di kemudian hari.
+Endpoint ini adalah bagian dari Batch API AI Sonar yang kompatibel dengan OpenAI. Pekerjaan batch menggunakan file JSONL yang diunggah, dijalankan secara asinkron, dan dapat mengembalikan file output/error di kemudian hari.
 
 ## Catatan
 
@@ -19,7 +19,7 @@ Endpoint ini adalah bagian dari Batch API TokenLab yang kompatibel dengan OpenAI
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.tokenlab.sh/v1/files" \
+curl -X POST "https://api.aisonar.dev/v1/files" \
   -H "Authorization: Bearer sk-your-api-key" \
   -F "purpose=batch" \
   -F "file=@batch-input.jsonl;type=application/jsonl"

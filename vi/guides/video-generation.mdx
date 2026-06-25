@@ -5,17 +5,17 @@ description: "Dùng hợp đồng công khai thống nhất cho các luồng tex
 
 ## Tổng quan
 
-TokenLab cung cấp khả năng tạo video thông qua một API hợp nhất. Quá trình này **bất đồng bộ**: bạn gửi yêu cầu, nhận `task_id` và `poll_url`, rồi kiểm tra trạng thái định kỳ cho tới khi có kết quả cuối cùng.
+AI Sonar cung cấp khả năng tạo video thông qua một API hợp nhất. Quá trình này **bất đồng bộ**: bạn gửi yêu cầu, nhận `task_id` và `poll_url`, rồi kiểm tra trạng thái định kỳ cho tới khi có kết quả cuối cùng.
 
 ### Tính khả dụng và polling
 
-Danh sách model video công khai có thể thay đổi theo thời gian. Để xem tình trạng mới nhất, hãy dùng [Models API](/vi/api-reference/models/list-models) hoặc truy cập [trang Models](https://tokenlab.sh/vi/models).
+Danh sách model video công khai có thể thay đổi theo thời gian. Để xem tình trạng mới nhất, hãy dùng [Models API](/vi/api-reference/models/list-models) hoặc truy cập [trang Models](https://aisonar.dev/models).
 
 Nếu phản hồi tạo trả về `poll_url`, hãy gọi đúng URL đó. Khi nó trỏ tới `/v1/tasks/{id}`, hãy xem đó là endpoint trạng thái cố định chuẩn.
 
 ### Hành vi mô hình và phương tiện
 
-Hành vi âm thanh phụ thuộc vào từng model. Trong TokenLab, họ Veo 3 mặc định bật âm thanh khi bỏ qua `output_audio`. Một số model công khai chỉ hỗ trợ im lặng hoặc không cung cấp công tắc âm thanh ổn định.
+Hành vi âm thanh phụ thuộc vào từng model. Trong AI Sonar, họ Veo 3 mặc định bật âm thanh khi bỏ qua `output_audio`. Một số model công khai chỉ hỗ trợ im lặng hoặc không cung cấp công tắc âm thanh ổn định.
 
 Trong môi trường vận hành, nên ưu tiên URL `https` công khai thay vì base64 inline cho ảnh, video và âm thanh. Các model tương thích vẫn hỗ trợ URL `data:`, nhưng URL công khai sẽ dễ retry, kiểm tra và debug hơn.
 
@@ -24,25 +24,25 @@ Trong môi trường vận hành, nên ưu tiên URL `https` công khai thay vì
 ```mermaid
 sequenceDiagram
     participant Client
-    participant TokenLab
+    participant AI Sonar
     participant Provider
 
-    Client->>TokenLab: POST /v1/videos/generations
-    TokenLab->>Provider: Chuyển tiếp yêu cầu đã chuẩn hóa
-    Provider-->>TokenLab: task_id + pending
-    TokenLab-->>Client: { task_id, poll_url, status: "pending" }
+    Client->>AI Sonar: POST /v1/videos/generations
+    AI Sonar->>Provider: Chuyển tiếp yêu cầu đã chuẩn hóa
+    Provider-->>AI Sonar: task_id + pending
+    AI Sonar-->>Client: { task_id, poll_url, status: "pending" }
 
     loop Kiểm tra mỗi 5-10 giây
-        Client->>TokenLab: GET poll_url
-        TokenLab->>Provider: Truy vấn trạng thái
-        Provider-->>TokenLab: Cập nhật trạng thái
-        TokenLab-->>Client: { status, video_url? }
+        Client->>AI Sonar: GET poll_url
+        AI Sonar->>Provider: Truy vấn trạng thái
+        Provider-->>AI Sonar: Cập nhật trạng thái
+        AI Sonar-->>Client: { status, video_url? }
     end
 ```
 
 ## Các thao tác công khai hiện tại
 
-Hợp đồng video công khai hiện tại của TokenLab tập trung vào các thao tác sau:
+Hợp đồng video công khai hiện tại của AI Sonar tập trung vào các thao tác sau:
 
 - `text-to-video`
 - `image-to-video`
@@ -222,7 +222,7 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ### Reference-to-video
 
-Với `seedance-2.0` và `seedance-2.0-fast`, TokenLab hiện hỗ trợ tối đa 9 ảnh tham chiếu, cùng thêm tối đa 3 video tham chiếu và 3 audio tham chiếu. `duration` chỉ điều khiển độ dài đầu ra được tạo; nó không định nghĩa giới hạn riêng cho thời lượng video tham chiếu đầu vào. Với `grok-imagine-video`, reference-to-video chấp nhận tối đa 7 tham chiếu ảnh (`reference_images` hoặc `image_urls`) và `duration` tối đa là 10 giây. Không kết hợp ảnh tham chiếu với đầu vào khung đầu `image_url` / `image`. `grok-imagine-video-1.5-preview` chỉ hỗ trợ image-to-video.
+Với `seedance-2.0` và `seedance-2.0-fast`, AI Sonar hiện hỗ trợ tối đa 9 ảnh tham chiếu, cùng thêm tối đa 3 video tham chiếu và 3 audio tham chiếu. `duration` chỉ điều khiển độ dài đầu ra được tạo; nó không định nghĩa giới hạn riêng cho thời lượng video tham chiếu đầu vào. Với `grok-imagine-video`, reference-to-video chấp nhận tối đa 7 tham chiếu ảnh (`reference_images` hoặc `image_urls`) và `duration` tối đa là 10 giây. Không kết hợp ảnh tham chiếu với đầu vào khung đầu `image_url` / `image`. `grok-imagine-video-1.5-preview` chỉ hỗ trợ image-to-video.
 
 ```python
 response = requests.post(f"{BASE}/videos/generations",
@@ -262,7 +262,7 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ### Video sang video
 
-Với video-to-video của `grok-imagine-video`, hãy gửi URL HTTPS công khai dạng `.mp4` trong `video_url`. TokenLab chuyển nó thành body REST `video.url` của xAI. Bạn có thể đặt `resolution` là `480p` hoặc `720p`; luồng chỉnh sửa này không nhận `duration` và `aspect_ratio`.
+Với video-to-video của `grok-imagine-video`, hãy gửi URL HTTPS công khai dạng `.mp4` trong `video_url`. AI Sonar chuyển nó thành body REST `video.url` của xAI. Bạn có thể đặt `resolution` là `480p` hoặc `720p`; luồng chỉnh sửa này không nhận `duration` và `aspect_ratio`.
 
 ```python
 response = requests.post(f"{BASE}/videos/generations",
@@ -324,4 +324,4 @@ response = requests.post(f"{BASE}/videos/generations",
 
 ## Thanh toán
 
-Billing phụ thuộc vào model. Một số model video công khai thực tế gần với cách tính phí theo request, trong khi một số model khác gần với cách tính theo thời lượng giây. Để xem mặt bằng giá công khai hiện tại, hãy tham khảo [trang Models](https://tokenlab.sh/vi/models) hoặc [Pricing API](/vi/api-reference/pricing/get-pricing).
+Billing phụ thuộc vào model. Một số model video công khai thực tế gần với cách tính phí theo request, trong khi một số model khác gần với cách tính theo thời lượng giây. Để xem mặt bằng giá công khai hiện tại, hãy tham khảo [trang Models](https://aisonar.dev/models) hoặc [Pricing API](/vi/api-reference/pricing/get-pricing).

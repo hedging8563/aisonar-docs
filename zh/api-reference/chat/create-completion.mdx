@@ -9,7 +9,7 @@ description: "为聊天消息创建补全"
 ## 请求体
 
 <ParamField body="model" type="string" required>
-  要使用的模型 ID。可用选项见 [Models](https://tokenlab.sh/zh/models)。
+  要使用的模型 ID。可用选项见 [Models](https://aisonar.dev/models)。
 </ParamField>
 
 <ParamField body="messages" type="array" required>
@@ -19,13 +19,13 @@ description: "为聊天消息创建补全"
   - `role` (字符串): `system`、`user` 或 `assistant`
   - `content` (string | array): 消息内容
 
-  当 `content` 是数组时，TokenLab 为兼容模型支持结构化多模态块：
+  当 `content` 是数组时，AI Sonar 为兼容模型支持结构化多模态块：
   - text: `{ "type": "text", "text": "..." }`
   - 图片: `{ "type": "image_url", "image_url": { "url": "https://..." } }`
   - 视频: `{ "type": "video_url", "video_url": { "url": "https://..." } }`
   - 音频: `{ "type": "audio_url", "audio_url": { "url": "https://..." } }`
 
-  对于多模态生产流量，优先使用公开的 `https` URL。TokenLab 会将这些媒体块转换为所路由物理模型所需的供应商特定请求形态。
+  对于多模态生产流量，优先使用公开的 `https` URL。AI Sonar 会将这些媒体块转换为所路由物理模型所需的供应商特定请求形态。
 </ParamField>
 
 <ParamField body="temperature" type="number" default="1">
@@ -150,7 +150,7 @@ description: "为聊天消息创建补全"
 
 <RequestExample>
 ```bash cURL
-curl -X POST "https://api.tokenlab.sh/v1/chat/completions" \
+curl -X POST "https://api.aisonar.dev/v1/chat/completions" \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -169,7 +169,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 response = client.chat.completions.create(
@@ -190,7 +190,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const response = await client.chat.completions.create({
@@ -208,7 +208,7 @@ console.log(response.choices[0].message.content);
 
 ```php PHP
 <?php
-$ch = curl_init('https://api.tokenlab.sh/v1/chat/completions');
+$ch = curl_init('https://api.aisonar.dev/v1/chat/completions');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,

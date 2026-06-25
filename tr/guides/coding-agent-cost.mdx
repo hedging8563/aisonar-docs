@@ -67,8 +67,8 @@ Tipik 1 saatlik kodlama oturumu (~3M token) tahmini maliyetler:
 | Kurulum | Saatlik maliyet | Aylık (160s) |
 |---------|----------------|--------------|
 | Doğrudan API (premium model) | ~$15–25 | ~$2.400–4.000 |
-| TokenLab (akıllı yönlendirme) | ~$10–18 | ~$1.600–2.900 |
-| TokenLab + Prompt Cache | ~$4–8 | ~$640–1.280 |
+| AI Sonar (akıllı yönlendirme) | ~$10–18 | ~$1.600–2.900 |
+| AI Sonar + Prompt Cache | ~$4–8 | ~$640–1.280 |
 
 <Warning>
 Bunlar tahmini rakamlardır. Gerçek maliyetler model seçimi, kullanım kalıpları ve önbellek isabet oranlarına bağlıdır. [Güncel fiyatlar](/tr/api-reference/pricing/get-pricing) için kontrol edin.
@@ -103,30 +103,30 @@ Bunlar tahmini rakamlardır. Gerçek maliyetler model seçimi, kullanım kalıpl
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
-    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
+    export ANTHROPIC_API_KEY="sk-your-api-key"
+    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
     ```
     [Tam rehber →](/tr/integrations/claude-code)
   </Accordion>
 
   <Accordion title="Cursor">
-    Ayarlar → Modeller → OpenAI API Anahtarı: `sk-your-key`, Temel URL: `https://api.tokenlab.sh/v1`
+    Ayarlar → Modeller → OpenAI API Anahtarı: `sk-your-key`, Temel URL: `https://api.aisonar.dev/v1`
 
     [Tam rehber →](/tr/integrations/cursor)
   </Accordion>
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-tokenlab-key"
-    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
+    export OPENAI_API_KEY="sk-your-api-key"
+    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
     ```
     [Tam rehber →](/tr/integrations/codex-cli)
   </Accordion>
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-tokenlab-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
+    export GEMINI_API_KEY="sk-your-api-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
     ```
     [Tam rehber →](/tr/integrations/gemini-cli)
   </Accordion>

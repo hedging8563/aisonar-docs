@@ -1,13 +1,13 @@
 ---
 title: "快速开始"
-description: "在 2 分钟内开始使用 TokenLab API"
+description: "在 2 分钟内开始使用 AI Sonar API"
 ---
 
 ## 步骤 1：从免费试用开始
 
 <Steps>
   <Step title="创建账号">
-    使用您的邮箱、Gmail 或 GitHub 账号在 [tokenlab.sh](https://tokenlab.sh) 注册。
+    使用您的邮箱、Gmail 或 GitHub 账号在 [aisonar.dev](https://aisonar.dev) 注册。
   </Step>
   <Step title="使用赠送的试用额度">
     新账号会获得用于首次小额测试请求的试用额度。Quickstart 之前不需要先充值。
@@ -50,7 +50,7 @@ composer require openai-php/client
 <CodeGroup>
 
 ```bash cURL
-curl https://api.tokenlab.sh/v1/chat/completions \
+curl https://api.aisonar.dev/v1/chat/completions \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -66,7 +66,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 response = client.chat.completions.create(
@@ -82,7 +82,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const response = await client.chat.completions.create({
@@ -105,7 +105,7 @@ console.log(response.choices[0].message.content);
 
 ## 尝试不同的模型
 
-TokenLab 支持数百个模型。只需更改 `model` 字段：
+AI Sonar 支持数百个模型。只需更改 `model` 字段：
 
 ```python
 response = client.chat.completions.create(model="gpt-5.4", messages=[{"role": "user", "content": "Hello"}])
@@ -142,7 +142,7 @@ for chunk in stream:
   <Card title="API 参考" icon="book" href="/api-reference/introduction">
     查看完整的端点参考。
   </Card>
-  <Card title="模型" icon="robot" href="https://tokenlab.sh/zh/models">
+  <Card title="模型" icon="robot" href="https://aisonar.dev/models">
     浏览当前模型可用性和定价。
   </Card>
 </CardGroup>

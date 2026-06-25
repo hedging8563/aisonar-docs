@@ -1,15 +1,15 @@
 ---
 title: "AI Sohbet Uygulamaları"
-description: "Popüler AI sohbet uygulamalarını TokenLab'nın OpenAI uyumlu API'sini kullanacak şekilde yapılandırın"
+description: "Popüler AI sohbet uygulamalarını AI Sonar'nın OpenAI uyumlu API'sini kullanacak şekilde yapılandırın"
 ---
 
 ## Genel Bakış
 
-Çoğu genel AI sohbet uygulaması, standart OpenAI uyumlu sohbet yolu üzerinden TokenLab'ya bağlanır.
+Çoğu genel AI sohbet uygulaması, standart OpenAI uyumlu sohbet yolu üzerinden AI Sonar'ya bağlanır.
 
 Pratikte bu şu anlama gelir:
-- uygulama açıkça tam bir uç nokta URL’si istemediği sürece temel URL olarak `https://api.tokenlab.sh/v1` kullanın
-- OpenAI tarzı API anahtarı olarak TokenLab API anahtarınızı kullanın
+- uygulama açıkça tam bir uç nokta URL’si istemediği sürece temel URL olarak `https://api.aisonar.dev/v1` kullanın
+- OpenAI tarzı API anahtarı olarak AI Sonar API anahtarınızı kullanın
 - uygulamanın standart bir sohbet akışında kullanabileceği modelleri seçin
 
 <Note>
@@ -41,12 +41,12 @@ Genel sohbet uygulamaları genellikle **chat-completions odaklıdır**, Codex Re
 
 | Alan | Değer |
 |-------|-------|
-| Temel URL | `https://api.tokenlab.sh/v1` |
-| API Anahtarı | `sk-your-tokenlab-key` |
+| Temel URL | `https://api.aisonar.dev/v1` |
+| API Anahtarı | `sk-your-api-key` |
 | API tipi | OpenAI ile uyumlu |
 
 Bir uygulama temel URL yerine **tam bir uç nokta URL’si** isterse, şunu kullanın:
-- Chat Completions: `https://api.tokenlab.sh/v1/chat/completions`
+- Chat Completions: `https://api.aisonar.dev/v1/chat/completions`
 
 ## Örnek Uygulama Kurulumları
 
@@ -55,24 +55,24 @@ Bir uygulama temel URL yerine **tam bir uç nokta URL’si** isterse, şunu kull
     **Kendin barındırılan LobeChat**
 
     ```bash
-    OPENAI_API_KEY=sk-your-tokenlab-key
-    OPENAI_PROXY_URL=https://api.tokenlab.sh/v1
+    OPENAI_API_KEY=sk-your-api-key
+    OPENAI_PROXY_URL=https://api.aisonar.dev/v1
     ```
 
     **LobeChat Cloud**
     1. **Settings** → **AI Hizmet Sağlayıcısı** bölümünü açın
     2. **OpenAI** seçin
-    3. TokenLab API anahtarınızı girin
-    4. Özel uç noktayı `https://api.tokenlab.sh/v1` olarak ayarlayın
+    3. AI Sonar API anahtarınızı girin
+    4. Özel uç noktayı `https://api.aisonar.dev/v1` olarak ayarlayın
   </Tab>
 
   <Tab title="Cherry Studio">
     1. **Settings** → **Model Sağlayıcısı** bölümünü açın
     2. Bir **OpenAI ile uyumlu** sağlayıcı ekleyin
     3. Şunları girin:
-       - **Name**: TokenLab
-       - **API Base URL**: `https://api.tokenlab.sh/v1`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **Name**: AI Sonar
+       - **API Base URL**: `https://api.aisonar.dev/v1`
+       - **API Key**: `sk-your-api-key`
     4. Kullanmak istediğiniz modelleri ekleyin
   </Tab>
 
@@ -80,8 +80,8 @@ Bir uygulama temel URL yerine **tam bir uç nokta URL’si** isterse, şunu kull
     1. **Settings** → **AI Model** bölümünü açın
     2. **OpenAI API ile uyumlu** seçin
     3. Şunları girin:
-       - **API Host**: `https://api.tokenlab.sh/v1`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **API Host**: `https://api.aisonar.dev/v1`
+       - **API Key**: `sk-your-api-key`
        - **Model**: `gpt-5-mini` veya `gpt-4o`
   </Tab>
 
@@ -89,8 +89,8 @@ Bir uygulama temel URL yerine **tam bir uç nokta URL’si** isterse, şunu kull
     1. **Settings** bölümünü açın
     2. **Özel Uç Nokta** seçin
     3. Şunları girin:
-       - **Uç Nokta URL’si**: `https://api.tokenlab.sh/v1/chat/completions`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **Uç Nokta URL’si**: `https://api.aisonar.dev/v1/chat/completions`
+       - **API Key**: `sk-your-api-key`
     4. Görünür yapmak istediğiniz modelleri yapılandırın
   </Tab>
 
@@ -98,8 +98,8 @@ Bir uygulama temel URL yerine **tam bir uç nokta URL’si** isterse, şunu kull
     1. **Yönetici Ayarları** → **Connections** bölümünü açın
     2. Bir **OpenAI ile uyumlu** bağlantı ekleyin
     3. Şunları girin:
-       - **Base URL**: `https://api.tokenlab.sh/v1`
-       - **API Key**: `sk-your-tokenlab-key`
+       - **Base URL**: `https://api.aisonar.dev/v1`
+       - **API Key**: `sk-your-api-key`
     4. Kaydedin ve görünür yapmak istediğiniz modelleri seçin
   </Tab>
 
@@ -108,9 +108,9 @@ Bir uygulama temel URL yerine **tam bir uç nokta URL’si** isterse, şunu kull
 
     ```yaml
     customEndpoints:
-      - name: TokenLab
+      - name: AI Sonar
         apiKey: '${OPENAI_API_KEY}'
-        baseURL: 'https://api.tokenlab.sh/v1'
+        baseURL: 'https://api.aisonar.dev/v1'
         models:
           default: ['gpt-5-mini', 'gpt-5.4', 'claude-sonnet-4-6']
           fetch: false
@@ -131,7 +131,7 @@ Bir uygulama temel URL yerine **tam bir uç nokta URL’si** isterse, şunu kull
 
 <AccordionGroup>
   <Accordion title="Uygulama destekliyorsa temel URL'yi tercih edin">
-    Çoğu uygulama, tam bir uç nokta URL’si yerine temel URL olarak `https://api.tokenlab.sh/v1` verdiğinizde yapılandırması daha kolay olur ve daha az kırılgandır.
+    Çoğu uygulama, tam bir uç nokta URL’si yerine temel URL olarak `https://api.aisonar.dev/v1` verdiğinizde yapılandırması daha kolay olur ve daha az kırılgandır.
   </Accordion>
 
   <Accordion title="Önce daha küçük modeller kullanın">
@@ -147,20 +147,20 @@ Bir uygulama temel URL yerine **tam bir uç nokta URL’si** isterse, şunu kull
 
 <AccordionGroup>
   <Accordion title="Bağlantı Hatası">
-    - Base URL'nin tam olarak `https://api.tokenlab.sh/v1` olduğunu doğrulayın
+    - Base URL'nin tam olarak `https://api.aisonar.dev/v1` olduğunu doğrulayın
     - Uygulama yolları otomatik olarak ekliyorsa sondaki eğik çizgileri kaldırın
-    - Uygulama tam bir uç nokta URL’si istiyorsa `https://api.tokenlab.sh/v1/chat/completions` kullanın
+    - Uygulama tam bir uç nokta URL’si istiyorsa `https://api.aisonar.dev/v1/chat/completions` kullanın
   </Accordion>
 
   <Accordion title="401 Unauthorized">
     - API anahtarınızı yeniden kontrol edin
-    - Anahtarın TokenLab dashboard içinde etkin olduğunu doğrulayın
+    - Anahtarın AI Sonar dashboard içinde etkin olduğunu doğrulayın
     - Fazladan boşluk veya satır sonu olmadığından emin olun
   </Accordion>
 
   <Accordion title="Model Kullanılamıyor">
     - Model adını birebir doğrulayın
     - `gpt-5-mini`, `gpt-4o` veya `claude-sonnet-4-6` gibi geniş desteklenen bir varsayılan deneyin
-    - TokenLab dokümantasyonunda veya dashboard'da güncel kullanılabilirliği kontrol edin
+    - AI Sonar dokümantasyonunda veya dashboard'da güncel kullanılabilirliği kontrol edin
   </Accordion>
 </AccordionGroup>

@@ -1,13 +1,13 @@
 ---
 title: "SDK da OpenAI"
-description: "Use o TokenLab com os SDKs oficiais da OpenAI e clientes compatíveis com OpenAI"
+description: "Use o AI Sonar com os SDKs oficiais da OpenAI e clientes compatíveis com OpenAI"
 ---
 
 <span data-mintlify-rebuild="2026-05-19-after-mdx-parse-fix" aria-hidden="true" />
 
 ## Visão geral
 
-O TokenLab funciona com os SDKs oficiais da OpenAI apontando o cliente para `https://api.tokenlab.sh/v1`.
+O AI Sonar funciona com os SDKs oficiais da OpenAI apontando o cliente para `https://api.aisonar.dev/v1`.
 
 Para a maioria dos projetos novos, prefira **Chat Completions** como o caminho compatível com OpenAI padrão. Use **Responses API** apenas quando você precisar explicitamente do comportamento específico do Responses.
 
@@ -55,8 +55,8 @@ Use `POST /v1/responses` apenas quando você precisar explicitamente do comporta
 from openai import OpenAI
 
 client = OpenAI(
-    api_key="sk-your-tokenlab-key",
-    base_url="https://api.tokenlab.sh/v1",
+    api_key="sk-your-api-key",
+    base_url="https://api.aisonar.dev/v1",
 )
 ```
 
@@ -64,8 +64,8 @@ client = OpenAI(
 import OpenAI from 'openai';
 
 const client = new OpenAI({
-  apiKey: 'sk-your-tokenlab-key',
-  baseURL: 'https://api.tokenlab.sh/v1',
+  apiKey: 'sk-your-api-key',
+  baseURL: 'https://api.aisonar.dev/v1',
 });
 ```
 
@@ -79,8 +79,8 @@ import (
 
 func main() {
     client := openai.NewClient(
-        option.WithAPIKey("sk-your-tokenlab-key"),
-        option.WithBaseURL("https://api.tokenlab.sh/v1"),
+        option.WithAPIKey("sk-your-api-key"),
+        option.WithBaseURL("https://api.aisonar.dev/v1"),
     )
 
     _ = client
@@ -96,7 +96,7 @@ func main() {
 ```python Python
 response = client.chat.completions.create(
     model="gpt-5.4",
-    messages=[{"role": "user", "content": "Explain what TokenLab does in one sentence."}]
+    messages=[{"role": "user", "content": "Explain what AI Sonar does in one sentence."}]
 )
 
 print(response.choices[0].message.content)
@@ -105,20 +105,20 @@ print(response.choices[0].message.content)
 ```javascript JavaScript
 const response = await client.chat.completions.create({
   model: 'gpt-5.4',
-  messages: [{ role: 'user', content: 'Explain what TokenLab does in one sentence.' }],
+  messages: [{ role: 'user', content: 'Explain what AI Sonar does in one sentence.' }],
 });
 
 console.log(response.choices[0].message.content);
 ```
 
 ```bash cURL
-curl https://api.tokenlab.sh/v1/chat/completions \
-  -H "Authorization: Bearer sk-your-tokenlab-key" \
+curl https://api.aisonar.dev/v1/chat/completions \
+  -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gpt-5.4",
     "messages": [
-      {"role": "user", "content": "Explain what TokenLab does in one sentence."}
+      {"role": "user", "content": "Explain what AI Sonar does in one sentence."}
     ]
   }'
 ```
@@ -217,7 +217,7 @@ print(response.data[0].embedding[:5])
 
 ## Chat Completions
 
-Chat Completions é o caminho compatível com OpenAI padrão para o TokenLab:
+Chat Completions é o caminho compatível com OpenAI padrão para o AI Sonar:
 
 ```python
 response = client.chat.completions.create(
@@ -235,14 +235,14 @@ print(response.choices[0].message.content)
 
 <AccordionGroup>
   <Accordion title="Erro de conexão">
-    - Verifique se a URL base está exatamente `https://api.tokenlab.sh/v1`
+    - Verifique se a URL base está exatamente `https://api.aisonar.dev/v1`
     - Cheque se há interferência de proxy ou substituições personalizadas do cliente HTTP
     - Certifique-se de que sua versão do SDK está atual antes de depurar o comportamento do provedor
   </Accordion>
 
   <Accordion title="Autenticação falhou">
     - Verifique se sua chave de API começa com `sk-`
-    - Confirme se a chave está ativa no painel do TokenLab
+    - Confirme se a chave está ativa no painel do AI Sonar
     - Confirme que o SDK está enviando `Authorization: Bearer ...`
   </Accordion>
 

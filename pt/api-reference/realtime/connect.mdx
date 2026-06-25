@@ -24,7 +24,7 @@ Este endpoint é usado para reconhecimento de fala, síntese de fala, tradução
 ```javascript JavaScript
 import WebSocket from 'ws';
 
-const socket = new WebSocket('wss://api.tokenlab.sh/v1/realtime?model=qwen-tts-realtime', {
+const socket = new WebSocket('wss://api.aisonar.dev/v1/realtime?model=qwen-tts-realtime', {
   headers: { Authorization: 'Bearer sk-your-api-key' }
 });
 
@@ -38,17 +38,17 @@ socket.on('message', (data) => {
 ```
 
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/realtime" \
+curl "https://api.aisonar.dev/v1/realtime" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>
 
 ## Mensagens
 
-TokenLab encaminha mensagens WebSocket entre o cliente e o provedor realtime roteado. Preserve os eventos oficiais do modelo selecionado e passe `model` na query string.
+AI Sonar encaminha mensagens WebSocket entre o cliente e o provedor realtime roteado. Preserve os eventos oficiais do modelo selecionado e passe `model` na query string.
 
 ## Cobrança e encerramento
 
-Sessões realtime usam o mesmo saldo da chave API. TokenLab pré-deduz uma pequena estimativa ao abrir e liquida ou reembolsa ao fechar.
+Sessões realtime usam o mesmo saldo da chave API. AI Sonar pré-deduz uma pequena estimativa ao abrir e liquida ou reembolsa ao fechar.
 
-Feche o socket do cliente quando a sessão terminar. Se o upstream fechar primeiro, TokenLab repassa o código de fechamento quando possível.
+Feche o socket do cliente quando a sessão terminar. Se o upstream fechar primeiro, AI Sonar repassa o código de fechamento quando possível.

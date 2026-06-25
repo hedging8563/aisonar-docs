@@ -1,13 +1,13 @@
 ---
 title: "Schnellstart"
-description: "Beginnen Sie in 2 Minuten mit der TokenLab API"
+description: "Beginnen Sie in 2 Minuten mit der AI Sonar API"
 ---
 
 ## Schritt 1: Mit Testguthaben starten
 
 <Steps>
   <Step title="Konto erstellen">
-    Registrieren Sie sich unter [tokenlab.sh](https://tokenlab.sh) mit Ihrer E-Mail-, Gmail- oder GitHub-Adresse.
+    Registrieren Sie sich unter [aisonar.dev](https://aisonar.dev) mit Ihrer E-Mail-, Gmail- oder GitHub-Adresse.
   </Step>
   <Step title="Inklusive Testguthaben nutzen">
     Neue Konten enthalten Testguthaben für die ersten kleinen Testanfragen. Vor dem Quickstart müssen Sie kein Guthaben aufladen.
@@ -50,7 +50,7 @@ Für die meisten neuen Integrationen beginnen Sie mit **Chat Completions** über
 <CodeGroup>
 
 ```bash cURL
-curl https://api.tokenlab.sh/v1/chat/completions \
+curl https://api.aisonar.dev/v1/chat/completions \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
@@ -66,7 +66,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-api-key",
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 response = client.chat.completions.create(
@@ -82,7 +82,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'sk-your-api-key',
-  baseURL: 'https://api.tokenlab.sh/v1'
+  baseURL: 'https://api.aisonar.dev/v1'
 });
 
 const response = await client.chat.completions.create({
@@ -105,7 +105,7 @@ Das enthaltene Testguthaben ist für die ersten kleinen Tests gedacht. Fügen Si
 
 ## Verschiedene Modelle ausprobieren
 
-TokenLab unterstützt über 300 Modelle. Ändern Sie nur das Feld `model`:
+AI Sonar unterstützt über 300 Modelle. Ändern Sie nur das Feld `model`:
 
 ```python
 response = client.chat.completions.create(model="gpt-5.4", messages=[{"role": "user", "content": "Hello"}])
@@ -142,7 +142,7 @@ for chunk in stream:
   <Card title="API-Referenz" icon="book" href="/api-reference/introduction">
     Erkunden Sie die vollständige Endpunkt-Referenz.
   </Card>
-  <Card title="Modelle" icon="robot" href="https://tokenlab.sh/de/models">
+  <Card title="Modelle" icon="robot" href="https://aisonar.dev/models">
     Durchsuchen Sie die aktuelle Modellverfügbarkeit und Preise.
   </Card>
 </CardGroup>

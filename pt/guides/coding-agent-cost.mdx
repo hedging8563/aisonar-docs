@@ -42,7 +42,7 @@ Agentes de código são ideais para cache porque repetem padrões similares cons
 
 ### Cache de Prompt (Nível do Provedor)
 
-O [cache de prompt upstream](/guides/prompt-cache) é automático pelo TokenLab. Prompts de sistema longos — que agentes de código sempre incluem — são armazenados em cache no nível do provedor:
+O [cache de prompt upstream](/guides/prompt-cache) é automático pelo AI Sonar. Prompts de sistema longos — que agentes de código sempre incluem — são armazenados em cache no nível do provedor:
 
 | Provedor | Desconto no Cache | Mínimo de Tokens |
 |----------|------------------|------------------|
@@ -73,9 +73,9 @@ Custos estimados para uma sessão típica de 1 hora de código (~3M tokens):
 | Configuração | Custo por Hora | Mensal (160h) |
 |--------------|----------------|---------------|
 | API direta (modelo premium) | ~$15–25 | ~$2.400–4.000 |
-| TokenLab (roteamento inteligente) | ~$10–18 | ~$1.600–2.900 |
-| TokenLab + cache de prompt | ~$4–8 | ~$640–1.280 |
-| TokenLab + ambos os caches | ~$2–5 | ~$320–800 |
+| AI Sonar (roteamento inteligente) | ~$10–18 | ~$1.600–2.900 |
+| AI Sonar + cache de prompt | ~$4–8 | ~$640–1.280 |
+| AI Sonar + ambos os caches | ~$2–5 | ~$320–800 |
 
 <Warning>
 Estas são estimativas ilustrativas. Os custos reais dependem da sua escolha de modelo, padrões de uso e taxas de acerto no cache. Consulte os [preços em tempo real](/api-reference/pricing/get-pricing) para tarifas atuais.
@@ -113,35 +113,35 @@ A maioria dos agentes de código suporta compactação de contexto — resumindo
 
 ## Configuração Rápida
 
-Cada ferramenta precisa de apenas algumas linhas para se conectar pelo TokenLab:
+Cada ferramenta precisa de apenas algumas linhas para se conectar pelo AI Sonar:
 
 <AccordionGroup>
   <Accordion title="Claude Code">
     ```bash
-    export ANTHROPIC_API_KEY="sk-your-tokenlab-key"
-    export ANTHROPIC_BASE_URL="https://api.tokenlab.sh"
+    export ANTHROPIC_API_KEY="sk-your-api-key"
+    export ANTHROPIC_BASE_URL="https://api.aisonar.dev"
     ```
     [Guia completo →](/integrations/claude-code)
   </Accordion>
 
   <Accordion title="Cursor">
-    Configurações → Modelos → Chave da API da OpenAI: `sk-your-key`, URL base: `https://api.tokenlab.sh/v1`
+    Configurações → Modelos → Chave da API da OpenAI: `sk-your-key`, URL base: `https://api.aisonar.dev/v1`
 
     [Guia completo →](/integrations/cursor)
   </Accordion>
 
   <Accordion title="Codex CLI">
     ```bash
-    export OPENAI_API_KEY="sk-your-tokenlab-key"
-    export OPENAI_BASE_URL="https://api.tokenlab.sh/v1"
+    export OPENAI_API_KEY="sk-your-api-key"
+    export OPENAI_BASE_URL="https://api.aisonar.dev/v1"
     ```
     [Guia completo →](/integrations/codex-cli)
   </Accordion>
 
   <Accordion title="Gemini CLI">
     ```bash
-    export GEMINI_API_KEY="sk-your-tokenlab-key"
-    export GOOGLE_GEMINI_BASE_URL="https://api.tokenlab.sh"
+    export GEMINI_API_KEY="sk-your-api-key"
+    export GOOGLE_GEMINI_BASE_URL="https://api.aisonar.dev"
     ```
     [Guia completo →](/integrations/gemini-cli)
   </Accordion>

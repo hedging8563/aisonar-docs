@@ -1,6 +1,6 @@
 ---
 title: "OpenCode"
-description: "Cấu hình OpenCode để sử dụng API TokenLab"
+description: "Cấu hình OpenCode để sử dụng API AI Sonar"
 ---
 
 ## Tổng quan
@@ -15,7 +15,7 @@ description: "Cấu hình OpenCode để sử dụng API TokenLab"
 **Mức hỗ trợ**: Đường được hỗ trợ
 </Note>
 
-OpenCode là một trợ lý lập trình AI mã nguồn mở chạy trong terminal của bạn. Công cụ này hỗ trợ nhiều nhà cung cấp LLM và có thể được cấu hình để sử dụng API của TokenLab nhằm truy cập hàng trăm mô hình.
+OpenCode là một trợ lý lập trình AI mã nguồn mở chạy trong terminal của bạn. Công cụ này hỗ trợ nhiều nhà cung cấp LLM và có thể được cấu hình để sử dụng API của AI Sonar nhằm truy cập hàng trăm mô hình.
 
 ## Cài đặt
 
@@ -53,29 +53,29 @@ opencode --version
 ### Bước 1: Thiết lập biến môi trường
 
 ```bash
-export OPENAI_API_KEY="sk-your-tokenlab-key"
+export OPENAI_API_KEY="sk-your-api-key"
 ```
 
 Để cấu hình vĩnh viễn, thêm vào `~/.bashrc` hoặc `~/.zshrc`:
 
 ```bash
-echo 'export OPENAI_API_KEY="sk-your-tokenlab-key"' >> ~/.zshrc
+echo 'export OPENAI_API_KEY="sk-your-api-key"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 ### Bước 2: Cấu hình OpenCode
 
-Tài liệu hiện tại của OpenCode khuyến nghị cấu hình các nhà cung cấp thông qua `opencode.json` hoặc `opencode.jsonc`. Với TokenLab, hãy sử dụng một nhà cung cấp tùy chỉnh thay vì ghi đè nhà cung cấp `openai` tích hợp sẵn:
+Tài liệu hiện tại của OpenCode khuyến nghị cấu hình các nhà cung cấp thông qua `opencode.json` hoặc `opencode.jsonc`. Với AI Sonar, hãy sử dụng một nhà cung cấp tùy chỉnh thay vì ghi đè nhà cung cấp `openai` tích hợp sẵn:
 
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "tokenlab": {
+    "aisonar": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "TokenLab",
+      "name": "AI Sonar",
       "options": {
-        "baseURL": "https://api.tokenlab.sh/v1",
+        "baseURL": "https://api.aisonar.dev/v1",
         "apiKey": "{env:OPENAI_API_KEY}"
       },
       "models": {
@@ -88,7 +88,7 @@ Tài liệu hiện tại của OpenCode khuyến nghị cấu hình các nhà cu
       }
     }
   },
-  "model": "tokenlab/gpt-5.4"
+  "model": "aisonar/gpt-5.4"
 }
 ```
 
@@ -113,7 +113,7 @@ opencode "Explain this codebase"
 **Chỉ định model:**
 
 ```bash
-opencode --model tokenlab/gpt-5.4 "Fix the bugs in main.py"
+opencode --model aisonar/gpt-5.4 "Fix the bugs in main.py"
 ```
 
 ## Các model khả dụng
@@ -166,21 +166,21 @@ opencode "Fix the TypeScript errors in this project"
 
 <AccordionGroup>
   <Accordion title="Lỗi kết nối">
-    - Xác minh `options.baseURL` được đặt thành `https://api.tokenlab.sh/v1`
+    - Xác minh `options.baseURL` được đặt thành `https://api.aisonar.dev/v1`
     - Kiểm tra kết nối mạng
-    - Thử `curl https://api.tokenlab.sh/v1/models` để kiểm tra
+    - Thử `curl https://api.aisonar.dev/v1/models` để kiểm tra
   </Accordion>
 
   <Accordion title="Xác thực thất bại">
     - Xác minh biến môi trường `OPENAI_API_KEY` đã được thiết lập
     - Xác minh `options.apiKey` tham chiếu đến `{env:OPENAI_API_KEY}` hoặc một nguồn secret hợp lệ khác
     - Kiểm tra khóa bắt đầu bằng `sk-`
-    - Đảm bảo khóa đang hoạt động trong dashboard TokenLab
+    - Đảm bảo khóa đang hoạt động trong dashboard AI Sonar
   </Accordion>
 
   <Accordion title="Không tìm thấy model">
     - Kiểm tra tên model trong config có khớp chính xác hay không
-    - Xác minh tính khả dụng của model tại [tokenlab.sh/en/models](https://tokenlab.sh/vi/models)
+    - Xác minh tính khả dụng của model tại [aisonar.dev/en/models](https://aisonar.dev/models)
   </Accordion>
 </AccordionGroup>
 

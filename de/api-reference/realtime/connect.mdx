@@ -24,7 +24,7 @@ Dieser Endpunkt ist für Echtzeit-Sitzungen wie Spracherkennung, Sprachsynthese,
 ```javascript JavaScript
 import WebSocket from 'ws';
 
-const socket = new WebSocket('wss://api.tokenlab.sh/v1/realtime?model=qwen-tts-realtime', {
+const socket = new WebSocket('wss://api.aisonar.dev/v1/realtime?model=qwen-tts-realtime', {
   headers: { Authorization: 'Bearer sk-your-api-key' }
 });
 
@@ -38,17 +38,17 @@ socket.on('message', (data) => {
 ```
 
 ```bash cURL
-curl "https://api.tokenlab.sh/v1/realtime" \
+curl "https://api.aisonar.dev/v1/realtime" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 </RequestExample>
 
 ## Nachrichten
 
-TokenLab leitet WebSocket-Nachrichten zwischen Client und geroutetem Realtime-Anbieter weiter. Verwenden Sie die offiziellen Event-Formate des gewählten Modells und geben Sie `model` in der Query an.
+AI Sonar leitet WebSocket-Nachrichten zwischen Client und geroutetem Realtime-Anbieter weiter. Verwenden Sie die offiziellen Event-Formate des gewählten Modells und geben Sie `model` in der Query an.
 
 ## Abrechnung und Schließen
 
-Realtime-Sitzungen nutzen dasselbe API-Key-Guthaben. TokenLab zieht beim Öffnen eine kleine Schätzung vorab ab und rechnet beim Schließen ab oder erstattet.
+Realtime-Sitzungen nutzen dasselbe API-Key-Guthaben. AI Sonar zieht beim Öffnen eine kleine Schätzung vorab ab und rechnet beim Schließen ab oder erstattet.
 
-Schließen Sie den Client-Socket, wenn die Sitzung beendet ist. Schließt der Upstream zuerst, leitet TokenLab den Close-Code nach Möglichkeit weiter.
+Schließen Sie den Client-Socket, wenn die Sitzung beendet ist. Schließt der Upstream zuerst, leitet AI Sonar den Close-Code nach Möglichkeit weiter.

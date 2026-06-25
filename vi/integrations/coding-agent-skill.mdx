@@ -1,10 +1,10 @@
 ---
-title: "✨ Kỹ năng tích hợp API TokenLab"
-description: "Cài đặt kỹ năng tích hợp API TokenLab dùng chung cho bất kỳ coding agent nào, với khả năng khôi phục lỗi Agent-First."
+title: "✨ Kỹ năng tích hợp API AI Sonar"
+description: "Cài đặt kỹ năng tích hợp API AI Sonar dùng chung cho bất kỳ coding agent nào, với khả năng khôi phục lỗi Agent-First."
 ---
 
 <Note>
-Kỹ năng này hướng dẫn coding agent của bạn cách tích hợp **hàng trăm API AI** của TokenLab chỉ bằng cách mô tả những gì bạn cần. Nó được đóng gói thành một kỹ năng dùng chung agent-first và hoạt động với bất kỳ coding agent nào hỗ trợ file skill hoặc rules.
+Kỹ năng này hướng dẫn coding agent của bạn cách tích hợp **hàng trăm API AI** của AI Sonar chỉ bằng cách mô tả những gì bạn cần. Nó được đóng gói thành một kỹ năng dùng chung agent-first và hoạt động với bất kỳ coding agent nào hỗ trợ file skill hoặc rules.
 
 API là **[Agent-First](/guides/agent-first-api)** — ngay cả khi agent đoán sai tên model, phản hồi lỗi sẽ cho biết chính xác cách khắc phục.
 </Note>
@@ -27,12 +27,12 @@ Trang này mô tả một lớp đóng gói skill có thể tái sử dụng, ch
 Sử dụng lệnh cài đặt không tương tác chính thức:
 
 ```bash
-npx skills add https://github.com/hedging8563/tokenlab-skills --skill tokenlab-api-integration -y
+npx skills add https://github.com/hedging8563/aisonar-skills --skill aisonar-api-integration -y
 ```
 
-Lệnh này cài đặt kỹ năng dùng chung `tokenlab-api-integration` từ repository skills của TokenLab.
+Lệnh này cài đặt kỹ năng dùng chung `aisonar-api-integration` từ repository skills của AI Sonar.
 
-Nếu công cụ của bạn không hỗ trợ trình cài đặt, hãy sao chép thư mục `skills/tokenlab-api-integration/` từ repository vào thư mục skills hoặc rules dùng chung của công cụ.
+Nếu công cụ của bạn không hỗ trợ trình cài đặt, hãy sao chép thư mục `skills/aisonar-api-integration/` từ repository vào thư mục skills hoặc rules dùng chung của công cụ.
 </Note>
 
 ### Xác minh cài đặt
@@ -42,19 +42,19 @@ Hỏi coding agent của bạn:
 Có những skills nào khả dụng?
 ```
 
-Nếu bạn thấy `tokenlab-api-integration`, việc cài đặt đã thành công.
+Nếu bạn thấy `aisonar-api-integration`, việc cài đặt đã thành công.
 
 ## Lấy API Key của bạn
 
 <Steps>
-  <Step title="Truy cập TokenLab">
-    Truy cập [tokenlab.sh](https://tokenlab.sh)
+  <Step title="Truy cập AI Sonar">
+    Truy cập [aisonar.dev](https://aisonar.dev)
   </Step>
   <Step title="Đăng nhập">
     Tạo tài khoản hoặc đăng nhập
   </Step>
   <Step title="Lấy API Key">
-    Đi đến [Dashboard → API Keys](https://tokenlab.sh/dashboard/api) và tạo key mới
+    Đi đến [Dashboard → API Keys](https://console.aisonar.dev/api) và tạo key mới
   </Step>
   <Step title="Sao chép Key">
     Key của bạn bắt đầu bằng `sk-...` — hãy lưu trữ nó một cách an toàn
@@ -81,7 +81,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.environ["TOKENLAB_API_KEY"],
-    base_url="https://api.tokenlab.sh/v1"
+    base_url="https://api.aisonar.dev/v1"
 )
 
 response = client.chat.completions.create(
@@ -106,7 +106,7 @@ Nếu agent đoán sai tên model (ví dụ: `gpt5`), API sẽ trả về:
     "code": "model_not_found",
     "did_you_mean": "gpt-5.4",
     "suggestions": [{"id": "gpt-5.4"}, {"id": "gpt-5-mini"}],
-    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.tokenlab.sh/v1/models to list all available models."
+    "hint": "Did you mean 'gpt-5.4'? Use GET https://api.aisonar.dev/v1/models to list all available models."
   }
 }
 ```
@@ -148,12 +148,9 @@ Mỗi phản hồi lỗi đều bao gồm các gợi ý có cấu trúc mà bấ
 
 Khi bạn gọi `/v1/chat/completions` với model Claude hoặc Gemini, API sẽ trả về các header tối ưu hóa:
 
-```
-X-TokenLab-Hint: This model supports native Anthropic format. Use POST /v1/messages for better performance.
-X-TokenLab-Native-Endpoint: /v1/messages
-```
 
-Hãy xem các header này là gợi ý định tuyến, không phải một chuyển đổi tự động bắt buộc. Lệnh gọi Claude native dùng `/v1/messages`; lệnh gọi Gemini native nên theo endpoint do `X-TokenLab-Native-Endpoint` trả về, thường là `/v1beta/gemini`.
+
+Hãy xem các header này là gợi ý định tuyến, không phải một chuyển đổi tự động bắt buộc. Lệnh gọi Claude native dùng `/v1/messages`; lệnh gọi Gemini native nên theo endpoint do the native endpoint hint header trả về, thường là `/v1beta/gemini`.
 
 ### Khám phá model
 
@@ -161,21 +158,21 @@ Không cần tìm kiếm trong tài liệu:
 
 ```bash
 # Tổng quan API máy có thể đọc
-curl https://api.tokenlab.sh/llms.txt
+curl https://api.aisonar.dev/llms.txt
 
 # List models by category
-curl "https://api.tokenlab.sh/v1/models?category=chat" -H "Authorization: Bearer sk-KEY"
-curl "https://api.tokenlab.sh/v1/models?category=image" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models?category=chat" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models?category=image" -H "Authorization: Bearer sk-KEY"
 
 # Danh sách đề xuất cho kịch bản không phải chat
-curl "https://api.tokenlab.sh/v1/models?recommended_for=image" -H "Authorization: Bearer sk-KEY"
-curl "https://api.tokenlab.sh/v1/models?recommended_for=translation" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models?recommended_for=image" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models?recommended_for=translation" -H "Authorization: Bearer sk-KEY"
 
 # Đọc hợp đồng công khai của một model trước khi thử lại request không phải chat
-curl "https://api.tokenlab.sh/v1/models/gpt-image-2" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models/gpt-image-2" -H "Authorization: Bearer sk-KEY"
 
 # Lọc theo năng lực
-curl "https://api.tokenlab.sh/v1/models?tag=coding" -H "Authorization: Bearer sk-KEY"
+curl "https://api.aisonar.dev/v1/models?tag=coding" -H "Authorization: Bearer sk-KEY"
 ```
 
 ## Các khả năng được hỗ trợ
@@ -197,10 +194,10 @@ curl "https://api.tokenlab.sh/v1/models?tag=coding" -H "Authorization: Bearer sk
     Sử dụng biến môi trường. Không bao giờ commit key vào git hoặc để lộ chúng trong code frontend.
   </Card>
   <Card title="Quản lý chi phí" icon="wallet">
-    Đặt giới hạn sử dụng trong [dashboard](https://tokenlab.sh/dashboard). Kiểm tra `error.balance_usd` để theo dõi chi phí theo chương trình.
+    Đặt giới hạn sử dụng trong [dashboard](https://console.aisonar.dev). Kiểm tra `error.balance_usd` để theo dõi chi phí theo chương trình.
   </Card>
   <Card title="Hãy nói trực tiếp" icon="bullseye">
-    Hãy nói "Tôi muốn tạo ảnh bằng Python" thay vì "TokenLab có image API không?"
+    Hãy nói "Tôi muốn tạo ảnh bằng Python" thay vì "AI Sonar có image API không?"
   </Card>
   <Card title="Mô tả tình huống của bạn" icon="message">
     "Tôi đang xây dựng một chatbot với GPT-4" cung cấp cho agent nhiều ngữ cảnh hơn so với "Dùng GPT-4".
@@ -211,24 +208,24 @@ curl "https://api.tokenlab.sh/v1/models?tag=coding" -H "Authorization: Bearer sk
 
 <AccordionGroup>
   <Accordion title="Kỹ năng không tự động được kích hoạt?">
-    Hãy thử nhắc đến "TokenLab" hoặc "TokenLab API" trong yêu cầu của bạn:
+    Hãy thử nhắc đến "AI Sonar" hoặc "AI Sonar API" trong yêu cầu của bạn:
     ```
-    Tôi muốn dùng TokenLab để tích hợp GPT-4 vào dự án của mình
+    Tôi muốn dùng AI Sonar để tích hợp GPT-4 vào dự án của mình
     ```
   </Accordion>
 
   <Accordion title="API giúp agent tìm đúng model như thế nào?">
-    [Agent-First API](/guides/agent-first-api) của TokenLab trả về các gợi ý lỗi có cấu trúc. Nếu agent đoán sai tên model, lỗi sẽ bao gồm `did_you_mean` với tên đúng và `suggestions` với các lựa chọn thay thế. Agent đọc các thông tin này và tự động sửa ở lần thử tiếp theo.
+    [Agent-First API](/guides/agent-first-api) của AI Sonar trả về các gợi ý lỗi có cấu trúc. Nếu agent đoán sai tên model, lỗi sẽ bao gồm `did_you_mean` với tên đúng và `suggestions` với các lựa chọn thay thế. Agent đọc các thông tin này và tự động sửa ở lần thử tiếp theo.
   </Accordion>
 
   <Accordion title="Những coding agent nào được hỗ trợ?">
-    Bất kỳ coding agent nào hỗ trợ thư mục skill hoặc rules dùng chung. Khi trình cài đặt được hỗ trợ, `npx skills add` sẽ tự động đặt kỹ năng dùng chung `tokenlab-api-integration` vào vị trí được phát hiện.
+    Bất kỳ coding agent nào hỗ trợ thư mục skill hoặc rules dùng chung. Khi trình cài đặt được hỗ trợ, `npx skills add` sẽ tự động đặt kỹ năng dùng chung `aisonar-api-integration` vào vị trí được phát hiện.
   </Accordion>
 
   <Accordion title="Làm thế nào để cập nhật kỹ năng?">
     Chạy lại trình cài đặt:
     ```bash
-    npx skills add https://github.com/hedging8563/tokenlab-skills --skill tokenlab-api-integration -y
+    npx skills add https://github.com/hedging8563/aisonar-skills --skill aisonar-api-integration -y
     ```
   </Accordion>
 </AccordionGroup>
@@ -239,17 +236,17 @@ curl "https://api.tokenlab.sh/v1/models?tag=coding" -H "Authorization: Bearer sk
   <Card title="Agent-First API" icon="robot" href="/vi/guides/agent-first-api">
     Tài liệu tham chiếu đầy đủ cho các gợi ý lỗi có cấu trúc
   </Card>
-  <Card title="Tài liệu API" icon="book" href="https://docs.tokenlab.sh">
+  <Card title="Tài liệu API" icon="book" href="https://docs.aisonar.dev">
     Tài liệu tham chiếu API đầy đủ
   </Card>
-  <Card title="Mô hình" icon="sparkles" href="https://tokenlab.sh/vi/models">
+  <Card title="Mô hình" icon="sparkles" href="https://aisonar.dev/models">
     Duyệt hàng trăm model khả dụng
   </Card>
-  <Card title="llms.txt" icon="file-lines" href="https://api.tokenlab.sh/llms.txt">
+  <Card title="llms.txt" icon="file-lines" href="https://api.aisonar.dev/llms.txt">
     Tổng quan API máy có thể đọc cho AI agents
   </Card>
 </CardGroup>
 
 <Info>
-**Có câu hỏi?** Hãy xem [GitHub Issues](https://github.com/hedging8563/tokenlab-skills/issues) của chúng tôi hoặc liên hệ [support@tokenlab.sh](mailto:support@tokenlab.sh)
+**Có câu hỏi?** Hãy xem [GitHub Issues](https://github.com/hedging8563/aisonar-skills/issues) của chúng tôi hoặc liên hệ [support@aisonar.dev](mailto:support@aisonar.dev)
 </Info>
