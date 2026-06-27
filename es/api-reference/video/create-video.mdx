@@ -23,7 +23,7 @@ Para integraciones en producción, es mejor usar URLs `https` públicas para im�
 ## Cuerpo de la solicitud
 
 <ParamField body="model" type="string" default="veo3.1">
-  ID del modelo de video. El valor predeterminado de la API es `veo3.1`. Consulta la [guía de generación de video](/es/guides/video-generation) para ver la matriz pública actual y las capacidades compatibles.
+  ID del modelo de video. El valor predeterminado de la API es `veo3.1`. Consulta la [guía de generación de video](/es/guides/video-generation) y la [Models API](/es/api-reference/models/list-models) para ver las capacidades públicas actuales de video.
 </ParamField>
 
 <ParamField body="prompt" type="string" required>
@@ -55,7 +55,7 @@ Para integraciones en producción, es mejor usar URLs `https` públicas para im�
 </ParamField>
 
 <ParamField body="video_url" type="string">
-  URL pública del video de origen. Es obligatoria para los flujos públicos actuales de `video-to-video` y para los modelos de `motion-control`.
+  URL pública del video de origen. Requerida para flujos `video-to-video` basados en URL de video y para `motion-control`; algunos flujos derivados usan `task_id` en su lugar.
 </ParamField>
 
 <ParamField body="video_urls" type="array">
@@ -313,11 +313,11 @@ response = requests.post(
     "https://api.aisonar.dev/v1/videos/generations",
     headers={"Authorization": "Bearer sk-your-api-key"},
     json={
-        "model": "grok-imagine-upscale",
+        "model": "grok-imagine-video",
         "operation": "video-to-video",
         "video_url": "https://example.com/source.mp4",
-        "prompt": "Upscale the clip while preserving the original motion.",
-        "resolution": "1080p"
+        "prompt": "Enhance the clip while preserving the original motion.",
+        "resolution": "720p"
     }
 )
 ```
@@ -341,84 +341,16 @@ response = requests.post(
 )
 ```
 
-## Disponibilidad actual de audio-to-video y video-extension
+## Descubrimiento de modelos
 
-El contrato público de AI Sonar acepta `audio-to-video` y `video-extension` para flujos específicos de ciertos modelos. Sin embargo, en la lista pública de modelos generalmente habilitados de esta compilación de documentación no hay ningún modelo ampliamente habilitado que anuncie públicamente estas capacidades. Antes de integrar esos flujos, confirma la disponibilidad actual mediante la [Models API](/es/api-reference/models/list-models) o la [página de modelos](https://aisonar.dev/models).
+El inventario público de video y las operaciones admitidas cambian con el tiempo. Usa la [Models API](/es/api-reference/models/list-models) como fuente de verdad antes de implementar un flujo específico de un modelo:
 
-## Inventario público actual de modelos
+```bash
+curl "https://api.aisonar.dev/v1/models?recommended_for=video" \
+  -H "Authorization: Bearer sk-your-api-key"
 
-Esta lista está alineada con el inventario público de modelos de video habilitados en esta compilación de documentación. Para el estado más reciente, consulta la [Models API](/es/api-reference/models/list-models).
+curl "https://api.aisonar.dev/v1/models/veo3.1" \
+  -H "Authorization: Bearer sk-your-api-key"
+```
 
-### OpenAI
-
-| Modelo | Operaciones públicas |
-|--------|----------------------|
-
-### Kuaishou
-
-| Modelo | Operaciones públicas |
-|--------|----------------------|
-| `kling-3.0-motion-control` | Control de movimiento |
-| `kling-3.0-video` | Texto a video, imagen a video, inicio-fin a video, referencias de elementos |
-| `kling-v2.5-turbo-pro` | Texto a video, imagen a video, inicio-fin a video |
-| `kling-v2.6-pro` | Texto a video, imagen a video, inicio-fin a video |
-| `kling-v2.6-std` | Texto a video, imagen a video |
-| `kling-video-o1-pro` | Texto a video, imagen a video, referencia a video, inicio-fin a video, video a video |
-| `kling-video-o1-std` | Texto a video, imagen a video, referencia a video, inicio-fin a video, video a video |
-
-### Google
-
-| Modelo | Operaciones públicas |
-|--------|----------------------|
-| `veo3` | Texto a video, imagen a video |
-| `veo3-fast` | Texto a video, imagen a video |
-| `veo3.1` | Texto a video, imagen a video, referencia a video, inicio-fin a video |
-| `veo3.1-fast` | Texto a video, imagen a video, referencia a video, inicio-fin a video |
-
-### ByteDance
-
-| Modelo | Operaciones públicas |
-|--------|----------------------|
-| `seedance-1.5-pro` | Texto a video, imagen a video |
-
-### MiniMax
-
-| Modelo | Operaciones públicas |
-|--------|----------------------|
-| `hailuo-2.3-fast` | Imagen a video |
-| `hailuo-2.3-pro` | Texto a video, imagen a video |
-| `hailuo-2.3-standard` | Texto a video, imagen a video |
-
-### Alibaba
-
-| Modelo | Operaciones públicas |
-|--------|----------------------|
-| `wan-2.2-plus` | Texto a video, imagen a video |
-| `wan-2.5` | Texto a video, imagen a video |
-| `wan-2.6` | Texto a video, imagen a video, referencia a video |
-
-### Shengshu
-
-| Modelo | Operaciones públicas |
-|--------|----------------------|
-| `viduq2` | Texto a video, referencia a video |
-| `viduq2-pro` | Imagen a video, referencia a video, inicio-fin a video |
-| `viduq2-pro-fast` | Imagen a video, inicio-fin a video |
-| `viduq2-turbo` | Imagen a video, inicio-fin a video |
-| `viduq3-pro` | Texto a video, imagen a video, inicio-fin a video |
-| `viduq3-turbo` | Texto a video, imagen a video, inicio-fin a video |
-
-### xAI
-
-| Modelo | Operaciones públicas |
-|--------|----------------------|
-| `grok-imagine-video` | Texto a video, imagen a video, reference-to-video, video-to-video |
-| `grok-imagine-video-1.5-preview` | Imagen a video |
-| `grok-imagine-image-to-video` | Imagen a video |
-| `grok-imagine-text-to-video` | Texto a video |
-| `grok-imagine-upscale` | Video a video |
-
-### Otros
-
-| Modelo | Operaciones públicas |
-|--------|----------------------|
+Lee `aisonar.capabilities`, `aisonar.supported_operations`, `aisonar.public_contract_summary` y `aisonar.public_contract` en la respuesta de detalle del modelo. Operaciones como `audio-to-video` y `video-extension` dependen del modelo; confirma allí la disponibilidad actual en lugar de depender de ejemplos estáticos de esta página.
