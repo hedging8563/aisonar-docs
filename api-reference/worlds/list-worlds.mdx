@@ -4,7 +4,7 @@ openapi: "POST /v1/worlds/list"
 description: "Lists completed World Labs Marble worlds created through AI Sonar"
 ---
 
-List completed World Labs Marble worlds created through AI Sonar. Results are scoped to your organization; AI Sonar does not expose the shared upstream account-wide list.
+List completed World Labs Marble worlds created through AI Sonar. Results are scoped to your organization and only include resources created through AI Sonar.
 
 Use `/v1/worlds/generations/{id}` for pending or failed generation tasks. This list returns completed worlds that AI Sonar has indexed after generation.
 

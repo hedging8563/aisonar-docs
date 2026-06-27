@@ -14,10 +14,6 @@
     {
       "url": "https://api.aisonar.dev",
       "description": "Production server"
-    },
-    {
-      "url": "http://localhost:3001",
-      "description": "Local development (API Gateway)"
     }
   ],
   "tags": [
@@ -4267,7 +4263,7 @@
           "Worlds"
         ],
         "summary": "List World Labs worlds",
-        "description": "Lists World Labs worlds owned by the authenticated AI Sonar organization. AI Sonar does not expose the raw upstream account-wide list to avoid cross-tenant asset disclosure; this endpoint lists indexed worlds generated through AI Sonar.",
+        "description": "Lists World Labs worlds created through AI Sonar for the authenticated organization. Results only include resources created through AI Sonar.",
         "operationId": "listWorlds",
         "requestBody": {
           "required": false,
