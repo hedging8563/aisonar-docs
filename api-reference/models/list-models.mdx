@@ -25,6 +25,9 @@ description: "Lists all available models"
   - `aisonar.pricing_provenance` (object or `null`): Public pricing source metadata
   - `aisonar.public_contract_summary` (object or `null`): Lightweight non-chat discovery summary with only `public_operations` and `request_endpoint`
   - `aisonar.agent_preferences` (object): Only returned when `recommended_for` is present
+  - `aisonar.lifecycle` (object): Lifecycle stage, release/deprecation dates, replacement model, and latest badge derivation
+  - `aisonar.commercial` (object): User charge policy, free reason, and optional free-until timestamp
+  - `aisonar.badges` (array): Display badges derived from lifecycle and commercial metadata
 </ResponseField>
 
 <Note>

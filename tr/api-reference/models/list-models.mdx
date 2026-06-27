@@ -25,6 +25,9 @@ description: "Mevcut tüm modelleri listeler"
   - `aisonar.pricing_provenance` (object veya `null`): Genel fiyat kaynağı metadata'sı
   - `aisonar.public_contract_summary` (object veya `null`): Yalnızca `public_operations` ve `request_endpoint` içeren hafif chat dışı discovery özeti
   - `aisonar.agent_preferences` (object): Yalnızca `recommended_for` mevcut olduğunda döner
+  - `aisonar.lifecycle` (object): yaşam döngüsü aşaması, yayın/kullanımdan kaldırma tarihleri, yerine geçecek model ve latest rozeti kaynağı
+  - `aisonar.commercial` (object): kullanıcı ücret politikası, ücretsiz nedeni ve isteğe bağlı ücretsiz bitiş zamanı
+  - `aisonar.badges` (array): lifecycle ve commercial meta verilerinden türetilen rozetler
 </ResponseField>
 
 <Note>

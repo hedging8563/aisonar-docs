@@ -25,6 +25,9 @@ description: "Liste tous les modèles disponibles"
   - `aisonar.pricing_provenance` (object ou `null`) : Métadonnées publiques de provenance de la tarification
   - `aisonar.public_contract_summary` (object ou `null`) : Résumé de découverte non-chat léger, avec uniquement `public_operations` et `request_endpoint`
   - `aisonar.agent_preferences` (object) : Renvoyé uniquement lorsque `recommended_for` est présent
+  - `aisonar.lifecycle` (object) : étape du cycle de vie, dates de sortie/dépréciation, modèle de remplacement et source du badge latest
+  - `aisonar.commercial` (object) : politique de facturation utilisateur, raison de gratuité et échéance facultative
+  - `aisonar.badges` (array) : badges dérivés du cycle de vie et des métadonnées commerciales
 </ResponseField>
 
 <Note>

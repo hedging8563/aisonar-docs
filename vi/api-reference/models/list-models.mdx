@@ -25,6 +25,9 @@ description: "Liệt kê tất cả model hiện có"
   - `aisonar.pricing_provenance` (object hoặc `null`): Metadata nguồn giá công khai
   - `aisonar.public_contract_summary` (object hoặc `null`): Tóm tắt khám phá phi-chat nhẹ, chỉ gồm `public_operations` và `request_endpoint`
   - `aisonar.agent_preferences` (object): Chỉ trả về khi có `recommended_for`
+  - `aisonar.lifecycle` (object): giai đoạn vòng đời, ngày phát hành/ngừng hỗ trợ, mô hình thay thế và nguồn huy hiệu latest
+  - `aisonar.commercial` (object): chính sách tính phí người dùng, lý do miễn phí và thời điểm miễn phí đến tùy chọn
+  - `aisonar.badges` (array): huy hiệu hiển thị suy ra từ metadata lifecycle và commercial
 </ResponseField>
 
 <Note>

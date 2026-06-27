@@ -25,6 +25,9 @@ description: "Daftar semua model yang tersedia"
   - `aisonar.pricing_provenance` (object atau `null`): Metadata sumber harga publik
   - `aisonar.public_contract_summary` (object atau `null`): Ringkasan discovery non-chat ringan yang hanya berisi `public_operations` dan `request_endpoint`
   - `aisonar.agent_preferences` (object): Hanya dikembalikan saat `recommended_for` ada
+  - `aisonar.lifecycle` (object): tahap lifecycle, tanggal rilis/depresiasi, model pengganti, dan sumber badge latest
+  - `aisonar.commercial` (object): kebijakan biaya pengguna, alasan gratis, dan waktu gratis hingga opsional
+  - `aisonar.badges` (array): badge tampilan dari metadata lifecycle dan commercial
 </ResponseField>
 
 <Note>
