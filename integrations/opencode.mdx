@@ -71,7 +71,7 @@ OpenCode's current docs recommend configuring providers through `opencode.json` 
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "aisonar": {
+    "tokenlab": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "AI Sonar",
       "options": {
@@ -88,7 +88,7 @@ OpenCode's current docs recommend configuring providers through `opencode.json` 
       }
     }
   },
-  "model": "aisonar/gpt-5.4"
+  "model": "tokenlab/gpt-5.4"
 }
 ```
 
@@ -113,7 +113,7 @@ opencode "Explain this codebase"
 **Specify model:**
 
 ```bash
-opencode --model aisonar/gpt-5.4 "Fix the bugs in main.py"
+opencode --model tokenlab/gpt-5.4 "Fix the bugs in main.py"
 ```
 
 ## Available Models

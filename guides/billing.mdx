@@ -41,7 +41,7 @@ Image, video, music, 3D, audio, and world-generation models may be priced per re
 | Image | `flux-pro`, `qwen-image` |
 | Video | `veo3.1`, `seedance-2.0` |
 | Music | `suno-music` |
-| 3D | `tripo3d-v2.5` |
+| 3D | `tripo-h3.1` |
 | Audio | `tts-1`, `whisper-1` |
 
 ### Async Task Billing (Video/Music/3D and Some Image Models)
@@ -57,7 +57,7 @@ For task-based generation flows (video, music, 3D, and some image models):
 3. When the task completes successfully, final settlement records the usage and the task response includes `billing_transaction_id`.
 4. If creation fails or the terminal status is failed, the pending amount is refunded or released and the request is marked non-billable.
 
-If the dashboard does not reflect a completed settlement or refund after terminal status is visible, contact support@aisonar.dev for assistance.
+If the dashboard does not reflect a completed settlement or refund after terminal status is visible, contact  for assistance.
 
 ```python
 # Example: Video generation billing
@@ -182,4 +182,4 @@ When the limit is reached, requests with that key will return `402 Payment Requi
 
 ## Questions?
 
-Contact support@aisonar.dev for billing inquiries.
+Contact  for billing inquiries.

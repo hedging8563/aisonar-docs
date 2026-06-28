@@ -11,15 +11,15 @@ Dieser Leitfaden richtet sich an Nutzer von **selbst gehostetem OpenClaw**, die 
 
 Für aktuelle OpenClaw-Versionen wird empfohlen, AI Sonar über `models.providers` zu konfigurieren.
 
-Wenn Sie schnell loslegen möchten, reicht es aus, nur `aisonar` zu konfigurieren. Fügen Sie die anderen Provider nur hinzu, wenn Sie explizit **Responses API**, **Claude native**, **Gemini native** oder **MiniMax native** Verhalten benötigen.
+Wenn Sie schnell loslegen möchten, reicht es aus, nur `tokenlab` zu konfigurieren. Fügen Sie die anderen Provider nur hinzu, wenn Sie explizit **Responses API**, **Claude native**, **Gemini native** oder **MiniMax native** Verhalten benötigen.
 
 | Anbieter | OpenClaw `api` | Am besten für | baseUrl |
 |----------|----------------|---------------|---------|
-| `aisonar` | `openai-completions` | GPT, DeepSeek, Qwen und die meisten OpenAI-kompatiblen Aufrufe | `https://api.aisonar.dev/v1` |
-| `aisonar-responses` | `openai-responses` | OpenAI Responses-Workflows, die `/v1/responses`-Semantik erwarten | `https://api.aisonar.dev/v1` |
-| `aisonar-claude` | `anthropic-messages` | Natives Claude Messages API | `https://api.aisonar.dev` |
-| `aisonar-gemini` | `google-generative-ai` | Native Gemini-API-Format | `https://api.aisonar.dev` |
-| `aisonar-minimax` | `anthropic-messages` | Native MiniMax-Routing | `https://api.aisonar.dev` |
+| `tokenlab` | `openai-completions` | GPT, DeepSeek, Qwen und die meisten OpenAI-kompatiblen Aufrufe | `https://api.aisonar.dev/v1` |
+| `tokenlab-responses` | `openai-responses` | OpenAI Responses-Workflows, die `/v1/responses`-Semantik erwarten | `https://api.aisonar.dev/v1` |
+| `tokenlab-claude` | `anthropic-messages` | Natives Claude Messages API | `https://api.aisonar.dev` |
+| `tokenlab-gemini` | `google-generative-ai` | Native Gemini-API-Format | `https://api.aisonar.dev` |
+| `tokenlab-minimax` | `anthropic-messages` | Native MiniMax-Routing | `https://api.aisonar.dev` |
 
 <Warning>
 Verwenden Sie den Suffix `/v1` nur für `openai-completions` und `openai-responses`.
@@ -45,14 +45,14 @@ Fügen Sie AI Sonar-Provider unter `models.providers` hinzu:
   agents: {
     defaults: {
       model: {
-        primary: "aisonar-claude/claude-sonnet-4-6"
+        primary: "tokenlab-claude/claude-sonnet-4-6"
       }
     }
   },
   models: {
     mode: "merge",
     providers: {
-      aisonar: {
+      tokenlab: {
         api: "openai-completions",
         baseUrl: "https://api.aisonar.dev/v1",
         apiKey: "sk-your-api-key",
@@ -62,7 +62,7 @@ Fügen Sie AI Sonar-Provider unter `models.providers` hinzu:
           { id: "qwen3-coder-flash", name: "Qwen 3 Coder Flash" }
         ]
       },
-      "aisonar-responses": {
+      "tokenlab-responses": {
         api: "openai-responses",
         baseUrl: "https://api.aisonar.dev/v1",
         apiKey: "sk-your-api-key",
@@ -71,7 +71,7 @@ Fügen Sie AI Sonar-Provider unter `models.providers` hinzu:
           { id: "gpt-5.2", name: "GPT-5.2 (Responses)" }
         ]
       },
-      "aisonar-claude": {
+      "tokenlab-claude": {
         api: "anthropic-messages",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -80,7 +80,7 @@ Fügen Sie AI Sonar-Provider unter `models.providers` hinzu:
           { id: "claude-opus-4-6", name: "Claude Opus 4.6" }
         ]
       },
-      "aisonar-gemini": {
+      "tokenlab-gemini": {
         api: "google-generative-ai",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -89,7 +89,7 @@ Fügen Sie AI Sonar-Provider unter `models.providers` hinzu:
           { id: "gemini-2.5-pro", name: "Gemini 2.5 Pro" }
         ]
       },
-      "aisonar-minimax": {
+      "tokenlab-minimax": {
         api: "anthropic-messages",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -119,7 +119,7 @@ OpenClaw referenziert Modelle weiterhin im Format `provider/model`:
   agents: {
     defaults: {
       model: {
-        primary: "aisonar-gemini/gemini-3.5-flash"
+        primary: "tokenlab-gemini/gemini-3.5-flash"
       }
     }
   }
@@ -130,24 +130,24 @@ OpenClaw referenziert Modelle weiterhin im Format `provider/model`:
 
 | Anbieter | Modellreferenz | Beschreibung |
 |----------|----------------|--------------|
-| `aisonar` | `aisonar/gpt-4o` | OpenAI-kompatibler Pfad |
-| `aisonar` | `aisonar/deepseek-r1` | DeepSeek-Reasoning-Modell |
-| `aisonar-responses` | `aisonar-responses/gpt-4o` | Responses API-Pfad |
-| `aisonar-claude` | `aisonar-claude/claude-sonnet-4-6` | Native Claude Messages-Route |
-| `aisonar-gemini` | `aisonar-gemini/gemini-3.5-flash` | Native Gemini-Route |
-| `aisonar-minimax` | `aisonar-minimax/minimax-m2.1` | Native MiniMax-Route |
+| `tokenlab` | `tokenlab/gpt-4o` | OpenAI-kompatibler Pfad |
+| `tokenlab` | `tokenlab/deepseek-r1` | DeepSeek-Reasoning-Modell |
+| `tokenlab-responses` | `tokenlab-responses/gpt-4o` | Responses API-Pfad |
+| `tokenlab-claude` | `tokenlab-claude/claude-sonnet-4-6` | Native Claude Messages-Route |
+| `tokenlab-gemini` | `tokenlab-gemini/gemini-3.5-flash` | Native Gemini-Route |
+| `tokenlab-minimax` | `tokenlab-minimax/minimax-m2.1` | Native MiniMax-Route |
 
 Alle verfügbaren Modelle finden Sie unter [aisonar.dev/models](https://aisonar.dev/models).
 
 ## Wann Sie welchen Provider verwenden sollten
 
-- `aisonar`: Standardwahl für die meisten allgemeingültigen Agent- und Chat-Anwendungsfälle.
-- `aisonar-responses`: Verwenden Sie diesen, wenn Ihr OpenClaw-Workflow explizit auf OpenAI Responses-Semantik angewiesen ist.
-- `aisonar-claude`: Verwenden Sie diesen, wenn Sie Claudes native Messages-Verhalten möchten.
-- `aisonar-gemini`: Verwenden Sie diesen, wenn Sie Gemini-native Anfrage-/Antwort-Formatierung oder bestehende Gemini-Integrationen benötigen.
-- `aisonar-minimax`: Verwenden Sie diesen, wenn Sie MiniMax über dessen native Route nutzen möchten.
+- `tokenlab`: Standardwahl für die meisten allgemeingültigen Agent- und Chat-Anwendungsfälle.
+- `tokenlab-responses`: Verwenden Sie diesen, wenn Ihr OpenClaw-Workflow explizit auf OpenAI Responses-Semantik angewiesen ist.
+- `tokenlab-claude`: Verwenden Sie diesen, wenn Sie Claudes native Messages-Verhalten möchten.
+- `tokenlab-gemini`: Verwenden Sie diesen, wenn Sie Gemini-native Anfrage-/Antwort-Formatierung oder bestehende Gemini-Integrationen benötigen.
+- `tokenlab-minimax`: Verwenden Sie diesen, wenn Sie MiniMax über dessen native Route nutzen möchten.
 
-Wenn Sie kein Gemini-native Verhalten benötigen, können Sie Gemini-Modelle weiterhin über `aisonar/gemini-*` über die OpenAI-kompatible Route aufrufen.
+Wenn Sie kein Gemini-native Verhalten benötigen, können Sie Gemini-Modelle weiterhin über `tokenlab/gemini-*` über die OpenAI-kompatible Route aufrufen.
 
 ## Häufige Fehler
 
@@ -155,14 +155,14 @@ Wenn Sie kein Gemini-native Verhalten benötigen, können Sie Gemini-Modelle wei
   <Accordion title="Verwendet noch das alte Top-Level `providers`-Array">
     Die aktuelle OpenClaw-Dokumentation verwendet `models.providers`. Wenn Sie weiterhin das ältere Top-Level-`providers`-Array-Format beibehalten, kann OpenClaw die Konfiguration ignorieren oder die Provider-Präfixe nicht wie erwartet auflösen.
   </Accordion>
-  <Accordion title="Vergessen von /v1 bei `aisonar-responses`">
-    `openai-responses` mappt auf AI Sonars `/v1/responses`-Pfad, daher muss `aisonar-responses` `https://api.aisonar.dev/v1` verwenden.
+  <Accordion title="Vergessen von /v1 bei `tokenlab-responses`">
+    `openai-responses` mappt auf AI Sonars `/v1/responses`-Pfad, daher muss `tokenlab-responses` `https://api.aisonar.dev/v1` verwenden.
   </Accordion>
-  <Accordion title="Hinzufügen von /v1 zu `aisonar-claude`, `aisonar-gemini` oder `aisonar-minimax`">
+  <Accordion title="Hinzufügen von /v1 zu `tokenlab-claude`, `tokenlab-gemini` oder `tokenlab-minimax`">
     `anthropic-messages` und `google-generative-ai` sollten `https://api.aisonar.dev` ohne `/v1` verwenden. Das Hinzufügen von `/v1` kann zu falschen Anforderungs-Pfaden führen.
   </Accordion>
   <Accordion title="Unterstützt OpenClaw weiterhin native Gemini?">
-    Ja. Die aktuelle OpenClaw-Dokumentation enthält weiterhin den eingebauten `google`-Provider und unterstützt außerdem benutzerdefinierte Provider mit `api: "google-generative-ai"`. `aisonar-gemini` bleibt daher eine gültige native Gemini-Route für OpenClaw-Nutzer.
+    Ja. Die aktuelle OpenClaw-Dokumentation enthält weiterhin den eingebauten `google`-Provider und unterstützt außerdem benutzerdefinierte Provider mit `api: "google-generative-ai"`. `tokenlab-gemini` bleibt daher eine gültige native Gemini-Route für OpenClaw-Nutzer.
   </Accordion>
 </AccordionGroup>
 
@@ -173,7 +173,7 @@ Nach dem Speichern der Konfiguration starten Sie Ihre OpenClaw-Instanz neu und t
 ```bash
 # Selbst gehostet: Dienst neu starten
 systemctl --user restart openclaw    # Linux
-launchctl stop cc.aisonar.openclaw && launchctl start cc.aisonar.openclaw  # macOS
+launchctl stop cc.tokenlab.openclaw && launchctl start cc.tokenlab.openclaw  # macOS
 ```
 
 ## Nächste Schritte

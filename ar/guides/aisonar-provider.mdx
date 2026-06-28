@@ -11,15 +11,15 @@ description: "تكوين AI Sonar كموفر مخصص في OpenClaw باستخد
 
 للإصدارات الحالية من OpenClaw، النهج الموصى به هو تكوين AI Sonar عبر `models.providers`.
 
-إذا كنت ترغب فقط في البدء بسرعة، فتكفي تكوين `aisonar` بمفردها. أضف الموفرين الآخرين فقط عندما تحتاج صراحةً إلى سلوك **Responses API** أو **Claude native** أو **Gemini native** أو **MiniMax native**.
+إذا كنت ترغب فقط في البدء بسرعة، فتكفي تكوين `tokenlab` بمفردها. أضف الموفرين الآخرين فقط عندما تحتاج صراحةً إلى سلوك **Responses API** أو **Claude native** أو **Gemini native** أو **MiniMax native**.
 
 | المزوّد | OpenClaw `api` | الأفضل لـ | baseUrl |
 |--------|----------------|-----------|---------|
-| `aisonar` | `openai-completions` | GPT وDeepSeek وQwen ومعظم الاستدعاءات المتوافقة مع OpenAI | `https://api.aisonar.dev/v1` |
-| `aisonar-responses` | `openai-responses` | تدفقات عمل OpenAI Responses التي تتوقع دلالات `/v1/responses` | `https://api.aisonar.dev/v1` |
-| `aisonar-claude` | `anthropic-messages` | واجهة Claude Messages الأصلية | `https://api.aisonar.dev` |
-| `aisonar-gemini` | `google-generative-ai` | صيغة Gemini الأصلية | `https://api.aisonar.dev` |
-| `aisonar-minimax` | `anthropic-messages` | توجيه MiniMax الأصلي | `https://api.aisonar.dev` |
+| `tokenlab` | `openai-completions` | GPT وDeepSeek وQwen ومعظم الاستدعاءات المتوافقة مع OpenAI | `https://api.aisonar.dev/v1` |
+| `tokenlab-responses` | `openai-responses` | تدفقات عمل OpenAI Responses التي تتوقع دلالات `/v1/responses` | `https://api.aisonar.dev/v1` |
+| `tokenlab-claude` | `anthropic-messages` | واجهة Claude Messages الأصلية | `https://api.aisonar.dev` |
+| `tokenlab-gemini` | `google-generative-ai` | صيغة Gemini الأصلية | `https://api.aisonar.dev` |
+| `tokenlab-minimax` | `anthropic-messages` | توجيه MiniMax الأصلي | `https://api.aisonar.dev` |
 
 <Warning>
 استخدم اللاحقة `/v1` فقط مع `openai-completions` و`openai-responses`.
@@ -45,14 +45,14 @@ description: "تكوين AI Sonar كموفر مخصص في OpenClaw باستخد
   agents: {
     defaults: {
       model: {
-        primary: "aisonar-claude/claude-sonnet-4-6"
+        primary: "tokenlab-claude/claude-sonnet-4-6"
       }
     }
   },
   models: {
     mode: "merge",
     providers: {
-      aisonar: {
+      tokenlab: {
         api: "openai-completions",
         baseUrl: "https://api.aisonar.dev/v1",
         apiKey: "sk-your-api-key",
@@ -62,7 +62,7 @@ description: "تكوين AI Sonar كموفر مخصص في OpenClaw باستخد
           { id: "qwen3-coder-flash", name: "Qwen 3 Coder Flash" }
         ]
       },
-      "aisonar-responses": {
+      "tokenlab-responses": {
         api: "openai-responses",
         baseUrl: "https://api.aisonar.dev/v1",
         apiKey: "sk-your-api-key",
@@ -71,7 +71,7 @@ description: "تكوين AI Sonar كموفر مخصص في OpenClaw باستخد
           { id: "gpt-5.2", name: "GPT-5.2 (Responses)" }
         ]
       },
-      "aisonar-claude": {
+      "tokenlab-claude": {
         api: "anthropic-messages",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -80,7 +80,7 @@ description: "تكوين AI Sonar كموفر مخصص في OpenClaw باستخد
           { id: "claude-opus-4-6", name: "Claude Opus 4.6" }
         ]
       },
-      "aisonar-gemini": {
+      "tokenlab-gemini": {
         api: "google-generative-ai",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -89,7 +89,7 @@ description: "تكوين AI Sonar كموفر مخصص في OpenClaw باستخد
           { id: "gemini-2.5-pro", name: "Gemini 2.5 Pro" }
         ]
       },
-      "aisonar-minimax": {
+      "tokenlab-minimax": {
         api: "anthropic-messages",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -119,7 +119,7 @@ description: "تكوين AI Sonar كموفر مخصص في OpenClaw باستخد
   agents: {
     defaults: {
       model: {
-        primary: "aisonar-gemini/gemini-3.5-flash"
+        primary: "tokenlab-gemini/gemini-3.5-flash"
       }
     }
   }
@@ -130,24 +130,24 @@ description: "تكوين AI Sonar كموفر مخصص في OpenClaw باستخد
 
 | المزوّد | مرجع النموذج | الوصف |
 |--------|--------------|-------|
-| `aisonar` | `aisonar/gpt-4o` | مسار متوافق مع OpenAI |
-| `aisonar` | `aisonar/deepseek-r1` | نموذج استدلال DeepSeek |
-| `aisonar-responses` | `aisonar-responses/gpt-4o` | مسار Responses API |
-| `aisonar-claude` | `aisonar-claude/claude-sonnet-4-6` | مسار Claude Messages الأصلي |
-| `aisonar-gemini` | `aisonar-gemini/gemini-3.5-flash` | مسار Gemini الأصلي |
-| `aisonar-minimax` | `aisonar-minimax/minimax-m2.1` | مسار MiniMax الأصلي |
+| `tokenlab` | `tokenlab/gpt-4o` | مسار متوافق مع OpenAI |
+| `tokenlab` | `tokenlab/deepseek-r1` | نموذج استدلال DeepSeek |
+| `tokenlab-responses` | `tokenlab-responses/gpt-4o` | مسار Responses API |
+| `tokenlab-claude` | `tokenlab-claude/claude-sonnet-4-6` | مسار Claude Messages الأصلي |
+| `tokenlab-gemini` | `tokenlab-gemini/gemini-3.5-flash` | مسار Gemini الأصلي |
+| `tokenlab-minimax` | `tokenlab-minimax/minimax-m2.1` | مسار MiniMax الأصلي |
 
 تصفّح جميع النماذج المتاحة على [aisonar.dev/models](https://aisonar.dev/models).
 
 ## متى تستخدم أي موفر
 
-- `aisonar`: الخيار الافتراضي لمعظم حالات استخدام الوكلاء والدردشة العامة.
-- `aisonar-responses`: استخدمه عندما يعتمد سير عمل OpenClaw صراحةً على دلالات OpenAI Responses.
-- `aisonar-claude`: استخدمه عندما تريد سلوك Messages الأصلي الخاص بـ Claude.
-- `aisonar-gemini`: استخدمه عندما تريد تنسيق طلب/استجابة أصلي لـ Gemini أو تكاملات بصيغة Gemini الموجودة مسبقًا.
-- `aisonar-minimax`: استخدمه عندما تريد MiniMax عبر مساره الأصلي.
+- `tokenlab`: الخيار الافتراضي لمعظم حالات استخدام الوكلاء والدردشة العامة.
+- `tokenlab-responses`: استخدمه عندما يعتمد سير عمل OpenClaw صراحةً على دلالات OpenAI Responses.
+- `tokenlab-claude`: استخدمه عندما تريد سلوك Messages الأصلي الخاص بـ Claude.
+- `tokenlab-gemini`: استخدمه عندما تريد تنسيق طلب/استجابة أصلي لـ Gemini أو تكاملات بصيغة Gemini الموجودة مسبقًا.
+- `tokenlab-minimax`: استخدمه عندما تريد MiniMax عبر مساره الأصلي.
 
-إذا لم تكن بحاجة إلى سلوك Gemini الأصلي، فلا يزال بإمكانك استدعاء نماذج Gemini عبر `aisonar/gemini-*` على المسار المتوافق مع OpenAI.
+إذا لم تكن بحاجة إلى سلوك Gemini الأصلي، فلا يزال بإمكانك استدعاء نماذج Gemini عبر `tokenlab/gemini-*` على المسار المتوافق مع OpenAI.
 
 ## الأخطاء الشائعة
 
@@ -155,14 +155,14 @@ description: "تكوين AI Sonar كموفر مخصص في OpenClaw باستخد
   <Accordion title="لا تزال تستخدم مصفوفة الموفرين القديمة على المستوى العلوي">
     تستخدم وثائق OpenClaw الحالية `models.providers`. إذا احتفظت بالتنسيق القديم لمصفوفة `providers` على المستوى العلوي، فقد يتجاهل OpenClaw التهيئة أو يفشل في حل بادئات الموفر كما هو متوقع.
   </Accordion>
-  <Accordion title="نسيان /v1 على aisonar-responses">
-    تقوم `openai-responses` بالتوجيه إلى مسار `/v1/responses` الخاص بـ AI Sonar، لذلك يجب أن يستخدم `aisonar-responses` `https://api.aisonar.dev/v1`.
+  <Accordion title="نسيان /v1 على tokenlab-responses">
+    تقوم `openai-responses` بالتوجيه إلى مسار `/v1/responses` الخاص بـ AI Sonar، لذلك يجب أن يستخدم `tokenlab-responses` `https://api.aisonar.dev/v1`.
   </Accordion>
-  <Accordion title="إضافة /v1 إلى aisonar-claude أو aisonar-gemini أو aisonar-minimax">
+  <Accordion title="إضافة /v1 إلى tokenlab-claude أو tokenlab-gemini أو tokenlab-minimax">
     يجب أن تستخدم `anthropic-messages` و`google-generative-ai` `https://api.aisonar.dev` بدون `/v1`. إضافة `/v1` يمكن أن تُنتج مسارات طلب غير صحيحة.
   </Accordion>
   <Accordion title="هل لا يزال OpenClaw يدعم Gemini الأصلي؟">
-    نعم. لا تزال وثائق OpenClaw الحالية تتضمن الموفر المدمج `google` وتدعم أيضًا الموفرات المخصصة باستخدام `api: "google-generative-ai"`. لذا يظل `aisonar-gemini` مسار Gemini أصليًا صالحًا لمستخدمي OpenClaw.
+    نعم. لا تزال وثائق OpenClaw الحالية تتضمن الموفر المدمج `google` وتدعم أيضًا الموفرات المخصصة باستخدام `api: "google-generative-ai"`. لذا يظل `tokenlab-gemini` مسار Gemini أصليًا صالحًا لمستخدمي OpenClaw.
   </Accordion>
 </AccordionGroup>
 
@@ -173,7 +173,7 @@ description: "تكوين AI Sonar كموفر مخصص في OpenClaw باستخد
 ```bash
 # مستضاف ذاتيًا: أعد تشغيل الخدمة
 systemctl --user restart openclaw    # Linux
-launchctl stop cc.aisonar.openclaw && launchctl start cc.aisonar.openclaw  # macOS
+launchctl stop cc.tokenlab.openclaw && launchctl start cc.tokenlab.openclaw  # macOS
 ```
 
 ## الخطوات التالية

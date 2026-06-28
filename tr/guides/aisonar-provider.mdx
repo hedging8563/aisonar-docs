@@ -11,15 +11,15 @@ Bu kılavuz, AI Sonar'yı AI sağlayıcısı olarak bağlamak isteyen **self-hos
 
 Mevcut OpenClaw sürümleri için önerilen yöntem AI Sonar'yı `models.providers` üzerinden yapılandırmaktır.
 
-Hızlıca başlamak istiyorsanız, yalnızca `aisonar`yı yapılandırmak yeterlidir. Diğer sağlayıcıları yalnızca açıkça **Responses API**, **Claude native**, **Gemini native** veya **MiniMax native** davranışına ihtiyaç duyduğunuzda ekleyin.
+Hızlıca başlamak istiyorsanız, yalnızca `tokenlab`yı yapılandırmak yeterlidir. Diğer sağlayıcıları yalnızca açıkça **Responses API**, **Claude native**, **Gemini native** veya **MiniMax native** davranışına ihtiyaç duyduğunuzda ekleyin.
 
 | Sağlayıcı | OpenClaw `api` | En uygun | baseUrl |
 |----------|----------------|----------|---------|
-| `aisonar` | `openai-completions` | GPT, DeepSeek, Qwen ve çoğu OpenAI-uyumlu çağrı | `https://api.aisonar.dev/v1` |
-| `aisonar-responses` | `openai-responses` | `/v1/responses` semantiğini bekleyen OpenAI Responses iş akışları | `https://api.aisonar.dev/v1` |
-| `aisonar-claude` | `anthropic-messages` | Claude için yerel Messages API'si | `https://api.aisonar.dev` |
-| `aisonar-gemini` | `google-generative-ai` | Gemini için yerel API formatı | `https://api.aisonar.dev` |
-| `aisonar-minimax` | `anthropic-messages` | MiniMax için yerel yönlendirme | `https://api.aisonar.dev` |
+| `tokenlab` | `openai-completions` | GPT, DeepSeek, Qwen ve çoğu OpenAI-uyumlu çağrı | `https://api.aisonar.dev/v1` |
+| `tokenlab-responses` | `openai-responses` | `/v1/responses` semantiğini bekleyen OpenAI Responses iş akışları | `https://api.aisonar.dev/v1` |
+| `tokenlab-claude` | `anthropic-messages` | Claude için yerel Messages API'si | `https://api.aisonar.dev` |
+| `tokenlab-gemini` | `google-generative-ai` | Gemini için yerel API formatı | `https://api.aisonar.dev` |
+| `tokenlab-minimax` | `anthropic-messages` | MiniMax için yerel yönlendirme | `https://api.aisonar.dev` |
 
 <Warning>
 Sadece `openai-completions` ve `openai-responses` için `/v1` son ekini kullanın.
@@ -45,14 +45,14 @@ AI Sonar sağlayıcılarını `models.providers` altında ekleyin:
   agents: {
     defaults: {
       model: {
-        primary: "aisonar-claude/claude-sonnet-4-6"
+        primary: "tokenlab-claude/claude-sonnet-4-6"
       }
     }
   },
   models: {
     mode: "merge",
     providers: {
-      aisonar: {
+      tokenlab: {
         api: "openai-completions",
         baseUrl: "https://api.aisonar.dev/v1",
         apiKey: "sk-your-api-key",
@@ -62,7 +62,7 @@ AI Sonar sağlayıcılarını `models.providers` altında ekleyin:
           { id: "qwen3-coder-flash", name: "Qwen 3 Coder Flash" }
         ]
       },
-      "aisonar-responses": {
+      "tokenlab-responses": {
         api: "openai-responses",
         baseUrl: "https://api.aisonar.dev/v1",
         apiKey: "sk-your-api-key",
@@ -71,7 +71,7 @@ AI Sonar sağlayıcılarını `models.providers` altında ekleyin:
           { id: "gpt-5.2", name: "GPT-5.2 (Responses)" }
         ]
       },
-      "aisonar-claude": {
+      "tokenlab-claude": {
         api: "anthropic-messages",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -80,7 +80,7 @@ AI Sonar sağlayıcılarını `models.providers` altında ekleyin:
           { id: "claude-opus-4-6", name: "Claude Opus 4.6" }
         ]
       },
-      "aisonar-gemini": {
+      "tokenlab-gemini": {
         api: "google-generative-ai",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -89,7 +89,7 @@ AI Sonar sağlayıcılarını `models.providers` altında ekleyin:
           { id: "gemini-2.5-pro", name: "Gemini 2.5 Pro" }
         ]
       },
-      "aisonar-minimax": {
+      "tokenlab-minimax": {
         api: "anthropic-messages",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -119,7 +119,7 @@ OpenClaw hâlâ modelleri `provider/model` formatıyla referans gösterir:
   agents: {
     defaults: {
       model: {
-        primary: "aisonar-gemini/gemini-3.5-flash"
+        primary: "tokenlab-gemini/gemini-3.5-flash"
       }
     }
   }
@@ -130,24 +130,24 @@ OpenClaw hâlâ modelleri `provider/model` formatıyla referans gösterir:
 
 | Sağlayıcı | Model referansı | Açıklama |
 |----------|-----------------|-------------|
-| `aisonar` | `aisonar/gpt-4o` | OpenAI-uyumlu rota |
-| `aisonar` | `aisonar/deepseek-r1` | DeepSeek akıl yürütme modeli |
-| `aisonar-responses` | `aisonar-responses/gpt-4o` | Responses API rotası |
-| `aisonar-claude` | `aisonar-claude/claude-sonnet-4-6` | Claude Messages için yerel rota |
-| `aisonar-gemini` | `aisonar-gemini/gemini-3.5-flash` | Gemini için yerel rota |
-| `aisonar-minimax` | `aisonar-minimax/minimax-m2.1` | MiniMax için yerel rota |
+| `tokenlab` | `tokenlab/gpt-4o` | OpenAI-uyumlu rota |
+| `tokenlab` | `tokenlab/deepseek-r1` | DeepSeek akıl yürütme modeli |
+| `tokenlab-responses` | `tokenlab-responses/gpt-4o` | Responses API rotası |
+| `tokenlab-claude` | `tokenlab-claude/claude-sonnet-4-6` | Claude Messages için yerel rota |
+| `tokenlab-gemini` | `tokenlab-gemini/gemini-3.5-flash` | Gemini için yerel rota |
+| `tokenlab-minimax` | `tokenlab-minimax/minimax-m2.1` | MiniMax için yerel rota |
 
 Mevcut tüm modellere göz atın: [aisonar.dev/models](https://aisonar.dev/models).
 
 ## Hangi Sağlayıcı Ne Zaman Kullanılmalı
 
-- `aisonar`: çoğu genel amaçlı ajan ve sohbet kullanım durumu için varsayılan seçim.
-- `aisonar-responses`: OpenClaw iş akışınız açıkça OpenAI Responses semantiğine bağımlıysa kullanın.
-- `aisonar-claude`: Claude'un yerel Messages davranışını istiyorsanız kullanın.
-- `aisonar-gemini`: Gemini'ye özgü istek/yanıt formatlaması veya mevcut Gemini tarzı entegrasyonlar istiyorsanız kullanın.
-- `aisonar-minimax`: MiniMax'i yerel rotasında kullanmak istiyorsanız tercih edin.
+- `tokenlab`: çoğu genel amaçlı ajan ve sohbet kullanım durumu için varsayılan seçim.
+- `tokenlab-responses`: OpenClaw iş akışınız açıkça OpenAI Responses semantiğine bağımlıysa kullanın.
+- `tokenlab-claude`: Claude'un yerel Messages davranışını istiyorsanız kullanın.
+- `tokenlab-gemini`: Gemini'ye özgü istek/yanıt formatlaması veya mevcut Gemini tarzı entegrasyonlar istiyorsanız kullanın.
+- `tokenlab-minimax`: MiniMax'i yerel rotasında kullanmak istiyorsanız tercih edin.
 
-Gemini'ye özgü davranışa ihtiyacınız yoksa, Gemini modellerini yine de OpenAI-uyumlu rota üzerinden `aisonar/gemini-*` ile çağırabilirsiniz.
+Gemini'ye özgü davranışa ihtiyacınız yoksa, Gemini modellerini yine de OpenAI-uyumlu rota üzerinden `tokenlab/gemini-*` ile çağırabilirsiniz.
 
 ## Yaygın Hatalar
 
@@ -155,14 +155,14 @@ Gemini'ye özgü davranışa ihtiyacınız yoksa, Gemini modellerini yine de Ope
   <Accordion title="Hâlâ eski üst düzey providers dizisini mi kullanıyorsunuz?">
     Güncel OpenClaw dokümantasyonu `models.providers` kullanır. Eski üst düzey `providers` dizi formatını kullanmaya devam ederseniz, OpenClaw yapılandırmayı yok sayabilir veya sağlayıcı ön eklerini beklenildiği gibi çözemeyebilir.
   </Accordion>
-  <Accordion title="`aisonar-responses` için /v1'i unutmak">
-    `openai-responses` AI Sonar'nın `/v1/responses` yoluna eşlenir, bu nedenle `aisonar-responses` `https://api.aisonar.dev/v1` kullanmalıdır.
+  <Accordion title="`tokenlab-responses` için /v1'i unutmak">
+    `openai-responses` AI Sonar'nın `/v1/responses` yoluna eşlenir, bu nedenle `tokenlab-responses` `https://api.aisonar.dev/v1` kullanmalıdır.
   </Accordion>
-  <Accordion title="`aisonar-claude`, `aisonar-gemini` veya `aisonar-minimax`'e /v1 eklemek">
+  <Accordion title="`tokenlab-claude`, `tokenlab-gemini` veya `tokenlab-minimax`'e /v1 eklemek">
     `anthropic-messages` ve `google-generative-ai` `/v1` olmadan `https://api.aisonar.dev` kullanmalıdır. `/v1` eklemek yanlış istek yolları üretebilir.
   </Accordion>
   <Accordion title="OpenClaw hâlâ native Gemini'yi destekliyor mu?">
-    Evet. Güncel OpenClaw dokümantasyonu hâlâ dahili `google` sağlayıcısını içerir ve ayrıca `api: "google-generative-ai"` kullanan özel sağlayıcıları da destekler. Bu yüzden `aisonar-gemini` OpenClaw kullanıcıları için geçerli bir native Gemini rotası olmaya devam eder.
+    Evet. Güncel OpenClaw dokümantasyonu hâlâ dahili `google` sağlayıcısını içerir ve ayrıca `api: "google-generative-ai"` kullanan özel sağlayıcıları da destekler. Bu yüzden `tokenlab-gemini` OpenClaw kullanıcıları için geçerli bir native Gemini rotası olmaya devam eder.
   </Accordion>
 </AccordionGroup>
 
@@ -173,7 +173,7 @@ Yapılandırmayı kaydettikten sonra OpenClaw örneğinizi yeniden başlatın ve
 ```bash
 # Kendi barındırılan: servisi yeniden başlat
 systemctl --user restart openclaw    # Linux
-launchctl stop cc.aisonar.openclaw && launchctl start cc.aisonar.openclaw  # macOS
+launchctl stop cc.tokenlab.openclaw && launchctl start cc.tokenlab.openclaw  # macOS
 ```
 
 ## Sonraki Adımlar

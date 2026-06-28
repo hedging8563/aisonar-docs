@@ -29,7 +29,7 @@ description: "يسترجع مثيلاً للنموذج"
   مزود النموذج.
 </ResponseField>
 
-<ResponseField name="aisonar" type="object">
+<ResponseField name="tokenlab" type="object">
   بيانات وصفية عامة خاصة بـ AI Sonar. قد تتضمن مسار التفاصيل `category` و `pricing_unit` و `capability_flags` و `supported_operations` و `pricing_provenance` و `public_contract_summary` و `public_contract` الكامل و `agent_preferences` على مستوى السيناريو للقطات التوصية غير chat.
 </ResponseField>
 
@@ -131,7 +131,7 @@ echo "Model: {$model['id']}, Provider: {$model['owned_by']}\n";
 
 ## بيانات التوصية للنماذج غير chat
 
-بالنسبة للنماذج غير chat، تُرجع صفحة التفاصيل أيضًا `aisonar.agent_preferences.<scene>`.
+بالنسبة للنماذج غير chat، تُرجع صفحة التفاصيل أيضًا `tokenlab.agent_preferences.<scene>`.
 
 استخدمها لفحص:
 
@@ -147,8 +147,8 @@ echo "Model: {$model['id']}, Provider: {$model['owned_by']}\n";
 
 بالمقارنة مع `GET /v1/models`، يمكن لصفحة التفاصيل أن تعيد أيضًا:
 
-- `aisonar.capability_flags`
-- `aisonar.supported_operations`
-- `aisonar.pricing_provenance`
-- `aisonar.public_contract_summary`
-- `aisonar.public_contract`
+- `tokenlab.capability_flags`
+- `tokenlab.supported_operations`
+- `tokenlab.pricing_provenance`
+- `tokenlab.public_contract_summary`
+- `tokenlab.public_contract`

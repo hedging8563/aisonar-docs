@@ -77,4 +77,3 @@ curl https://api.aisonar.dev/v1/chat/completions \
 - Dashboard: https://console.aisonar.dev
 - Models: https://aisonar.dev/models
 - API Status: https://api.aisonar.dev/health
-- Support: support@aisonar.dev

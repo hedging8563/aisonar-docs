@@ -26,7 +26,7 @@ curl "https://api.aisonar.dev/v1/models?recommended_for=image" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
-For non-chat models, the list response may include `aisonar.public_contract_summary`. Model detail pages may expose the fuller `aisonar.public_contract`. Use those fields to confirm:
+For non-chat models, the list response may include `tokenlab.public_contract_summary`. Model detail pages may expose the fuller `tokenlab.public_contract`. Use those fields to confirm:
 
 - The supported operation, such as `text-to-image`, `image-to-image`, or `image-edit`.
 - The request endpoint expected by the model.

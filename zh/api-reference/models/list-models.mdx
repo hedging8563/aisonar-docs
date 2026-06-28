@@ -18,16 +18,16 @@ description: "列出所有可用模型"
   - `object` (string): `model`
   - `created` (integer): 创建时间戳
   - `owned_by` (string): 模型提供方
-  - `aisonar.category` (string): 公开模型分类
-  - `aisonar.pricing_unit` (string or `null`): 可用时的公开定价单位
-  - `aisonar.capability_flags` (object or `null`): 公开能力摘要
-  - `aisonar.supported_operations` (array or `null`): 模型公开支持的非聊天操作
-  - `aisonar.pricing_provenance` (object or `null`): 公开定价来源元数据
-  - `aisonar.public_contract_summary` (object or `null`): 轻量级非聊天发现摘要，仅包含 `public_operations` 和 `request_endpoint`
-  - `aisonar.agent_preferences` (object): 仅在存在 `recommended_for` 时返回
-  - `aisonar.lifecycle`（object）：生命周期状态、发布日期/弃用日期、替代模型和 latest 标签来源
-  - `aisonar.commercial`（object）：用户收费策略、免费原因和可选免费截止时间
-  - `aisonar.badges`（array）：由生命周期和商业策略派生的展示标签
+  - `tokenlab.category` (string): 公开模型分类
+  - `tokenlab.pricing_unit` (string or `null`): 可用时的公开定价单位
+  - `tokenlab.capability_flags` (object or `null`): 公开能力摘要
+  - `tokenlab.supported_operations` (array or `null`): 模型公开支持的非聊天操作
+  - `tokenlab.pricing_provenance` (object or `null`): 公开定价来源元数据
+  - `tokenlab.public_contract_summary` (object or `null`): 轻量级非聊天发现摘要，仅包含 `public_operations` 和 `request_endpoint`
+  - `tokenlab.agent_preferences` (object): 仅在存在 `recommended_for` 时返回
+  - `tokenlab.lifecycle`（object）：生命周期状态、发布日期/弃用日期、替代模型和 latest 标签来源
+  - `tokenlab.commercial`（object）：用户收费策略、免费原因和可选免费截止时间
+  - `tokenlab.badges`（array）：由生命周期和商业策略派生的展示标签
 </ResponseField>
 
 <Note>

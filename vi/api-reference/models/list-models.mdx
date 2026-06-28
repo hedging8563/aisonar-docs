@@ -18,16 +18,16 @@ description: "Liệt kê tất cả model hiện có"
   - `object` (string): `model`
   - `created` (integer): Dấu thời gian tạo
   - `owned_by` (string): Nhà cung cấp model
-  - `aisonar.category` (string): Danh mục model công khai
-  - `aisonar.pricing_unit` (string hoặc `null`): Đơn vị giá công khai khi có
-  - `aisonar.capability_flags` (object hoặc `null`): Tóm tắt năng lực công khai
-  - `aisonar.supported_operations` (array hoặc `null`): Các thao tác phi-chat công khai của model
-  - `aisonar.pricing_provenance` (object hoặc `null`): Metadata nguồn giá công khai
-  - `aisonar.public_contract_summary` (object hoặc `null`): Tóm tắt khám phá phi-chat nhẹ, chỉ gồm `public_operations` và `request_endpoint`
-  - `aisonar.agent_preferences` (object): Chỉ trả về khi có `recommended_for`
-  - `aisonar.lifecycle` (object): giai đoạn vòng đời, ngày phát hành/ngừng hỗ trợ, mô hình thay thế và nguồn huy hiệu latest
-  - `aisonar.commercial` (object): chính sách tính phí người dùng, lý do miễn phí và thời điểm miễn phí đến tùy chọn
-  - `aisonar.badges` (array): huy hiệu hiển thị suy ra từ metadata lifecycle và commercial
+  - `tokenlab.category` (string): Danh mục model công khai
+  - `tokenlab.pricing_unit` (string hoặc `null`): Đơn vị giá công khai khi có
+  - `tokenlab.capability_flags` (object hoặc `null`): Tóm tắt năng lực công khai
+  - `tokenlab.supported_operations` (array hoặc `null`): Các thao tác phi-chat công khai của model
+  - `tokenlab.pricing_provenance` (object hoặc `null`): Metadata nguồn giá công khai
+  - `tokenlab.public_contract_summary` (object hoặc `null`): Tóm tắt khám phá phi-chat nhẹ, chỉ gồm `public_operations` và `request_endpoint`
+  - `tokenlab.agent_preferences` (object): Chỉ trả về khi có `recommended_for`
+  - `tokenlab.lifecycle` (object): giai đoạn vòng đời, ngày phát hành/ngừng hỗ trợ, mô hình thay thế và nguồn huy hiệu latest
+  - `tokenlab.commercial` (object): chính sách tính phí người dùng, lý do miễn phí và thời điểm miễn phí đến tùy chọn
+  - `tokenlab.badges` (array): huy hiệu hiển thị suy ra từ metadata lifecycle và commercial
 </ResponseField>
 
 <Note>
@@ -205,7 +205,7 @@ anthropic_models = [m for m in models.data if m.owned_by == "anthropic"]
       "object": "model",
       "created": 1706000000,
       "owned_by": "google",
-      "aisonar": {
+      "tokenlab": {
         "category": "image",
         "pricing_unit": "per_request",
         "agent_preferences": {

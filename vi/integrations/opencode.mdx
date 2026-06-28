@@ -71,7 +71,7 @@ Tài liệu hiện tại của OpenCode khuyến nghị cấu hình các nhà cu
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "aisonar": {
+    "tokenlab": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "AI Sonar",
       "options": {
@@ -88,7 +88,7 @@ Tài liệu hiện tại của OpenCode khuyến nghị cấu hình các nhà cu
       }
     }
   },
-  "model": "aisonar/gpt-5.4"
+  "model": "tokenlab/gpt-5.4"
 }
 ```
 
@@ -113,7 +113,7 @@ opencode "Explain this codebase"
 **Chỉ định model:**
 
 ```bash
-opencode --model aisonar/gpt-5.4 "Fix the bugs in main.py"
+opencode --model tokenlab/gpt-5.4 "Fix the bugs in main.py"
 ```
 
 ## Các model khả dụng

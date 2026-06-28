@@ -41,7 +41,7 @@ Model gambar, video, musik, 3D, audio, dan world dapat ditagih per request, gamb
 | 图像 | `flux-pro`, `qwen-image` |
 | 视频 | `veo3.1`, `seedance-2.0` |
 | 音乐 | `suno-music` |
-| 3D | `tripo3d-v2.5` |
+| 3D | `tripo-h3.1` |
 | 音频 | `tts-1`, `whisper-1` |
 
 ### Penagihan Tugas Asinkron (Video/Musik/3D dan Beberapa Model Gambar)
@@ -57,7 +57,7 @@ Untuk alur pembuatan berbasis tugas (video, musik, 3D, dan beberapa model gambar
 3. Saat tugas selesai dengan sukses, settlement final mencatat penggunaan dan respons tugas menyertakan `billing_transaction_id`.
 4. Jika pembuatan gagal atau status terminal adalah failed, jumlah yang tertunda akan dikembalikan atau dilepaskan dan request ditandai tidak dapat ditagih.
 
-Jika dashboard tidak menunjukkan settlement atau refund setelah status terminal terlihat, hubungi support@aisonar.dev untuk bantuan.
+Jika dashboard tidak menunjukkan settlement atau refund setelah status terminal terlihat, hubungi  untuk bantuan.
 
 ```python
 # Contoh: Billing pembuatan video
@@ -190,4 +190,4 @@ Untuk akun bisnis, faktur tersedia:
 
 ## Pertanyaan?
 
-Hubungi support@aisonar.dev untuk pertanyaan terkait penagihan.
+Hubungi  untuk pertanyaan terkait penagihan.

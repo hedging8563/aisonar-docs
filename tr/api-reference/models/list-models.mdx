@@ -18,16 +18,16 @@ description: "Mevcut tüm modelleri listeler"
   - `object` (string): `model`
   - `created` (integer): Oluşturulma zaman damgası
   - `owned_by` (string): Model sağlayıcısı
-  - `aisonar.category` (string): Genel model kategorisi
-  - `aisonar.pricing_unit` (string veya `null`): Varsa genel fiyatlandırma birimi
-  - `aisonar.capability_flags` (object veya `null`): Genel yetenek özeti
-  - `aisonar.supported_operations` (array veya `null`): Model için genel chat dışı işlemler
-  - `aisonar.pricing_provenance` (object veya `null`): Genel fiyat kaynağı metadata'sı
-  - `aisonar.public_contract_summary` (object veya `null`): Yalnızca `public_operations` ve `request_endpoint` içeren hafif chat dışı discovery özeti
-  - `aisonar.agent_preferences` (object): Yalnızca `recommended_for` mevcut olduğunda döner
-  - `aisonar.lifecycle` (object): yaşam döngüsü aşaması, yayın/kullanımdan kaldırma tarihleri, yerine geçecek model ve latest rozeti kaynağı
-  - `aisonar.commercial` (object): kullanıcı ücret politikası, ücretsiz nedeni ve isteğe bağlı ücretsiz bitiş zamanı
-  - `aisonar.badges` (array): lifecycle ve commercial meta verilerinden türetilen rozetler
+  - `tokenlab.category` (string): Genel model kategorisi
+  - `tokenlab.pricing_unit` (string veya `null`): Varsa genel fiyatlandırma birimi
+  - `tokenlab.capability_flags` (object veya `null`): Genel yetenek özeti
+  - `tokenlab.supported_operations` (array veya `null`): Model için genel chat dışı işlemler
+  - `tokenlab.pricing_provenance` (object veya `null`): Genel fiyat kaynağı metadata'sı
+  - `tokenlab.public_contract_summary` (object veya `null`): Yalnızca `public_operations` ve `request_endpoint` içeren hafif chat dışı discovery özeti
+  - `tokenlab.agent_preferences` (object): Yalnızca `recommended_for` mevcut olduğunda döner
+  - `tokenlab.lifecycle` (object): yaşam döngüsü aşaması, yayın/kullanımdan kaldırma tarihleri, yerine geçecek model ve latest rozeti kaynağı
+  - `tokenlab.commercial` (object): kullanıcı ücret politikası, ücretsiz nedeni ve isteğe bağlı ücretsiz bitiş zamanı
+  - `tokenlab.badges` (array): lifecycle ve commercial meta verilerinden türetilen rozetler
 </ResponseField>
 
 <Note>
@@ -205,7 +205,7 @@ anthropic_models = [m for m in models.data if m.owned_by == "anthropic"]
       "object": "model",
       "created": 1706000000,
       "owned_by": "google",
-      "aisonar": {
+      "tokenlab": {
         "category": "image",
         "pricing_unit": "per_request",
         "agent_preferences": {
@@ -237,7 +237,7 @@ anthropic_models = [m for m in models.data if m.owned_by == "anthropic"]
       "object": "model",
       "created": 1706000000,
       "owned_by": "google",
-      "aisonar": {
+      "tokenlab": {
         "category": "image",
         "pricing_unit": "per_request",
         "agent_preferences": {

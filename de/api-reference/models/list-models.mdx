@@ -18,16 +18,16 @@ description: "Listet alle verfügbaren Modelle auf"
   - `object` (string): `model`
   - `created` (integer): Zeitstempel der Erstellung
   - `owned_by` (string): Modellanbieter
-  - `aisonar.category` (string): Öffentliche Modellkategorie
-  - `aisonar.pricing_unit` (string oder `null`): Öffentliche Preiseinheit, sofern verfügbar
-  - `aisonar.capability_flags` (object oder `null`): Öffentliche Fähigkeitsübersicht
-  - `aisonar.supported_operations` (array oder `null`): Öffentliche Nicht-Chat-Operationen für das Modell
-  - `aisonar.pricing_provenance` (object oder `null`): Öffentliche Metadaten zur Preisquelle
-  - `aisonar.public_contract_summary` (object oder `null`): Leichte Discovery-Zusammenfassung mit nur `public_operations` und `request_endpoint`
-  - `aisonar.agent_preferences` (object): Nur vorhanden, wenn `recommended_for` gesetzt ist
-  - `aisonar.lifecycle` (object): Lifecycle-Status, Release-/Deprecation-Daten, Ersatzmodell und Latest-Badge-Quelle
-  - `aisonar.commercial` (object): Nutzer-Abrechnungsrichtlinie, Free-Grund und optionaler Free-until-Zeitpunkt
-  - `aisonar.badges` (array): Anzeige-Badges aus Lifecycle- und Commercial-Metadaten
+  - `tokenlab.category` (string): Öffentliche Modellkategorie
+  - `tokenlab.pricing_unit` (string oder `null`): Öffentliche Preiseinheit, sofern verfügbar
+  - `tokenlab.capability_flags` (object oder `null`): Öffentliche Fähigkeitsübersicht
+  - `tokenlab.supported_operations` (array oder `null`): Öffentliche Nicht-Chat-Operationen für das Modell
+  - `tokenlab.pricing_provenance` (object oder `null`): Öffentliche Metadaten zur Preisquelle
+  - `tokenlab.public_contract_summary` (object oder `null`): Leichte Discovery-Zusammenfassung mit nur `public_operations` und `request_endpoint`
+  - `tokenlab.agent_preferences` (object): Nur vorhanden, wenn `recommended_for` gesetzt ist
+  - `tokenlab.lifecycle` (object): Lifecycle-Status, Release-/Deprecation-Daten, Ersatzmodell und Latest-Badge-Quelle
+  - `tokenlab.commercial` (object): Nutzer-Abrechnungsrichtlinie, Free-Grund und optionaler Free-until-Zeitpunkt
+  - `tokenlab.badges` (array): Anzeige-Badges aus Lifecycle- und Commercial-Metadaten
 </ResponseField>
 
 <Note>
@@ -210,7 +210,7 @@ anthropic_models = [m for m in models.data if m.owned_by == "anthropic"]
       "object": "model",
       "created": 1706000000,
       "owned_by": "google",
-      "aisonar": {
+      "tokenlab": {
         "category": "image",
         "pricing_unit": "per_request",
         "agent_preferences": {

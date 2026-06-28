@@ -67,7 +67,7 @@ Keep Gemini built-in tools, File API references, cached contents, function decla
 ## Media Migration
 
 1. Query `GET /v1/models?recommended_for=image|video|music|3d`.
-2. Read `aisonar.public_contract_summary` in list responses and the full `aisonar.public_contract` where available.
+2. Read `tokenlab.public_contract_summary` in list responses and the full `tokenlab.public_contract` where available.
 3. Send an explicit `model`, especially for image endpoints.
 4. Store `task_id`, `poll_url`, endpoint, model, and your own job ID for async jobs.
 5. Reconcile costs through usage records and `billing_transaction_id`, not provider task IDs.

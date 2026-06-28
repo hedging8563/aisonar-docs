@@ -4,11 +4,7 @@
     "title": "AI Sonar AI Gateway",
     "description": "Organization balance, API key management, and key-level usage/billing via management token",
     "version": "1.0.0",
-    "termsOfService": "https://aisonar.dev/tos",
-    "contact": {
-      "name": "Technical Support",
-      "email": "support@aisonar.dev"
-    }
+    "termsOfService": "https://aisonar.dev/tos"
   },
   "servers": [
     {
@@ -905,7 +901,7 @@
           "Models"
         ],
         "summary": "List models",
-        "description": "Lists the currently available models. Default responses are trimmed for discovery. Non-chat models may include a lightweight `aisonar.public_contract_summary` with only `public_operations` and `request_endpoint`; `agent_preferences` appears only when `recommended_for` is present. Deprecated `aisonar` is still returned as a compatibility alias during the migration.",
+        "description": "Lists the currently available models. Default responses are trimmed for discovery. Non-chat models may include a lightweight `tokenlab.public_contract_summary` with only `public_operations` and `request_endpoint`; `agent_preferences` appears only when `recommended_for` is present. Deprecated `lemondata` is still returned as a compatibility alias during the migration.",
         "operationId": "listModels",
         "responses": {
           "200": {
@@ -2033,7 +2029,7 @@
                 "properties": {
                   "model": {
                     "type": "string",
-                    "default": "tripo3d-v2.5"
+                    "default": "tripo-h3.1"
                   },
                   "prompt": {
                     "type": "string",
@@ -3205,7 +3201,7 @@
                     },
                     "protocol": {
                       "type": "string",
-                      "example": "aisonar_realtime_proxy"
+                      "example": "tokenlab_realtime_proxy"
                     }
                   }
                 }
@@ -5969,17 +5965,17 @@
             "description": "Model provider",
             "example": "openai"
           },
-          "aisonar": {
-            "$ref": "#/components/schemas/ModelAI SonarExtension"
+          "tokenlab": {
+            "$ref": "#/components/schemas/ModelPlatformExtension"
           },
-          "aisonar": {
+          "lemondata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ModelAisonarExtension"
+                "$ref": "#/components/schemas/ModelLegacyPlatformExtension"
               }
             ],
             "deprecated": true,
-            "description": "Deprecated alias for aisonar. Retained for compatibility during the AI Sonar migration."
+            "description": "Deprecated compatibility alias. Retained for existing clients."
           }
         },
         "required": [
@@ -5987,7 +5983,7 @@
           "object",
           "created",
           "owned_by",
-          "aisonar"
+          "tokenlab"
         ],
         "additionalProperties": false
       },
@@ -6944,87 +6940,6 @@
         },
         "additionalProperties": false
       },
-      "ModelListAisonarExtension": {
-        "type": "object",
-        "description": "AI Sonar discovery fields for the list route. Detail-only metadata such as capability flags, pricing provenance, full public contracts, and empty recommendation snapshots are omitted.",
-        "properties": {
-          "aliases": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "pricing": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "capabilities": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "providers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "max_input_tokens": {
-            "type": [
-              "number",
-              "null"
-            ]
-          },
-          "max_output_tokens": {
-            "type": [
-              "number",
-              "null"
-            ]
-          },
-          "category": {
-            "type": "string"
-          },
-          "pricing_unit": {
-            "type": "string"
-          },
-          "cache_pricing": {
-            "type": [
-              "object",
-              "null"
-            ],
-            "additionalProperties": true
-          },
-          "has_complex_pricing": {
-            "type": "boolean"
-          },
-          "pricing_summary": {
-            "type": [
-              "object",
-              "null"
-            ],
-            "additionalProperties": true
-          },
-          "agent_preferences": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "public_contract_summary": {
-            "$ref": "#/components/schemas/ModelListContractSummary"
-          }
-        },
-        "required": [
-          "aliases",
-          "pricing",
-          "capabilities",
-          "max_input_tokens",
-          "max_output_tokens",
-          "category",
-          "pricing_unit",
-          "has_complex_pricing"
-        ],
-        "additionalProperties": false
-      },
       "ModelListItem": {
         "type": "object",
         "properties": {
@@ -7048,17 +6963,17 @@
             "description": "Model provider",
             "example": "openai"
           },
-          "aisonar": {
+          "lemondata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ModelListAisonarExtension"
+                "$ref": "#/components/schemas/ModelListLegacyPlatformExtension"
               }
             ],
             "deprecated": true,
-            "description": "Deprecated alias for aisonar. Retained for compatibility during the AI Sonar migration."
+            "description": "Deprecated compatibility alias. Retained for existing clients."
           },
-          "aisonar": {
-            "$ref": "#/components/schemas/ModelListAI SonarExtension"
+          "tokenlab": {
+            "$ref": "#/components/schemas/ModelListPlatformExtension"
           }
         },
         "required": [
@@ -7066,92 +6981,9 @@
           "object",
           "created",
           "owned_by",
-          "aisonar"
+          "tokenlab"
         ],
         "additionalProperties": false
-      },
-      "ModelAisonarExtension": {
-        "type": "object",
-        "description": "AI Sonar extension fields for the detail route, including pricing, capabilities, recommendation metadata, and the full non-chat public contract.",
-        "properties": {
-          "aliases": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "pricing": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "capabilities": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "providers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "max_input_tokens": {
-            "type": [
-              "number",
-              "null"
-            ]
-          },
-          "max_output_tokens": {
-            "type": [
-              "number",
-              "null"
-            ]
-          },
-          "category": {
-            "type": "string"
-          },
-          "pricing_unit": {
-            "type": "string"
-          },
-          "cache_pricing": {
-            "type": [
-              "object",
-              "null"
-            ],
-            "additionalProperties": true
-          },
-          "has_complex_pricing": {
-            "type": "boolean"
-          },
-          "supported_operations": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "pricing_summary": {
-            "type": [
-              "object",
-              "null"
-            ],
-            "additionalProperties": true
-          },
-          "pricing_provenance": {
-            "type": [
-              "object",
-              "null"
-            ],
-            "additionalProperties": true
-          },
-          "public_contract_summary": {
-            "$ref": "#/components/schemas/NonChatPublicContractSummary"
-          },
-          "public_contract": {
-            "$ref": "#/components/schemas/NonChatPublicContract"
-          }
-        },
-        "additionalProperties": true
       },
       "NonChatPublicContractSummary": {
         "type": [
@@ -8223,7 +8055,171 @@
         },
         "additionalProperties": true
       },
-      "ModelListAI SonarExtension": {
+      "ModelListLegacyPlatformExtension": {
+        "type": "object",
+        "description": "AI Sonar discovery fields for the list route. Detail-only metadata such as capability flags, pricing provenance, full public contracts, and empty recommendation snapshots are omitted.",
+        "properties": {
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pricing": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "max_input_tokens": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "max_output_tokens": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "category": {
+            "type": "string"
+          },
+          "pricing_unit": {
+            "type": "string"
+          },
+          "cache_pricing": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": true
+          },
+          "has_complex_pricing": {
+            "type": "boolean"
+          },
+          "pricing_summary": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": true
+          },
+          "agent_preferences": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "public_contract_summary": {
+            "$ref": "#/components/schemas/ModelListContractSummary"
+          }
+        },
+        "required": [
+          "aliases",
+          "pricing",
+          "capabilities",
+          "max_input_tokens",
+          "max_output_tokens",
+          "category",
+          "pricing_unit",
+          "has_complex_pricing"
+        ],
+        "additionalProperties": false
+      },
+      "ModelLegacyPlatformExtension": {
+        "type": "object",
+        "description": "AI Sonar extension fields for the detail route, including pricing, capabilities, recommendation metadata, and the full non-chat public contract.",
+        "properties": {
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pricing": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "max_input_tokens": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "max_output_tokens": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "category": {
+            "type": "string"
+          },
+          "pricing_unit": {
+            "type": "string"
+          },
+          "cache_pricing": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": true
+          },
+          "has_complex_pricing": {
+            "type": "boolean"
+          },
+          "supported_operations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pricing_summary": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": true
+          },
+          "pricing_provenance": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": true
+          },
+          "public_contract_summary": {
+            "$ref": "#/components/schemas/NonChatPublicContractSummary"
+          },
+          "public_contract": {
+            "$ref": "#/components/schemas/NonChatPublicContract"
+          }
+        },
+        "additionalProperties": true
+      },
+      "ModelListPlatformExtension": {
         "type": "object",
         "description": "AI Sonar discovery fields for the list route. Detail-only metadata such as capability flags, pricing provenance, full public contracts, and empty recommendation snapshots are omitted.",
         "properties": {
@@ -8498,7 +8494,7 @@
         ],
         "additionalProperties": false
       },
-      "ModelAI SonarExtension": {
+      "ModelPlatformExtension": {
         "type": "object",
         "description": "AI Sonar extension fields for the detail route, including pricing, capabilities, recommendation metadata, and the full non-chat public contract.",
         "properties": {

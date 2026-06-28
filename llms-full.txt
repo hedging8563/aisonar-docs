@@ -40,7 +40,7 @@ The public catalog changes over time. Use `/v1/models`, `recommended_for`, or th
 | Audio & Realtime | TTS, transcription, translation, and realtime sessions | `gpt-4o-mini-tts`, `whisper-1`, `gpt-realtime` |
 | Embeddings & Rerank | Text vectorization and reranking | `text-embedding-3-small`, `qwen3-vl-rerank` |
 | Translation | Text and speech translation workflows | `qwen-mt-plus`, `gpt-realtime-translate` |
-| Music & 3D | Music and 3D asset generation | `suno-music`, `tripo3d-v2.5` |
+| Music & 3D | Music and 3D asset generation | `suno-music`, `tripo-h3.1` |
 | Worlds | World generation, status polling, and media asset workflows | Use `/v1/worlds/generations` and the Models API for current availability |
 
 ## Choose the Request Format
@@ -434,7 +434,7 @@ These headers appear on both streaming and non-streaming responses.
 ```json
 {
   "id": "gemini-2.5-flash-image",
-  "aisonar": {
+  "tokenlab": {
     "category": "image",
     "pricing_unit": "per_request",
     "agent_preferences": {
@@ -855,7 +855,7 @@ response = client.chat.completions.create(model="gemini-3.5-flash", ...)
 
 URL: https://docs.aisonar.dev/integrations/coding-agent-skill
 
-> Note: This page documents the maintained shared `aisonar-api-integration` skill. The canonical distribution lives in [hedging8563/aisonar-skills](https://github.com/hedging8563/aisonar-skills), where the public repository intentionally keeps only this skill.
+> Note: This page documents the maintained shared `tokenlab-api-integration` skill. The canonical distribution lives in [hedging8563/tokenlab-skills](https://github.com/hedging8563/tokenlab-skills), where the public repository intentionally keeps only this skill.
 
 > Note: Use this page for skill installation and agent workflow guidance. For endpoint-specific setup, use the dedicated SDK, client, or API reference page for that tool.
 
@@ -872,12 +872,12 @@ URL: https://docs.aisonar.dev/integrations/coding-agent-skill
 > Note: Use the canonical non-interactive install command:
 
 ```bash
-npx skills add https://github.com/hedging8563/aisonar-skills --skill aisonar-api-integration -y
+npx skills add https://github.com/hedging8563/tokenlab-skills --skill tokenlab-api-integration -y
 ```
 
-This installs the shared `aisonar-api-integration` skill from the AI Sonar skills repository.
+This installs the shared `tokenlab-api-integration` skill from the AI Sonar skills repository.
 
-If your tool does not support the installer, copy `skills/aisonar-api-integration/` from the repository into your tool's shared skills or rules directory.
+If your tool does not support the installer, copy `skills/tokenlab-api-integration/` from the repository into your tool's shared skills or rules directory.
 
 ### Update Existing Installs
 
@@ -891,7 +891,7 @@ Ask your coding agent:
 What skills are available?
 ```
 
-If you see `aisonar-api-integration`, the installation succeeded.
+If you see `tokenlab-api-integration`, the installation succeeded.
 
 ## Get Your API Key
 
@@ -1035,7 +1035,7 @@ Any coding agent that supports shared skill or rules directories can use the fol
 Rerun the install command. It refreshes the local copy from the canonical public repository.
 
     ```bash
-    npx skills add https://github.com/hedging8563/aisonar-skills --skill aisonar-api-integration -y
+    npx skills add https://github.com/hedging8563/tokenlab-skills --skill tokenlab-api-integration -y
     ```
 
 ## Resources
@@ -1044,7 +1044,7 @@ Rerun the install command. It refreshes the local copy from the canonical public
 
 
 
-> Info: Questions? Use [GitHub Issues](https://github.com/hedging8563/aisonar-skills/issues) or contact [support@aisonar.dev](mailto:support@aisonar.dev).
+> Info: Questions? Use [GitHub Issues](https://github.com/hedging8563/tokenlab-skills/issues) or contact [](mailto:).
 
 ---
 
@@ -1428,7 +1428,7 @@ AI Sonar implements rate limits to ensure fair usage and platform stability. Lim
 | **Partner** | 10,000 | For integration partners |
 | **VIP** | 10,000 | High-volume users |
 
-> Note: Rate limits are subject to change. Contact support@aisonar.dev for custom limits.
+> Note: Rate limits are subject to change. Contact  for custom limits.
 
 ## Rate Limit Response
 
@@ -1550,7 +1550,7 @@ Faster models (like gpt-5-mini) allow more throughput.
 
 #### Contact us for higher limits
 
-If you need higher limits, contact support@aisonar.dev.
+If you need higher limits, contact .
 
 ## Upgrading Your Tier
 
@@ -1560,7 +1560,7 @@ To request a tier upgrade:
 2. Go to **Settings → Account**
 3. Contact support with your use case
 
-Or email support@aisonar.dev with:
+Or email  with:
 - Your account email
 - Expected request volume
 - Use case description
@@ -1609,7 +1609,7 @@ Image, video, music, 3D, audio, and world-generation models may be priced per re
 | Image | `flux-pro`, `qwen-image` |
 | Video | `veo3.1`, `seedance-2.0` |
 | Music | `suno-music` |
-| 3D | `tripo3d-v2.5` |
+| 3D | `tripo-h3.1` |
 | Audio | `tts-1`, `whisper-1` |
 
 ### Async Task Billing (Video/Music/3D and Some Image Models)
@@ -1623,7 +1623,7 @@ For task-based generation flows (video, music, 3D, and some image models):
 3. When the task completes successfully, final settlement records the usage and the task response includes `billing_transaction_id`.
 4. If creation fails or the terminal status is failed, the pending amount is refunded or released and the request is marked non-billable.
 
-If the dashboard does not reflect a completed settlement or refund after terminal status is visible, contact support@aisonar.dev for assistance.
+If the dashboard does not reflect a completed settlement or refund after terminal status is visible, contact  for assistance.
 
 ```python
 # Example: Video generation billing
@@ -1750,7 +1750,7 @@ When the limit is reached, requests with that key will return `402 Payment Requi
 
 ## Questions?
 
-Contact support@aisonar.dev for billing inquiries.
+Contact  for billing inquiries.
 
 ---
 
@@ -2136,7 +2136,7 @@ Keep Gemini built-in tools, File API references, cached contents, function decla
 ## Media Migration
 
 1. Query `GET /v1/models?recommended_for=image|video|music|3d`.
-2. Read `aisonar.public_contract_summary` in list responses and the full `aisonar.public_contract` where available.
+2. Read `tokenlab.public_contract_summary` in list responses and the full `tokenlab.public_contract` where available.
 3. Send an explicit `model`, especially for image endpoints.
 4. Store `task_id`, `poll_url`, endpoint, model, and your own job ID for async jobs.
 5. Reconcile costs through usage records and `billing_transaction_id`, not provider task IDs.
@@ -2506,7 +2506,7 @@ curl "https://api.aisonar.dev/v1/models?recommended_for=image" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
-For non-chat models, the list response may include `aisonar.public_contract_summary`. Model detail pages may expose the fuller `aisonar.public_contract`. Use those fields to confirm:
+For non-chat models, the list response may include `tokenlab.public_contract_summary`. Model detail pages may expose the fuller `tokenlab.public_contract`. Use those fields to confirm:
 
 - The supported operation, such as `text-to-image`, `image-to-image`, or `image-edit`.
 - The request endpoint expected by the model.
@@ -2793,7 +2793,7 @@ curl https://api.aisonar.dev/v1/3d/generations \
   -H "Authorization: Bearer sk-your-api-key" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "tripo3d-v2.5",
+    "model": "tripo-h3.1",
     "prompt": "A stylized low-poly robot mascot with clean topology",
     "format": "glb",
     "quality": "standard"
@@ -3111,7 +3111,7 @@ anthropic_models = [m for m in models.data if m.owned_by == "anthropic"]
       "object": "model",
       "created": 1706000000,
       "owned_by": "google",
-      "aisonar": {
+      "tokenlab": {
         "category": "image",
         "pricing_unit": "per_request",
         "agent_preferences": {
@@ -3160,7 +3160,7 @@ If the model doesn't exist, you'll receive a 404 error:
 
 ## Non-Chat Recommendation Metadata
 
-For non-chat models, the detail route also returns `aisonar.agent_preferences.`.
+For non-chat models, the detail route also returns `tokenlab.agent_preferences.`.
 
 Use it to inspect:
 
@@ -3176,11 +3176,11 @@ The public response summarizes recommendation provenance with `basis.source` and
 
 Compared with `GET /v1/models`, the detail route can additionally return:
 
-- `aisonar.capability_flags`
-- `aisonar.supported_operations`
-- `aisonar.pricing_provenance`
-- `aisonar.public_contract_summary`
-- `aisonar.public_contract`
+- `tokenlab.capability_flags`
+- `tokenlab.supported_operations`
+- `tokenlab.pricing_provenance`
+- `tokenlab.public_contract_summary`
+- `tokenlab.public_contract`
 
 ---
 
@@ -4345,7 +4345,7 @@ curl "https://api.aisonar.dev/v1/models/veo3.1" \
   -H "Authorization: Bearer sk-your-api-key"
 ```
 
-Read `aisonar.capabilities`, `aisonar.supported_operations`, `aisonar.public_contract_summary`, and `aisonar.public_contract` from the model detail response. Operations such as `audio-to-video` and `video-extension` are model-specific; confirm current availability there instead of relying on static examples in this page.
+Read `tokenlab.capabilities`, `tokenlab.supported_operations`, `tokenlab.public_contract_summary`, and `tokenlab.public_contract` from the model detail response. Operations such as `audio-to-video` and `video-extension` are model-specific; confirm current availability there instead of relying on static examples in this page.
 
 ---
 
@@ -5970,15 +5970,15 @@ URL: https://docs.aisonar.dev/guides/aisonar-provider
 
 For current OpenClaw versions, the recommended approach is to configure AI Sonar through `models.providers`.
 
-If you just want to get started quickly, configuring `aisonar` alone is enough. Add the other providers only when you explicitly need **Responses API**, **Claude native**, **Gemini native**, or **MiniMax native** behavior.
+If you just want to get started quickly, configuring `tokenlab` alone is enough. Add the other providers only when you explicitly need **Responses API**, **Claude native**, **Gemini native**, or **MiniMax native** behavior.
 
 | Provider | OpenClaw `api` | Best for | baseUrl |
 |----------|----------------|----------|---------|
-| `aisonar` | `openai-completions` | GPT, DeepSeek, Qwen, and most OpenAI-compatible calls | `https://api.aisonar.dev/v1` |
-| `aisonar-responses` | `openai-responses` | OpenAI Responses workflows that expect `/v1/responses` semantics | `https://api.aisonar.dev/v1` |
-| `aisonar-claude` | `anthropic-messages` | Native Claude Messages API | `https://api.aisonar.dev` |
-| `aisonar-gemini` | `google-generative-ai` | Native Gemini API format | `https://api.aisonar.dev` |
-| `aisonar-minimax` | `anthropic-messages` | Native MiniMax routing | `https://api.aisonar.dev` |
+| `tokenlab` | `openai-completions` | GPT, DeepSeek, Qwen, and most OpenAI-compatible calls | `https://api.aisonar.dev/v1` |
+| `tokenlab-responses` | `openai-responses` | OpenAI Responses workflows that expect `/v1/responses` semantics | `https://api.aisonar.dev/v1` |
+| `tokenlab-claude` | `anthropic-messages` | Native Claude Messages API | `https://api.aisonar.dev` |
+| `tokenlab-gemini` | `google-generative-ai` | Native Gemini API format | `https://api.aisonar.dev` |
+| `tokenlab-minimax` | `anthropic-messages` | Native MiniMax routing | `https://api.aisonar.dev` |
 
 > Warning: Use the `/v1` suffix only for `openai-completions` and `openai-responses`.
 
@@ -6002,14 +6002,14 @@ Add AI Sonar providers under `models.providers`:
   agents: {
     defaults: {
       model: {
-        primary: "aisonar-claude/claude-sonnet-4-6"
+        primary: "tokenlab-claude/claude-sonnet-4-6"
       }
     }
   },
   models: {
     mode: "merge",
     providers: {
-      aisonar: {
+      tokenlab: {
         api: "openai-completions",
         baseUrl: "https://api.aisonar.dev/v1",
         apiKey: "sk-your-api-key",
@@ -6019,7 +6019,7 @@ Add AI Sonar providers under `models.providers`:
           { id: "qwen3-coder-flash", name: "Qwen 3 Coder Flash" }
         ]
       },
-      "aisonar-responses": {
+      "tokenlab-responses": {
         api: "openai-responses",
         baseUrl: "https://api.aisonar.dev/v1",
         apiKey: "sk-your-api-key",
@@ -6028,7 +6028,7 @@ Add AI Sonar providers under `models.providers`:
           { id: "gpt-5.2", name: "GPT-5.2 (Responses)" }
         ]
       },
-      "aisonar-claude": {
+      "tokenlab-claude": {
         api: "anthropic-messages",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -6037,7 +6037,7 @@ Add AI Sonar providers under `models.providers`:
           { id: "claude-opus-4-6", name: "Claude Opus 4.6" }
         ]
       },
-      "aisonar-gemini": {
+      "tokenlab-gemini": {
         api: "google-generative-ai",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -6046,7 +6046,7 @@ Add AI Sonar providers under `models.providers`:
           { id: "gemini-2.5-pro", name: "Gemini 2.5 Pro" }
         ]
       },
-      "aisonar-minimax": {
+      "tokenlab-minimax": {
         api: "anthropic-messages",
         baseUrl: "https://api.aisonar.dev",
         apiKey: "sk-your-api-key",
@@ -6072,7 +6072,7 @@ OpenClaw still references models with the `provider/model` format:
   agents: {
     defaults: {
       model: {
-        primary: "aisonar-gemini/gemini-3.5-flash"
+        primary: "tokenlab-gemini/gemini-3.5-flash"
       }
     }
   }
@@ -6083,24 +6083,24 @@ OpenClaw still references models with the `provider/model` format:
 
 | Provider | Model reference | Description |
 |----------|-----------------|-------------|
-| `aisonar` | `aisonar/gpt-4o` | OpenAI-compatible route |
-| `aisonar` | `aisonar/deepseek-r1` | DeepSeek reasoning model |
-| `aisonar-responses` | `aisonar-responses/gpt-4o` | Responses API route |
-| `aisonar-claude` | `aisonar-claude/claude-sonnet-4-6` | Native Claude Messages route |
-| `aisonar-gemini` | `aisonar-gemini/gemini-3.5-flash` | Native Gemini route |
-| `aisonar-minimax` | `aisonar-minimax/minimax-m2.1` | Native MiniMax route |
+| `tokenlab` | `tokenlab/gpt-4o` | OpenAI-compatible route |
+| `tokenlab` | `tokenlab/deepseek-r1` | DeepSeek reasoning model |
+| `tokenlab-responses` | `tokenlab-responses/gpt-4o` | Responses API route |
+| `tokenlab-claude` | `tokenlab-claude/claude-sonnet-4-6` | Native Claude Messages route |
+| `tokenlab-gemini` | `tokenlab-gemini/gemini-3.5-flash` | Native Gemini route |
+| `tokenlab-minimax` | `tokenlab-minimax/minimax-m2.1` | Native MiniMax route |
 
 Browse all available models at [aisonar.dev/models](https://aisonar.dev/models).
 
 ## When to Use Which Provider
 
-- `aisonar`: default choice for most general-purpose agent and chat use cases.
-- `aisonar-responses`: use when your OpenClaw workflow explicitly depends on OpenAI Responses semantics.
-- `aisonar-claude`: use when you want Claude's native Messages behavior.
-- `aisonar-gemini`: use when you want Gemini-native request/response formatting or existing Gemini-style integrations.
-- `aisonar-minimax`: use when you want MiniMax on its native route.
+- `tokenlab`: default choice for most general-purpose agent and chat use cases.
+- `tokenlab-responses`: use when your OpenClaw workflow explicitly depends on OpenAI Responses semantics.
+- `tokenlab-claude`: use when you want Claude's native Messages behavior.
+- `tokenlab-gemini`: use when you want Gemini-native request/response formatting or existing Gemini-style integrations.
+- `tokenlab-minimax`: use when you want MiniMax on its native route.
 
-If you do not need Gemini-native behavior, you can still call Gemini models through `aisonar/gemini-*` on the OpenAI-compatible route.
+If you do not need Gemini-native behavior, you can still call Gemini models through `tokenlab/gemini-*` on the OpenAI-compatible route.
 
 ## Common Mistakes
 
@@ -6109,19 +6109,19 @@ If you do not need Gemini-native behavior, you can still call Gemini models thro
 Current OpenClaw docs use `models.providers`. If you keep the older top-level `providers` array format, OpenClaw may ignore the config or fail to resolve the provider prefixes as expected.
 
 
-#### Forgetting /v1 on aisonar-responses
+#### Forgetting /v1 on tokenlab-responses
 
-`openai-responses` maps to AI Sonar's `/v1/responses` path, so `aisonar-responses` must use `https://api.aisonar.dev/v1`.
+`openai-responses` maps to AI Sonar's `/v1/responses` path, so `tokenlab-responses` must use `https://api.aisonar.dev/v1`.
 
 
-#### Adding /v1 to aisonar-claude, aisonar-gemini, or aisonar-minimax
+#### Adding /v1 to tokenlab-claude, tokenlab-gemini, or tokenlab-minimax
 
 `anthropic-messages` and `google-generative-ai` should use `https://api.aisonar.dev` without `/v1`. Adding `/v1` can produce incorrect request paths.
 
 
 #### Does OpenClaw still support native Gemini?
 
-Yes. Current OpenClaw documentation still includes the built-in `google` provider and also supports custom providers using `api: "google-generative-ai"`. So `aisonar-gemini` remains a valid native Gemini route for OpenClaw users.
+Yes. Current OpenClaw documentation still includes the built-in `google` provider and also supports custom providers using `api: "google-generative-ai"`. So `tokenlab-gemini` remains a valid native Gemini route for OpenClaw users.
 
 ## Verify Setup
 
@@ -6130,7 +6130,7 @@ After saving the config, restart your OpenClaw instance and test with a simple m
 ```bash
 # Self-hosted: restart the service
 systemctl --user restart openclaw    # Linux
-launchctl stop cc.aisonar.openclaw && launchctl start cc.aisonar.openclaw  # macOS
+launchctl stop cc.tokenlab.openclaw && launchctl start cc.tokenlab.openclaw  # macOS
 ```
 
 ## Next Steps
@@ -6442,7 +6442,7 @@ source ~/.zshrc  # or source ~/.bashrc
 Edit `~/.codex/config.toml`:
 
 ```toml
-model_provider = "aisonar"
+model_provider = "tokenlab"
 model = "gpt-5.4"
 model_reasoning_effort = "xhigh"
 plan_mode_reasoning_effort = "xhigh"
@@ -6456,7 +6456,7 @@ disable_response_storage = false
 personality = "friendly"
 service_tier = "fast"
 
-[model_providers.aisonar]
+[model_providers.tokenlab]
 env_key = "OPENAI_API_KEY"
 name = "AI Sonar"
 base_url = "https://api.aisonar.dev/v1"
@@ -6890,7 +6890,7 @@ OpenCode's current docs recommend configuring providers through `opencode.json` 
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "aisonar": {
+    "tokenlab": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "AI Sonar",
       "options": {
@@ -6907,7 +6907,7 @@ OpenCode's current docs recommend configuring providers through `opencode.json` 
       }
     }
   },
-  "model": "aisonar/gpt-5.4"
+  "model": "tokenlab/gpt-5.4"
 }
 ```
 
@@ -6930,7 +6930,7 @@ opencode "Explain this codebase"
 **Specify model:**
 
 ```bash
-opencode --model aisonar/gpt-5.4 "Fix the bugs in main.py"
+opencode --model tokenlab/gpt-5.4 "Fix the bugs in main.py"
 ```
 
 ## Available Models
@@ -7383,13 +7383,13 @@ Create a `litellm-config.yaml` like this:
 
 ```yaml
 model_list:
-  - model_name: aisonar-gpt-5.4
+  - model_name: tokenlab-gpt-5.4
     litellm_params:
       model: custom_openai/gpt-5.4
       api_base: https://api.aisonar.dev/v1
       api_key: os.environ/OPENAI_API_KEY
 
-  - model_name: aisonar-claude-sonnet
+  - model_name: tokenlab-claude-sonnet
     litellm_params:
       model: custom_openai/claude-sonnet-4-6
       api_base: https://api.aisonar.dev/v1
@@ -7414,7 +7414,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="aisonar-gpt-5.4",
+    model="tokenlab-gpt-5.4",
     messages=[{"role": "user", "content": "Hello!"}]
 )
 
@@ -7504,8 +7504,8 @@ npm install ai @ai-sdk/openai-compatible
 ```typescript
 import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
 
-export const aisonar = createOpenAICompatible({
-  name: 'aisonar',
+export const tokenlab = createOpenAICompatible({
+  name: 'tokenlab',
   apiKey: process.env.TOKENLAB_API_KEY,
   baseURL: 'https://api.aisonar.dev/v1',
 });
@@ -7515,10 +7515,10 @@ export const aisonar = createOpenAICompatible({
 
 ```typescript
 import { generateText } from 'ai';
-import { aisonar } from './aisonar';
+import { tokenlab } from './tokenlab';
 
 const { text } = await generateText({
-  model: aisonar.chatModel('gpt-5.4'),
+  model: tokenlab.chatModel('gpt-5.4'),
   prompt: 'Explain AI Sonar in one sentence.',
 });
 
@@ -7529,10 +7529,10 @@ console.log(text);
 
 ```typescript
 import { streamText } from 'ai';
-import { aisonar } from './aisonar';
+import { tokenlab } from './tokenlab';
 
 const result = await streamText({
-  model: aisonar.chatModel('gpt-5.4'),
+  model: tokenlab.chatModel('gpt-5.4'),
   prompt: 'Write a short poem about coding.',
 });
 
@@ -7546,10 +7546,10 @@ for await (const textPart of result.textStream) {
 ```typescript
 import { generateText, tool } from 'ai';
 import { z } from 'zod';
-import { aisonar } from './aisonar';
+import { tokenlab } from './tokenlab';
 
 const result = await generateText({
-  model: aisonar.chatModel('gpt-5.4'),
+  model: tokenlab.chatModel('gpt-5.4'),
   prompt: 'What is the weather in San Francisco?',
   tools: {
     weather: tool({
@@ -7574,10 +7574,10 @@ console.log(result.text);
 ```typescript
 import { generateObject } from 'ai';
 import { z } from 'zod';
-import { aisonar } from './aisonar';
+import { tokenlab } from './tokenlab';
 
 const { object } = await generateObject({
-  model: aisonar.chatModel('gpt-5.4'),
+  model: tokenlab.chatModel('gpt-5.4'),
   schema: z.object({
     name: z.string(),
     role: z.string(),
@@ -7597,7 +7597,7 @@ npm install ai @ai-sdk/openai
 ```typescript
 import { createOpenAI } from '@ai-sdk/openai';
 
-export const aisonarResponses = createOpenAI({
+export const tokenlabResponses = createOpenAI({
   apiKey: process.env.TOKENLAB_API_KEY,
   baseURL: 'https://api.aisonar.dev/v1',
 });
@@ -7605,10 +7605,10 @@ export const aisonarResponses = createOpenAI({
 
 ```typescript
 import { generateText } from 'ai';
-import { aisonarResponses } from './aisonar-responses';
+import { tokenlabResponses } from './tokenlab-responses';
 
 const { text } = await generateText({
-  model: aisonarResponses('gpt-5.4'),
+  model: tokenlabResponses('gpt-5.4'),
   prompt: 'Explain AI Sonar in one sentence.',
 });
 ```

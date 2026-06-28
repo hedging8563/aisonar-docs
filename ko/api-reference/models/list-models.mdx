@@ -18,16 +18,16 @@ description: "사용 가능한 모든 모델을 나열합니다"
   - `object` (string): `model`
   - `created` (integer): 생성 타임스탬프
   - `owned_by` (string): 모델 제공자
-  - `aisonar.category` (string): 공개 모델 카테고리
-  - `aisonar.pricing_unit` (string 또는 `null`): 공개 가격 단위
-  - `aisonar.capability_flags` (object 또는 `null`): 공개 기능 요약
-  - `aisonar.supported_operations` (array 또는 `null`): 공개 비채팅 작업 목록
-  - `aisonar.pricing_provenance` (object 또는 `null`): 공개 가격 출처 메타데이터
-  - `aisonar.public_contract_summary` (object 또는 `null`): `public_operations` 와 `request_endpoint` 만 포함하는 간단한 비채팅 탐색 요약
-  - `aisonar.agent_preferences` (object): `recommended_for` 가 있을 때만 반환
-  - `aisonar.lifecycle`(object): 수명 주기 단계, 출시/지원 중단 날짜, 대체 모델, latest 배지 기준
-  - `aisonar.commercial`(object): 사용자 과금 정책, 무료 사유, 선택적 무료 종료 시각
-  - `aisonar.badges`(array): 수명 주기와 상업 메타데이터에서 파생된 표시 배지
+  - `tokenlab.category` (string): 공개 모델 카테고리
+  - `tokenlab.pricing_unit` (string 또는 `null`): 공개 가격 단위
+  - `tokenlab.capability_flags` (object 또는 `null`): 공개 기능 요약
+  - `tokenlab.supported_operations` (array 또는 `null`): 공개 비채팅 작업 목록
+  - `tokenlab.pricing_provenance` (object 또는 `null`): 공개 가격 출처 메타데이터
+  - `tokenlab.public_contract_summary` (object 또는 `null`): `public_operations` 와 `request_endpoint` 만 포함하는 간단한 비채팅 탐색 요약
+  - `tokenlab.agent_preferences` (object): `recommended_for` 가 있을 때만 반환
+  - `tokenlab.lifecycle`(object): 수명 주기 단계, 출시/지원 중단 날짜, 대체 모델, latest 배지 기준
+  - `tokenlab.commercial`(object): 사용자 과금 정책, 무료 사유, 선택적 무료 종료 시각
+  - `tokenlab.badges`(array): 수명 주기와 상업 메타데이터에서 파생된 표시 배지
 </ResponseField>
 
 <Note>
@@ -210,7 +210,7 @@ anthropic_models = [m for m in models.data if m.owned_by == "anthropic"]
       "object": "model",
       "created": 1706000000,
       "owned_by": "google",
-      "aisonar": {
+      "tokenlab": {
         "category": "image",
         "pricing_unit": "per_request",
         "agent_preferences": {
