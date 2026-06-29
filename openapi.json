@@ -3253,7 +3253,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "qwen-tts-realtime"
+            "example": "gpt-realtime"
           }
         ],
         "responses": {
