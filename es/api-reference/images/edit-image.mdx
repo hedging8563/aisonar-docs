@@ -20,16 +20,16 @@ Las ediciones con `gpt-image-2` no aceptan `resolution` ni `background`; usa `si
 
 Las solicitudes Nano Banana con imagen de referencia (`nano-banana`, `nano-banana-2` y `nano-banana-pro`) se exponen en `/v1/images/generations` con `operation: "image-to-image"` e `image_urls`, no en este endpoint `/v1/images/edits`.
 
-Los modelos de edición de imagen xAI Grok Imagine (`grok-imagine-image`, `grok-imagine-image-quality` y el legacy `grok-imagine-image-pro`) aceptan como máximo 3 imágenes fuente. Las solicitudes con más de 3 imágenes fuente fallan antes de reenviarse al upstream con `400 too_many_images`.
+Los modelos de edición de imagen xAI Grok Imagine (`grok-imagine-image`, `grok-imagine-image-quality` y el legacy `grok-imagine-image-pro`) aceptan como máximo 3 imágenes fuente. Las solicitudes con más de 3 imágenes fuente fallan durante la validación de entrada con `400 too_many_images`.
 
-Nota de compatibilidad: si una solicitud `gpt-image-2` incluye `input_fidelity`, AI Sonar lo elimina antes de reenviarla porque GPT Image 2 ya procesa las entradas de imagen con alta fidelidad.
+Nota de compatibilidad: si se envía `input_fidelity` con `gpt-image-2`, AI Sonar lo elimina porque GPT Image 2 ya procesa las entradas de imagen con alta fidelidad.
 </Note>
 
 ## Cuerpo de la solicitud
 
-**Tiempo de espera de solicitudes síncronas:** algunos proveedores de imagen enrutados devuelven la imagen final inline y esperan a que termine la generación. Las solicitudes de alta resolución o alta calidad pueden tardar cerca de un minuto o más, así que configura el timeout de tu cliente HTTP en al menos `120s`. Si la respuesta de creación incluye `status: "pending"`, `task_id` o `poll_url`, sigue el `poll_url` devuelto en su lugar.
+**Tiempo de espera de solicitudes síncronas:** algunas solicitudes de imagen devuelven la imagen final inline y esperan a que termine la generación. Las solicitudes de alta resolución o alta calidad pueden tardar cerca de un minuto o más, así que configura el timeout de tu cliente HTTP en al menos `120s`. Si la respuesta de creación incluye `status: "pending"`, `task_id` o `poll_url`, sigue el `poll_url` devuelto en su lugar.
 
-URLs de imagen remotas: cuando el proveedor enrutado requiere entrada multipart, AI Sonar descarga JSON `image_url`, `image_urls` o `images[].image_url` y reenvía los bytes como partes multipart `image`. Las URLs deben ser públicas `http`/`https`, sin credenciales incrustadas ni fragmentos, y no deben resolver a localhost ni a rangos IP privados o reservados; cada redirección se valida de nuevo. El contenido descargado debe ser una imagen PNG, JPEG o WebP real. Límites: `50MB` por imagen, `200MB` en total para imágenes descargadas por URL en una solicitud, timeout de `10s` y hasta `3` redirecciones.
+URLs de imagen remotas: cuando se necesita entrada multipart, AI Sonar descarga JSON `image_url`, `image_urls` o `images[].image_url` y envía los bytes como partes multipart `image`. Las URLs deben ser públicas `http`/`https`, sin credenciales incrustadas ni fragmentos, y no deben resolver a localhost ni a rangos IP privados o reservados; cada redirección se valida de nuevo. El contenido descargado debe ser una imagen PNG, JPEG o WebP real. Límites: `50MB` por imagen, `200MB` en total para imágenes descargadas por URL en una solicitud, timeout de `10s` y hasta `3` redirecciones.
 
 <ParamField body="image" type="file">
   Imágenes fuente multipart. Repite `image` para enviar varias fuentes de GPT Image. Los archivos deben ser PNG, JPEG o WebP, hasta 16 imágenes fuente y `50MB` cada una. Los modelos de edición xAI Grok Imagine usan los mismos campos de entrada, pero limitan las imágenes fuente a 3.
@@ -58,7 +58,7 @@ URLs de imagen remotas: cuando el proveedor enrutado requiere entrada multipart,
 <ParamField body="response_format" type="string" default="url">
   Formato en el que se devuelven las imágenes generadas. Debe ser `url` o `b64_json`; el valor predeterminado es `url`.
 
-  Para rutas `gpt-image-2` de Azure Official o compatibles con Azure, AI Sonar no reenvía `response_format` al upstream. El gateway siempre recibe los datos de imagen upstream como `b64_json`; para solicitudes `url`, sube cada imagen al CDN y devuelve `data[].url`. Si el almacenamiento CDN no está disponible o la subida falla, la solicitud falla en vez de degradar a Base64. Para `b64_json`, devuelve el Base64 sin procesar.
+  Para solicitudes `gpt-image-2` de Azure Official o compatibles con Azure, AI Sonar recibe los datos de imagen como `b64_json`. Para solicitudes `url`, AI Sonar sube cada imagen al CDN y devuelve `data[].url`. Si el almacenamiento CDN no está disponible o la subida falla, la solicitud falla en lugar de convertirse en una respuesta Base64. Para `b64_json`, devuelve el Base64 sin procesar.
 </ParamField>
 
 <ParamField body="async" type="boolean" default="false">
@@ -237,5 +237,5 @@ echo $data['data'][0]['url'];
 ## Notas
 
 <Note>
-  Los fallos al descargar imágenes remotas se devuelven como errores de entrada antes de enviar la solicitud upstream. URLs inaccesibles, timeouts, respuestas 403/404, hosts privados/internos, credenciales o fragmentos en la URL, contenido que no es imagen, formatos no compatibles y excesos de tamaño devuelven `400` o `413` e identifican `image_url` / `image_urls[n]`. Para recursos privados o protegidos por headers, sube archivos multipart `image` directamente o crea referencias `/v1/files`.
+  Los fallos al descargar imágenes remotas se devuelven como errores de entrada antes de que comience la generación. URLs inaccesibles, timeouts, respuestas 403/404, hosts privados/internos, credenciales o fragmentos en la URL, contenido que no es imagen, formatos no compatibles y excesos de tamaño devuelven `400` o `413` e identifican `image_url` / `image_urls[n]`. Para recursos privados o protegidos por headers, sube archivos multipart `image` directamente o crea referencias `/v1/files`.
 </Note>

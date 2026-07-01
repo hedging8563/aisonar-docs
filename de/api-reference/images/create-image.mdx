@@ -27,11 +27,11 @@ Google-Gemini-Bildfamilien verwenden keinen gemeinsamen Auswahlvertrag:
 
 Bei Google-Bildfamilien bevorzugen Sie `aspect_ratio` und senden Sie `resolution` nur, wenn das Modell es ausdrücklich unterstützt.
 
-xAI-Grok-Imagine-Bildmodelle (`grok-imagine-image`, `grok-imagine-image-quality` und das legacy `grok-imagine-image-pro`) unterstützen `aspect_ratio` sowie `resolution` (`1k`, `2k`). `grok-imagine-image-pro` bleibt als Kompatibilitäts-ID erhalten und wird upstream an `grok-imagine-image-quality` geroutet.
+xAI-Grok-Imagine-Bildmodelle (`grok-imagine-image`, `grok-imagine-image-quality` und das legacy `grok-imagine-image-pro`) unterstützen `aspect_ratio` sowie `resolution` (`1k`, `2k`). `grok-imagine-image-pro` bleibt als Kompatibilitäts-ID für `grok-imagine-image-quality` erhalten.
 
 ## Anfragekörper
 
-**Timeout für synchrone Anfragen:** Einige geroutete Bildanbieter geben das endgültige Bild inline zurück und warten dafür, bis die Generierung abgeschlossen ist. Hochauflösende oder hochwertige Anfragen können fast eine Minute oder länger dauern; setzen Sie das Timeout Ihres HTTP-Clients daher auf mindestens `120s`. Wenn die Create-Antwort `status: "pending"`, `task_id` oder `poll_url` enthält, folgen Sie stattdessen der zurückgegebenen `poll_url`.
+**Timeout für synchrone Anfragen:** Einige Bildanfragen geben das endgültige Bild inline zurück und warten dafür, bis die Generierung abgeschlossen ist. Hochauflösende oder hochwertige Anfragen können fast eine Minute oder länger dauern; setzen Sie das Timeout Ihres HTTP-Clients daher auf mindestens `120s`. Wenn die Create-Antwort `status: "pending"`, `task_id` oder `poll_url` enthält, folgen Sie stattdessen der zurückgegebenen `poll_url`.
 
 <ParamField body="model" type="string" required>
   Zu verwendendes Modell (z. B. `gpt-image-2`, `flux-pro`, `qwen-image-plus` oder `nano-banana-pro`). Die aktuelle Empfehlungsliste erhalten Sie mit `GET /v1/models?recommended_for=image`.
@@ -88,7 +88,7 @@ xAI-Grok-Imagine-Bildmodelle (`grok-imagine-image`, `grok-imagine-image-quality`
 <ParamField body="response_format" type="string" default="url">
   Antwortformat: `url` oder `b64_json`. Standard ist `url`.
 
-  Bei Azure Official- oder Azure-kompatiblen `gpt-image-2`-Routen leitet AI Sonar `response_format` nicht an upstream weiter. Das Gateway erhält die Bilddaten upstream immer als `b64_json`; bei `url`-Anfragen lädt es jedes Bild in das CDN hoch und gibt `data[].url` zurück. Wenn der CDN-Speicher nicht verfügbar ist oder der Upload fehlschlägt, schlägt die Anfrage fehl, statt auf Base64 zurückzufallen. Bei `b64_json` wird das rohe Base64 zurückgegeben.
+  Bei Azure Official- oder Azure-kompatiblen `gpt-image-2`-Anfragen erhält AI Sonar Bilddaten als `b64_json`. Bei `url`-Anfragen lädt AI Sonar jedes Bild in das CDN hoch und gibt `data[].url` zurück. Wenn der CDN-Speicher nicht verfügbar ist oder der Upload fehlschlägt, schlägt die Anfrage fehl, statt in eine Base64-Antwort umgewandelt zu werden. Bei `b64_json` wird das rohe Base64 zurückgegeben.
 </ParamField>
 
 <ParamField body="async" type="boolean" default="false">

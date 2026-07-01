@@ -1,14 +1,14 @@
 ---
 title: "LiteLLM"
-description: "استخدم LiteLLM مع AI Sonar كمزوّد upstream أو كطبقة gateway داخلية"
+description: "استخدم LiteLLM مع AI Sonar كنقطة نهاية متوافقة مع OpenAI أو كجزء من بوابة فريقك"
 ---
 
 ## نظرة عامة
 
 عادةً ما يُستخدم LiteLLM مع AI Sonar بطريقتين.
 
-- استخدام AI Sonar كـ **upstream متوافق مع OpenAI** خلف LiteLLM
-- وضع LiteLLM أمام AI Sonar لإدارة المفاتيح الافتراضية أو التوجيه الإضافي أو المراقبة المركزية
+- استخدام AI Sonar كـ **نقطة نهاية متوافقة مع OpenAI** خلف LiteLLM
+- وضع LiteLLM أمام AI Sonar لإدارة المفاتيح الافتراضية أو سياسة اختيار النماذج أو المراقبة المركزية
 
 بالنسبة إلى AI Sonar، فإن أنظف مسار افتراضي هو استخدام وضع **custom OpenAI / متوافق مع OpenAI** في LiteLLM مع `api_base = https://api.aisonar.dev/v1`.
 
@@ -19,7 +19,7 @@ description: "استخدم LiteLLM مع AI Sonar كمزوّد upstream أو كط
 <Note>
 **النوع**: إطار أو منصة
 
-**المسار الرئيسي**: upstream متوافق مع OpenAI
+**المسار الرئيسي**: نقطة نهاية متوافقة مع OpenAI
 
 **مستوى الدعم**: مسار مدعوم
 </Note>
@@ -50,6 +50,6 @@ litellm --config litellm-config.yaml --port 4000
 
 ## أفضل الممارسات
 
-- اعتبر AI Sonar أولًا upstream من نوع `custom_openai`
+- اعتبر AI Sonar أولًا endpoint من نوع `custom_openai`
 - ضع LiteLLM في المقدمة فقط عندما تحتاج فعلًا إلى طبقة gateway إضافية
 - لا تفترض تلقائيًا توافر كل التفاصيل الأصلية للمزوّد عبر المسار المتوافق مع OpenAI

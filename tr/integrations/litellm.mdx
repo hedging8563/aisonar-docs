@@ -1,14 +1,14 @@
 ---
 title: "LiteLLM"
-description: "LiteLLM'yi AI Sonar ile upstream sağlayıcı veya dahili ağ geçidi katmanı olarak kullanın"
+description: "LiteLLM'yi AI Sonar ile OpenAI uyumlu endpoint veya ekip ağ geçidinizin bir parçası olarak kullanın"
 ---
 
 ## Genel Bakış
 
 LiteLLM ve AI Sonar genelde iki şekilde birlikte kullanılır.
 
-- AI Sonar'yı LiteLLM arkasında **OpenAI uyumlu upstream** olarak kullanmak
-- sanal anahtarlar, ek yönlendirme veya merkezi gözlemlenebilirlik için LiteLLM'yi AI Sonar'nın önüne koymak
+- AI Sonar'yı LiteLLM arkasında **OpenAI uyumlu endpoint** olarak kullanmak
+- sanal anahtarlar, model seçim politikası veya merkezi gözlemlenebilirlik için LiteLLM'yi AI Sonar'nın önüne koymak
 
 AI Sonar için en temiz varsayılan yol, LiteLLM'nin **custom OpenAI / OpenAI uyumlu** modunu kullanıp `api_base = https://api.aisonar.dev/v1` ayarlamaktır.
 
@@ -19,7 +19,7 @@ Açıkça Claude-native veya Gemini-native request shape ihtiyacınız varsa, bu
 <Note>
 **Tür**: Framework veya platform
 
-**Birincil yol**: OpenAI uyumlu upstream
+**Birincil yol**: OpenAI uyumlu endpoint
 
 **Destek seviyesi**: Desteklenen yol
 </Note>
@@ -50,6 +50,6 @@ litellm --config litellm-config.yaml --port 4000
 
 ## En iyi uygulamalar
 
-- AI Sonar'yı önce `custom_openai` upstream olarak ele alın
+- AI Sonar'yı önce `custom_openai` endpoint olarak ele alın
 - LiteLLM'yi yalnızca gerçekten ek bir gateway katmanına ihtiyaç duyuyorsanız öne koyun
 - OpenAI uyumlu yol üzerinde her sağlayıcıya özgü ayrıntının otomatik olarak çalışacağını varsaymayın
